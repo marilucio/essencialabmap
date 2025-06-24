@@ -873,9 +873,9 @@ function App() {
                     name="guia-essencialab" 
                     method="POST" 
                     data-netlify="true" 
+                    netlify-honeypot="bot-field"
                     className="space-y-4"
-                    data-netlify-honeypot="bot-field"
-                    action="/thank-you"
+                    action="https://essencialab.app"
                   >
                     <input type="hidden" name="form-name" value="guia-essencialab" />
                     <p style={{display: 'none'}}>
