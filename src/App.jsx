@@ -17,6 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./components/ui/dialog";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import {
@@ -38,10 +46,19 @@ import {
   MessageCircle,
   Clock,
   HelpCircle,
+  X,
+  Monitor,
+  Smartphone,
+  FileText,
+  Video,
 } from "lucide-react";
 
 function App() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [selectedDemoType, setSelectedDemoType] = useState(null);
+  const [demoStep, setDemoStep] = useState(0);
+  
   // Inicializa a biblioteca de animações AOS
   useEffect(() => {
     if (typeof AOS !== 'undefined') {
@@ -59,11 +76,99 @@ function App() {
   }, []);
 
   const scrollToForm = () => {
+    // Fecha o modal se estiver aberto
+    setIsDemoModalOpen(false);
+    
     const formSection = document.getElementById("lead-capture-form");
     if (formSection) {
       formSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Função para abrir o modal de demonstração
+  const openDemoModal = () => {
+    setIsDemoModalOpen(true);
+    setSelectedDemoType(null);
+    setDemoStep(0);
+  };
+
+  // Função para selecionar tipo de demonstração
+  const selectDemoType = (type) => {
+    setSelectedDemoType(type);
+    setDemoStep(1);
+  };
+
+  // Função para avançar no passo da demonstração
+  const nextDemoStep = () => {
+    if (demoStep < 4) {
+      setDemoStep(demoStep + 1);
+    }
+  };
+
+  // Função para voltar no passo da demonstração
+  const prevDemoStep = () => {
+    if (demoStep > 0) {
+      setDemoStep(demoStep - 1);
+    } else {
+      setSelectedDemoType(null);
+    }
+  };
+
+  // Dados das demonstrações
+  const demoTypes = [
+    {
+      id: 'video',
+      title: 'Vídeo Demonstração',
+      description: 'Assista uma demonstração completa do MAP em ação',
+      icon: Video,
+      color: 'from-red-500 to-red-600',
+      duration: '26:36 min'
+    },
+    {
+      id: 'interactive',
+      title: 'Tour Interativo',
+      description: 'Explore a interface passo a passo',
+      icon: Monitor,
+      color: 'from-blue-500 to-blue-600',
+      duration: '5-10 min'
+    },
+    {
+      id: 'case-study',
+      title: 'Caso Clínico',
+      description: 'Veja um exemplo real de análise',
+      icon: FileText,
+      color: 'from-green-500 to-green-600',
+      duration: '3-5 min'
+    }
+  ];
+
+  // Conteúdo dos passos da demonstração interativa
+  const interactiveSteps = [
+    {
+      title: 'Captura da Imagem',
+      description: 'O profissional tira uma foto facial do paciente usando qualquer dispositivo',
+      image: '/images/demo/step-1-capture.jpg',
+      features: ['Câmera do celular ou computador', 'Sem equipamentos especiais', 'Processo não-invasivo']
+    },
+    {
+      title: 'Processamento IA',
+      description: 'Nossa inteligência artificial analisa biomarcadores faciais em segundos',
+      image: '/images/demo/step-2-processing.jpg',
+      features: ['Algoritmos treinados em 17.000+ imagens', 'Análise em tempo real', 'Precisão de 91%']
+    },
+    {
+      title: 'Relatório SOGI',
+      description: 'Geração automática do relatório com os 4 pilares metabólicos',
+      image: '/images/demo/step-3-report.jpg',
+      features: ['Submetilação', 'Oxidação', 'Glicação', 'Inflamação']
+    },
+    {
+      title: 'Recomendações',
+      description: 'Plano de ação personalizado baseado nos resultados',
+      image: '/images/demo/step-4-recommendations.jpg',
+      features: ['Protocolos personalizados', 'Suplementação direcionada', 'Acompanhamento contínuo']
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
@@ -124,14 +229,249 @@ function App() {
                   <ArrowRight className="w-5 h-5 ml-2 relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-gray-300 hover:border-blue-600 px-8 py-4 rounded-full text-lg font-semibold"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  Ver Demonstração
-                </Button>
+                <Dialog open={isDemoModalOpen} onOpenChange={setIsDemoModalOpen}>
+                  <DialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="border-2 border-gray-300 hover:border-blue-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-lg"
+                      onClick={openDemoModal}
+                    >
+                      <Play className="w-5 h-5 mr-2" />
+                      Ver Demonstração
+                    </Button>
+                  </DialogTrigger>
+                  
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold text-center mb-2">
+                        {!selectedDemoType ? 'Escolha Sua Demonstração' : 
+                         selectedDemoType === 'video' ? 'Vídeo Demonstração' :
+                         selectedDemoType === 'interactive' ? 'Tour Interativo' :
+                         'Caso Clínico Real'}
+                      </DialogTitle>
+                      <DialogDescription className="text-center text-gray-600">
+                        {!selectedDemoType ? 'Selecione o tipo de demonstração que mais se adequa ao seu perfil' :
+                         selectedDemoType === 'video' ? 'Assista uma demonstração completa do MAP em funcionamento' :
+                         selectedDemoType === 'interactive' ? `Passo ${demoStep} de 4: Explore como o MAP funciona na prática` :
+                         'Veja um exemplo real de análise metabólica'}
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    {/* Seleção do tipo de demonstração */}
+                    {!selectedDemoType && (
+                      <div className="grid md:grid-cols-3 gap-6 mt-6">
+                        {demoTypes.map((demo) => (
+                          <Card 
+                            key={demo.id}
+                            className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-300"
+                            onClick={() => selectDemoType(demo.id)}
+                          >
+                            <CardHeader className="text-center">
+                              <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${demo.color} flex items-center justify-center mb-4`}>
+                                <demo.icon className="w-8 h-8 text-white" />
+                              </div>
+                              <CardTitle className="text-lg">{demo.title}</CardTitle>
+                              <CardDescription>{demo.description}</CardDescription>
+                              <Badge variant="outline" className="mt-2 w-fit mx-auto">
+                                <Clock className="w-3 h-3 mr-1" />
+                                {demo.duration}
+                              </Badge>
+                            </CardHeader>
+                          </Card>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Demonstração em Vídeo */}
+                    {selectedDemoType === 'video' && (
+                      <div className="mt-6">
+                        <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                          <iframe
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/nPR-gonfSYw?rel=0&modestbranding=1&showinfo=0"
+                            title="MAP - Demonstração Completa"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                        <div className="mt-4 text-center">
+                          <p className="text-gray-600 mb-4">
+                            Vídeo completo mostrando o MAP em ação real com pacientes
+                          </p>
+                          <Button 
+                            onClick={scrollToForm}
+                            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                          >
+                            Quero Testar Gratuitamente
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tour Interativo */}
+                    {selectedDemoType === 'interactive' && (
+                      <div className="mt-6">
+                        <div className="mb-6">
+                          <div className="flex justify-between items-center mb-4">
+                            <div className="flex space-x-2">
+                              {[1, 2, 3, 4].map((step) => (
+                                <div
+                                  key={step}
+                                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                                    step <= demoStep 
+                                      ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white' 
+                                      : 'bg-gray-200 text-gray-500'
+                                  }`}
+                                >
+                                  {step}
+                                </div>
+                              ))}
+                            </div>
+                            <Badge className="bg-blue-100 text-blue-800">
+                              {demoStep}/4
+                            </Badge>
+                          </div>
+                        </div>
+
+                        {demoStep > 0 && demoStep <= 4 && (
+                          <Card className="mb-6">
+                            <CardHeader>
+                              <CardTitle className="text-xl">
+                                {interactiveSteps[demoStep - 1].title}
+                              </CardTitle>
+                              <CardDescription className="text-base">
+                                {interactiveSteps[demoStep - 1].description}
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="grid md:grid-cols-2 gap-6 items-center">
+                                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+                                  <div className="text-center text-gray-500">
+                                    <Monitor className="w-12 h-12 mx-auto mb-2" />
+                                    <p className="text-sm">Simulação da Interface</p>
+                                    <p className="text-xs">Passo {demoStep}</p>
+                                  </div>
+                                </div>
+                                <div className="space-y-3">
+                                  <h4 className="font-semibold text-gray-800">Características:</h4>
+                                  {interactiveSteps[demoStep - 1].features.map((feature, index) => (
+                                    <div key={index} className="flex items-center space-x-2">
+                                      <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                                      <span className="text-sm text-gray-700">{feature}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        )}
+
+                        <div className="flex justify-between items-center">
+                          <Button
+                            variant="outline"
+                            onClick={prevDemoStep}
+                            disabled={demoStep === 1 && selectedDemoType}
+                          >
+                            {demoStep === 1 ? 'Voltar' : 'Anterior'}
+                          </Button>
+                          
+                          {demoStep < 4 ? (
+                            <Button
+                              onClick={nextDemoStep}
+                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                            >
+                              Próximo
+                              <ArrowRight className="w-4 h-4 ml-2" />
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={scrollToForm}
+                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                            >
+                              Começar Teste Gratuito
+                              <ArrowRight className="w-4 h-4 ml-2" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Caso Clínico */}
+                    {selectedDemoType === 'case-study' && (
+                      <div className="mt-6">
+                        <Card className="mb-6">
+                          <CardHeader>
+                            <CardTitle className="text-xl">Paciente: Maria, 45 anos</CardTitle>
+                            <CardDescription>
+                              Nutricionista solicitou análise metabólica preventiva
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid md:grid-cols-2 gap-6">
+                              <div>
+                                <h4 className="font-semibold mb-3">Foto Analisada:</h4>
+                                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+                                  <div className="text-center text-gray-500">
+                                    <Camera className="w-12 h-12 mx-auto mb-2" />
+                                    <p className="text-sm">Imagem Facial</p>
+                                    <p className="text-xs">Análise Concluída</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <h4 className="font-semibold mb-3">Resultados SOGI:</h4>
+                                <div className="space-y-3">
+                                  <div className="flex justify-between items-center p-2 bg-red-50 rounded">
+                                    <span className="text-sm font-medium">Submetilação</span>
+                                    <Badge variant="destructive">Alto Risco</Badge>
+                                  </div>
+                                  <div className="flex justify-between items-center p-2 bg-yellow-50 rounded">
+                                    <span className="text-sm font-medium">Oxidação</span>
+                                    <Badge className="bg-yellow-500">Moderado</Badge>
+                                  </div>
+                                  <div className="flex justify-between items-center p-2 bg-green-50 rounded">
+                                    <span className="text-sm font-medium">Glicação</span>
+                                    <Badge className="bg-green-600">Baixo</Badge>
+                                  </div>
+                                  <div className="flex justify-between items-center p-2 bg-orange-50 rounded">
+                                    <span className="text-sm font-medium">Inflamação</span>
+                                    <Badge className="bg-orange-500">Moderado</Badge>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                              <h4 className="font-semibold text-blue-800 mb-2">Recomendações Geradas:</h4>
+                              <ul className="text-sm text-blue-700 space-y-1">
+                                <li>• Suplementação com complexo B e folato</li>
+                                <li>• Protocolo antioxidante personalizado</li>
+                                <li>• Acompanhamento em 30 dias</li>
+                                <li>• Ajustes nutricionais específicos</li>
+                              </ul>
+                            </div>
+                          </CardContent>
+                        </Card>
+                        
+                        <div className="text-center">
+                          <p className="text-gray-600 mb-4">
+                            Análise completa realizada em menos de 30 segundos
+                          </p>
+                          <Button 
+                            onClick={scrollToForm}
+                            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                          >
+                            Analisar Meus Pacientes
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
 
@@ -535,9 +875,14 @@ function App() {
                     data-netlify="true" 
                     className="space-y-4"
                     data-netlify-honeypot="bot-field"
+                    action="/thank-you"
                   >
                     <input type="hidden" name="form-name" value="guia-essencialab" />
-                    <input type="hidden" name="_redirect" value="https://essencialab.app" />
+                    <p style={{display: 'none'}}>
+                      <label>
+                        Don't fill this out if you're human: <input name="bot-field" />
+                      </label>
+                    </p>
                     
                     <div>
                       <label htmlFor="email-guia" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -557,25 +902,24 @@ function App() {
                       <label htmlFor="especialidade-guia" className="block text-sm font-semibold text-gray-700 mb-2">
                         Sua especialidade
                       </label>
-                      <select
-                        id="especialidade-guia"
-                        name="especialidade"
-                        required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      >
-                        <option value="">Selecione sua área</option>
-                        <option value="nutricionista">Nutricionista</option>
-                        <option value="nutrologo">Nutrólogo</option>
-                        <option value="biomedico">Biomédico</option>
-                        <option value="medico">Médico</option>
-                        <option value="enfermeiro">Enfermeiro</option>
-                        <option value="fisioterapeuta">Fisioterapeuta</option>
-                        <option value="psicologo">Psicólogo</option>
-                        <option value="naturopata">Naturopata</option>
-                        <option value="iridologo">Iridólogo</option>
-                        <option value="aromaterapeuta">Aromaterapeuta</option>
-                        <option value="outro">Outro</option>
-                      </select>
+                      <Select name="especialidade" required>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Selecione sua área" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="nutricionista">Nutricionista</SelectItem>
+                          <SelectItem value="nutrologo">Nutrólogo</SelectItem>
+                          <SelectItem value="biomedico">Biomédico</SelectItem>
+                          <SelectItem value="medico">Médico</SelectItem>
+                          <SelectItem value="enfermeiro">Enfermeiro</SelectItem>
+                          <SelectItem value="fisioterapeuta">Fisioterapeuta</SelectItem>
+                          <SelectItem value="psicologo">Psicólogo</SelectItem>
+                          <SelectItem value="naturopata">Naturopata</SelectItem>
+                          <SelectItem value="iridologo">Iridólogo</SelectItem>
+                          <SelectItem value="aromaterapeuta">Aromaterapeuta</SelectItem>
+                          <SelectItem value="outro">Outro</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
                     <Button
