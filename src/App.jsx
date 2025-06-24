@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./components/ui/button";
 import {
   Card,
@@ -42,23 +42,21 @@ import {
 
 function App() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [email, setEmail] = useState("");
-  const [specialty, setSpecialty] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const handleLeadCapture = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simular envio do formulário
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowSuccess(true);
-      // Aqui você integraria com seu sistema de email marketing
-      console.log("Lead capturado:", { email, specialty });
-    }, 1500);
-  };
+  // Inicializa a biblioteca de animações AOS
+  useEffect(() => {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+      });
+      
+      // Atualiza a AOS quando o componente é atualizado
+      return () => {
+        AOS.refresh();
+      };
+    }
+  }, []);
 
   const scrollToForm = () => {
     const formSection = document.getElementById("lead-capture-form");
@@ -488,15 +486,13 @@ function App() {
                   <Download className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Receba Grátis o Guia Definitivo
+                  Comece Seu Cadastro e Receba o Guia
                 </h2>
                 <p className="text-xl text-gray-600 mb-2">
                   <strong>"Guia de 7 dias para hábitos essenciais"</strong>
                 </p>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Um guia prático e científico para transformar a saúde dos seus
-                  pacientes através de hábitos baseados em evidências. Mais de
-                  2.347 profissionais já baixaram!
+                  Cadastre-se abaixo para acessar a ferramenta EssenciaLab MAP gratuitamente por 7 dias. Após seu primeiro login, você receberá o guia para transformar a saúde dos seus pacientes com hábitos baseados em evidências.
                 </p>
               </div>
 
@@ -533,8 +529,15 @@ function App() {
                 </div>
 
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <form name="guia-essencialab" method="POST" data-netlify="true" className="space-y-4">
+                  <form 
+                    name="guia-essencialab" 
+                    method="POST" 
+                    data-netlify="true" 
+                    className="space-y-4"
+                    data-netlify-honeypot="bot-field"
+                  >
                     <input type="hidden" name="form-name" value="guia-essencialab" />
+                    <input type="hidden" name="_redirect" value="https://essencialab.app" />
                     
                     <div>
                       <label htmlFor="email-guia" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -579,8 +582,7 @@ function App() {
                       type="submit"
                       className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      <Download className="w-5 h-5 mr-2" />
-                      Baixar Guia Gratuito
+                      Cadastrar e Acessar a Ferramenta
                     </Button>
 
                     <p className="text-xs text-gray-500 text-center">
