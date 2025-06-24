@@ -151,13 +151,13 @@ function App() {
                           Vídeo: Como o MAP Funciona
                         </p>
                         <p className="text-sm text-gray-500">
-                          2 min • Demonstração prática
+                          26:36 • Demonstração prática
                         </p>
                       </div>
                     ) : (
                       <iframe
                         className="w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/wgk-5d82KXg?autoplay=1&rel=0&modestbranding=1&showinfo=0"
+                        src="https://www.youtube.com/embed/nPR-gonfSYw?autoplay=1&rel=0&modestbranding=1&showinfo=0"
                         title="Como o MAP Funciona - Demonstração"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -626,6 +626,13 @@ function App() {
                 role: "Biomédica",
                 content:
                   "Meus pacientes ficam impressionados com a precisão da análise. É incrível como uma foto pode revelar tanto sobre a saúde metabólica. Recomendo para todos os colegas.",
+                rating: 5,
+              },
+              {
+                name: "Wellington",
+                role: "Terapeuta Iridólogo",
+                content:
+                  "Sabe aquela sensação de estar sobrecarregado tentando montar um plano de tratamento certeiro, analisando exames por horas e mesmo assim às vezes não ver resultados que o paciente espera? Eu também vivia isso até conhecer o EssenciaLab, do Dr. Marilucio Rocha. É como ter um copiloto clínico: a ferramenta me ajuda a interpretar exames com precisão, sugere condutas eficazes e ainda respeita o toque humano, posso ajustar conforme a individualidade de cada pessoa. Hoje meus atendimentos são mais rápidos, mais assertivos e com muito mais resultados.",
                 rating: 5,
               },
             ].map((testimonial, index) => (
