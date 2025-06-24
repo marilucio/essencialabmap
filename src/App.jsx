@@ -159,11 +159,12 @@ function App() {
                     ) : (
                       <iframe
                         className="w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/wgk-5d82KXg?autoplay=1"
-                        title="YouTube video player"
+                        src="https://www.youtube.com/embed/wgk-5d82KXg?autoplay=1&rel=0&modestbranding=1&showinfo=0"
+                        title="Como o MAP Funciona - Demonstração"
                         frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
+                        loading="lazy"
                       ></iframe>
                     )}
                   </div>
@@ -292,7 +293,7 @@ function App() {
                 application:
                   "Validação da abordagem de análise sistêmica para predição metabólica",
                 image:
-                  "/src/assets/prints/estudo-1-network-analysis-metabolic.jpeg",
+                  "/images/estudos/estudo-1-network-analysis-metabolic.jpeg",
                 link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5872302/",
                 linkText: "Rede funcional metabólica (mSystems, 2018)",
               },
@@ -305,7 +306,7 @@ function App() {
                 application:
                   "Evidência científica dos 4 pilares metabólicos (Submetilação, Oxidação, Glicação, Inflamação)",
                 image:
-                  "/src/assets/prints/estudo-2-glycation-oxidation-inflammation.png",
+                  "/images/estudos/estudo-2-glycation-oxidation-inflammation.png",
                 link: "https://pubmed.ncbi.nlm.nih.gov/27529340/",
                 linkText: "Biomarcadores AGEs (~PLOS ONE, 2014)",
               },
@@ -318,7 +319,7 @@ function App() {
                 application:
                   "Validação da análise facial como biomarcador confiável",
                 image:
-                  "/src/assets/prints/estudo-3-facial-phenotyping-deep-learning.png",
+                  "/images/estudos/estudo-3-facial-phenotyping-deep-learning.png",
                 link: "https://pubmed.ncbi.nlm.nih.gov/30617323/",
                 linkText: "Fenotipagem facial (Nature Medicine, 2019)",
               },
