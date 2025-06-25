@@ -7,6 +7,9 @@ import TermosDeUso from './pages/TermosDeUso'
 import PoliticaPrivacidade from './pages/PoliticaPrivacidade'
 import LGPD from './pages/LGPD'
 import Contato from './pages/Contato'
+import Precos from './pages/Precos'
+import CentralDeAjuda from './pages/CentralDeAjuda'
+import StatusDoSistema from './pages/StatusDoSistema'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +20,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
         <Route path="/lgpd" element={<LGPD />} />
         <Route path="/contato" element={<Contato />} />
+        <Route path="/precos" element={<Precos />} />
+        <Route path="/central-de-ajuda" element={<CentralDeAjuda />} />
+        <Route path="/status-do-sistema" element={<StatusDoSistema />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

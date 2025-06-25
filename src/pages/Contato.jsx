@@ -7,6 +7,18 @@ import Footer from '../components/Footer'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 
 export default function Contato() {
+  const scrollToForm = () => {
+    window.location.href = '/#lead-capture-form';
+  };
+
+  const openDemoModal = () => {
+    window.location.href = '/#';
+  };
+
+  const scrollToScience = () => {
+    window.location.href = '/#base-cientifica';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <Header />
@@ -146,7 +158,11 @@ export default function Contato() {
           </Card>
         </div>
       </div>
-      <Footer />
+      <Footer 
+        onOpenDemo={openDemoModal}
+        onScrollToForm={scrollToForm}
+        onScrollToScience={scrollToScience}
+      />
     </div>
   )
 }

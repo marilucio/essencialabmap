@@ -51,6 +51,16 @@ import {
   Smartphone,
   FileText,
   Video,
+  Lock,
+  UserCheck,
+  FileCheck,
+  Globe,
+  Stethoscope,
+  GraduationCap,
+  Heart,
+  Activity,
+  Dumbbell,
+  Lightbulb,
 } from "lucide-react";
 
 function App() {
@@ -78,11 +88,23 @@ function App() {
   const scrollToForm = () => {
     // Fecha o modal se estiver aberto
     setIsDemoModalOpen(false);
-    
-    const formSection = document.getElementById("lead-capture-form");
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: "smooth" });
-    }
+
+    // Aguarda um pouco para o modal fechar completamente
+    setTimeout(() => {
+      const formSection = document.getElementById("lead-capture-form");
+      
+      if (!formSection) {
+        console.warn("Elemento 'lead-capture-form' não encontrado");
+        return;
+      }
+
+      // Scroll suave para a seção do formulário
+      formSection.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }, 100);
   };
 
   // Função para abrir o modal de demonstração
@@ -90,6 +112,18 @@ function App() {
     setIsDemoModalOpen(true);
     setSelectedDemoType(null);
     setDemoStep(0);
+  };
+
+  // Função para rolar para a seção de base científica
+  const scrollToScience = () => {
+    const scienceSection = document.getElementById("base-cientifica");
+    if (scienceSection) {
+      scienceSection.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
   };
 
   // Função para selecionar tipo de demonstração
@@ -100,7 +134,7 @@ function App() {
 
   // Função para avançar no passo da demonstração
   const nextDemoStep = () => {
-    if (demoStep < 4) {
+    if (demoStep < 6) {
       setDemoStep(demoStep + 1);
     }
   };
@@ -146,27 +180,39 @@ function App() {
   const interactiveSteps = [
     {
       title: 'Captura da Imagem',
-      description: 'O profissional tira uma foto facial do paciente usando qualquer dispositivo',
-      image: '/images/demo/step-1-capture.jpg',
-      features: ['Câmera do celular ou computador', 'Sem equipamentos especiais', 'Processo não-invasivo']
+      description: 'O paciente acessa o aplicativo e realiza a análise facial',
+      image: '/images/scanface.webp',
+      features: ['Câmera do celular', 'Sem equipamentos especiais', 'Processo não-invasivo', 'Tecnologia de ponta com leitura do fluxo sanguíneo facial']
     },
     {
       title: 'Processamento IA',
       description: 'Nossa inteligência artificial analisa biomarcadores faciais em segundos',
-      image: '/images/demo/step-2-processing.jpg',
+      image: '/images/iascaning.webp',
       features: ['Algoritmos treinados em 17.000+ imagens', 'Análise em tempo real', 'Precisão de 91%']
     },
     {
       title: 'Relatório SOGI',
       description: 'Geração automática do relatório com os 4 pilares metabólicos',
-      image: '/images/demo/step-3-report.jpg',
+      image: '/images/sogi.webp',
       features: ['Submetilação', 'Oxidação', 'Glicação', 'Inflamação']
     },
+      {
+        title: 'Recomendações',
+        description: 'Plano de ação personalizado baseado nos resultados',
+        image: '/images/recomenda.webp',
+        features: ['Protocolos personalizados', 'Suplementação direcionada', 'Acompanhamento contínuo']
+      },
     {
-      title: 'Recomendações',
-      description: 'Plano de ação personalizado baseado nos resultados',
-      image: '/images/demo/step-4-recommendations.jpg',
-      features: ['Protocolos personalizados', 'Suplementação direcionada', 'Acompanhamento contínuo']
+      title: 'Acompanhamento Preciso',
+      description: 'Monitoramento contínuo dos resultados e evolução do paciente',
+      image: '/images/acompanha.webp',
+      features: ['Ajustes automáticos no protocolo', 'Comparativo de evolução', 'Alertas de desvios metabólicos']
+    },
+    {
+      title: 'Análise Precisa - Teia Funcional',
+      description: 'Mapeamento completo das interações metabólicas',
+      image: '/images/teia.webp',
+      features: ['Visão sistêmica da saúde', 'Identificação de causas raiz', 'Protocolos integrados']
     }
   ];
 
@@ -253,7 +299,7 @@ function App() {
                       <DialogDescription className="text-center text-gray-600">
                         {!selectedDemoType ? 'Selecione o tipo de demonstração que mais se adequa ao seu perfil' :
                          selectedDemoType === 'video' ? 'Assista uma demonstração completa do MAP em funcionamento' :
-                         selectedDemoType === 'interactive' ? `Passo ${demoStep} de 4: Explore como o MAP funciona na prática` :
+                         selectedDemoType === 'interactive' ? `Passo ${demoStep} de 6: Explore como o MAP funciona na prática` :
                          'Veja um exemplo real de análise metabólica'}
                       </DialogDescription>
                     </DialogHeader>
@@ -317,7 +363,7 @@ function App() {
                         <div className="mb-6">
                           <div className="flex justify-between items-center mb-4">
                             <div className="flex space-x-2">
-                              {[1, 2, 3, 4].map((step) => (
+                              {[1, 2, 3, 4, 5, 6].map((step) => (
                                 <div
                                   key={step}
                                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
@@ -331,12 +377,12 @@ function App() {
                               ))}
                             </div>
                             <Badge className="bg-blue-100 text-blue-800">
-                              {demoStep}/4
+                              {demoStep}/6
                             </Badge>
                           </div>
                         </div>
 
-                        {demoStep > 0 && demoStep <= 4 && (
+                        {demoStep > 0 && demoStep <= 6 && (
                           <Card className="mb-6">
                             <CardHeader>
                               <CardTitle className="text-xl">
@@ -348,11 +394,22 @@ function App() {
                             </CardHeader>
                             <CardContent>
                               <div className="grid md:grid-cols-2 gap-6 items-center">
-                                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                                  <div className="text-center text-gray-500">
-                                    <Monitor className="w-12 h-12 mx-auto mb-2" />
-                                    <p className="text-sm">Simulação da Interface</p>
-                                    <p className="text-xs">Passo {demoStep}</p>
+                                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
+                                  <img
+                                    src={interactiveSteps[demoStep - 1].image}
+                                    alt={interactiveSteps[demoStep - 1].title}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      e.target.style.display = 'none';
+                                      e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                  />
+                                  <div className="w-full h-full flex items-center justify-center text-center text-gray-500" style={{display: 'none'}}>
+                                    <div>
+                                      <Monitor className="w-12 h-12 mx-auto mb-2" />
+                                      <p className="text-sm">Simulação da Interface</p>
+                                      <p className="text-xs">Passo {demoStep}</p>
+                                    </div>
                                   </div>
                                 </div>
                                 <div className="space-y-3">
@@ -378,7 +435,7 @@ function App() {
                             {demoStep === 1 ? 'Voltar' : 'Anterior'}
                           </Button>
                           
-                          {demoStep < 4 ? (
+                          {demoStep < 6 ? (
                             <Button
                               onClick={nextDemoStep}
                               className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
@@ -413,11 +470,22 @@ function App() {
                             <div className="grid md:grid-cols-2 gap-6">
                               <div>
                                 <h4 className="font-semibold mb-3">Foto Analisada:</h4>
-                                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                                  <div className="text-center text-gray-500">
-                                    <Camera className="w-12 h-12 mx-auto mb-2" />
-                                    <p className="text-sm">Imagem Facial</p>
-                                    <p className="text-xs">Análise Concluída</p>
+                                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
+                                  <img
+                                    src="/images/paciente.webp"
+                                    alt="Paciente Maria - Análise Facial"
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      e.target.style.display = 'none';
+                                      e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                  />
+                                  <div className="w-full h-full flex items-center justify-center text-center text-gray-500" style={{display: 'none'}}>
+                                    <div>
+                                      <Camera className="w-12 h-12 mx-auto mb-2" />
+                                      <p className="text-sm">Imagem Facial</p>
+                                      <p className="text-xs">Análise Concluída</p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -521,6 +589,116 @@ function App() {
         </div>
       </section>
 
+      {/* Selos de Segurança */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Segurança e Conformidade Garantidas
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Sua tranquilidade e a de seus pacientes são nossa prioridade. Cumprimos rigorosamente todas as normas de segurança e privacidade.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {[
+              {
+                icon: Shield,
+                title: "LGPD Compliant",
+                subtitle: "Brasil",
+                description: "Conformidade total com a Lei Geral de Proteção de Dados",
+                color: "green"
+              },
+              {
+                icon: Lock,
+                title: "HIPAA Compliant",
+                subtitle: "EUA",
+                description: "Atende aos padrões de privacidade em saúde dos EUA",
+                color: "blue"
+              },
+              {
+                icon: FileCheck,
+                title: "ISO 27001",
+                subtitle: "Certificado",
+                description: "Padrão internacional de segurança da informação",
+                color: "purple"
+              },
+              {
+                icon: UserCheck,
+                title: "Dados Criptografados",
+                subtitle: "256-bit SSL",
+                description: "Máxima proteção em todas as transmissões",
+                color: "orange"
+              },
+              {
+                icon: Globe,
+                title: "Servidores Seguros",
+                subtitle: "AWS/Azure",
+                description: "Infraestrutura de nível empresarial",
+                color: "indigo"
+              },
+              {
+                icon: CheckCircle,
+                title: "Auditoria Externa",
+                subtitle: "Anual",
+                description: "Verificação independente de segurança",
+                color: "teal"
+              }
+            ].map((seal, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-200"
+                data-aos="fade-up"
+                data-aos-delay={index * 50}
+              >
+                <CardContent className="p-4">
+                  <div
+                    className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-r ${
+                      seal.color === "green"
+                        ? "from-green-500 to-green-600"
+                        : seal.color === "blue"
+                        ? "from-blue-500 to-blue-600"
+                        : seal.color === "purple"
+                        ? "from-purple-500 to-purple-600"
+                        : seal.color === "orange"
+                        ? "from-orange-500 to-orange-600"
+                        : seal.color === "indigo"
+                        ? "from-indigo-500 to-indigo-600"
+                        : "from-teal-500 to-teal-600"
+                    } flex items-center justify-center mb-3`}
+                  >
+                    <seal.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-bold text-sm text-gray-800 mb-1">
+                    {seal.title}
+                  </h3>
+                  <p className="text-xs text-blue-600 font-semibold mb-2">
+                    {seal.subtitle}
+                  </p>
+                  <p className="text-xs text-gray-600 leading-tight">
+                    {seal.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <div className="bg-blue-50 rounded-lg p-6 max-w-4xl mx-auto">
+              <div className="flex items-center justify-center space-x-2 mb-3">
+                <Shield className="w-6 h-6 text-blue-600" />
+                <h3 className="text-lg font-bold text-blue-800">Compromisso com a Privacidade</h3>
+              </div>
+              <p className="text-blue-700 text-sm leading-relaxed">
+                <strong>Nenhuma imagem é armazenada.</strong> O processamento é feito em tempo real e os dados são imediatamente descartados após a análise. 
+                Apenas os resultados metabólicos são mantidos, sempre com consentimento explícito do paciente e profissional.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Como Funciona */}
       <section className="py-20 bg-white">
         <div className="container mx-auto max-w-6xl px-4">
@@ -539,8 +717,8 @@ function App() {
               {
                 icon: Camera,
                 title: "CAPTURE",
-                subtitle: "Tire uma foto facial do paciente",
-                description: "Análise não-invasiva em ambiente clínico",
+                subtitle: "Paciente faz análise facial em vídeo de onde ele estiver",
+                description: "Nenhuma imagem é gravada, segue as leis de LGPD Brasil e HIPAA EUA - tecnologia de pletismografia (rPPG + MTC + observação de microexpressões faciais invisíveis a olho humano)",
                 color: "blue",
               },
               {
@@ -607,7 +785,7 @@ function App() {
       </section>
 
       {/* Base Científica */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="base-cientifica" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
@@ -735,45 +913,45 @@ function App() {
             {[
               {
                 icon: Zap,
-                title: "Velocidade Revolucionária",
+                title: "Consultas 60% mais eficientes",
                 description:
-                  "Substitua horas de exames laboratoriais por 30 segundos de análise. Seus pacientes vão amar a praticidade, você vai amar a eficiência.",
+                  "Substitua horas de exames laboratoriais por 30 segundos de análise. Otimize seu tempo e atenda mais pacientes com a mesma qualidade.",
                 color: "yellow",
               },
               {
+                icon: TrendingUp,
+                title: "Aumente sua receita média por paciente em R$ 300",
+                description:
+                  "Cobre mais por consultas diferenciadas com tecnologia de ponta. Nossos usuários reportam aumento médio de R$ 300 por consulta.",
+                color: "orange",
+              },
+              {
+                icon: BarChart3,
+                title: "Relatórios profissionais que impressionam",
+                description:
+                  "Apresente análises visuais e científicas que demonstram seu expertise. Seus pacientes ficarão impressionados com a precisão.",
+                color: "indigo",
+              },
+              {
+                icon: Award,
+                title: "Diferenciação competitiva no mercado",
+                description:
+                  "Seja o primeiro na sua região a oferecer análise metabólica por IA. Destaque-se da concorrência com tecnologia exclusiva.",
+                color: "purple",
+              },
+              {
                 icon: Target,
-                title: "Precisão Científica",
+                title: "Precisão Científica Validada",
                 description:
                   "91% de acurácia baseada em estudos Nature Medicine. Tome decisões clínicas com a confiança que só a ciência pode oferecer.",
                 color: "blue",
               },
               {
-                icon: Award,
-                title: "Diferenciação Profissional",
-                description:
-                  "Seja o primeiro na sua região a oferecer análise metabólica por IA. Destaque-se da concorrência com tecnologia de ponta.",
-                color: "purple",
-              },
-              {
                 icon: Shield,
-                title: "Prevenção Ativa",
+                title: "Credibilidade Profissional Elevada",
                 description:
-                  "Identifique riscos metabólicos antes que se tornem problemas. Seus pacientes agradecerão pela abordagem preventiva.",
+                  "Baseie suas recomendações em dados científicos sólidos. Aumente a confiança dos pacientes em seus protocolos de tratamento.",
                 color: "green",
-              },
-              {
-                icon: TrendingUp,
-                title: "ROI Imediato",
-                description:
-                  "Aumente o valor percebido das suas consultas. Cobre mais por um serviço diferenciado e baseado em ciência.",
-                color: "orange",
-              },
-              {
-                icon: BarChart3,
-                title: "Acompanhamento Contínuo",
-                description:
-                  "Monitore a evolução metabólica dos pacientes ao longo do tempo. Comprove a eficácia dos seus tratamentos.",
-                color: "indigo",
               },
             ].map((benefit, index) => (
               <Card
@@ -805,6 +983,173 @@ function App() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Para quem é o sistema MAP */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              Para Quem é o Sistema MAP do EssenciaLab?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Desenvolvido especificamente para profissionais de saúde que buscam excelência, 
+              precisão e diferenciação em suas práticas clínicas.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Stethoscope,
+                profession: "Nutricionistas",
+                description: "Crie planos alimentares personalizados baseados em análise metabólica precisa e acompanhe a evolução dos pacientes em tempo real.",
+                benefits: ["Planos alimentares direcionados", "Análise de deficiências nutricionais", "Protocolos de suplementação"],
+                color: "green"
+              },
+              {
+                icon: GraduationCap,
+                profession: "Nutrólogos",
+                description: "Integre dados metabólicos com prescrições médicas para tratamentos mais assertivos e baseados em evidências científicas.",
+                benefits: ["Prescrições personalizadas", "Diagnósticos mais precisos", "Acompanhamento clínico avançado"],
+                color: "blue"
+              },
+              {
+                icon: Heart,
+                profession: "Psicólogos e Terapeutas",
+                description: "Compreenda a conexão mente-corpo através de biomarcadores que revelam o impacto do estresse e emoções no metabolismo.",
+                benefits: ["Análise psicossomática", "Protocolos integrais", "Acompanhamento holístico"],
+                color: "purple"
+              },
+              {
+                icon: Activity,
+                profession: "Fisioterapeutas",
+                description: "Desenvolva programas de reabilitação considerando o perfil metabólico para otimizar a recuperação e performance.",
+                benefits: ["Reabilitação personalizada", "Protocolos de recuperação", "Análise de performance"],
+                color: "orange"
+              },
+              {
+                icon: Dumbbell,
+                profession: "Educadores Físicos",
+                description: "Crie treinos e programas de condicionamento baseados no perfil metabólico individual de cada aluno ou atleta.",
+                benefits: ["Treinos personalizados", "Otimização de performance", "Prevenção de lesões"],
+                color: "red"
+              },
+              {
+                icon: Lightbulb,
+                profession: "Consultores de Bem-Estar",
+                description: "Ofereça consultorias completas integrando análise metabólica com estratégias de lifestyle e longevidade.",
+                benefits: ["Consultorias premium", "Programas de longevidade", "Coaching de saúde"],
+                color: "indigo"
+              },
+              {
+                icon: FileCheck,
+                profession: "Biomédicos",
+                description: "Correlacione exames laboratoriais com análise facial para interpretações mais completas e precisas.",
+                benefits: ["Interpretação avançada", "Correlação de dados", "Laudos diferenciados"],
+                color: "teal"
+              },
+              {
+                icon: UserCheck,
+                profession: "Médicos Generalistas",
+                description: "Tenha uma ferramenta de triagem rápida para identificar riscos metabólicos e direcionar investigações.",
+                benefits: ["Triagem eficiente", "Medicina preventiva", "Diagnóstico precoce"],
+                color: "cyan"
+              },
+              {
+                icon: Shield,
+                profession: "Terapeutas Integrativos",
+                description: "Combine análise metabólica com terapias naturais para abordagens verdadeiramente personalizadas.",
+                benefits: ["Terapias direcionadas", "Medicina integrativa", "Protocolos naturais"],
+                color: "emerald"
+              }
+            ].map((professional, index) => (
+              <Card
+                key={index}
+                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200 group"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <CardHeader className="text-center pb-4">
+                  <div
+                    className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${
+                      professional.color === "green"
+                        ? "from-green-500 to-green-600"
+                        : professional.color === "blue"
+                        ? "from-blue-500 to-blue-600"
+                        : professional.color === "purple"
+                        ? "from-purple-500 to-purple-600"
+                        : professional.color === "orange"
+                        ? "from-orange-500 to-orange-600"
+                        : professional.color === "red"
+                        ? "from-red-500 to-red-600"
+                        : professional.color === "indigo"
+                        ? "from-indigo-500 to-indigo-600"
+                        : professional.color === "teal"
+                        ? "from-teal-500 to-teal-600"
+                        : professional.color === "cyan"
+                        ? "from-cyan-500 to-cyan-600"
+                        : "from-emerald-500 to-emerald-600"
+                    } flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <professional.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-bold text-gray-800 mb-2">
+                    {professional.profession}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-gray-600 text-center leading-relaxed">
+                    {professional.description}
+                  </p>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-gray-800 text-sm">Como o MAP ajuda:</h4>
+                    {professional.benefits.map((benefit, benefitIndex) => (
+                      <div key={benefitIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                        <span className="text-sm text-gray-700">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Não encontrou sua especialidade?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                O MAP é uma ferramenta versátil que se adapta a qualquer área da saúde. 
+                Se você trabalha com bem-estar, prevenção ou tratamento, o MAP pode potencializar seus resultados.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={scrollToForm}
+                  className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-3 rounded-full font-semibold"
+                >
+                  Testar Gratuitamente
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-full font-semibold"
+                  onClick={() =>
+                    window.open(
+                      "https://wa.me/5543991246422?text=Olá! Gostaria de saber como o MAP pode ajudar na minha especialidade.",
+                      "_blank"
+                    )
+                  }
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Falar com Especialista
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -952,10 +1297,10 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
               {
-                name: "Dr. Ana Silva",
-                role: "Nutricionista",
+                name: "Dr. H.C. Marilúcio Rocha",
+                role: "Naturólogo",
                 content:
-                  "O MAP revolucionou minha prática. Consigo mostrar aos pacientes, de forma visual e científica, exatamente onde estão os desequilíbrios metabólicos. A adesão ao tratamento aumentou 300%.",
+                  "Já usei vários sistemas para automatizar meu atendimentos, mas o MAP é, de longe, o mais eficaz. Ele me ajuda a entender melhor as necessidades dos meus pacientes e a personalizar os tratamentos. O melhor de tudo: acompanhamento altamente personalizado e eficiente.",
                 rating: 5,
               },
               {
@@ -966,17 +1311,10 @@ function App() {
                 rating: 5,
               },
               {
-                name: "Dra. Marina Costa",
-                role: "Biomédica",
-                content:
-                  "Meus pacientes ficam impressionados com a precisão da análise. É incrível como uma foto pode revelar tanto sobre a saúde metabólica. Recomendo para todos os colegas.",
-                rating: 5,
-              },
-              {
-                name: "Wellington",
+                name: "Wellington C. Dias",
                 role: "Terapeuta Iridólogo",
                 content:
-                  "Sabe aquela sensação de estar sobrecarregado tentando montar um plano de tratamento certeiro, analisando exames por horas e mesmo assim às vezes não ver resultados que o paciente espera? Eu também vivia isso até conhecer o EssenciaLab, do Dr. Marilucio Rocha. É como ter um copiloto clínico: a ferramenta me ajuda a interpretar exames com precisão, sugere condutas eficazes e ainda respeita o toque humano, posso ajustar conforme a individualidade de cada pessoa. Hoje meus atendimentos são mais rápidos, mais assertivos e com muito mais resultados.",
+                  "Sabe aquela sensação de estar sobrecarregado tentando montar um plano de tratamento certeiro, analisando exames por horas e mesmo assim às vezes não ver resultados que o paciente espera? Eu também vivia isso até conhecer o MAP do EssenciaLab. É como ter um copiloto clínico: a ferramenta me ajuda a interpretar exames com precisão, sugere condutas eficazes e ainda respeita o toque humano, posso ajustar conforme a individualidade de cada pessoa. Hoje meus atendimentos são mais rápidos, mais assertivos e com muito mais resultados.",
                 rating: 5,
               },
             ].map((testimonial, index) => (
@@ -1021,9 +1359,9 @@ function App() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               {
-                number: "2.347",
+                number: "1.347",
                 label: "Análises esta semana",
-                sublabel: "156 novos profissionais ontem",
+                sublabel: "Profissionais de saúde usando o MAP",
               },
               {
                 number: "94%",
@@ -1033,10 +1371,10 @@ function App() {
               {
                 number: "4.8/5",
                 label: "Avaliação média",
-                sublabel: "Baseado em 847 reviews",
+                sublabel: "Baseado em 147 reviews",
               },
               {
-                number: "340%",
+                number: "310%",
                 label: "ROI médio",
                 sublabel: "No primeiro mês de uso",
               },
@@ -1076,30 +1414,25 @@ function App() {
                   "Absolutamente não! A interface é intuitiva e foi desenvolvida pensando em profissionais de saúde. Em apenas 5 minutos você domina completamente a ferramenta. Oferecemos treinamento completo e suporte técnico dedicado.",
               },
               {
-                question: "O investimento vale a pena? Qual o retorno?",
-                answer:
-                  "Nossos usuários reportam ROI médio de 340% no primeiro mês. Você pode cobrar mais por consultas diferenciadas, aumentar a adesão dos pacientes e otimizar seu tempo. O MAP se paga rapidamente.",
-              },
-              {
                 question: "Funciona na minha especialidade?",
                 answer:
-                  "Sim! O MAP é usado com sucesso por nutricionistas, nutrólogos, biomédicos, médicos, enfermeiros e outros profissionais. A análise metabólica é universal e aplicável a todas as áreas da saúde.",
+                  "Sim! O MAP é usado com sucesso por nutricionistas, nutrólogos, Terapeutas holísticos, biomédicos, consultores de bem-estar, médicos, enfermeiros e outros profissionais. A análise metabólica é universal e aplicável a todas as áreas da saúde.",
               },
               {
                 question:
                   "É realmente científico? Posso confiar nos resultados?",
                 answer:
-                  "Totalmente! Nossa metodologia está baseada em 728+ citações científicas, incluindo estudos publicados na Nature Medicine. A precisão de 91% foi validada em milhares de casos reais.",
+                  "Totalmente! Nossa metodologia está baseada em 728+ citações científicas, incluindo estudos publicados na Nature Medicine. A precisão de 91% foi validada em centenas de casos reais.",
               },
               {
                 question: "E se eu não gostar? Posso cancelar?",
                 answer:
-                  "Claro! Oferecemos 7 dias de trial gratuito sem compromisso. Não precisa nem colocar dados do cartão. Se não ficar satisfeito, pode cancelar a qualquer momento. Garantia de satisfação 100%.",
+                  "Claro! Oferecemos 7 dias de trial gratuito sem compromisso. Não precisa nem colocar dados do cartão. Se não ficar satisfeito, ainda assim continuará tendo acesso gratuito aos protocolos pré-definidos. Garantia de satisfação 100%.",
               },
               {
                 question: "Como funciona o suporte? Vou ficar sozinho?",
                 answer:
-                  "Jamais! Temos suporte técnico dedicado, material de treinamento exclusivo, comunidade de profissionais e acompanhamento personalizado. Você nunca estará sozinho nessa jornada.",
+                  "Jamais! Temos suporte técnico dedicado e acompanhamento personalizado. Você nunca estará sozinho nessa jornada.",
               },
             ].map((faq, index) => (
               <Card
@@ -1162,7 +1495,7 @@ function App() {
                 "Análises ilimitadas",
                 "Suporte técnico dedicado",
                 "Material científico exclusivo",
-                "Sem compromisso, cancele quando quiser",
+                "Cadastro gratuito sem compromisso algum",
                 "Não precisa colocar dados de cartão para testar a ferramenta",
               ].map((feature, index) => (
                 <div key={index} className="flex items-center space-x-2">
@@ -1190,7 +1523,11 @@ function App() {
         </div>
       </section>
 
-      <Footer />
+      <Footer 
+        onOpenDemo={openDemoModal}
+        onScrollToForm={scrollToForm}
+        onScrollToScience={scrollToScience}
+      />
     </div>
   );
 }
