@@ -29,5 +29,15 @@
     
     <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Hidden form for Netlify crawler – não remover -->
+    <form name="guia-essencialab"
+          netlify
+          netlify-honeypot="bot-field"
+          hidden>
+      <input type="text" name="bot-field" />
+      <input type="email" name="email" />
+      <input type="text"  name="especialidade" />
+    </form>
   </body>
 </html>
