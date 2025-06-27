@@ -71,10 +71,10 @@ export default function Contato() {
 
           {/* Formulário de Contato com Netlify Forms */}
           <Card className="p-8" data-aos="fade-left">
-            <h2 className="text-2xl font-bold mb-6">Envie sua Mensagem</h2>
+            <h2 className="text-2xl font-bold mb-6">Cadastre-se para Acesso Gratuito</h2>
             
-            <form name="lead-form" method="POST" data-netlify="true" className="space-y-6">
-              <input type="hidden" name="form-name" value="lead-form" />
+            <form name="guia-essencialab" method="POST" data-netlify="true" className="space-y-6">
+              <input type="hidden" name="form-name" value="guia-essencialab" />
               
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -104,55 +104,17 @@ export default function Contato() {
                 />
               </div>
 
-              <div>
-                <label htmlFor="nome" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Nome Completo
-                </label>
-                <Input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  placeholder="Seu nome completo"
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="telefone" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Telefone
-                </label>
-                <Input
-                  type="tel"
-                  id="telefone"
-                  name="telefone"
-                  placeholder="(00) 00000-0000"
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="mensagem" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Mensagem
-                </label>
-                <Textarea
-                  id="mensagem"
-                  name="mensagem"
-                  placeholder="Conte-nos como podemos ajudá-lo..."
-                  rows={4}
-                  className="w-full"
-                />
-              </div>
 
               <Button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Send className="w-5 h-5 mr-2" />
-                Enviar Mensagem
+                Cadastrar e Acessar Gratuitamente
               </Button>
 
               <p className="text-xs text-gray-500 text-center">
-                Responderemos em até 24 horas úteis
+                Acesso liberado em até 2 horas após o cadastro
               </p>
             </form>
           </Card>
