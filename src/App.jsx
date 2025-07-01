@@ -335,7 +335,7 @@ function App() {
                         <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
                           <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/nPR-gonfSYw?rel=0&modestbranding=1&showinfo=0"
+                            src="https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0"
                             title="MAP - Demonstração Completa"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -565,7 +565,7 @@ function App() {
                     ) : (
                       <iframe
                         className="w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/nPR-gonfSYw?autoplay=1&rel=0&modestbranding=1&showinfo=0"
+                        src="https://www.youtube.com/embed/lzwZuZK_5Ao?autoplay=1&rel=0&modestbranding=1&showinfo=0"
                         title="Como o MAP Funciona - Demonstração"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
