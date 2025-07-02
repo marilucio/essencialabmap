@@ -59,11 +59,11 @@ export default function StatusDoSistema() {
   // Animar contadores
   useEffect(() => {
     const targets = {
-      onlineUsers: 347,
-      analysisToday: 1247,
-      protocolsGenerated: 892,
-      aiProcessing: 156,
-      standardProtocols: 2847
+      onlineUsers: 12,
+      analysisToday: 103,
+      protocolsGenerated: 320,
+      aiProcessing: 88,
+      standardProtocols: 562
     };
 
     const duration = 2000; // 2 segundos
@@ -196,12 +196,11 @@ export default function StatusDoSistema() {
   ];
 
   const performanceData = [
-    { name: 'Jan', value: 2100 },
-    { name: 'Fev', value: 2400 },
-    { name: 'Mar', value: 2800 },
-    { name: 'Abr', value: 3200 },
-    { name: 'Mai', value: 2900 },
-    { name: 'Jun', value: 3400 }
+    { name: 'Mar', value: 651 },
+    { name: 'Abr', value: 580 },
+    { name: 'Mai', value: 322 },
+    { name: 'Jun', value: 801 },
+    { name: 'Jul', value: 12 }
   ];
 
   const getStatusColor = (status) => {
