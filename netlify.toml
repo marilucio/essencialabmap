@@ -1,6 +1,6 @@
 [build]
   base = "public/metodocalma"
-  publish = "public/metodocalma/dist"
+  publish = "dist"
   command = "npm run build"
 
 # Serve static assets normally (don't redirect)
