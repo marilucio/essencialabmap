@@ -2,6 +2,13 @@
   publish = "dist"
   command = "npm run build"
 
+# Serve static assets normally (don't redirect)
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# SPA fallback for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
