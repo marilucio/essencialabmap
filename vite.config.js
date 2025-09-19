@@ -15,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-        metodocalma: path.resolve(__dirname, 'src/pages/metodocalma/index.html'),
+        'metodocalma/index': path.resolve(__dirname, 'src/pages/metodocalma/index.html'),
       },
     },
   },
