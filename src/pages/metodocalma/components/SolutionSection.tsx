@@ -14,10 +14,10 @@ const SolutionSection = () => {
       description: "Sem medicamentos, sem dependência, sem efeitos colaterais"
     },
     {
-      icon: "🧠",
-      title: "Baseado em Neurociência",
-      description: "Método cientificamente comprovado para reduzir ansiedade"
-    },
+              icon: "🧠",
+              title: "Baseado em Método Cientificamente Testado",
+              description: "Técnicas cientificamente comprovadas para reduzir ansiedade"
+            },
     {
       icon: "📱",
       title: "Funciona Anywhere",
@@ -72,7 +72,7 @@ const SolutionSection = () => {
               🔬 O Método Calma Mental
             </h3>
             <p className="text-responsive text-gray-700 leading-relaxed">
-              Uma técnica revolucionária que combina respiração consciente, ancoragem sensorial e reprogramação neural para desacelerar a mente em tempo recorde.
+              Uma técnica revolucionária que combina respiração consciente, pontos de toque calmantes e treino mental para desacelerar a mente em tempo recorde.
             </p>
           </div>
         </div>

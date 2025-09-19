@@ -30,20 +30,7 @@ const GuaranteeSection = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Maria Silva",
-      age: 42,
-      text: "Testei por 3 dias e já senti a diferença. Mas a garantia me deu total segurança para experimentar.",
-      location: "São Paulo, SP"
-    },
-    {
-      name: "João Santos",
-      age: 35,
-      text: "Comprei confiante por causa da garantia. Não precisei usar, o método funcionou na primeira noite!",
-      location: "Rio de Janeiro, RJ"
-    }
-  ];
+
 
   return (
     <section className="py-12 lg:py-20 bg-gradient-to-br from-green-600 via-blue-600 to-purple-600 text-white relative overflow-hidden">
@@ -145,27 +132,7 @@ const GuaranteeSection = () => {
               </div>
             </div>
 
-            {/* Depoimentos sobre a garantia */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-8 lg:mb-12">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-green-50 p-4 lg:p-6 rounded-xl border border-green-200">
-                  <div className="flex items-start gap-3">
-                    <div className="text-2xl lg:text-3xl">💬</div>
-                    <div className="flex-1">
-                      <p className="text-xs lg:text-sm text-gray-700 italic mb-3 leading-relaxed">
-                        "{testimonial.text}"
-                      </p>
-                      <div className="text-xs lg:text-sm">
-                        <p className="font-semibold text-gray-800">
-                          {testimonial.name}, {testimonial.age} anos
-                        </p>
-                        <p className="text-gray-600">{testimonial.location}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+
 
             {/* Botão de ação */}
             <div className="text-center">

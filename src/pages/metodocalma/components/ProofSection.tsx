@@ -2,63 +2,6 @@ import React from 'react';
 import { Card } from './ui/card';
 
 const ProofSection = () => {
-  const testimonials = [
-    {
-      name: "Maria Silva",
-      age: "34 anos",
-      location: "São Paulo, SP",
-      problem: "Insônia há 8 anos",
-      result: "Primeira noite tranquila em anos",
-      quote: "Não acreditei quando funcionou logo na primeira noite. Depois de 8 anos tomando remédio para dormir, finalmente encontrei algo natural que funciona.",
-      rating: 5
-    },
-    {
-      name: "João Santos",
-      age: "42 anos", 
-      location: "Rio de Janeiro, RJ",
-      problem: "Pensamentos acelerados",
-      result: "Mente calma em 3 minutos",
-      quote: "Trabalho em TI e minha mente nunca parava. O método é simples mas poderoso. Agora durmo como uma criança.",
-      rating: 5
-    },
-    {
-      name: "Ana Costa",
-      age: "28 anos",
-      location: "Belo Horizonte, MG", 
-      problem: "Ansiedade noturna",
-      result: "Sem mais madrugadas em claro",
-      quote: "Era sempre às 3h da manhã que eu acordava com o coração disparado. Hoje isso é passado. Método incrível!",
-      rating: 5
-    },
-    {
-      name: "Carlos Oliveira",
-      age: "51 anos",
-      location: "Porto Alegre, RS",
-      problem: "Estresse do trabalho",
-      result: "Sono reparador todos os dias",
-      quote: "Empresário há 20 anos, nunca conseguia desligar. Este método mudou minha vida e meu negócio melhorou junto.",
-      rating: 5
-    },
-    {
-      name: "Fernanda Lima",
-      age: "39 anos",
-      location: "Fortaleza, CE",
-      problem: "Preocupações familiares",
-      result: "Paz mental instantânea",
-      quote: "Mãe de 3 filhos, sempre preocupada. Agora tenho uma ferramenta que me dá paz na hora que preciso.",
-      rating: 5
-    },
-    {
-      name: "Roberto Mendes",
-      age: "45 anos",
-      location: "Salvador, BA",
-      problem: "Insônia crônica",
-      result: "8 horas de sono por noite",
-      quote: "Médicos diziam que era normal na minha idade. Provou que estavam errados. Durmo 8h todas as noites agora.",
-      rating: 5
-    }
-  ];
-
   const stats = [
     {
       number: "1.847",
@@ -113,57 +56,6 @@ const ProofSection = () => {
           ))}
         </div>
 
-        {/* Depoimentos */}
-        <div className="mb-12 lg:mb-16">
-          <h3 className="subheading-responsive font-bold text-center text-gray-800 mb-8 lg:mb-12">
-            Depoimentos Reais
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6 lg:p-8 bg-gray-50 border border-gray-200 hover:shadow-lg transition-smooth">
-                {/* Estrelas */}
-                <div className="flex justify-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg lg:text-xl">⭐</span>
-                  ))}
-                </div>
-
-                {/* Depoimento */}
-                <blockquote className="text-sm lg:text-base text-gray-700 italic mb-4 leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-
-                {/* Informações da pessoa */}
-                <div className="border-t border-gray-200 pt-4">
-                  <div className="text-center">
-                    <p className="font-bold text-gray-800 text-sm lg:text-base">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs lg:text-sm text-gray-600 mb-2">
-                      {testimonial.age} • {testimonial.location}
-                    </p>
-                    
-                    {/* Problema e resultado */}
-                    <div className="space-y-2">
-                      <div className="bg-red-50 rounded-lg p-2">
-                        <p className="text-xs font-medium text-red-700">
-                          Problema: {testimonial.problem}
-                        </p>
-                      </div>
-                      <div className="bg-green-50 rounded-lg p-2">
-                        <p className="text-xs font-medium text-green-700">
-                          Resultado: {testimonial.result}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Seção de credibilidade */}
         <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 lg:p-10 border border-blue-200">
           <div className="text-center">
@@ -174,8 +66,8 @@ const ProofSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8">
               <div className="text-center">
                 <div className="text-3xl lg:text-4xl mb-3">🔬</div>
-                <p className="font-semibold text-gray-800 mb-2">Cientificamente Embasado</p>
-                <p className="text-sm text-gray-600">Baseado em neurociência aplicada</p>
+                <p className="font-semibold text-gray-800 mb-2">Método Cientificamente Testado</p>
+                <p className="text-sm text-gray-600">Baseado em técnicas validadas</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl lg:text-4xl mb-3">🇧🇷</div>

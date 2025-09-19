@@ -17,28 +17,34 @@ export const OfferSection = () => {
       isMain: true
     },
     {
-      title: "BÔNUS: Acesso EssenciaLab Premium",
-      description: "App que analisa sua saúde do sistema nervoso por meio da face e taxa de variabilidade cardíaca + Card de Saúde Preditiva (antecipa doenças até 10 anos). 30 dias gratuitos",
-      value: "R$ 283,00",
+      title: "BÔNUS 1: Kit Áudios Neuroacústicos SOS",
+      description: "5 áudios especializados para diferentes momentos: Indução do Sono, Crise de Ansiedade, Relaxamento Matinal, Foco Mental e Meditação Noturna",
+      value: "R$ 97,00",
       isMain: false
     },
     {
-      title: "BÔNUS: Curso Resolva seu TDAH",
-      description: "Curso completo com ebook para tratar TDAH naturalmente",
-      value: "R$ 39,90",
+      title: "BÔNUS 2: Checklist 21 Dias Higiene do Sono",
+      description: "Guia diário imprimível com protocolo completo para criar rotina de sono perfeita e acabar com a insônia",
+      value: "R$ 47,00",
       isMain: false
     },
     {
-      title: "BÔNUS: O Código da Saúde Plena",
-      description: "Curso e ebook para unificar mente, corpo e espírito",
+      title: "BÔNUS 3: Protocolo SOS Crise de Pânico",
+      description: "Método específico para interromper ataques de pânico em 60 segundos, técnicas para usar em qualquer lugar",
+      value: "R$ 67,00",
+      isMain: false
+    },
+    {
+      title: "BÔNUS 4: Guia Nutricional Anti-Ansiedade",
+      description: "Alimentos que acalmam, receitas relaxantes e suplementos naturais para potencializar os resultados",
       value: "R$ 57,00",
       isMain: false
     }
   ];
 
-  const totalValue = 419.80;
+  const totalValue = 268.00;
   const currentPrice = 19.90;
-  const savings = totalValue - currentPrice;
+  const savings = 248.10;
 
   return (
     <section id="offer-section" className="py-8 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
@@ -136,7 +142,7 @@ export const OfferSection = () => {
                 <p className="text-xs md:text-sm text-green-700 font-medium">
                   💰 Você economiza <span className="font-bold">
                     R$ {savings.toFixed(2).replace('.', ',')}
-                  </span> (95% de desconto)
+                  </span> (93% de desconto)
                 </p>
               </div>
             </div>
