@@ -11,12 +11,13 @@ try {
   console.log('📦 Fazendo build do site principal...');
   execSync('npm run build', { stdio: 'inherit' });
 
-  // 2. Build do metodocalma
-  console.log('📦 Fazendo build do metodocalma...');
-  execSync('npm run build', { 
-    cwd: 'public/metodocalma', 
-    stdio: 'inherit' 
-  });
+  // 2. Verificar se metodocalma já está buildado
+  console.log('📦 Verificando build do metodocalma...');
+  if (!existsSync('public/metodocalma/dist')) {
+    console.log('⚠️  Pasta metodocalma/dist não encontrada, pulando...');
+  } else {
+    console.log('✅ Build do metodocalma já existe');
+  }
 
   // 3. Copiar metodocalma para dist
   console.log('📁 Copiando metodocalma para dist...');
