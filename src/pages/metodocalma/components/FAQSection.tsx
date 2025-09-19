@@ -29,11 +29,11 @@ export const FAQSection = () => {
     },
     {
       question: "A garantia é real mesmo?",
-      answer: "Absolutamente. Se você não conseguir parar seus pensamentos acelerados em 30 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia. É só enviar um email."
+      answer: "Absolutamente. Se você não conseguir parar seus pensamentos acelerados em 14 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia. É só enviar um email."
     },
     {
-      question: "Por que só R$ 19,90 se o valor real é R$ 208?",
-      answer: "Esta é uma oferta de lançamento limitada. Queremos que o máximo de brasileiros tenham acesso ao método. Depois desta semana, o preço volta ao valor normal de R$ 97,00."
+      question: "Por que só R$ 19,90 se o valor real é R$ 39,90?",
+      answer: "Esta é uma oferta de lançamento limitada. Queremos que o máximo de brasileiros tenham acesso ao método. Depois desta semana, o preço volta ao valor normal de R$ 39,90."
     },
     {
       question: "Posso usar o método durante o dia também?",
@@ -42,41 +42,41 @@ export const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-calm">
+    <section className="py-12 md:py-20 px-4 bg-gradient-calm">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             ❓ Perguntas Frequentes
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Todas as dúvidas que você pode ter sobre o Método CALMA#
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="bg-card border border-border rounded-lg px-6 shadow-card"
+              className="bg-card border border-border rounded-lg px-4 md:px-6 shadow-card"
             >
-              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline text-sm md:text-base py-4">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-4">
+              <AccordionContent className="text-muted-foreground pb-4 text-sm md:text-base">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
 
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
+        <div className="text-center mt-8 md:mt-12">
+          <p className="text-muted-foreground mb-3 md:mb-4 text-sm md:text-base">
             Ainda tem dúvidas? Entre em contato conosco:
           </p>
           <a 
             href="mailto:suporte@essencialab.com" 
-            className="text-primary hover:underline font-semibold"
+            className="text-primary hover:underline font-semibold text-sm md:text-base break-all"
           >
             📧 suporte@essencialab.com
           </a>

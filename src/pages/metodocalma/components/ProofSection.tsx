@@ -23,67 +23,67 @@ export const ProofSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-background">
+    <section className="py-12 md:py-20 px-4 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             Veja os Resultados de Quem Já Testou
           </h2>
-          <div className="flex flex-wrap justify-center gap-8 mb-8">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-6 md:mb-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary">1.847</div>
-              <div className="text-sm text-muted-foreground">Brasileiros Testaram</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">1.847</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Brasileiros Testaram</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-success">94%</div>
-              <div className="text-sm text-muted-foreground">Dormiram na 1ª Noite</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-success">94%</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Dormiram na 1ª Noite</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-accent">3</div>
-              <div className="text-sm text-muted-foreground">Minutos Apenas</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-accent">3</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Minutos Apenas</div>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="p-6 space-y-4 shadow-card">
+            <Card key={index} className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
               <div className="flex items-center gap-1 mb-2">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <span key={i} className="text-warning text-lg">⭐</span>
+                  <span key={i} className="text-warning text-base md:text-lg">⭐</span>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground italic">
+              <p className="text-xs md:text-sm text-muted-foreground italic">
                 "{testimonial.text}"
               </p>
-              <div className="border-t pt-4">
-                <p className="font-semibold text-sm">{testimonial.name}</p>
+              <div className="border-t pt-3 md:pt-4">
+                <p className="font-semibold text-xs md:text-sm">{testimonial.name}</p>
                 <p className="text-xs text-muted-foreground">{testimonial.location}</p>
               </div>
             </Card>
           ))}
         </div>
 
-        <Card className="p-8 bg-primary/5 border-primary/20 text-center">
-          <h3 className="text-2xl font-bold mb-4 text-primary">
+        <Card className="p-6 md:p-8 bg-primary/5 border-primary/20 text-center">
+          <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary">
             📊 Pesquisa Realizada em 2024
           </h3>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
             Durante 6 meses, acompanhamos <span className="font-bold text-foreground">1.847 brasileiros</span> que 
             sofriam com ansiedade noturna. Os resultados superaram todas as expectativas:
           </p>
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
             <div>
-              <div className="text-2xl font-bold text-success">94%</div>
-              <div className="text-sm">Dormiram na primeira noite</div>
+              <div className="text-xl md:text-2xl font-bold text-success">94%</div>
+              <div className="text-xs md:text-sm">Dormiram na primeira noite</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success">87%</div>
-              <div className="text-sm">Reduziram ansiedade em 7 dias</div>
+              <div className="text-xl md:text-2xl font-bold text-success">87%</div>
+              <div className="text-xs md:text-sm">Reduziram ansiedade em 7 dias</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success">92%</div>
-              <div className="text-sm">Recomendariam para amigos</div>
+              <div className="text-xl md:text-2xl font-bold text-success">92%</div>
+              <div className="text-xs md:text-sm">Recomendariam para amigos</div>
             </div>
           </div>
         </Card>
