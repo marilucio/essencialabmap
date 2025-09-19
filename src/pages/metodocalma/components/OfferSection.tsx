@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 import { CountdownTimer } from "./CountdownTimer";
-import peacefulImageSrc from "@/assets/peaceful-sleep-VdZartzL.jpg";
+import peacefulImageSrc from "/images/peaceful-sleep-VdZartzL.jpg";
 
 export const OfferSection = () => {
   const handlePurchaseClick = () => {

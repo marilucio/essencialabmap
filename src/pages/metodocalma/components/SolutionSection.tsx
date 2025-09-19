@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
-import methodImageSrc from "@/assets/method-calma-2ZZx3BJ1.jpg";
+import { Card } from "./ui/card";
+import methodImageSrc from "/images/method-calma-2ZZx3BJ1.jpg";
 
 export const SolutionSection = () => {
   return (

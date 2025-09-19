@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 import { CountdownTimer } from "./CountdownTimer";
 
 export const FooterCTA = () => {
@@ -10,7 +10,7 @@ export const FooterCTA = () => {
   return (
     <section className="py-20 px-4 bg-background">
       <div className="max-w-4xl mx-auto">
-        <Card className="p-8 bg-gradient-hero text-white text-center shadow-glow">
+        <Card className="p-8 bg-gradient-hero text-black text-center shadow-glow">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">
               🌙 Sua Primeira Noite Tranquila Te Espera
@@ -68,7 +68,7 @@ export const FooterCTA = () => {
           </div>
         </Card>
 
-        <div className="text-center mt-12 text-muted-foreground">
+        <div className="text-center mt-12 text-primary">
           <p className="text-sm">
             © 2024 EssenciaLab - Naturopatia Ortomolecular | 
             <a href="#" className="hover:underline ml-1">Política de Privacidade</a> | 

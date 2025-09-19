@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { CountdownTimer } from "./CountdownTimer";
 
-import heroImageSrc from "@/assets/hero-3am-anxiety-BFHPhjDW.jpg";
+import heroImageSrc from "/images/hero-3am-anxiety-BFHPhjDW.jpg";
 
 export const HeroSection = () => {
   const handlePurchaseClick = () => {
