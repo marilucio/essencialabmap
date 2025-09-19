@@ -17,22 +17,23 @@ export default defineConfig({
         metodocalma: path.resolve(__dirname, 'src/pages/metodocalma/index.html'),
       },
       output: {
+        dir: 'dist',
         entryFileNames: (chunkInfo) => {
           if (chunkInfo.name === 'metodocalma') {
-            return 'metodocalma/assets/[name]-[hash].js'
+            return 'metodocalma/[name]-[hash].js'
           }
           return 'assets/[name]-[hash].js'
         },
         chunkFileNames: (chunkInfo) => {
           // Se o chunk pertence ao metodocalma, coloca na pasta metodocalma
           if (chunkInfo.facadeModuleId && chunkInfo.facadeModuleId.includes('metodocalma')) {
-            return 'metodocalma/assets/[name]-[hash].js'
+            return 'metodocalma/[name]-[hash].js'
           }
           return 'assets/[name]-[hash].js'
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.includes('metodocalma')) {
-            return 'metodocalma/assets/[name]-[hash][extname]'
+            return 'metodocalma/[name]-[hash][extname]'
           }
           return 'assets/[name]-[hash][extname]'
         }
