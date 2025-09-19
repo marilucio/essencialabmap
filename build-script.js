@@ -32,10 +32,15 @@ try {
   // Cria pasta metodocalma
   mkdirSync(metodocalmaDistPath, { recursive: true });
   
-  // Copia arquivos do build do metodocalma
-  execSync(`xcopy "public\\metodocalma\\dist\\*" "dist\\metodocalma\\" /E /Y`, { 
+  // Copia arquivos do build do metodocalma (compatível com Linux e Windows)
+  const isWindows = process.platform === 'win32';
+  const copyCommand = isWindows 
+    ? `xcopy "public\\metodocalma\\dist\\*" "dist\\metodocalma\\" /E /Y`
+    : `cp -r public/metodocalma/dist/* dist/metodocalma/`;
+  
+  execSync(copyCommand, { 
     stdio: 'inherit',
-    shell: 'cmd.exe'
+    shell: isWindows ? 'cmd.exe' : '/bin/bash'
   });
 
   console.log('✅ Build completo finalizado com sucesso!');
