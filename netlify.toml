@@ -17,18 +17,6 @@
   to = "/metodocalma/assets/:splat"
   status = 200
 
-# SPA fallback for metodocalma routes
-[[redirects]]
-  from = "/metodocalma/*"
-  to = "/metodocalma/index.html"
-  status = 200
-
-# Direct access to metodocalma
-[[redirects]]
-  from = "/metodocalma"
-  to = "/metodocalma/index.html"
-  status = 200
-
 # SPA fallback for main site (must be last)
 [[redirects]]
   from = "/*"
