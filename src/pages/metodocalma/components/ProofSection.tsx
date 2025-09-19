@@ -17,7 +17,7 @@ export const ProofSection = () => {
     {
       name: "Ana Costa",
       location: "Belo Horizonte - MG",
-      text: "Sofria com pensamentos repetitivos há anos. O método CALMA# mudou minha vida. Recomendo para todos!",
+      text: "Sofria com pensamentos repetitivos há anos. O método calma mudou minha vida. Recomendo para todos!",
       rating: 5
     }
   ];
