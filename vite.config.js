@@ -17,10 +17,9 @@ export default defineConfig({
         metodocalma: path.resolve(__dirname, 'src/pages/metodocalma/index.html'),
       },
       output: {
-        dir: 'dist',
         entryFileNames: (chunkInfo) => {
           if (chunkInfo.name === 'metodocalma') {
-            return 'metodocalma/[name]-[hash].js'
+            return 'metodocalma/metodocalma-[hash].js'
           }
           return 'assets/[name]-[hash].js'
         },
