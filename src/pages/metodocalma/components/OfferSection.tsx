@@ -1,116 +1,185 @@
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-import { CountdownTimer } from "./CountdownTimer";
-import peacefulImageSrc from "/images/peaceful-sleep-VdZartzL.jpg";
+import React from 'react';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { CountdownTimer } from './CountdownTimer';
+import peacefulImageSrc from '/images/peaceful-sleep-VdZartzL.jpg';
 
 export const OfferSection = () => {
   const handlePurchaseClick = () => {
     window.open('https://pay.kiwify.com.br/KDSJr1d', '_blank');
   };
 
+  const bonuses = [
+    {
+      title: "Método CALMA# Completo",
+      description: "5 técnicas que param pensamentos em 3 minutos",
+      value: "R$ 39,90",
+      isMain: true
+    },
+    {
+      title: "BÔNUS: Acesso EssenciaLab Premium",
+      description: "App que analisa sua saúde do sistema nervoso por meio da face e taxa de variabilidade cardíaca + Card de Saúde Preditiva (antecipa doenças até 10 anos). 30 dias gratuitos",
+      value: "R$ 283,00",
+      isMain: false
+    },
+    {
+      title: "BÔNUS: Curso Resolva seu TDAH",
+      description: "Curso completo com ebook para tratar TDAH naturalmente",
+      value: "R$ 39,90",
+      isMain: false
+    },
+    {
+      title: "BÔNUS: O Código da Saúde Plena",
+      description: "Curso e ebook para unificar mente, corpo e espírito",
+      value: "R$ 57,00",
+      isMain: false
+    }
+  ];
+
+  const totalValue = 419.80;
+  const currentPrice = 19.90;
+  const savings = totalValue - currentPrice;
+
   return (
-    <section id="offer-section" className="py-12 md:py-20 px-4 bg-gradient-calm">
-      <div className="max-w-4xl mx-auto">
+    <section id="offer-section" className="py-8 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
+      {/* Background decorativo */}
+      <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/10 to-transparent"></div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        {/* Cabeçalho da seção */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-            🎁 <span className="text-primary">Oferta Especial</span> - Apenas Este Mês
+          <div className="bg-red-600 text-white rounded-full px-3 md:px-6 py-2 md:py-3 inline-block mb-4 md:mb-6">
+            <span className="font-bold text-xs md:text-base">🔥 OFERTA LIMITADA</span>
+          </div>
+          
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+            🎯 Transforme Sua Vida
+            <span className="block text-yellow-300">Por Apenas R$ 19,90</span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground">
-            Tudo que você precisa para ter sua primeira noite tranquila
+          
+          <p className="text-sm sm:text-base md:text-lg text-green-100 max-w-3xl mx-auto leading-relaxed">
+            Tudo que você precisa para ter sua primeira noite tranquila hoje mesmo + bônus exclusivos
           </p>
         </div>
 
-        <Card className="p-4 md:p-8 shadow-glow border-primary/20 mb-6 md:mb-8">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
+        {/* Card da oferta principal */}
+        <Card className="p-4 md:p-6 lg:p-8 bg-white text-gray-800 rounded-xl shadow-glow border-2 border-yellow-400 mb-6 md:mb-8">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center mb-6 md:mb-8">
             <div className="order-2 lg:order-1">
               <img 
                 src={peacefulImageSrc} 
                 alt="Pessoa dormindo tranquilamente"
-                className="rounded-xl w-full h-auto max-h-[300px] md:max-h-none object-cover"
+                className="rounded-xl w-full h-auto max-h-[250px] md:max-h-[300px] object-cover"
               />
             </div>
             
-            <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-              <h3 className="text-xl md:text-2xl font-bold">Protocolo SOS Ansiedade Completo</h3>
+            <div className="space-y-3 md:space-y-4 order-1 lg:order-2">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-center lg:text-left">Protocolo SOS Ansiedade Completo</h3>
               
+              {/* Lista de produtos e bônus */}
               <div className="space-y-3 md:space-y-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-success text-lg md:text-xl flex-shrink-0">✅</span>
-                  <div>
-                    <h4 className="font-semibold text-sm md:text-base">Método CALMA# Completo</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">5 técnicas que param pensamentos em 3 minutos</p>
-                    <p className="text-xs md:text-sm text-success font-semibold">Valor: R$ 39,90</p>
+                {bonuses.map((bonus, index) => (
+                  <div key={index} className={`p-3 md:p-4 rounded-lg border ${
+                    bonus.isMain 
+                      ? 'bg-blue-50 border-blue-200' 
+                      : 'bg-green-50 border-green-200'
+                  }`}>
+                    <div className="flex items-start gap-2 md:gap-3">
+                      <span className={`text-base md:text-lg flex-shrink-0 ${
+                        bonus.isMain ? 'text-blue-600' : 'text-green-600'
+                      }`}>
+                        {bonus.isMain ? '✅' : '🎁'}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className={`font-semibold text-xs md:text-sm mb-1 ${
+                          bonus.isMain ? 'text-blue-800' : 'text-green-800'
+                        }`}>
+                          {bonus.title}
+                        </h4>
+                        <p className="text-xs text-gray-600 leading-relaxed mb-1">
+                          {bonus.description}
+                        </p>
+                        <p className="text-xs font-bold text-green-600">
+                          {bonus.isMain ? `Valor: ${bonus.value}` : `Valor: ${bonus.value} - GRÁTIS`}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="text-success text-lg md:text-xl flex-shrink-0">🎁</span>
-                  <div>
-                    <h4 className="font-semibold text-sm md:text-base">BÔNUS: Acesso EssenciaLab Premium</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">App que analisa sua saúde do sistema nervoso por meio da face e taxa de variabilidade cardíaca + Card de Saúde Preditiva (antecipa doenças até 10 anos). 30 dias gratuitos</p>
-                    <p className="text-xs md:text-sm text-success font-semibold">Valor: R$ 283,00</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="text-success text-lg md:text-xl flex-shrink-0">🎁</span>
-                  <div>
-                    <h4 className="font-semibold text-sm md:text-base">BÔNUS: Curso Resolva seu TDAH</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">Curso completo com ebook para tratar TDAH naturalmente</p>
-                    <p className="text-xs md:text-sm text-success font-semibold">Valor: R$ 39,90</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="text-success text-lg md:text-xl flex-shrink-0">🎁</span>
-                  <div>
-                    <h4 className="font-semibold text-sm md:text-base">BÔNUS: O Código da Saúde Plena</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">Curso e ebook para unificar mente, corpo e espírito</p>
-                    <p className="text-xs md:text-sm text-success font-semibold">Valor: R$ 57,00</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t pt-4 md:pt-6">
-                <div className="text-center space-y-2">
-                  <p className="text-xs md:text-sm text-muted-foreground">Valor Total: <span className="line-through">R$ 419,80</span></p>
-                  <div className="text-2xl md:text-4xl font-bold text-success">
-                    Apenas R$ 19,90
-                  </div>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    95% de desconto - <span className="text-destructive font-semibold">Apenas neste mês com todos os bônus!</span>
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
+
+          {/* Resumo de valores */}
+          <div className="bg-gray-100 rounded-lg p-3 md:p-4 mb-6 md:mb-8">
+            <div className="space-y-2 md:space-y-3">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                <span className="text-sm md:text-base text-gray-600">
+                  Valor total se comprado separado:
+                </span>
+                <span className="text-base md:text-lg text-gray-500 line-through">
+                  R$ {totalValue.toFixed(2).replace('.', ',')}
+                </span>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0 border-t border-gray-300 pt-2 md:pt-3">
+                <span className="text-base md:text-lg font-bold text-gray-800">
+                  Seu investimento hoje:
+                </span>
+                <span className="text-xl md:text-2xl lg:text-3xl font-bold text-green-600">
+                  R$ {currentPrice.toFixed(2).replace('.', ',')}
+                </span>
+              </div>
+              
+              <div className="text-center bg-green-50 rounded-lg p-2 md:p-3">
+                <p className="text-xs md:text-sm text-green-700 font-medium">
+                  💰 Você economiza <span className="font-bold">
+                    R$ {savings.toFixed(2).replace('.', ',')}
+                  </span> (95% de desconto)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Garantia */}
+          <div className="bg-blue-50 rounded-lg p-3 md:p-4 border border-blue-200 text-center">
+            <div className="text-2xl md:text-3xl mb-2">🛡️</div>
+            <h4 className="font-bold text-sm md:text-base text-gray-800 mb-1">
+              Garantia Incondicional de 14 Dias
+            </h4>
+            <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+              Se por qualquer motivo você não conseguir sua primeira noite tranquila, 
+              devolvemos <span className="font-bold text-green-600">100% do seu dinheiro</span>. 
+              Sem perguntas, sem burocracia.
+            </p>
+          </div>
         </Card>
 
+        {/* Seção de CTA */}
         <div className="text-center space-y-4 md:space-y-6">
           <Button 
             onClick={handlePurchaseClick}
-            variant="cta" 
-            size="xl" 
-            className="w-full md:w-auto text-sm md:text-xl py-4 md:py-6 px-6 md:px-12 animate-pulse"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm md:text-lg lg:text-xl px-4 md:px-8 py-3 md:py-4 lg:py-6 rounded-xl shadow-glow transition-all duration-300 transform hover:scale-105"
           >
-            🛌 QUERO MINHA PRIMEIRA NOITE TRANQUILA - R$ 19,90
+            🛒 QUERO MINHA PRIMEIRA NOITE TRANQUILA - R$ 19,90
           </Button>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-6 text-xs md:text-sm">
-            <span className="flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 md:gap-4 text-xs md:text-sm">
+            <span className="flex items-center justify-center gap-1 md:gap-2 text-green-100">
               ✅ Acesso Imediato
             </span>
-            <span className="flex items-center justify-center gap-2">
+            <span className="flex items-center justify-center gap-1 md:gap-2 text-green-100">
               ✅ Garantia Total de 14 Dias
             </span>
-            <span className="flex items-center justify-center gap-2">
+            <span className="flex items-center justify-center gap-1 md:gap-2 text-green-100">
               ✅ Suporte Especializado
             </span>
           </div>
 
-          <Card className="p-3 md:p-4 bg-warning/10 border-warning/20 inline-block max-w-full">
+          <Card className="p-3 md:p-4 bg-yellow-400 text-gray-800 rounded-lg inline-block max-w-full">
             <p className="text-xs md:text-sm font-semibold">
-              ⏰ <span className="text-warning">ÚLTIMAS 247 CÓPIAS</span> com todos os bônus disponíveis - <CountdownTimer />!
+              ⏰ <span className="text-red-600">ÚLTIMAS 247 CÓPIAS</span> com todos os bônus disponíveis - <CountdownTimer />!
             </p>
           </Card>
         </div>

@@ -118,3 +118,62 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Cores customizadas baseadas na paleta da imagem */
+.bg-gradient-calm {
+  background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 50%, #81d4fa 100%);
+}
+
+.bg-gradient-hero {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 50%, #0d47a1 100%);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(25, 118, 210, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.text-success {
+  color: #2e7d32;
+}
+
+.text-warning {
+  color: #f57c00;
+}
+
+.bg-success {
+  background-color: #4caf50;
+}
+
+.bg-warning {
+  background-color: #ff9800;
+}
+
+/* Classes de responsividade customizadas */
+.text-responsive {
+  @apply text-sm sm:text-base md:text-lg lg:text-xl;
+}
+
+.heading-responsive {
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+}
+
+.subheading-responsive {
+  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+}
+
+.container-responsive {
+  @apply px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16;
+}
+
+.grid-responsive {
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.flex-responsive {
+  @apply flex-col sm:flex-row;
+}
+
+/* Animações suaves para transições */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

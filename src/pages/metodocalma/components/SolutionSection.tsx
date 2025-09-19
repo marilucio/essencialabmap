@@ -1,102 +1,174 @@
-import { Card } from "./ui/card";
-import methodImageSrc from "/images/method-calma-2ZZx3BJ1.jpg";
+import React from 'react';
+import { Card } from './ui/card';
 
-export const SolutionSection = () => {
+const SolutionSection = () => {
+  const benefits = [
+    {
+      icon: "⚡",
+      title: "Resultados em 3 Minutos",
+      description: "Técnica simples que acalma a mente instantaneamente"
+    },
+    {
+      icon: "🌿",
+      title: "100% Natural",
+      description: "Sem medicamentos, sem dependência, sem efeitos colaterais"
+    },
+    {
+      icon: "🧠",
+      title: "Baseado em Neurociência",
+      description: "Método cientificamente comprovado para reduzir ansiedade"
+    },
+    {
+      icon: "📱",
+      title: "Funciona Anywhere",
+      description: "Na cama, no trabalho, no trânsito - em qualquer lugar"
+    },
+    {
+      icon: "🎯",
+      title: "Foco na Causa Raiz",
+      description: "Ataca o problema na origem, não apenas os sintomas"
+    },
+    {
+      icon: "🔄",
+      title: "Quebra o Ciclo Vicioso",
+      description: "Interrompe o padrão de pensamentos acelerados"
+    }
+  ];
+
+  const steps = [
+    {
+      number: "1",
+      title: "Identifique o Gatilho",
+      description: "Reconheça quando sua mente começar a acelerar"
+    },
+    {
+      number: "2", 
+      title: "Aplique a Técnica",
+      description: "Use o método específico por apenas 3 minutos"
+    },
+    {
+      number: "3",
+      title: "Sinta o Alívio",
+      description: "Experimente a calma imediata e o sono reparador"
+    }
+  ];
+
   return (
-    <section className="py-12 md:py-20 px-4 bg-gradient-calm">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-            A Solução: <span className="text-primary">Método CALMA#</span>
+    <section className="py-12 lg:py-20 bg-gradient-calm">
+      <div className="container mx-auto container-responsive">
+        {/* Cabeçalho da seção */}
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="heading-responsive font-bold text-gray-800 mb-4 lg:mb-6">
+            A Descoberta que Mudou
+            <span className="block text-blue-700">Tudo</span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Criado especificamente para o cérebro brasileiro acelerado. 
-            <span className="font-bold text-foreground"> 5 passos simples</span> que param seus pensamentos em 3 minutos.
+          <p className="text-responsive text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+            Após anos de pesquisa e testes com milhares de brasileiros, descobrimos uma técnica simples que interrompe o ciclo de pensamentos acelerados em apenas 3 minutos.
           </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
-          <div className="order-2 lg:order-1">
-            <img 
-              src={methodImageSrc} 
-              alt="Pessoa praticando o Método CALMA em estado de tranquilidade"
-              className="rounded-2xl shadow-card w-full h-auto max-h-[400px] md:max-h-none object-cover"
-            />
-          </div>
-
-          <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-            <Card className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                  C
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg">Controle Respiratório Brasileiro</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Técnica adaptada ao nosso ritmo acelerado</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                  A
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg">Ancoragem Sensorial Imediata</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Traz sua mente de volta ao presente</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-success text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                  L
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg">Liberação Muscular de 2 Minutos</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Descarrega a tensão acumulada</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-warning text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                  M
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg">Mente Neutra (Despejo Cerebral)</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Esvazia os pensamentos repetitivos</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-4 md:p-6 space-y-3 md:space-y-4 shadow-card">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-destructive text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                  A
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg">Afirmação de Segurança Personalizada</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">Reconecta com sua paz interior</p>
-                </div>
-              </div>
-            </Card>
+          
+          {/* Destaque da descoberta */}
+          <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/50 shadow-lg max-w-4xl mx-auto">
+            <h3 className="text-xl lg:text-2xl font-bold text-blue-800 mb-4">
+              🔬 O Método Calma Mental
+            </h3>
+            <p className="text-responsive text-gray-700 leading-relaxed">
+              Uma técnica revolucionária que combina respiração consciente, ancoragem sensorial e reprogramação neural para desacelerar a mente em tempo recorde.
+            </p>
           </div>
         </div>
 
-        <Card className="p-6 md:p-8 bg-success/10 border-success/20 text-center">
-          <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-success">
-            ✅ Resultado Comprovado em 3 Minutos
+        {/* Como funciona */}
+        <div className="mb-12 lg:mb-16">
+          <h3 className="subheading-responsive font-bold text-center text-gray-800 mb-8 lg:mb-12">
+            Como Funciona em 3 Passos Simples
           </h3>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Não importa se são 3h da madrugada ou meio dia. O Método CALMA# funciona 
-            <span className="font-bold text-foreground"> mesmo quando você está no auge da ansiedade.</span>
-          </p>
-        </Card>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                <Card className="p-6 lg:p-8 text-center bg-white/60 backdrop-blur-sm border border-white/50 hover:shadow-lg transition-smooth">
+                  <div className="w-16 h-16 lg:w-20 lg:h-20 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl lg:text-3xl font-bold mx-auto mb-4">
+                    {step.number}
+                  </div>
+                  <h4 className="text-lg lg:text-xl font-bold text-gray-800 mb-3">
+                    {step.title}
+                  </h4>
+                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </Card>
+                
+                {/* Seta conectora */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-blue-600 text-2xl">
+                    →
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Benefícios */}
+        <div className="mb-12 lg:mb-16">
+          <h3 className="subheading-responsive font-bold text-center text-gray-800 mb-8 lg:mb-12">
+            Por Que Este Método é Diferente
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {benefits.map((benefit, index) => (
+              <Card 
+                key={index} 
+                className="p-6 lg:p-8 text-center bg-white/60 backdrop-blur-sm border border-white/50 hover:shadow-lg transition-smooth"
+              >
+                <div className="text-4xl lg:text-5xl mb-4">{benefit.icon}</div>
+                <h4 className="text-lg lg:text-xl font-bold text-gray-800 mb-3">
+                  {benefit.title}
+                </h4>
+                <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                  {benefit.description}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Seção de prova científica */}
+        <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 lg:p-10 border border-white/60 shadow-lg">
+          <div className="text-center">
+            <h3 className="subheading-responsive font-bold text-gray-800 mb-6 lg:mb-8">
+              Comprovação Científica
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-4xl lg:text-5xl text-success mb-3">94%</div>
+                <p className="font-semibold text-gray-800 mb-2">Taxa de Sucesso</p>
+                <p className="text-sm text-gray-600">Dormem na primeira noite</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl lg:text-5xl text-blue-600 mb-3">3min</div>
+                <p className="font-semibold text-gray-800 mb-2">Tempo Médio</p>
+                <p className="text-sm text-gray-600">Para sentir o efeito</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl lg:text-5xl text-success mb-3">1.847</div>
+                <p className="font-semibold text-gray-800 mb-2">Pessoas Testadas</p>
+                <p className="text-sm text-gray-600">Brasileiros de todo país</p>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-xl p-4 lg:p-6 border border-blue-200">
+              <p className="text-responsive text-gray-700 font-medium">
+                <span className="text-blue-600 font-bold">Resultado:</span> Uma técnica simples, natural e eficaz que funciona mesmo quando você já tentou de tudo.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
+
+export default SolutionSection;
+export { SolutionSection };
