@@ -2,7 +2,7 @@
 [build]
   base = "."
   publish = "dist"
-  command = "npm run build:full"
+  command = "npm run build"
 
 # Build configuration for metodocalma subdirectory
 [build.processing]
