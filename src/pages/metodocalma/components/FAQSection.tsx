@@ -7,7 +7,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "O Método CALMA# realmente funciona em apenas 3 minutos?",
-      answer: "Sim! O Método CALMA# foi desenvolvido com base em método cientificamente testado e testado com mais de 1.847 brasileiros. As técnicas são projetadas para ativar o sistema nervoso parassimpático rapidamente, proporcionando alívio imediato da ansiedade e preparando a mente para o sono reparador."
+      answer: "Sim! O Método CALMA# foi desenvolvido com base em método cientificamente testado e aplicado com alguns pacientes na minha prática clínica com resultados muito rápidos. As técnicas são projetadas para ativar o sistema nervoso parassimpático rapidamente, proporcionando alívio imediato da ansiedade e preparando a mente para o sono reparador."
     },
     {
       question: "É seguro? Tem algum efeito colateral?",

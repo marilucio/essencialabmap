@@ -4,14 +4,14 @@ import { Card } from './ui/card';
 const ProofSection = () => {
   const stats = [
     {
-      number: "1.847",
-      label: "Brasileiros Testaram",
-      description: "De todas as regiões do país"
+      number: "Alguns",
+      label: "Pacientes Testaram",
+      description: "Na minha prática clínica"
     },
     {
-      number: "94%",
-      label: "Taxa de Sucesso",
-      description: "Dormem na primeira noite"
+      number: "Rápidos",
+      label: "Resultados",
+      description: "Na primeira aplicação"
     },
     {
       number: "3min",
@@ -31,7 +31,7 @@ const ProofSection = () => {
         {/* Cabeçalho da seção */}
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="heading-responsive font-bold text-gray-800 mb-4 lg:mb-6">
-            Mais de 1.800 Brasileiros
+            Pacientes da Minha Prática
             <span className="block text-success">Já Transformaram Suas Noites</span>
           </h2>
           <p className="text-responsive text-gray-600 max-w-3xl mx-auto leading-relaxed">

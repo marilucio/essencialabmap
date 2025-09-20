@@ -75,11 +75,11 @@ const HeroSection = () => {
             <div className="bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-white/40 shadow-lg mx-1 sm:mx-0">
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 mb-1 sm:mb-2 leading-relaxed">
                 Método testado com{' '}
-                <span className="font-bold text-blue-700">1.847 brasileiros</span>
-                {' '}- <span className="text-green-600 font-semibold">94%</span>
+                <span className="font-bold text-blue-700">alguns pacientes</span>
+                {' '}- <span className="text-green-600 font-semibold">resultados rápidos</span>
               </p>
               <p className="text-xs sm:text-sm lg:text-base text-green-600 font-semibold">
-                dormem na primeira noite
+                na primeira aplicação
               </p>
             </div>
 
