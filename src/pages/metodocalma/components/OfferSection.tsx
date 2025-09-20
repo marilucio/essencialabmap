@@ -42,9 +42,13 @@ export const OfferSection = () => {
     }
   ];
 
-  const totalValue = 268.00;
+  // Cálculo automático baseado nos valores dos bônus
+  const totalValue = bonuses.reduce((sum, bonus) => {
+    const value = parseFloat(bonus.value.replace('R$ ', '').replace(',', '.'));
+    return sum + value;
+  }, 0);
   const currentPrice = 19.90;
-  const savings = 248.10;
+  const savings = totalValue - currentPrice;
 
   return (
     <section id="offer-section" className="py-8 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
