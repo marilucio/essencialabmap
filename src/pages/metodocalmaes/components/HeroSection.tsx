@@ -115,7 +115,7 @@ const HeroSection = () => {
               <div className="flex flex-col gap-1 sm:gap-2">
                 <span className="text-orange-600 font-bold text-xs sm:text-sm">⚠️ ATENCIÓN:</span>
                 <div className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  <div className="font-semibold mb-1">Solo 247 copias restantes</div>
+                  <div className="font-semibold mb-1">Solo 113 copias restantes</div>
                   <div className="text-xs">
                     este mes con todos los bonos disponibles. Después solo se entregará el método.
                   </div>

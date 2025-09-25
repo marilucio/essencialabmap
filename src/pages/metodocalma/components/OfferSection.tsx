@@ -189,7 +189,7 @@ export const OfferSection = () => {
 
           <Card className="p-3 md:p-4 bg-yellow-400 text-gray-800 rounded-lg inline-block max-w-full">
             <p className="text-xs md:text-sm font-semibold">
-              ⏰ <span className="text-red-600">ÚLTIMAS 247 CÓPIAS</span> com todos os bônus disponíveis - <CountdownTimer />!
+              ⏰ <span className="text-red-600">ÚLTIMAS 113 CÓPIAS</span> com todos os bônus disponíveis - <CountdownTimer />!
             </p>
           </Card>
         </div>

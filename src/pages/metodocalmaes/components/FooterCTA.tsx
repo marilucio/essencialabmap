@@ -103,7 +103,7 @@ export const FooterCTA = () => {
                     ⚠️ OFERTA LIMITADA
                   </p>
                   <p className="text-xs lg:text-sm text-red-500">
-                    Solo 247 copias restantes este mes con todos los bonos - ¡<CountdownTimer />!
+                    Solo 113 copias restantes este mes con todos los bonos - ¡<CountdownTimer />!
                   </p>
                 </Card>
               </div>
