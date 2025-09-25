@@ -5,7 +5,7 @@ import { CountdownTimer } from "./CountdownTimer";
 
 export const FooterCTA = () => {
   const handlePurchaseClick = () => {
-    window.open('https://pay.kiwify.com.br/KDSJr1d', '_blank');
+    window.open('https://pay.hotmart.com/Q102041319H', '_blank');
   };
 
   // Beneficios finales
