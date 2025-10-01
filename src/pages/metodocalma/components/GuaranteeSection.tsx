@@ -141,7 +141,7 @@ const GuaranteeSection = () => {
                 className="w-full lg:w-auto bg-green-600 hover:bg-green-700 text-white font-bold text-sm lg:text-lg px-4 lg:px-8 py-4 lg:py-6 rounded-xl shadow-glow transition-smooth transform hover:scale-105 leading-tight"
               >
                 <span className="block sm:inline">🛒 Quero Testar Sem Riscos&nbsp;</span>
-                <span className="block sm:inline font-extrabold">por R$ 19,90</span>
+                <span className="block sm:inline font-extrabold">por R$ 44,00</span>
               </Button>
               
               <p className="text-xs lg:text-sm text-gray-500 mt-4">

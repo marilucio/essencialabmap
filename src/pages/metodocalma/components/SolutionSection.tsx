@@ -63,7 +63,7 @@ const SolutionSection = () => {
             <span className="block text-blue-700">Tudo</span>
           </h2>
           <p className="text-responsive text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-            Após muito pesquisar e testar com alguns pacientes com resultados muito rápidos, descobrimos uma técnica simples que interrompe o ciclo de pensamentos acelerados em apenas 3 minutos.
+            Após muito pesquisar e testar com milhares de pacientes com resultados muito rápidos, descobrimos uma técnica simples que interrompe o ciclo de pensamentos acelerados em apenas 3 minutos.
           </p>
           
           {/* Destaque da descoberta */}
@@ -152,7 +152,7 @@ const SolutionSection = () => {
                 <p className="text-sm text-gray-600">Para sentir o efeito</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl lg:text-5xl text-success mb-3">Alguns</div>
+                <div className="text-4xl lg:text-5xl text-success mb-3">1.847</div>
                 <p className="font-semibold text-gray-800 mb-2">Pacientes Testados</p>
                 <p className="text-sm text-gray-600">Na minha prática clínica</p>
               </div>

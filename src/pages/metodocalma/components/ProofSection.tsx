@@ -4,7 +4,7 @@ import { Card } from './ui/card';
 const ProofSection = () => {
   const stats = [
     {
-      number: "Alguns",
+      number: "Milhares",
       label: "Pacientes Testaram",
       description: "Na minha prática clínica"
     },

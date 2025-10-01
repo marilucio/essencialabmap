@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { HeroSection } from "./components/HeroSection";
 import { ProblemSection } from "./components/ProblemSection";
 import { SolutionSection } from "./components/SolutionSection";
@@ -6,8 +7,57 @@ import { OfferSection } from "./components/OfferSection";
 import { GuaranteeSection } from "./components/GuaranteeSection";
 import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
+import TestimonialsSection from "./components/TestimonialsSection";
 
 const Index = () => {
+  useEffect(() => {
+    // SEO Meta tags
+    document.title = "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
+    
+    // Meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.';
+      document.head.appendChild(meta);
+    }
+
+    // Meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', 'ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'keywords';
+      meta.content = 'ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração';
+      document.head.appendChild(meta);
+    }
+
+    // Open Graph tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', 'Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz');
+    } else {
+      const meta = document.createElement('meta');
+      meta.setAttribute('property', 'og:title');
+      meta.content = 'Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz';
+      document.head.appendChild(meta);
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.setAttribute('property', 'og:description');
+      meta.content = 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-x-hidden">
       {/* Layout flexível inteligente com espaçamento responsivo */}
@@ -42,6 +92,11 @@ const Index = () => {
           {/* Garantia - Segurança */}
           <section className="w-full">
             <GuaranteeSection />
+          </section>
+
+          {/* Depoimentos - Prova Social */}
+          <section className="w-full">
+            <TestimonialsSection />
           </section>
 
           {/* FAQ - Objeções */}

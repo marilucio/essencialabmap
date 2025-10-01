@@ -22,7 +22,7 @@ const FAQSection = () => {
     },
     {
       question: "Funciona mesmo ou é só mais um produto digital?",
-      answer: "Nosso kit é baseado em protocolos científicos validados: CBT-I (Terapia Cognitivo-Comportamental para Insônia), técnicas de respiração 4-7-8 modificadas, e mindfulness clínico. Mais de 2.847 pessoas já relataram melhorias significativas. Oferecemos garantia incondicional de 14 dias."
+      answer: "Nosso kit é baseado em protocolos científicos validados: CBT-I (Terapia Cognitivo-Comportamental para Insônia), técnicas de respiração 4-7-8 modificadas, e mindfulness clínico. Mais de 1.800 pessoas já relataram melhorias significativas. Oferecemos garantia incondicional de 14 dias."
     },
     {
       question: "Como recebo o material após a compra?",

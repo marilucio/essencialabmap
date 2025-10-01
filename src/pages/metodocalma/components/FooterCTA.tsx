@@ -73,7 +73,7 @@ export const FooterCTA = () => {
                 {/* Preço */}
                 <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl p-6 lg:p-8 inline-block">
                   <div className="text-sm lg:text-base opacity-90 mb-2">Investimento único de</div>
-                  <div className="text-3xl lg:text-5xl font-bold mb-2">R$ 19,90</div>
+                  <div className="text-3xl lg:text-5xl font-bold mb-2">R$ 44,00</div>
                   <div className="text-sm lg:text-base opacity-90">Sem mensalidades • Acesso vitalício</div>
                 </div>
                 
@@ -103,7 +103,7 @@ export const FooterCTA = () => {
                     ⚠️ OFERTA LIMITADA
                   </p>
                   <p className="text-xs lg:text-sm text-red-500">
-                    Apenas 113 cópias restantes neste mês com todos os bônus - <CountdownTimer />!
+                    Apenas até dia 15/10/2025 com todos os bônus - depois volta ao valor normal sem o kit de áudios neuroacústicos!
                   </p>
                 </Card>
               </div>

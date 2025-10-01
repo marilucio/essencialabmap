@@ -75,7 +75,7 @@ const HeroSection = () => {
             <div className="bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-white/40 shadow-lg mx-1 sm:mx-0">
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 mb-1 sm:mb-2 leading-relaxed">
                 Método testado com{' '}
-                <span className="font-bold text-blue-700">alguns pacientes</span>
+                <span className="font-bold text-blue-700">milhares de pacientes</span>
                 {' '}- <span className="text-green-600 font-semibold">resultados rápidos</span>
               </p>
               <p className="text-xs sm:text-sm lg:text-base text-green-600 font-semibold">
@@ -90,7 +90,7 @@ const HeroSection = () => {
                 className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-gray-800 font-bold py-4 sm:py-5 px-2 sm:px-4 rounded-xl text-xs sm:text-sm lg:text-base transition-all duration-300 transform hover:scale-105 shadow-lg leading-tight"
               >
                 <span className="block sm:inline">🛏️ Quero Minha Primeira Noite Tranquila</span>
-                <span className="block sm:inline sm:ml-1 font-extrabold">por R$ 19,90</span>
+                <span className="block sm:inline sm:ml-1 font-extrabold">por R$ 44,00</span>
               </Button>
               
               {/* Garantias */}
@@ -115,9 +115,9 @@ const HeroSection = () => {
               <div className="flex flex-col gap-1 sm:gap-2">
                 <span className="text-orange-600 font-bold text-xs sm:text-sm">⚠️ ATENÇÃO:</span>
                 <div className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  <div className="font-semibold mb-1">Apenas 113 cópias restantes</div>
+                  <div className="font-semibold mb-1">Oferta por tempo limitado</div>
                   <div className="text-xs">
-                    neste mês com todos os bônus disponíveis. Depois apenas o método será entregue.
+                    até dia 15/10/2025 com todos os bônus disponíveis. Depois disso volta ao valor normal sem o bônus de kit de áudios neuroacústicos.
                   </div>
                 </div>
               </div>

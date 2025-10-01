@@ -11,43 +11,52 @@ export const OfferSection = () => {
 
   const bonuses = [
     {
-      title: "Método CALMA# Completo",
-      description: "5 técnicas que param pensamentos em 3 minutos",
-      value: "R$ 39,90",
+      title: "Protocolo SOS Ansiedade",
+      description: "Método completo para controlar ansiedade em situações críticas",
+      value: "R$ 97,00",
       isMain: true
     },
     {
-      title: "BÔNUS 1: Kit Áudios Neuroacústicos SOS",
-      description: "5 áudios especializados para diferentes momentos: Indução do Sono, Crise de Ansiedade, Relaxamento Matinal, Foco Mental e Meditação Noturna",
+      title: "BÔNUS 1: Kit de Áudios Neuroacústicos",
+      description: "5 áudios especializados: Indução do Sono, Crise de Ansiedade, Meditação Noturna, Foco Mental e Energia/Vitalidade com mensagens subliminares",
       value: "R$ 97,00",
+      isMain: false,
+      isSpecial: true
+    },
+    {
+      title: "BÔNUS 2: Fichas para Pensamentos Intrusivos",
+      description: "Ferramentas práticas para identificar e neutralizar pensamentos negativos automáticos",
+      value: "R$ 37,00",
       isMain: false
     },
     {
-      title: "BÔNUS 2: Checklist 21 Dias Higiene do Sono",
-      description: "Guia diário imprimível com protocolo completo para criar rotina de sono perfeita e acabar com a insônia",
+      title: "BÔNUS 3: Trilhas Rápidas de Alívio",
+      description: "Técnicas de 2-5 minutos para alívio imediato em momentos de crise",
+      value: "R$ 29,90",
+      isMain: false
+    },
+    {
+      title: "BÔNUS 4: Guia Visual do Ciclo do Pânico",
+      description: "Infográfico explicativo sobre as fases do pânico e como interrompê-las",
+      value: "R$ 27,00",
+      isMain: false
+    },
+    {
+      title: "BÔNUS 5: Escalas de Monitoramento",
+      description: "Ferramentas de acompanhamento para medir progresso e identificar gatilhos",
       value: "R$ 47,00",
-      isMain: false
-    },
-    {
-      title: "BÔNUS 3: Protocolo SOS Crise de Pânico",
-      description: "Método específico para interromper ataques de pânico em 60 segundos, técnicas para usar em qualquer lugar",
-      value: "R$ 67,00",
-      isMain: false
-    },
-    {
-      title: "BÔNUS 4: Guia Nutricional Anti-Ansiedade",
-      description: "Alimentos que acalmam, receitas relaxantes e suplementos naturais para potencializar os resultados",
-      value: "R$ 57,00",
       isMain: false
     }
   ];
 
   // Cálculo automático baseado nos valores dos bônus
+  const protocolValue = 97.00;
   const totalValue = bonuses.reduce((sum, bonus) => {
     const value = parseFloat(bonus.value.replace('R$ ', '').replace(',', '.'));
     return sum + value;
   }, 0);
-  const currentPrice = 19.90;
+  const totalWithBonuses = totalValue;
+  const currentPrice = 44.00;
   const savings = totalValue - currentPrice;
 
   return (
@@ -65,7 +74,7 @@ export const OfferSection = () => {
           
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
             🎯 Transforme Sua Vida
-            <span className="block text-yellow-300">Por Apenas R$ 19,90</span>
+            <span className="block text-yellow-300">Por Apenas R$ 44,00</span>
           </h2>
           
           <p className="text-sm sm:text-base md:text-lg text-green-100 max-w-3xl mx-auto leading-relaxed">
@@ -93,19 +102,26 @@ export const OfferSection = () => {
                   <div key={index} className={`p-3 md:p-4 rounded-lg border ${
                     bonus.isMain 
                       ? 'bg-blue-50 border-blue-200' 
+                      : bonus.isSpecial
+                      ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 shadow-lg'
                       : 'bg-green-50 border-green-200'
                   }`}>
                     <div className="flex items-start gap-2 md:gap-3">
                       <span className={`text-base md:text-lg flex-shrink-0 ${
-                        bonus.isMain ? 'text-blue-600' : 'text-green-600'
+                        bonus.isMain ? 'text-blue-600' : bonus.isSpecial ? 'text-yellow-600' : 'text-green-600'
                       }`}>
-                        {bonus.isMain ? '✅' : '🎁'}
+                        {bonus.isMain ? '✅' : bonus.isSpecial ? '🎵' : '🎁'}
                       </span>
                       <div className="flex-1">
                         <h4 className={`font-semibold text-xs md:text-sm mb-1 ${
-                          bonus.isMain ? 'text-blue-800' : 'text-green-800'
+                          bonus.isMain ? 'text-blue-800' : bonus.isSpecial ? 'text-yellow-800' : 'text-green-800'
                         }`}>
                           {bonus.title}
+                          {bonus.isSpecial && (
+                            <span className="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                              GRÁTIS ATÉ 15/10
+                            </span>
+                          )}
                         </h4>
                         <p className="text-xs text-gray-600 leading-relaxed mb-1">
                           {bonus.description}
@@ -126,10 +142,19 @@ export const OfferSection = () => {
             <div className="space-y-2 md:space-y-3">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
                 <span className="text-sm md:text-base text-gray-600">
-                  Valor total se comprado separado:
+                  Protocolo SOS Ansiedade:
                 </span>
                 <span className="text-base md:text-lg text-gray-500 line-through">
-                  R$ {totalValue.toFixed(2).replace('.', ',')}
+                  R$ {protocolValue.toFixed(2).replace('.', ',')}
+                </span>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                <span className="text-sm md:text-base text-gray-600">
+                  Valor total com todos os bônus:
+                </span>
+                <span className="text-base md:text-lg text-gray-500 line-through">
+                  R$ {totalWithBonuses.toFixed(2).replace('.', ',')}
                 </span>
               </div>
               
@@ -146,7 +171,7 @@ export const OfferSection = () => {
                 <p className="text-xs md:text-sm text-green-700 font-medium">
                   💰 Você economiza <span className="font-bold">
                     R$ {savings.toFixed(2).replace('.', ',')}
-                  </span> (93% de desconto)
+                  </span> (mais de 80% de desconto)
                 </p>
               </div>
             </div>
@@ -172,7 +197,7 @@ export const OfferSection = () => {
             onClick={handlePurchaseClick}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm md:text-lg lg:text-xl px-4 md:px-8 py-3 md:py-4 lg:py-6 rounded-xl shadow-glow transition-all duration-300 transform hover:scale-105"
           >
-            🛒 QUERO MINHA PRIMEIRA NOITE TRANQUILA - R$ 19,90
+            🛒 QUERO MEU KIT COMPLETO - R$ 44,00
           </Button>
 
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 md:gap-4 text-xs md:text-sm">
@@ -189,7 +214,7 @@ export const OfferSection = () => {
 
           <Card className="p-3 md:p-4 bg-yellow-400 text-gray-800 rounded-lg inline-block max-w-full">
             <p className="text-xs md:text-sm font-semibold">
-              ⏰ <span className="text-red-600">ÚLTIMAS 113 CÓPIAS</span> com todos os bônus disponíveis - <CountdownTimer />!
+              ⏰ <span className="text-red-600">APENAS</span> até dia 15/10/2025 com todos os bônus disponíveis - depois volta ao valor normal sem o kit de áudios neuroacústicos!
             </p>
           </Card>
         </div>
