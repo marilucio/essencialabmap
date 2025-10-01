@@ -15,7 +15,7 @@ const UnderstandingSection = () => {
             </p>
             
             <p>
-              <strong>Milhares de pessoas acordam toda madrugada no mesmo horário</strong> — muitas vezes às 3h da manhã — 
+              <strong>Muitas pessoas acordam toda madrugada no mesmo horário</strong> — frequentemente às 3h da manhã — 
               com o coração acelerado, falta de ar, tremores e a certeza absoluta de que algo terrível está acontecendo.
             </p>
             

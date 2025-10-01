@@ -5,8 +5,8 @@ const SolutionSection = () => {
   const benefits = [
     {
       icon: "⚡",
-      title: "Resultados em 3 Minutos",
-      description: "Técnica simples que acalma a mente instantaneamente"
+      title: "Pode Ajudar Rapidamente",
+      description: "Técnica simples que pode acalmar a mente em minutos"
     },
     {
       icon: "🌿",
@@ -44,7 +44,7 @@ const SolutionSection = () => {
     {
       number: "2", 
       title: "Aplique a Técnica",
-      description: "Use o método específico por apenas 3 minutos"
+      description: "Use o método específico por alguns minutos"
     },
     {
       number: "3",
@@ -63,7 +63,7 @@ const SolutionSection = () => {
             <span className="block text-blue-700">Tudo</span>
           </h2>
           <p className="text-responsive text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-            Após muito pesquisar e testar com milhares de pacientes com resultados muito rápidos, descobrimos uma técnica simples que interrompe o ciclo de pensamentos acelerados em apenas 3 minutos.
+            Método natural testado na prática clínica - muitos pacientes relatam melhora significativa já nas primeiras aplicações.
           </p>
           
           {/* Destaque da descoberta */}

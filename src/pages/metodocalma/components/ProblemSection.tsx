@@ -99,7 +99,7 @@ const ProblemSection = () => {
 
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-red-200">
               <p className="text-responsive text-gray-700 font-medium">
-                <span className="text-red-600 font-bold">A boa notícia:</span> Existe uma solução simples e natural que pode mudar tudo isso em apenas 3 minutos, sem medicamentos ou técnicas complicadas.
+                <span className="text-red-600 font-bold">A boa notícia:</span> Existe uma solução simples e natural que pode ajudar a acalmar em minutos, sem medicamentos ou técnicas complicadas.
               </p>
             </div>
           </div>

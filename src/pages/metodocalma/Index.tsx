@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { HeroSection } from "./components/HeroSection";
 import { ProblemSection } from "./components/ProblemSection";
+import { QuemSouSection } from "./components/QuemSouSection";
 import { SolutionSection } from "./components/SolutionSection";
 import { ProofSection } from "./components/ProofSection";
 import { OfferSection } from "./components/OfferSection";
@@ -97,6 +98,11 @@ const Index = () => {
           {/* Problema - Identificação */}
           <section className="w-full">
             <ProblemSection />
+          </section>
+
+          {/* Quem Sou - Credibilidade do Criador */}
+          <section className="w-full">
+            <QuemSouSection />
           </section>
 
           {/* Solução - Apresentação */}

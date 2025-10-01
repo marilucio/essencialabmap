@@ -43,12 +43,12 @@ const HeroSection = () => {
         
         {/* Subtítulo */}
         <p className="text-lg md:text-xl mb-8 opacity-95 font-light leading-relaxed">
-          O protocolo completo para interromper crises de ansiedade noturnas e finalmente conseguir dormir, mesmo quando sua mente não desliga
+          Um protocolo natural desenvolvido por naturopata para ajudar a acalmar crises de ansiedade noturnas e melhorar a qualidade do sono
         </p>
         
         {/* Countdown Timer */}
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
-          <p className="text-lg mb-4 font-medium">⏰ Oferta termina em:</p>
+          <p className="text-lg mb-4 font-medium">⏰ Esta é uma oferta de lançamento por tempo limitado:</p>
           <div className="grid grid-cols-4 gap-4 text-center">
             <div className="bg-white/20 rounded-lg p-3">
               <div className="text-2xl md:text-3xl font-bold">{timeLeft.days}</div>

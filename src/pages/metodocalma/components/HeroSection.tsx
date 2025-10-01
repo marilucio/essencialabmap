@@ -63,7 +63,7 @@ const HeroSection = () => {
             {/* Subtítulo */}
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 leading-relaxed px-1">
               <span className="block">Pensamentos Acelerados</span>
-              <span className="block text-blue-600">em 3 Minutos</span>
+              <span className="block text-blue-600">em Minutos</span>
             </h2>
 
             {/* Texto adicional */}

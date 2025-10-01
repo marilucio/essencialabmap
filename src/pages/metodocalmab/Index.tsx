@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import HeroSection from './components/HeroSection';
 import IdentificationSection from './components/IdentificationSection';
 import UnderstandingSection from './components/UnderstandingSection';
+import QuemSouSection from './components/QuemSouSection';
 import SolutionSection from './components/SolutionSection';
 import BonusSection from './components/BonusSection';
 import TestimonialsSection from './components/TestimonialsSection';
@@ -98,6 +99,9 @@ const Index = () => {
       {/* Seção de Empatia */}
       <UnderstandingSection />
       
+      {/* Seção Quem Sou */}
+      <QuemSouSection />
+      
       {/* Seção da Solução - 3 Produtos */}
       <SolutionSection />
       
@@ -131,11 +135,21 @@ const Index = () => {
           </a>
           
           <div className="border-t border-teal-700 pt-8 mt-8">
-            <p className="text-lg font-semibold mb-2">© 2025 Kit SOS Ansiedade. Todos os direitos reservados.</p>
-            <p className="text-sm opacity-70 leading-relaxed">
-              Estatísticas e insights extraídos de relatos de 2020–2025 sobre ansiedade, pânico e insônia e estudos de saúde mental no Brasil. 
-              Este material não substitui acompanhamento médico profissional.
-            </p>
+            <p className="text-lg font-semibold mb-2">© 2025 Protocolo SOS Ansiedade Natural. Todos os direitos reservados.</p>
+            <div className="text-sm opacity-70 leading-relaxed space-y-2">
+              <p>
+                <strong>⚠️ Aviso Importante:</strong> Este protocolo natural não substitui acompanhamento médico profissional. 
+                Se você tem sintomas graves de ansiedade, depressão ou pensamentos suicidas, procure ajuda médica imediatamente.
+              </p>
+              <p>
+                <strong>📋 Sobre os Resultados:</strong> Os depoimentos apresentados são experiências individuais reais. 
+                Resultados podem variar de pessoa para pessoa. Este método é um complemento ao tratamento médico, não uma substituição.
+              </p>
+              <p>
+                <strong>🔬 Base Científica:</strong> As técnicas apresentadas são baseadas em estudos de CBT-I, mindfulness e técnicas de respiração. 
+                Desenvolvido por naturopata com experiência em saúde integrativa.
+              </p>
+            </div>
             
             <div className="flex flex-wrap justify-center gap-6 mt-6 text-sm">
               <a href="/termos-de-uso" className="hover:text-yellow-300 transition-colors">Termos de Uso</a>

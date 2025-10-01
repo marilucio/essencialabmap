@@ -179,24 +179,26 @@ const BonusSection = () => {
             </h3>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6">
-              <div className="grid md:grid-cols-2 gap-6 text-left">
-                <div>
-                  <h4 className="font-bold text-lg mb-3">📖 Protocolo SOS Ansiedade:</h4>
-                  <div className="text-2xl font-bold line-through opacity-75">
-                    R$ {protocolValue.toFixed(2).replace('.', ',')}
-                  </div>
+              <div className="text-left">
+                <div className="mb-6">
+                  <h4 className="font-bold text-lg mb-3">📖 Protocolo SOS Ansiedade: R$ 97,00</h4>
                 </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-3">🎁 Valor Total com Bônus:</h4>
-                  <div className="text-2xl font-bold line-through opacity-75">
-                    R$ {totalWithBonuses.toFixed(2).replace('.', ',')}
+                
+                <div className="mb-6">
+                  <h4 className="font-bold text-lg mb-3">🎁 BÔNUS ESPECIAIS GRÁTIS NESTE LANÇAMENTO:</h4>
+                  <div className="space-y-2 text-sm">
+                    <div>✓ Kit de Áudios Neuroacústicos (disponível até 15/10/2025)</div>
+                    <div>✓ Fichas para Pensamentos Intrusivos</div>
+                    <div>✓ Guia Visual do Ciclo do Pânico</div>
+                    <div>✓ Trilhas Rápidas de Alívio</div>
+                    <div>✓ Escalas de Monitoramento</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="text-center mb-6">
-              <div className="text-sm opacity-90 mb-2">Mas hoje você leva TUDO por apenas:</div>
+              <div className="text-sm opacity-90 mb-2">💡 Investimento de Lançamento:</div>
               <div className="text-5xl font-bold bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                 R$ 44,00
               </div>
@@ -204,9 +206,7 @@ const BonusSection = () => {
 
             <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
               <p className="text-sm">
-                ⚠️ <strong>Atenção:</strong> O valor de R$ 97,00 é apenas do "Protocolo SOS Ansiedade". 
-                O valor de R$ {totalWithBonuses.toFixed(2).replace('.', ',')} é com todos os bônus inclusos, 
-                mas hoje você leva tudo por apenas R$ 44,00!
+                (Valor promocional. Após 15/10/2025, volta para R$ 97,00 sem o kit de áudios)
               </p>
             </div>
           </div>

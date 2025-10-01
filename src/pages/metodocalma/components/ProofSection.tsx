@@ -4,24 +4,24 @@ import { Card } from './ui/card';
 const ProofSection = () => {
   const stats = [
     {
-      number: "Milhares",
-      label: "Pacientes Testaram",
-      description: "Na minha prática clínica"
+      number: "Baseado em",
+      label: "Técnicas Cientificamente Comprovadas",
+      description: "Métodos validados pela ciência"
     },
     {
-      number: "Rápidos",
-      label: "Resultados",
-      description: "Na primeira aplicação"
+      number: "Testado na",
+      label: "Prática Clínica",
+      description: "Resultados reais com pacientes"
     },
     {
-      number: "3min",
-      label: "Tempo Médio",
-      description: "Para sentir o efeito"
+      number: "Minutos de",
+      label: "Aplicação",
+      description: "Método rápido e prático"
     },
     {
       number: "100%",
       label: "Natural",
-      description: "Sem medicamentos"
+      description: "Sem medicamentos ou dependência"
     }
   ];
 
@@ -76,8 +76,8 @@ const ProofSection = () => {
               </div>
               <div className="text-center">
                 <div className="text-3xl lg:text-4xl mb-3">⚡</div>
-                <p className="font-semibold text-gray-800 mb-2">Resultados Rápidos</p>
-                <p className="text-sm text-gray-600">Funciona em apenas 3 minutos</p>
+                <p className="font-semibold text-gray-800 mb-2">Pode Ajudar Rapidamente</p>
+                <p className="text-sm text-gray-600">Pode acalmar em minutos</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl lg:text-4xl mb-3">🌿</div>
@@ -88,7 +88,7 @@ const ProofSection = () => {
 
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 border border-blue-300">
               <p className="text-responsive text-gray-700 font-medium">
-                <span className="text-success font-bold">Mais de 94% de sucesso</span> porque o método ataca a causa raiz do problema, não apenas os sintomas.
+                <span className="text-success font-bold">Alta taxa de satisfação relatada</span> porque o método ataca a causa raiz do problema, não apenas os sintomas.
               </p>
             </div>
           </div>

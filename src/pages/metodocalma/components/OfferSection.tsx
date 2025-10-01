@@ -144,34 +144,32 @@ export const OfferSection = () => {
                 <span className="text-sm md:text-base text-gray-600">
                   Protocolo SOS Ansiedade:
                 </span>
-                <span className="text-base md:text-lg text-gray-500 line-through">
+                <span className="text-base md:text-lg text-gray-800 font-semibold">
                   R$ {protocolValue.toFixed(2).replace('.', ',')}
                 </span>
               </div>
               
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
                 <span className="text-sm md:text-base text-gray-600">
-                  Valor total com todos os bônus:
+                  Todos os Bônus Inclusos:
                 </span>
-                <span className="text-base md:text-lg text-gray-500 line-through">
-                  R$ {totalWithBonuses.toFixed(2).replace('.', ',')}
+                <span className="text-base md:text-lg text-green-600 font-semibold">
+                  GRÁTIS até 15/10/2025
                 </span>
               </div>
               
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0 border-t border-gray-300 pt-2 md:pt-3">
                 <span className="text-base md:text-lg font-bold text-gray-800">
-                  Seu investimento hoje:
+                  🎯 Investimento de Lançamento:
                 </span>
                 <span className="text-xl md:text-2xl lg:text-3xl font-bold text-green-600">
                   R$ {currentPrice.toFixed(2).replace('.', ',')}
                 </span>
               </div>
               
-              <div className="text-center bg-green-50 rounded-lg p-2 md:p-3">
-                <p className="text-xs md:text-sm text-green-700 font-medium">
-                  💰 Você economiza <span className="font-bold">
-                    R$ {savings.toFixed(2).replace('.', ',')}
-                  </span> (mais de 80% de desconto)
+              <div className="text-center bg-blue-50 rounded-lg p-2 md:p-3">
+                <p className="text-xs md:text-sm text-blue-700 font-medium">
+                  (Preço especial por tempo limitado. Depois volta para R$ 97,00)
                 </p>
               </div>
             </div>

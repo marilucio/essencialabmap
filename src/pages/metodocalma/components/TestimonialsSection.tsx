@@ -73,8 +73,12 @@ const TestimonialsSection = () => {
           💬 Depoimentos Verificados
         </h2>
         
-        <p className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-600 text-center mb-6 max-w-3xl mx-auto">
           Histórias reais de profissionais e pessoas que transformaram suas noites de sono:
+        </p>
+
+        <p className="nota-depoimentos text-center text-sm text-gray-500 mb-12 max-w-4xl mx-auto italic">
+          <em>Depoimentos baseados em relatos reais de pacientes da minha prática clínica. Nomes e detalhes foram modificados para preservar a privacidade dos pacientes.</em>
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

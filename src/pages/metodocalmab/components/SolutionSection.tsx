@@ -4,19 +4,19 @@ const SolutionSection = () => {
       icon: "📋",
       title: "Protocolo CALMA#",
       subtitle: "Técnica de 5 passos",
-      description: "O método científico que interrompe crises de ansiedade em minutos. Baseado em neurociência e testado por milhares de pessoas.",
+      description: "Um método natural que pode ajudar a acalmar crises de ansiedade. Baseado em técnicas de respiração e mindfulness.",
       features: [
         "Técnica de respiração 4-7-8 modificada",
-        "Ancoragem sensorial para controle imediato",
-        "Reestruturação cognitiva em tempo real",
-        "Protocolo de emergência para crises noturnas"
+        "Ancoragem sensorial para controle",
+        "Reestruturação cognitiva",
+        "Protocolo para crises noturnas"
       ]
     },
     {
       icon: "✅",
       title: "Checklist 21 Dias",
       subtitle: "Rotina anti-ansiedade",
-      description: "Um plano dia a dia para reconstruir sua confiança e eliminar a ansiedade da sua vida de forma gradual e sustentável.",
+      description: "Um plano dia a dia para ajudar a desenvolver hábitos saudáveis e reduzir gradualmente os sintomas de ansiedade.",
       features: [
         "Rotina matinal para começar o dia calmo",
         "Exercícios de exposição gradual",
@@ -28,12 +28,12 @@ const SolutionSection = () => {
       icon: "🥗",
       title: "Guia Nutricional Anti-Ansiedade",
       subtitle: "Alimentação que acalma",
-      description: "Descubra os alimentos que reduzem naturalmente a ansiedade e aqueles que você deve evitar para ter mais tranquilidade.",
+      description: "Orientações nutricionais que podem contribuir para reduzir sintomas de ansiedade através de uma alimentação equilibrada.",
       features: [
         "Lista de alimentos calmantes naturais",
         "Receitas anti-inflamatórias",
-        "Suplementos que realmente funcionam",
-        "Cardápio semanal completo"
+        "Orientações sobre suplementos",
+        "Sugestões de cardápio semanal"
       ]
     }
   ];
@@ -43,11 +43,11 @@ const SolutionSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Kit SOS Ansiedade Completo
+            Protocolo SOS Ansiedade Natural
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Um sistema completo e científico para você recuperar o controle da sua mente 
-            e finalmente ter noites tranquilas de sono.
+            Um protocolo natural desenvolvido por naturopata para ajudar você a gerenciar 
+            crises de ansiedade e melhorar a qualidade do sono.
           </p>
         </div>
 
@@ -85,13 +85,13 @@ const SolutionSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold text-yellow-800 mb-2">
-              🎯 Resultado Garantido
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 max-w-2xl mx-auto">
+            <h3 className="text-xl font-bold text-blue-800 mb-2">
+              🎯 Compromisso com Resultados
             </h3>
-            <p className="text-yellow-700">
-              Milhares de pessoas já transformaram suas vidas com este método. 
-              Agora é a sua vez de recuperar a paz e a tranquilidade que você merece.
+            <p className="text-blue-700">
+              Muitos pacientes já relataram melhorias significativas com este protocolo natural. 
+              Nosso objetivo é ajudar você a desenvolver ferramentas para gerenciar melhor a ansiedade.
             </p>
           </div>
         </div>

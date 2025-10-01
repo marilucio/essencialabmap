@@ -15,13 +15,16 @@ const CTASection = () => {
         {/* Preço */}
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 max-w-2xl mx-auto">
           <div className="mb-4">
-            <span className="text-2xl text-red-300 line-through">De R$ 97,00</span>
+            <span className="text-lg text-white/80">💡 Investimento de Lançamento</span>
           </div>
           <div className="text-5xl md:text-6xl font-bold text-yellow-300 mb-2">
             R$ 44,00
           </div>
           <p className="text-lg opacity-90">
             Pagamento único • Acesso imediato • Sem mensalidades
+          </p>
+          <p className="text-sm opacity-70 mt-2">
+            (Valor promocional até 15/10/2025)
           </p>
         </div>
 
@@ -37,11 +40,11 @@ const CTASection = () => {
         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8 max-w-xl mx-auto">
           <div className="flex items-center justify-center mb-3">
             <div className="text-3xl mr-3">🛡️</div>
-            <h3 className="text-xl font-bold">Garantia Incondicional de 14 Dias</h3>
+            <h3 className="text-xl font-bold">Garantia de Satisfação - 14 Dias</h3>
           </div>
           <p className="text-sm opacity-90">
-            Se você não sentir uma melhora significativa na sua ansiedade e qualidade do sono, 
-            devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
+            Se você não ficar satisfeito com o conteúdo do protocolo, 
+            devolvemos 100% do seu investimento em até 14 dias.
           </p>
         </div>
 

@@ -73,9 +73,17 @@ const TestimonialsSection = () => {
           💬 Depoimentos Verificados
         </h2>
         
-        <p className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Histórias reais de profissionais e pessoas que transformaram suas noites de sono:
         </p>
+
+        {/* Nota de Transparência */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8 max-w-4xl mx-auto">
+          <p className="text-sm text-blue-800 text-center">
+            <strong>📋 Transparência:</strong> Os depoimentos apresentados são de clientes reais que autorizaram o compartilhamento. 
+            Resultados podem variar individualmente. Este método não substitui acompanhamento médico quando necessário.
+          </p>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((person, personIndex) => (
@@ -109,7 +117,7 @@ const TestimonialsSection = () => {
 
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mt-12 text-center shadow-lg border border-blue-200">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
-            ⭐ Mais de 1.800 pessoas já transformaram suas noites
+            ⭐ Muitos pacientes já melhoraram suas noites
           </h3>
           <p className="text-lg text-gray-600 mb-4">
             Todos os depoimentos são de clientes reais que autorizaram o compartilhamento de suas experiências.
@@ -120,7 +128,7 @@ const TestimonialsSection = () => {
             <span>⭐</span>
             <span>⭐</span>
             <span>⭐</span>
-            <span className="text-gray-600 text-lg ml-2">(4.8/5 - 847 avaliações verificadas)</span>
+            <span className="text-gray-600 text-lg ml-2">(4.8/5 - avaliações verificadas)</span>
           </div>
         </div>
       </div>
