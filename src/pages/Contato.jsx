@@ -84,7 +84,7 @@ export default function Contato() {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="seu.email@exemplo.com"
+                  placeholder="contato@mariluciorocha.com"
                   required
                   className="w-full"
                 />

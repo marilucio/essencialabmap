@@ -12,6 +12,7 @@ import CentralDeAjuda from './pages/CentralDeAjuda'
 import StatusDoSistema from './pages/StatusDoSistema'
 import MetodoCalma from './pages/metodocalma/MetodoCalma'
 import MetodoCalmaES from './pages/metodocalmaes/MetodoCalma'
+import MetodoCalmaB from './pages/metodocalmab/MetodoCalma'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/metodocalma/*" element={<MetodoCalma />} />
         <Route path="/metodocalmaes/*" element={<MetodoCalmaES />} />
+        <Route path="/metodocalmab/*" element={<MetodoCalmaB />} />
         <Route path="/termos-de-uso" element={<TermosDeUso />} />
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
         <Route path="/lgpd" element={<LGPD />} />

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS Ansiedade - Protocolo Completo para Crises Noturnas e Insônia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .offer-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .countdown-title {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: white;
+            color: #667eea;
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Identification Section */
+        .identification {
+            background: white;
+            padding: 60px 20px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+
+        .identification h2 {
+            text-align: center;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pain-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .pain-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .pain-card p {
+            color: #555;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* Understanding Section */
+        .understanding {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .understanding h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .understanding p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .solution h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .solution-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .solution-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        /* Bonus Section */
+        .bonus {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .bonus h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .bonus-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 3px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .bonus-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .price-box {
+            background: white;
+            color: #2c3e50;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .new-price {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .new-price small {
+            font-size: 0.4em;
+            color: #666;
+        }
+
+        .urgency {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background: #4ade80;
+            color: white;
+            padding: 20px 60px;
+            font-size: 1.5em;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #22c55e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(74, 222, 128, 0.5);
+        }
+
+        .guarantee {
+            margin-top: 40px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Testimonials - WhatsApp Style */
+        .testimonials {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .whatsapp-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-message {
+            background: #dcf8c6;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-left: 40px;
+        }
+
+        .whatsapp-message::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #dcf8c6;
+            border-top: 8px solid transparent;
+        }
+
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .whatsapp-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .whatsapp-text {
+            color: #303030;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .whatsapp-time {
+            font-size: 0.7em;
+            color: #667;
+            text-align: right;
+        }
+
+        .whatsapp-group {
+            margin-bottom: 35px;
+        }
+
+        /* FAQ */
+        .faq {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1em;
+            }
+
+            .new-price {
+                font-size: 2.5em;
+            }
+
+            .cta-button {
+                padding: 18px 40px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="offer-badge">⚡ OFERTA ESPECIAL ATÉ 10/10/2025</div>
+            <h1>Você Acorda de Madrugada com o Coração Disparado, Achando que Vai Morrer?</h1>
+            <p class="subtitle">O protocolo completo para interromper crises de ansiedade noturnas e finalmente conseguir dormir, mesmo quando sua mente não desliga</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown-title">⏰ A oferta termina em:</div>
+                <div class="countdown-timer">
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Dias</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seg</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identification Section -->
+    <section class="identification">
+        <div class="container">
+            <h2>Se Você Já Passou Por Isso, Você Não Está Sozinho...</h2>
+            
+            <div class="pain-points">
+                <div class="pain-card">
+                    <h3>😰 Acordar de Madrugada em Pânico</h3>
+                    <p>"Acordei de madrugada com queimação no peito, coração disparado... sensação que ia morrer. Não sei o que aconteceu."</p>
+                </div>
+
+                <div class="pain-card">
+                    <h3>🧠 Mente que Não Desliga</h3>
+                    <p>"Quando não tenho nada para fazer além de fechar os olhos, os pensamentos ruins tomam conta. Fico preocupada com coisas que nunca aconteceram."</p>
+                </div>
+
+                <div class="pain-card">
+                    <h3>😔 Noites em Claro</h3>
+                    <p>"Durmo 22h, demoro 40min pra pegar no sono, acordo às 2h da manhã e fico acordado até 4h30 sem conseguir dormir de novo..."</p>
+                </div>
+
+                <div class="pain-card">
+                    <h3>💔 Medo de Enlouquecer</h3>
+                    <p>"A sensação de que vou enlouquecer transitava livremente nos meus pensamentos... a impotência era predominante e congelante."</p>
+                </div>
+
+                <div class="pain-card">
+                    <h3>🏥 Idas ao Pronto-Socorro</h3>
+                    <p>"Foram necessárias quatro idas ao pronto socorro sem conclusão nos exames, para entender que não era físico, era mental."</p>
+                </div>
+
+                <div class="pain-card">
+                    <h3>😓 Exaustão Permanente</h3>
+                    <p>"A ansiedade dói-me o corpo, a cabeça, a alma. Cansa-me de uma forma inimaginável... É sentir tudo ao mesmo tempo."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Understanding Section -->
+    <section class="understanding">
+        <div class="container">
+            <h2>Eu Entendo Exatamente Como Você Se Sente</h2>
+            <p>Você não está "ficando louco". Você não está "exagerando". E você definitivamente não está sozinho.</p>
+            <p><strong>Milhares de pessoas acordam toda madrugada no mesmo horário</strong> — muitas vezes às 3h da manhã — com o coração acelerado, falta de ar, tremores e a certeza absoluta de que algo terrível está acontecendo.</p>
+            <p>E o pior? <strong>Ninguém ao seu redor parece entender.</strong> Familiares dizem "calma, não é nada". Médicos não encontram nada nos exames. Mas VOCÊ sente. E é real. É assustador. É exaustivo.</p>
+            <p style="font-weight: 600; color: #667eea; font-size: 1.2em; margin-top: 30px;">Mas existe uma saída. E ela não precisa envolver anos de terapia ou medicamentos pesados.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2>Apresento: Kit SOS Ansiedade Completo</h2>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3>📱 Protocolo CALMA#</h3>
+                    <p>Seu SOS para crises noturnas e ataques de pânico</p>
+                    <ul>
+                        <li>Sequência guiada para interromper crises em 30s, 2min ou 5min</li>
+                        <li>Respiração 3-7-8 adaptada para madrugada</li>
+                        <li>Ancoragem tátil e liberação muscular</li>
+                        <li>Modo discreto para usar em público</li>
+                        <li>Sinais de alerta e quando buscar ajuda</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <h3>✅ Checklist 21 Dias</h3>
+                    <p>Higiene do sono baseada em CBT-I (comprovada cientificamente)</p>
+                    <ul>
+                        <li>Os "5 essenciais" para dormir bem</li>
+                        <li>Regra dos 30 minutos</li>
+                        <li>Detox digital eficaz</li>
+                        <li>Cognitive shuffle para desligar a mente</li>
+                        <li>Janela de sono personalizada</li>
+                        <li>Cartões de bolso práticos</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <h3>🥗 Guia Nutricional Anti-Ansiedade</h3>
+                    <p>Elimine gatilhos alimentares que sabotam seu sono</p>
+                    <ul>
+                        <li>Estabilidade glicêmica (adeus tremores noturnos)</li>
+                        <li>Protocolo de cafeína (até que horas tomar)</li>
+                        <li>Ômega-3, magnésio e L-teanina</li>
+                        <li>Cardápio prático de 7 dias</li>
+                        <li>Score diário de ansiedade</li>
+                        <li>SOS crise: nutrição + respiração</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus Section -->
+    <section class="bonus">
+        <div class="container">
+            <h2>🎁 Você Também Recebe 4 Bônus Exclusivos</h2>
+            
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <h3>Bônus #1</h3>
+                    <p><strong>Fichas de Pensamentos Intrusivos</strong> — Técnicas de postergar preocupação, defusão cognitiva e roteiro 5-4-3-2-1 para uso imediato</p>
+                </div>
+
+                <div class="bonus-card">
+                    <h3>Bônus #2</h3>
+                    <p><strong>Guia do Ciclo do Pânico</strong> — Entenda o "medo do medo" e exposição interoceptiva segura para reduzir idas ao PS</p>
+                </div>
+
+                <div class="bonus-card">
+                    <h3>Bônus #3</h3>
+                    <p><strong>Trilhas Rápidas por Gatilho</strong> — Protocolos específicos: cafeína/hipoglicemia, despertar às 3h, ambiente (calor/luz/ruído)</p>
+                </div>
+
+                <div class="bonus-card">
+                    <h3>Bônus #4</h3>
+                    <p><strong>Escalas GAD-7 e ISI</strong> — Acompanhe sua evolução com escalas validadas + gráficos semanais de progresso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>📱 O Que Estão Dizendo no WhatsApp</h2>
+            
+            <div class="whatsapp-container">
+                <!-- Testimonial 1 -->
+                <div class="whatsapp-group">
+                    <div class="whatsapp-header">
+                        <div class="whatsapp-avatar">M</div>
+                        <div class="whatsapp-name">Marina</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Gente, não acredito! 😭</div>
+                        <div class="whatsapp-time">21:34</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Depois de 4 idas ao pronto-socorro achando que estava tendo infarto</div>
+                        <div class="whatsapp-time">21:34</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Usei o protocolo CALMA# ontem de madrugada quando acordei em pânico</div>
+                        <div class="whatsapp-time">21:35</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">E consegui me acalmar e VOLTAR A DORMIR!! Primeira vez em meses que não passei a noite toda acordada 🙏</div>
+                        <div class="whatsapp-time">21:35</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="whatsapp-group">
+                    <div class="whatsapp-header">
+                        <div class="whatsapp-avatar">R</div>
+                        <div class="whatsapp-name">Rafael</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Cara, aquele cognitive shuffle é bizarro mas funciona demais</div>
+                        <div class="whatsapp-time">14:22</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Minha mente não desligava NUNCA quando deitava</div>
+                        <div class="whatsapp-time">14:22</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Ficava 2h pensando em problemas</div>
+                        <div class="whatsapp-time">14:23</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Agora faço a técnica e em 15min já apaguei. Estou dormindo a noite toda pela primeira vez em anos</div>
+                        <div class="whatsapp-time">14:23</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="whatsapp-group">
+                    <div class="whatsapp-header">
+                        <div class="whatsapp-avatar">P</div>
+                        <div class="whatsapp-name">Paula</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Meninas vocês precisam ver isso 👇</div>
+                        <div class="whatsapp-time">19:18</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Eu não sabia que o café das 16h estava me destruindo!</div>
+                        <div class="whatsapp-time">19:18</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Fiz os ajustes do guia nutricional e em 1 SEMANA já notei diferença nos tremores noturnos</div>
+                        <div class="whatsapp-time">19:19</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Melhor investimento que fiz em mim! ❤️</div>
+                        <div class="whatsapp-time">19:19</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="whatsapp-group">
+                    <div class="whatsapp-header">
+                        <div class="whatsapp-avatar">C</div>
+                        <div class="whatsapp-name">Carlos</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Mano, valeu a dica!</div>
+                        <div class="whatsapp-time">08:45</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">As fichas de pensamentos intrusivos salvaram minha vida</div>
+                        <div class="whatsapp-time">08:45</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">Agora quando começo a ruminar, uso a técnica de postergar preocupação</div>
+                        <div class="whatsapp-time">08:46</div>
+                    </div>
+                    <div class="whatsapp-message">
+                        <div class="whatsapp-text">É simples mas funciona. Finalmente entendi que não preciso resolver tudo às 3 da manhã 😅</div>
+                        <div class="whatsapp-time">08:46</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 style="margin-bottom: 30px; font-size: 2.2em;">Você Merece Dormir em Paz Novamente</h2>
+            
+            <div class="price-box">
+                <div class="old-price">De R$ 57,00</div>
+                <div class="new-price">
+                    <small>por apenas</small><br>
+                    R$ 29,90
+                </div>
+                <div class="urgency">
+                    ⏰ Oferta válida até 10/10/2025<br>
+                    Depois volta para R$ 57,00 e perde os bônus!
+                </div>
+            </div>
+
+            <a href="#comprar" class="cta-button">QUERO O KIT COMPLETO AGORA</a>
+
+            <div class="guarantee">
+                <p>✅ Acesso imediato após a compra</p>
+                <p>✅ Material em PDF para usar offline</p>
+                <p>✅ Protocolos práticos, não apenas teoria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <h3>É só um PDF?</h3>
+                <p>Não. Você recebe e-books completos, fichas imprimíveis para usar no dia a dia e áudios guiados para te acompanhar durante as técnicas de respiração e relaxamento. É um kit multimídia completo.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Isso substitui meu tratamento médico?</h3>
+                <p>Não! Este kit é um complemento prático baseado em técnicas validadas (CBT-I, nutrição funcional, mindfulness). Continue seu acompanhamento profissional e use estas ferramentas como suporte.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Funciona para quem tem insônia há anos?</h3>
+                <p>Sim! O checklist de 21 dias é baseado em CBT-I, a terapia cognitivo-comportamental para insônia — o tratamento mais eficaz segundo pesquisas científicas, mesmo para casos crônicos.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>E se eu não tiver crise de pânico, só insônia?</h3>
+                <p>Perfeito! O Checklist 21 Dias e o Guia Nutricional são especificamente para insônia. O protocolo CALMA# serve para qualquer momento de ansiedade alta, não só pânico.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Quanto tempo até ver resultados?</h3>
+                <p>O protocolo CALMA# funciona imediatamente nas crises. Para sono, muitas pessoas notam melhora em 7-10 dias seguindo o checklist. Após 21 dias, a maioria estabelece uma rotina sustentável.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Posso compartilhar com minha família?</h3>
+                <p>Este kit é para uso pessoal, mas você pode usar as técnicas para ajudar familiares que passam por situações semelhantes. Muitas pessoas compram para si e depois adquirem outro para seus entes queridos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta" style="padding: 60px 20px;">
+        <div class="container">
+            <h2 style="margin-bottom: 25px;">Não Deixe Para Amanhã a Paz que Você Pode Ter Hoje</h2>
+            <p style="font-size: 1.2em; margin-bottom: 40px; opacity: 0.95;">Você já sofreu noites demais. Já teve crises demais. Já sentiu medo demais.<br>Está na hora de recuperar seu sono. Sua tranquilidade. Sua vida.</p>
+            
+            <a href="#comprar" class="cta-button">GARANTIR MINHA VAGA COM DESCONTO</a>
+            
+            <p style="margin-top: 30px; font-size: 0.95em; opacity: 0.8;">Oferta especial: R$ 29,90 até 10/10/2025 • Depois R$ 57,00 sem os bônus</p>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer
+        const countdownDate = new Date("October 10, 2025 23:59:59").getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = String(days).padStart(2, '0');
+            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        };
+
+        // Update immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

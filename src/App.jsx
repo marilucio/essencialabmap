@@ -1237,7 +1237,7 @@ function App() {
                         type="email"
                         id="email-guia"
                         name="email"
-                        placeholder="seu.email@exemplo.com"
+                        placeholder="contato@mariluciorocha.com"
                         required
                         className="w-full"
                       />
