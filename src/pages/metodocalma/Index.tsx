@@ -11,6 +11,29 @@ import TestimonialsSection from "./components/TestimonialsSection";
 
 const Index = () => {
   useEffect(() => {
+    // Meta Pixel Code
+    (function(f: any, b: Document, e: string, v: string, n: any, t: HTMLScriptElement, s: HTMLScriptElement) {
+      if (f.fbq) return;
+      n = f.fbq = function(...args: any[]) {
+        n.callMethod ? n.callMethod.apply(n, args) : n.queue.push(args);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e) as HTMLScriptElement;
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0] as HTMLScriptElement;
+      s.parentNode?.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', null, null as any, null as any);
+    
+    if (typeof window.fbq !== 'undefined') {
+      window.fbq('init', '1289139885831063');
+      window.fbq('track', 'PageView');
+    }
+
     // SEO Meta tags
     document.title = "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
     

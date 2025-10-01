@@ -6,8 +6,47 @@ import Footer from '../components/Footer';
 
 function Obrigado() {
   useEffect(() => {
+    // Meta Pixel Code
+    (function(f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    
+    if (typeof window.fbq !== 'undefined') {
+      window.fbq('init', '1289139885831063');
+      window.fbq('track', 'PageView');
+    }
+
+    // Configuração do GTM
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('event', 'purchase', {
+        transaction_id: new URLSearchParams(window.location.search).get('transaction_id'),
+        value: parseFloat(new URLSearchParams(window.location.search).get('value') || '97.00'),
+        currency: 'BRL',
+        items: [{
+          item_id: 'protocolo-sos-ansiedade',
+          item_name: 'Protocolo SOS Ansiedade',
+          category: 'Saúde Mental',
+          quantity: 1,
+          price: parseFloat(new URLSearchParams(window.location.search).get('value') || '97.00')
+        }]
+      });
+    }
+
     // Verifica se o pixel do Facebook já foi carregado
-    if (typeof fbq !== 'undefined') {
+    if (typeof window.fbq !== 'undefined') {
       // Função para verificar status de pagamento e disparar Purchase
       const checkPaymentStatus = () => {
         // Obtém parâmetros da URL
@@ -18,7 +57,7 @@ function Obrigado() {
         
         // Dispara Purchase apenas se o status for "aprovado"
         if (status === 'aprovado' || status === 'approved') {
-          fbq('track', 'Purchase', {
+          window.fbq('track', 'Purchase', {
             value: parseFloat(value),
             currency: 'BRL',
             transaction_id: transactionId,
