@@ -6,73 +6,81 @@ import Footer from '../components/Footer';
 
 function Obrigado() {
   useEffect(() => {
-    // Meta Pixel Code
-    (function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = true;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = true;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('init', '1289139885831063');
-      window.fbq('track', 'PageView');
+    // --- carregar Pixel uma única vez ---
+    if (!document.querySelector('script[data-meta-pixel="1"]')) {
+      (function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        t.dataset.metaPixel = '1'; // evita duplicar
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     }
 
-    // Configuração do GTM
+    // fbq (shim) já existe aqui; as chamadas ficam em fila até o script carregar
+    // @ts-ignore
+    window.fbq('init', '1289139885831063');
+    // @ts-ignore
+    window.fbq('track', 'PageView');
+
+    // --- GOOGLE (já estava ok) ---
     if (typeof window.gtag !== 'undefined') {
+      const url = new URLSearchParams(window.location.search);
+      const tx = url.get('transaction_id') || crypto.randomUUID();
+      const val = parseFloat(url.get('value') || '97.00');
+
       window.gtag('event', 'purchase', {
-        transaction_id: new URLSearchParams(window.location.search).get('transaction_id'),
-        value: parseFloat(new URLSearchParams(window.location.search).get('value') || '97.00'),
+        transaction_id: tx,
+        value: val,
         currency: 'BRL',
-        items: [{
-          item_id: 'protocolo-sos-ansiedade',
-          item_name: 'Protocolo SOS Ansiedade',
-          category: 'Saúde Mental',
-          quantity: 1,
-          price: parseFloat(new URLSearchParams(window.location.search).get('value') || '97.00')
-        }]
+        items: [
+          {
+            item_id: 'protocolo-sos-ansiedade',
+            item_name: 'Protocolo SOS Ansiedade',
+            category: 'Saúde Mental',
+            quantity: 1,
+            price: val,
+          },
+        ],
       });
     }
 
-    // Verifica se o pixel do Facebook já foi carregado
-    if (typeof window.fbq !== 'undefined') {
-      // Função para verificar status de pagamento e disparar Purchase
-      const checkPaymentStatus = () => {
-        // Obtém parâmetros da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        const transactionId = urlParams.get('transaction_id');
-        const value = urlParams.get('value') || '97.00'; // Valor padrão do Protocolo SOS Ansiedade
-        
-        // Dispara Purchase apenas se o status for "aprovado"
-        if (status === 'aprovado' || status === 'approved') {
-          window.fbq('track', 'Purchase', {
-            value: parseFloat(value),
-            currency: 'BRL',
-            transaction_id: transactionId,
-            content_name: 'Protocolo SOS Ansiedade',
-            content_category: 'Saúde Mental',
-            content_type: 'product'
-          });
-          
-          console.log('Purchase event fired for approved transaction:', transactionId);
-        }
-      };
-      
-      // Executa a verificação após um pequeno delay para garantir que a página carregou
-      setTimeout(checkPaymentStatus, 1000);
-    }
+    // --- PURCHASE seguro + deduplicação ---
+    const firePurchaseOnce = () => {
+      const qs = new URLSearchParams(window.location.search);
+      const status = (qs.get('status') || '').toLowerCase();  // 'aprovado' | 'approved' | 'paid' | 'succeeded'
+      const allowed = ['aprovado', 'approved', 'paid', 'succeeded'];
+      if (!allowed.includes(status)) return;
+
+      const value = parseFloat(qs.get('value') || '97.00');
+      const currency = (qs.get('currency') || 'BRL').toUpperCase();
+      const txId = qs.get('transaction_id') || crypto.randomUUID();
+
+      // Evita duplicar no refresh / navegação SPA
+      const flagKey = `fbq_purchase_${txId}`;
+      if (sessionStorage.getItem(flagKey) === '1') return;
+
+      const eventId = `obg-${txId}`; // para deduplicar com CAPI no futuro
+
+      // @ts-ignore
+      window.fbq('track', 'Purchase', { value, currency }, { eventID: eventId });
+      sessionStorage.setItem(flagKey, '1');
+      console.log('[META] Purchase fired', { value, currency, eventId });
+    };
+
+    // dispara depois que a página estabiliza
+    const id = window.setTimeout(firePurchaseOnce, 800);
+    return () => window.clearTimeout(id);
   }, []);
 
   return (
