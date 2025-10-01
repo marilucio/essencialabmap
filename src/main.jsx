@@ -10,6 +10,8 @@ import Contato from './pages/Contato'
 import Precos from './pages/Precos'
 import CentralDeAjuda from './pages/CentralDeAjuda'
 import StatusDoSistema from './pages/StatusDoSistema'
+import Obrigado from './pages/Obrigado'
+import Oferta from './pages/Oferta.jsx'
 import MetodoCalma from './pages/metodocalma/MetodoCalma'
 import MetodoCalmaES from './pages/metodocalmaes/MetodoCalma'
 import MetodoCalmaB from './pages/metodocalmab/MetodoCalma'
@@ -29,6 +31,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/precos" element={<Precos />} />
         <Route path="/central-de-ajuda" element={<CentralDeAjuda />} />
         <Route path="/status-do-sistema" element={<StatusDoSistema />} />
+        <Route path="/obrigado" element={<Obrigado />} />
+          <Route path="/oferta" element={<Oferta />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
