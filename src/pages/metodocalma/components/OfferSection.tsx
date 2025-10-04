@@ -6,18 +6,18 @@ import peacefulImageSrc from "/images/peaceful-sleep-VdZartzL.jpg";
 
 export const OfferSection = () => {
   const handleCTAClick = () => {
-    // Dispara evento antes de redirecionar
-    if (typeof window.fbq !== "undefined") {
-      window.fbq("track", "InitiateCheckout", {
-        content_name: "Kit SOS Ansiedade",
-        value: 97.0,
-        currency: "BRL",
-      });
-    }
-
-    // Depois redireciona para checkout
-    window.location.href = "https://pay.kiwify.com.br/KDSJr1d";
-  };
+  if (typeof window !== 'undefined' && typeof (window as any).fbq !== 'undefined') {
+    (window as any).fbq('track', 'InitiateCheckout', {
+      content_name: 'Kit SOS Ansiedade',
+      value: 44.00,  // Confirme que está 44, não 97
+      currency: 'BRL'
+    });
+  }
+  
+  setTimeout(() => {
+    window.location.href = 'https://pay.kiwify.com.br/KDSJr1d';
+  }, 500);
+};
 
   const bonuses = [
     {

@@ -10,44 +10,9 @@ import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
 import TestimonialsSection from "./components/TestimonialsSection";
 
-// Declaração local (compatível com global.d.ts) para evitar conflitos e permitir checagens
-declare global {
-  interface Window {
-    fbq: any;
-    _fbq: any;
-  }
-}
-
 const Index = () => {
   useEffect(() => {
-    // Verifica se já existe
-    if (typeof window.fbq !== "undefined") {
-      window.fbq("init", "1289139885831063");
-      window.fbq("track", "PageView");
-    } else {
-      // Cria stub function
-      const fbq: any = function () {
-        fbq.callMethod ? fbq.callMethod.apply(fbq, arguments as any) : fbq.queue.push(arguments);
-      };
-      fbq.push = fbq;
-      fbq.loaded = true;
-      fbq.version = "2.0";
-      fbq.queue = [];
-
-      window.fbq = fbq;
-      window._fbq = fbq;
-
-      // Carrega script
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = "https://connect.facebook.net/en_US/fbevents.js";
-      document.head.appendChild(script);
-
-      // Inicializa
-      window.fbq("init", "1289139885831063");
-      window.fbq("track", "PageView");
-    }
-
+    
     // SEO Meta tags
     document.title =
       "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";

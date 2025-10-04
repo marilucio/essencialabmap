@@ -9,44 +9,9 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import CTASection from "./components/CTASection";
 import FAQSection from "./components/FAQSection";
 
-// Declaração local (compatível com global.d.ts) para evitar conflitos e permitir checagens
-declare global {
-  interface Window {
-    fbq: any;
-    _fbq: any;
-  }
-}
-
 const Index = () => {
   useEffect(() => {
-    // Verifica se já existe
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('init', '1289139885831063');
-      window.fbq('track', 'PageView');
-    } else {
-      // Cria stub function
-      const fbq: any = function () {
-        fbq.callMethod ? fbq.callMethod.apply(fbq, arguments as any) : fbq.queue.push(arguments);
-      };
-      fbq.push = fbq;
-      fbq.loaded = true;
-      fbq.version = '2.0';
-      fbq.queue = [];
-
-      window.fbq = fbq;
-      window._fbq = fbq;
-
-      // Carrega script
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      document.head.appendChild(script);
-
-      // Inicializa
-      window.fbq('init', '1289139885831063');
-      window.fbq('track', 'PageView');
-    }
-
+    
     // SEO Meta tags
     document.title =
       "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
@@ -160,15 +125,20 @@ const Index = () => {
 
           <button
             onClick={() => {
-              if (typeof (window as any).fbq !== "undefined") {
+              if (
+                typeof window !== "undefined" &&
+                typeof (window as any).fbq !== "undefined"
+              ) {
                 (window as any).fbq("track", "InitiateCheckout", {
                   content_name: "Kit SOS Ansiedade",
-                  value: 97.0,
+                  value: 44.0,
                   currency: "BRL",
                 });
               }
               if (typeof window !== "undefined") {
-                window.location.href = "https://pay.kiwify.com.br/KDSJr1d";
+                setTimeout(() => {
+                  window.location.href = "https://pay.kiwify.com.br/KDSJr1d";
+                }, 500);
               }
             }}
             className="inline-block bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold text-xl px-12 py-6 rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
