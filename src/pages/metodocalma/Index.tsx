@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { HeroSection } from "./components/HeroSection";
 import { ProblemSection } from "./components/ProblemSection";
 import { QuemSouSection } from "./components/QuemSouSection";
@@ -10,76 +10,106 @@ import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
 import TestimonialsSection from "./components/TestimonialsSection";
 
+// Declaração local (compatível com global.d.ts) para evitar conflitos e permitir checagens
+declare global {
+  interface Window {
+    fbq: any;
+    _fbq: any;
+  }
+}
+
 const Index = () => {
   useEffect(() => {
-    // injeta script se ainda não existe
-    if (!document.querySelector('script[data-meta-pixel]')) {
-      const t = document.createElement('script');
-      t.setAttribute('data-meta-pixel','1');
-      t.async = true;
-      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      t.onload = () => {
-        // @ts-ignore
-        window.fbq = window.fbq || function(){(window.fbq.q = window.fbq.q || []).push(arguments)};
-        // @ts-ignore
-        fbq('init','1289139885831063');
-        // @ts-ignore
-        fbq('track','PageView');
-      };
-      document.head.appendChild(t);
+    // Verifica se já existe
+    if (typeof window.fbq !== "undefined") {
+      window.fbq("init", "1289139885831063");
+      window.fbq("track", "PageView");
     } else {
-      // @ts-ignore
-      if (typeof fbq !== 'undefined') {
-        // @ts-ignore
-        fbq('init','1289139885831063');
-        // @ts-ignore
-        fbq('track','PageView');
-      }
+      // Cria stub function
+      const fbq: any = function () {
+        fbq.callMethod ? fbq.callMethod.apply(fbq, arguments as any) : fbq.queue.push(arguments);
+      };
+      fbq.push = fbq;
+      fbq.loaded = true;
+      fbq.version = "2.0";
+      fbq.queue = [];
+
+      window.fbq = fbq;
+      window._fbq = fbq;
+
+      // Carrega script
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://connect.facebook.net/en_US/fbevents.js";
+      document.head.appendChild(script);
+
+      // Inicializa
+      window.fbq("init", "1289139885831063");
+      window.fbq("track", "PageView");
     }
 
     // SEO Meta tags
-    document.title = "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
-    
+    document.title =
+      "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
+
     // Meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.');
+      metaDescription.setAttribute(
+        "content",
+        "Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia."
+      );
     } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.';
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content =
+        "Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.";
       document.head.appendChild(meta);
     }
 
     // Meta keywords
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração');
+      metaKeywords.setAttribute(
+        "content",
+        "ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração"
+      );
     } else {
-      const meta = document.createElement('meta');
-      meta.name = 'keywords';
-      meta.content = 'ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração';
+      const meta = document.createElement("meta");
+      meta.name = "keywords";
+      meta.content =
+        "ansiedade, pânico, insônia, sono, protocolo CALMA, kit SOS ansiedade, saúde mental, técnicas respiração";
       document.head.appendChild(meta);
     }
 
     // Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', 'Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz');
+      ogTitle.setAttribute(
+        "content",
+        "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz"
+      );
     } else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:title');
-      meta.content = 'Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz';
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:title");
+      meta.content =
+        "Kit SOS Ansiedade – recupere noites tranquilas e uma mente em paz";
       document.head.appendChild(meta);
     }
 
-    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const ogDescription = document.querySelector(
+      'meta[property="og:description"]'
+    );
     if (ogDescription) {
-      ogDescription.setAttribute('content', 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.');
+      ogDescription.setAttribute(
+        "content",
+        "Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia."
+      );
     } else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:description');
-      meta.content = 'Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.';
+      const meta = document.createElement("meta");
+      meta.setAttribute("property", "og:description");
+      meta.content =
+        "Transforme noites de medo em tranquilidade. Kit completo com protocolo CALMA#, guia nutricional e ferramentas científicas para ansiedade, pânico e insônia.";
       document.head.appendChild(meta);
     }
   }, []);

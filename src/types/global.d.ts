@@ -1,12 +1,11 @@
-// Global type declarations for Facebook Pixel
+// Global type declarations for Facebook Pixel (compatível com snippet oficial)
 declare global {
   interface Window {
-    fbq: (action: string, eventName?: string, parameters?: any) => void;
+    fbq: any;
     _fbq: any;
   }
 }
 
-// Facebook Pixel function type
-declare function fbq(action: string, eventName?: string, parameters?: any): void;
+declare var fbq: any;
 
 export {};
