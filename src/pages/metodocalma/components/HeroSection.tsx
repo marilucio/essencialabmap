@@ -1,9 +1,19 @@
-import React from 'react';
-import { Button } from './ui/button';
+import React from "react";
+import { Button } from "./ui/button";
 
 const HeroSection = () => {
-  const handlePurchaseClick = () => {
-    window.open('https://pay.kiwify.com.br/KDSJr1d', '_blank');
+  const handleCTAClick = () => {
+    // Dispara evento antes de redirecionar
+    if (typeof window.fbq !== "undefined") {
+      window.fbq("track", "InitiateCheckout", {
+        content_name: "Kit SOS Ansiedade",
+        value: 97.0,
+        currency: "BRL",
+      });
+    }
+
+    // Depois redireciona para checkout
+    window.location.href = "https://pay.kiwify.com.br/KDSJr1d";
   };
 
   return (
@@ -20,13 +30,13 @@ const HeroSection = () => {
           {/* Imagem/Visual - Primeiro no mobile */}
           <div className="relative order-first lg:order-last">
             <div className="relative bg-gradient-to-br from-gray-800 to-blue-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="/images/hero-3am-anxiety-BFHPhjDW.jpg" 
-                alt="Pessoa acordada às 3h da madrugada com pensamentos acelerados" 
+              <img
+                src="/images/hero-3am-anxiety-BFHPhjDW.jpg"
+                alt="Pessoa acordada às 3h da madrugada com pensamentos acelerados"
                 className="w-full h-40 sm:h-48 md:h-64 lg:h-80 xl:h-96 object-cover opacity-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-              
+
               {/* Overlay com texto */}
               <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-6 right-3 sm:right-6 text-white">
                 <p className="text-sm sm:text-base lg:text-lg font-semibold mb-1 text-red-300">
@@ -74,9 +84,14 @@ const HeroSection = () => {
             {/* Estatísticas de prova social */}
             <div className="bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-white/40 shadow-lg mx-1 sm:mx-0">
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 mb-1 sm:mb-2 leading-relaxed">
-                Método testado com{' '}
-                <span className="font-bold text-blue-700">milhares de pacientes</span>
-                {' '}- <span className="text-green-600 font-semibold">resultados rápidos</span>
+                Método testado com{" "}
+                <span className="font-bold text-blue-700">
+                  milhares de pacientes
+                </span>{" "}
+                -{" "}
+                <span className="text-green-600 font-semibold">
+                  resultados rápidos
+                </span>
               </p>
               <p className="text-xs sm:text-sm lg:text-base text-green-600 font-semibold">
                 na primeira aplicação
@@ -85,14 +100,18 @@ const HeroSection = () => {
 
             {/* CTA Principal */}
             <div className="space-y-3 sm:space-y-4 px-1 sm:px-0">
-              <Button 
-                onClick={handlePurchaseClick}
+              <Button
+                onClick={handleCTAClick}
                 className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-gray-800 font-bold py-4 sm:py-5 px-2 sm:px-4 rounded-xl text-xs sm:text-sm lg:text-base transition-all duration-300 transform hover:scale-105 shadow-lg leading-tight"
               >
-                <span className="block sm:inline">🛏️ Quero Minha Primeira Noite Tranquila</span>
-                <span className="block sm:inline sm:ml-1 font-extrabold">por R$ 44,00</span>
+                <span className="block sm:inline">
+                  🛏️ Quero Minha Primeira Noite Tranquila
+                </span>
+                <span className="block sm:inline sm:ml-1 font-extrabold">
+                  por R$ 44,00
+                </span>
               </Button>
-              
+
               {/* Garantias */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 text-xs text-gray-600">
                 <div className="flex items-center gap-1">
@@ -113,11 +132,17 @@ const HeroSection = () => {
             {/* Aviso de escassez */}
             <div className="bg-orange-50 border-l-4 border-orange-400 p-3 sm:p-4 rounded-r-lg mx-1 sm:mx-0">
               <div className="flex flex-col gap-1 sm:gap-2">
-                <span className="text-orange-600 font-bold text-xs sm:text-sm">⚠️ ATENÇÃO:</span>
+                <span className="text-orange-600 font-bold text-xs sm:text-sm">
+                  ⚠️ ATENÇÃO:
+                </span>
                 <div className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  <div className="font-semibold mb-1">Oferta por tempo limitado</div>
+                  <div className="font-semibold mb-1">
+                    Oferta por tempo limitado
+                  </div>
                   <div className="text-xs">
-                    até dia 15/10/2025 com todos os bônus disponíveis. Depois disso volta ao valor normal sem o bônus de kit de áudios neuroacústicos.
+                    até dia 15/10/2025 com todos os bônus disponíveis. Depois
+                    disso volta ao valor normal sem o bônus de kit de áudios
+                    neuroacústicos.
                   </div>
                 </div>
               </div>
