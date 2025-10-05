@@ -15,6 +15,7 @@ import Oferta from './pages/Oferta.jsx'
 import MetodoCalma from './pages/metodocalma/MetodoCalma'
 import MetodoCalmaES from './pages/metodocalmaes/MetodoCalma'
 import MetodoCalmaB from './pages/metodocalmab/MetodoCalma'
+import MetodoCalmaBeS from './pages/metodocalmabes/MetodoCalma'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/metodocalma/*" element={<MetodoCalma />} />
         <Route path="/metodocalmaes/*" element={<MetodoCalmaES />} />
         <Route path="/metodocalmab/*" element={<MetodoCalmaB />} />
+        <Route path="/metodocalmabes/*" element={<MetodoCalmaBeS />} />
         <Route path="/termos-de-uso" element={<TermosDeUso />} />
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
         <Route path="/lgpd" element={<LGPD />} />

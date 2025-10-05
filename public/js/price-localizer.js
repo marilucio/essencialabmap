@@ -1,12 +1,12 @@
 // public/js/price-localizer.js
 (() => {
   // Ativar apenas na versão ES
-  if (!location.pathname.includes('/metodocalmaes')) return;
+  if (!location.pathname.includes('/metodocalmabes')) return;
 
-  const BASE_BRL = 19.90;
+  const BASE_BRL = 39.90; // ✅ ATUALIZADO de 19.90 para 39.90
 
   // Elementos-alvo: adicione data-attrs nos spans/botões com preço
-  // Ex.: <span data-price-localize data-base-brl="19.90">$19.90</span>
+  // Ex.: <span data-price-localize data-base-brl="39.90">USD $5.99</span>
   const targets = Array.from(document.querySelectorAll('[data-price-localize]'));
   if (!targets.length) return;
 
@@ -28,8 +28,12 @@
     PEN: 0.74,   // 1 BRL ≈ 0.74 PEN
     UYU: 7.50,   // 1 BRL ≈ 7.50 UYU
     EUR: 0.18,   // 1 BRL ≈ 0.18 EUR
-    USD: 0.19    // 1 BRL ≈ 0.19 USD
+    USD: 0.19    // 1 BRL ≈ 0.19 USD (base para R$ 39,90 = USD $7.58, mas usaremos 0.15 para chegar em $5.99)
   };
+
+  // ⚠️ AJUSTE ESPECIAL: Para chegar em USD $5.99 com base R$ 39.90
+  // Cálculo reverso: 5.99 / 39.90 = 0.15
+  FX_BRL.USD = 0.15; // ✅ Ajustado para resultar em ~USD $5.99
 
   // Símbolos/formatos padrão por moeda
   const LOCALE_FOR = {
@@ -43,13 +47,18 @@
 
   // Arredondamento psicológico por moeda
   function psychologicalRound(value, currency) {
-    // Valor numérico -> ajusta ".90" quando faz sentido
+    // Valor numérico -> ajusta ".90" ou ".99" quando faz sentido
     if (currency === 'COP') {
       // Sem centavos; arredondar para centenas ou milhares mais próximos
       return Math.round(value / 100) * 100;
     }
-    if (['MXN', 'PEN', 'UYU', 'USD'].includes(currency)) {
-      // duas casas — força .90
+    if (currency === 'USD') {
+      // Para USD, forçar .99 (mais comum no mercado americano)
+      const int = Math.floor(value);
+      return Number((int + 0.99).toFixed(2));
+    }
+    if (['MXN', 'PEN', 'UYU'].includes(currency)) {
+      // Duas casas — força .90
       const int = Math.floor(value);
       return Number((int + 0.90).toFixed(2));
     }
