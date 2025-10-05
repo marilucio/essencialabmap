@@ -148,9 +148,11 @@ const FAQSection = () => {
             <p className="text-lg text-gray-600 mb-6">
               ¿Listo para transformar tu ansiedad en calma y confianza?
             </p>
-            <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-xl px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
-              🚀 SÍ, QUIERO EMPEZAR MI TRANSFORMACIÓN
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+          <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-xl px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
+            🚀 QUIERO ELIMINAR MI ANSIEDAD YA
+          </button>
+        </a>
           </div>
         </div>
       </div>

@@ -253,9 +253,11 @@ const TestimonialsSection = () => {
             <p className="text-lg text-gray-600 mb-6">
               Únete a miles de personas que ya transformaron su ansiedad
             </p>
-            <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
-              ✅ QUIERO MI TRANSFORMACIÓN AHORA
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+          <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
+            🚀 QUIERO MI TRANSFORMACIÓN AHORA
+          </button>
+        </a>
           </div>
         </div>
       </div>

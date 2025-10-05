@@ -96,9 +96,11 @@ const CTASection = () => {
             </div>
 
             {/* Botão principal */}
-            <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl lg:text-2xl py-6 px-8 rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 mb-6">
-              🚀 SÍ, QUIERO CALMAR MI ANSIEDAD AHORA
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block w-full">
+              <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl lg:text-2xl py-6 px-8 rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 mb-6">
+                🔥 QUIERO ACCESO COMPLETO AHORA - <span data-price-localize>R$ 39,90</span>
+              </button>
+            </a>
 
             {/* Segurança */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm opacity-80">
@@ -154,9 +156,11 @@ const CTASection = () => {
               </p>
             </div>
 
-            <button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-800 font-bold text-xl py-4 px-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
-              ⚡ ÚLTIMO CHANCE - COMPRAR AHORA
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+          <button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-800 font-bold text-xl py-4 px-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
+            ⚡ ÚLTIMO CHANCE - COMPRAR AHORA
+          </button>
+        </a>
           </div>
         </div>
       </div>

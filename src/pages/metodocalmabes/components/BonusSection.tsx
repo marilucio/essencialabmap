@@ -168,9 +168,11 @@ const BonusSection = () => {
               Todas estas bonificaciones están incluidas sin costo adicional cuando 
               adquieres tu Kit SOS Ansiedad hoy.
             </p>
-            <button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
-              ✅ SÍ, QUIERO CALMAR MI ANSIEDAD HOY
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+              <button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
+                🔥 QUIERO TODOS LOS BONOS AHORA
+              </button>
+            </a>
           </div>
         </div>
       </div>

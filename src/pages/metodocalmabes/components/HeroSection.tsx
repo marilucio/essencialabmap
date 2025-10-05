@@ -52,7 +52,7 @@ const HeroSection = () => {
           {/* Imagem hero */}
           <div className="mb-8 lg:mb-12">
             <img
-              src="/images/hero-3am-anxiety.jpg"
+              src="/images/personansiedad.png"
               alt="Persona despierta a las 3 AM con ansiedad"
               className="w-full max-w-2xl mx-auto rounded-2xl shadow-2xl"
             />
@@ -60,9 +60,11 @@ const HeroSection = () => {
 
           {/* CTA Principal */}
           <div className="space-y-4">
-            <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-6 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 w-full max-w-md mx-auto block">
-              🚀 QUIERO MI KIT COMPLETO AHORA
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block w-full max-w-md mx-auto">
+              <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-lg lg:text-xl px-8 lg:px-12 py-4 lg:py-6 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 w-full">
+                🚀 QUIERO ELIMINAR MI ANSIEDAD AHORA
+              </button>
+            </a>
             
             <p className="text-sm text-blue-200">
               <span data-price-localize data-base-brl="39.90">USD $5.99</span> • Pago único • Acceso inmediato • Sin mensualidades

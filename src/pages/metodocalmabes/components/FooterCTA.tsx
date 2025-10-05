@@ -25,9 +25,11 @@ const FooterCTA = () => {
               </div>
             </div>
 
-            <button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl lg:text-2xl py-6 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 mb-8">
-              🎯 TRANSFORMAR MI ANSIEDAD AHORA
-            </button>
+            <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+              <button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl lg:text-2xl py-6 px-12 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 mb-8">
+                🎯 TRANSFORMAR MI ANSIEDAD AHORA
+              </button>
+            </a>
 
             {/* Garantias */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -157,9 +159,11 @@ const FooterCTA = () => {
             </div>
 
             <div className="text-center">
-              <button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold text-xl py-4 px-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 mb-6">
-                ⚡ COMPRAR ANTES QUE EXPIRE
-              </button>
+              <a href="https://pay.hotmart.com/B102258373B" target="_blank" rel="noopener noreferrer" className="block">
+            <button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-gray-900 font-bold text-xl py-4 px-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 mb-6">
+              ⚡ COMPRAR ANTES QUE EXPIRE
+            </button>
+          </a>
             </div>
           </div>
 
