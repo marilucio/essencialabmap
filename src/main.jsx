@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import MapWrapper from './pages/MapWrapper.jsx'
+import Features from './pages/Features.jsx'
 import TermosDeUso from './pages/TermosDeUso'
 import PoliticaPrivacidade from './pages/PoliticaPrivacidade'
 import LGPD from './pages/LGPD'
@@ -22,6 +24,8 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/funcionalidades" element={<Features />} />
+        <Route path="/map" element={<MapWrapper />} />
         <Route path="/metodocalma/*" element={<MetodoCalma />} />
         <Route path="/metodocalmaes/*" element={<MetodoCalmaES />} />
         <Route path="/metodocalmab/*" element={<MetodoCalmaB />} />
@@ -34,7 +38,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/central-de-ajuda" element={<CentralDeAjuda />} />
         <Route path="/status-do-sistema" element={<StatusDoSistema />} />
         <Route path="/obrigado" element={<Obrigado />} />
-          <Route path="/oferta" element={<Oferta />} />
+        <Route path="/oferta" element={<Oferta />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
