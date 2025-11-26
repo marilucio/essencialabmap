@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textos Prontos - Kit Análise Facial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            font-size: 24px;
+            color: #4a5568;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-block {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .copy-content {
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ebf4ff;
+            color: #4299e1;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="INDICE_MATERIAIS.html" class="back-link">← Voltar para o Índice</a>
+        
+        <div class="header">
+            <h1>📝 Textos Prontos</h1>
+            <p>Copie e cole para divulgar em suas redes</p>
+        </div>
+
+        <div class="card">
+            <span class="tag">INSTAGRAM / FACEBOOK</span>
+            <h2>📱 Post 1: Introdução à Tecnologia</h2>
+            <div class="copy-block">
+                <button class="copy-btn" onclick="copyText(this)">Copiar Texto</button>
+                <div class="copy-content">📸 E se eu te dissesse que seu rosto revela muito mais do que você imagina?
+
+Em apenas 30 segundos, usando apenas a câmera do seu celular, é possível descobrir:
+
+❤️ Sua frequência cardíaca
+📊 Seu nível de estresse (HRV)
+🧬 A idade estimada da sua pele
+😊 Seu estado emocional dominante
+
+Não é mágica, é CIÊNCIA! 🔬
+
+A tecnologia rPPG (Fotopletismografia Remota) detecta mudanças microscópicas na cor da sua pele causadas pelo fluxo sanguíneo - a mesma tecnologia validada pela FDA e usada em hospitais ao redor do mundo.
+
+Agora, essa tecnologia de ponta está disponível nos meus atendimentos para oferecer avaliações mais completas e personalizadas! ✨
+
+Quer saber mais? Comente "QUERO" ou me chama no direct!
+
+#SaúdeIntegrativa #Tecnologia #AnáliseFacial #BemEstar #SaúdePreventiva #Inovação</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">INSTAGRAM / FACEBOOK</span>
+            <h2>📱 Post 2: Benefícios Práticos</h2>
+            <div class="copy-block">
+                <button class="copy-btn" onclick="copyText(this)">Copiar Texto</button>
+                <div class="copy-content">⏰ 30 SEGUNDOS QUE PODEM MUDAR SUA SAÚDE
+
+Sabe aquela sensação de que "algo não está bem" mas você não consegue explicar?
+
+A análise facial transforma essas percepções em DADOS OBJETIVOS:
+
+✅ "Me sinto cansado" → HRV baixo detectado
+✅ "Tenho dormido mal" → Sinais de estresse fisiológico
+✅ "Pareço mais velho" → Idade da pele acima da cronológica
+
+E o melhor: é 100% não invasivo, rápido e você acompanha sua evolução a cada consulta! 📈
+
+Imagine ver números mudando, gráficos melhorando, e ter PROVA de que o protocolo está funcionando. Isso motiva, isso engaja, isso transforma!
+
+📱 Entre em contato e descubra como a tecnologia pode potencializar seu tratamento!
+
+[Adicione aqui seu contato]
+
+#SaúdeBaseadaEmDados #MonitoramentoDeSaúde #Tecnologia #BemEstar #VidaSaudável</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">INSTAGRAM / FACEBOOK</span>
+            <h2>📱 Post 3: Comparação Antes/Depois</h2>
+            <div class="copy-block">
+                <button class="copy-btn" onclick="copyText(this)">Copiar Texto</button>
+                <div class="copy-content">🔄 A TRANSFORMAÇÃO QUE VOCÊ PODE VER
+
+ANTES do protocolo:
+😰 HRV baixo
+📉 Sinais de estresse elevado
+😫 Frequência cardíaca irregular
+🆘 Sistema em sobrecarga
+
+DEPOIS de 30 dias:
+😊 HRV normalizado
+📈 Estresse controlado
+❤️ FC estável
+✨ Equilíbrio restaurado
+
+Não é placebo. Não é achismo.
+São DADOS OBJETIVOS que mostram sua evolução! 📊
+
+Cada consulta de retorno, fazemos nova análise e comparamos. Você VÊ o progresso acontecendo em tempo real.
+
+Isso muda tudo na adesão ao tratamento! 🎯
+
+Quer experimentar essa abordagem? Vagas abertas para avaliação completa!
+
+[Adicione aqui seu contato]
+
+#Resultados #Transformação #SaúdeIntegrativa #AntesEDepois #Evolução</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">INSTAGRAM / FACEBOOK</span>
+            <h2>📱 Post 4: Explicação Científica</h2>
+            <div class="copy-block">
+                <button class="copy-btn" onclick="copyText(this)">Copiar Texto</button>
+                <div class="copy-content">🔬 A CIÊNCIA POR TRÁS DA ANÁLISE FACIAL
+
+"Como uma câmera consegue medir meu coração?"
+
+Ótima pergunta! Vou explicar de forma simples:
+
+1️⃣ Quando seu coração bate, sangue flui pelos capilares do seu rosto
+2️⃣ Isso causa micro-mudanças na cor da pele (invisíveis a olho nu)
+3️⃣ Nossa IA avançada detecta essas mudanças pixel a pixel
+4️⃣ Algoritmos processam os sinais e extraem dados vitais
+
+É a mesma tecnologia usada em oxímetros de dedo, mas totalmente sem contato! 🚫👆
+
+Validada em estudos clínicos e usada mundialmente para monitoramento de saúde.
+
+Tecnologia de ponta a favor da sua saúde. Agende sua análise!
+
+#Ciência #rPPG #TecnologiaEmSaúde #InovaçãoMédica #FuturoDaSaúde</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(btn) {
+            const content = btn.nextElementSibling.innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "Copiado! ✓";
+                btn.style.background = "#48bb78";
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "#667eea";
+                }, 2000);
+            });
+        }
+    </script>
+    <!-- Navegação Flutuante -->
+    <style>
+        .material-nav-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-btn-back {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .nav-btn-back:hover {
+            background: #e5e7eb;
+        }
+        .nav-btn-print {
+            background: #3b82f6;
+            color: white;
+        }
+        .nav-btn-print:hover {
+            background: #2563eb;
+        }
+        @media print {
+            .material-nav-floating {
+                display: none !important;
+            }
+            .copy-btn {
+                display: none;
+            }
+        }
+    </style>
+    <div class="material-nav-floating">
+        <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+            ← Voltar
+        </a>
+        <button onclick="window.print()" class="nav-btn nav-btn-print">
+            🖨️ Imprimir / Salvar PDF
+        </button>
+    </div>
+</body>
+</html>

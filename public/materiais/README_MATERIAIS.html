@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação do Kit - Kit Análise Facial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-info {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: 700;
+            width: 120px;
+            color: #4a5568;
+        }
+
+        .info-value {
+            flex: 1;
+            color: #2d3748;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #4a5568;
+            margin: 20px 0 10px 0;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .tip-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .tip-title {
+            font-weight: 700;
+            color: #2b6cb0;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .card {
+                padding: 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-label {
+                width: 100%;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="INDICE_MATERIAIS.html" class="back-link">← Voltar para o Índice</a>
+        
+        <div class="header">
+            <h1>📦 Documentação do Kit</h1>
+            <p>Guia completo de todos os materiais inclusos</p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Visão Geral</h2>
+            <p>Este kit contém materiais profissionais prontos para uso que explicam e promovem a tecnologia de análise facial do EssenciaLab. Todos os arquivos são HTML interativos que podem ser visualizados no navegador e facilmente convertidos para imagens ou PDFs.</p>
+        </div>
+
+        <div class="card">
+            <h2>1️⃣ Post Carrossel</h2>
+            
+            <div class="file-info">
+                <div class="info-row">
+                    <span class="info-label">Arquivo:</span>
+                    <span class="info-value">post_carrossel_analise_facial.html</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Formato:</span>
+                    <span class="info-value">Carrossel para Instagram (5 slides de 1080x1080px)</span>
+                </div>
+            </div>
+
+            <h3>Conteúdo:</h3>
+            <ul>
+                <li>Slide 1: Capa chamativa "Sua saúde revelada em 30 segundos!"</li>
+                <li>Slide 2: Explicação do que é rPPG</li>
+                <li>Slide 3: Como funciona em 3 passos</li>
+                <li>Slide 4: Benefícios principais (FC, HRV, Idade da Pele)</li>
+                <li>Slide 5: Call-to-action</li>
+            </ul>
+
+            <h3>Como Usar:</h3>
+            <ol>
+                <li>Abra o arquivo no navegador</li>
+                <li>Use Print Screen ou ferramenta de captura para salvar cada slide</li>
+                <li>Publique no Instagram como carrossel</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>2️⃣ Infográfico rPPG</h2>
+            
+            <div class="file-info">
+                <div class="info-row">
+                    <span class="info-label">Arquivo:</span>
+                    <span class="info-value">infografico_rppg_tecnologia.html</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Formato:</span>
+                    <span class="info-value">Infográfico educativo vertical</span>
+                </div>
+            </div>
+
+            <h3>Conteúdo:</h3>
+            <ul>
+                <li>Explicação detalhada do que é rPPG</li>
+                <li>Processo passo a passo de como funciona</li>
+                <li>Métricas que são medidas</li>
+                <li>Base científica da tecnologia</li>
+            </ul>
+
+            <div class="tip-box">
+                <span class="tip-title">Dica de Uso:</span>
+                Capture a tela inteira ou imprima como PDF para enviar via WhatsApp ou disponibilizar em seu site.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3️⃣ Folder de Consultório</h2>
+            
+            <div class="file-info">
+                <div class="info-row">
+                    <span class="info-label">Arquivo:</span>
+                    <span class="info-value">folder_consultorio_analise_facial.html</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Formato:</span>
+                    <span class="info-value">Folder de 4 páginas (simulação frente/verso)</span>
+                </div>
+            </div>
+
+            <h3>Como Usar:</h3>
+            <ol>
+                <li>Imprima em papel A4 colorido (frente e verso)</li>
+                <li>Dobre ao meio para criar folder</li>
+                <li>Deixe disponível na recepção do consultório</li>
+                <li>Adicione seu contato e QR code na última página</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>4️⃣ Guia Profissional</h2>
+            
+            <div class="file-info">
+                <div class="info-row">
+                    <span class="info-label">Arquivo:</span>
+                    <span class="info-value">guia_profissional_agregar_valor.html</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Uso:</span>
+                    <span class="info-value">Interno (Estratégico)</span>
+                </div>
+            </div>
+
+            <p>Contém scripts de comunicação, estratégias de precificação e planos de ação. <strong>LEIA PRIMEIRO!</strong> Este é seu guia estratégico.</p>
+        </div>
+
+        <div class="card">
+            <h2>🎨 Como Capturar os Materiais</h2>
+            
+            <h3>Método 1: Print Screen (Windows)</h3>
+            <ol>
+                <li>Abra o arquivo HTML no navegador</li>
+                <li>Pressione F11 para tela cheia</li>
+                <li>Pressione Windows + Shift + S</li>
+                <li>Selecione a área desejada e salve</li>
+            </ol>
+
+            <h3>Método 2: Extensões do Chrome</h3>
+            <p>Use extensões como "Full Page Screen Capture" ou "GoFullPage" para capturar páginas inteiras (ideal para o infográfico).</p>
+
+            <h3>Método 3: Imprimir como PDF</h3>
+            <p>Use Ctrl+P e escolha "Salvar como PDF" para gerar arquivos para envio ou impressão.</p>
+        </div>
+
+        <div class="card">
+            <h2>✏️ Personalizações</h2>
+            <p>Você pode abrir os arquivos HTML em qualquer editor de texto (como Bloco de Notas) para:</p>
+            <ul>
+                <li>Adicionar seu logo (`&lt;img src="..."&gt;`)</li>
+                <li>Inserir seus contatos e redes sociais</li>
+                <li>Colocar seu QR code de agendamento</li>
+                <li>Alterar cores para combinar com sua marca</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Navegação Flutuante -->
+    <style>
+        .material-nav-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-btn-back {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .nav-btn-back:hover {
+            background: #e5e7eb;
+        }
+        .nav-btn-print {
+            background: #3b82f6;
+            color: white;
+        }
+        .nav-btn-print:hover {
+            background: #2563eb;
+        }
+        @media print {
+            .material-nav-floating, .back-link {
+                display: none !important;
+            }
+        }
+    </style>
+    <div class="material-nav-floating">
+        <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+            ← Voltar
+        </a>
+        <button onclick="window.print()" class="nav-btn nav-btn-print">
+            🖨️ Imprimir / Salvar PDF
+        </button>
+    </div>
+</body>
+</html>

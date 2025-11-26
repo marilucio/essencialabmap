@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Implementação - Kit Análise Facial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .card-header h2 {
+            font-size: 24px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .phase-badge {
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+
+        .checklist-group {
+            margin-bottom: 25px;
+        }
+
+        .checklist-group h3 {
+            font-size: 18px;
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .checklist-item:hover {
+            background: #f7fafc;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            line-height: 1.5;
+            color: #4a5568;
+            flex: 1;
+        }
+
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            color: #a0aec0;
+        }
+
+        .progress-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .progress-text {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .reset-btn {
+            background: none;
+            border: none;
+            color: #e53e3e;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .card {
+                padding: 20px;
+            }
+            .progress-container {
+                left: 20px;
+                right: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="INDICE_MATERIAIS.html" class="back-link">← Voltar para o Índice</a>
+        
+        <div class="header">
+            <h1>✅ Checklist de Implementação</h1>
+            <p>Passo a passo para integrar a Análise Facial ao seu atendimento</p>
+        </div>
+
+        <!-- FASE 1 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="phase-badge">FASE 1</span>
+                <h2>Preparação (Semana 1)</h2>
+            </div>
+
+            <div class="checklist-group">
+                <h3>🎯 Conhecimento e Familiarização</h3>
+                <div class="checklist-item"><input type="checkbox" id="item1"><label for="item1">Li completamente o guia profissional</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item2"><label for="item2">Li a documentação completa do Sistema MAP</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item3"><label for="item3">Entendi o que é tecnologia rPPG e como funciona</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item4"><label for="item4">Sei explicar com minhas próprias palavras como funciona</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item5"><label for="item5">Conheço as limitações e contraindicações</label></div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>🧪 Teste Prático</h3>
+                <div class="checklist-item"><input type="checkbox" id="item6"><label for="item6">Baixei o app EssenciaLab no meu celular</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item7"><label for="item7">Criei minha conta como profissional</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item8"><label for="item8">Fiz minha própria análise facial pelo menos 3 vezes</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item9"><label for="item9">Explorei todos os recursos do dashboard profissional</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item10"><label for="item10">Testei criar um link de avaliação teste</label></div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>📍 Infraestrutura do Consultório</h3>
+                <div class="checklist-item"><input type="checkbox" id="item11"><label for="item11">Identifiquei local bem iluminado (luz natural ideal)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item12"><label for="item12">Testei qualidade da iluminação em diferentes horários</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item13"><label for="item13">Preparei cadeira/assento confortável para o paciente</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item14"><label for="item14">Testei ângulo e posição da câmera</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item15"><label for="item15">Garanti boa conexão de internet no local</label></div>
+            </div>
+        </div>
+
+        <!-- FASE 2 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="phase-badge">FASE 2</span>
+                <h2>Materiais (Semana 1-2)</h2>
+            </div>
+
+            <div class="checklist-group">
+                <h3>📱 Personalização de Materiais</h3>
+                <div class="checklist-item"><input type="checkbox" id="item16"><label for="item16">Baixei todos os materiais HTML fornecidos</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item17"><label for="item17">Testei abrir cada arquivo no navegador</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item18"><label for="item18">Personalizei com meu logo (se aplicável)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item19"><label for="item19">Adicionei meus contatos (telefone, WhatsApp, Instagram)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item20"><label for="item20">Criei QR code para agendamento</label></div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>📸 Captura de Imagens</h3>
+                <div class="checklist-item"><input type="checkbox" id="item21"><label for="item21">Capturei screenshots de todos os posts para redes sociais</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item22"><label for="item22">Salvei carrossel completo (5 slides)</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item23"><label for="item23">Salvei infográfico em alta resolução</label></div>
+            </div>
+        </div>
+
+        <!-- FASE 3 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="phase-badge">FASE 3</span>
+                <h2>Comunicação (Semana 2)</h2>
+            </div>
+
+            <div class="checklist-group">
+                <h3>📝 Scripts Preparados</h3>
+                <div class="checklist-item"><input type="checkbox" id="item24"><label for="item24">Revisei scripts de consulta no guia profissional</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item25"><label for="item25">Adaptei scripts para minha linguagem</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item26"><label for="item26">Pratiquei script de introdução na primeira consulta</label></div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>📲 Redes Sociais</h3>
+                <div class="checklist-item"><input type="checkbox" id="item27"><label for="item27">Escolhi 3-5 materiais para começar</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item28"><label for="item28">Programei posts para a semana</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item29"><label for="item29">Avisei seguidores sobre novidade nos Stories</label></div>
+            </div>
+        </div>
+        
+        <!-- FASE 4 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="phase-badge">FASE 4</span>
+                <h2>Lançamento (Semana 3)</h2>
+            </div>
+
+            <div class="checklist-group">
+                <h3>🎯 Primeiras Consultas</h3>
+                <div class="checklist-item"><input type="checkbox" id="item30"><label for="item30">Agendei primeiros 3-5 pacientes para testar</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item31"><label for="item31">Separei tempo extra (15-20min) para explicar tecnologia</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item32"><label for="item32">Fiz análise facial em cada paciente</label></div>
+                <div class="checklist-item"><input type="checkbox" id="item33"><label for="item33">Coletei feedback informal após cada consulta</label></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="progress-container">
+        <span class="progress-text">Progresso: 0%</span>
+        <button class="reset-btn" onclick="resetChecklist()">Reiniciar</button>
+    </div>
+
+    <script>
+        // Carregar estado salvo
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(box => {
+                const saved = localStorage.getItem(box.id);
+                if (saved === 'true') {
+                    box.checked = true;
+                    box.parentElement.classList.add('checked');
+                }
+                
+                box.addEventListener('change', () => {
+                    localStorage.setItem(box.id, box.checked);
+                    if (box.checked) {
+                        box.parentElement.classList.add('checked');
+                    } else {
+                        box.parentElement.classList.remove('checked');
+                    }
+                    updateProgress();
+                });
+            });
+            
+            updateProgress();
+        });
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            const percent = Math.round((checked.length / checkboxes.length) * 100);
+            document.querySelector('.progress-text').innerText = `Progresso: ${percent}%`;
+        }
+
+        function resetChecklist() {
+            if (confirm('Tem certeza que deseja limpar todo o progresso?')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+    </script>
+    <!-- Navegação Flutuante -->
+    <style>
+        .material-nav-floating {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* Changed to left to avoid overlap with progress container which is on right */
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-btn-back {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .nav-btn-back:hover {
+            background: #e5e7eb;
+        }
+        .nav-btn-print {
+            background: #3b82f6;
+            color: white;
+        }
+        .nav-btn-print:hover {
+            background: #2563eb;
+        }
+        @media print {
+            .material-nav-floating, .progress-container, .back-link {
+                display: none !important;
+            }
+        }
+    </style>
+    <div class="material-nav-floating">
+        <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+            ← Voltar
+        </a>
+        <button onclick="window.print()" class="nav-btn nav-btn-print">
+            🖨️ Imprimir / Salvar PDF
+        </button>
+    </div>
+</body>
+</html>

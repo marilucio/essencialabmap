@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts para Redes Sociais - Análise Facial</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .post {
+        width: 1080px;
+        height: 1080px;
+        flex-shrink: 0;
+        border-radius: 0;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .post-content {
+        padding: 80px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+
+      /* POST 1 - Tecnologia */
+      .post-1 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .post-1 .icon {
+        font-size: 140px;
+        margin-bottom: 40px;
+      }
+
+      .post-1 h2 {
+        font-size: 72px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 30px;
+      }
+
+      .post-1 p {
+        font-size: 32px;
+        line-height: 1.5;
+        opacity: 0.95;
+        margin-bottom: 40px;
+      }
+
+      .post-1 .badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 20px 40px;
+        border-radius: 50px;
+        font-size: 24px;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+        display: inline-block;
+      }
+
+      /* POST 2 - Benefício Principal */
+      .post-2 {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .post-2 .stat {
+        font-size: 120px;
+        font-weight: 800;
+        margin-bottom: 30px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .post-2 h2 {
+        font-size: 64px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 40px;
+      }
+
+      .post-2 p {
+        font-size: 28px;
+        line-height: 1.6;
+        opacity: 0.95;
+      }
+
+      /* POST 3 - Comparação Antes/Depois */
+      .post-3 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .comparison-item {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 50px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .comparison-item .label {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      .comparison-item .icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+      }
+
+      .comparison-item .text {
+        font-size: 24px;
+        line-height: 1.5;
+      }
+
+      .post-3 h2 {
+        font-size: 64px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+
+      /* POST 4 - Call to Action */
+      .post-4 {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      }
+
+      .post-4 .icon {
+        font-size: 120px;
+        margin-bottom: 40px;
+      }
+
+      .post-4 h2 {
+        font-size: 68px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 40px;
+      }
+
+      .post-4 .features {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 50px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        margin-top: 40px;
+        text-align: left;
+      }
+
+      .post-4 .features p {
+        font-size: 26px;
+        line-height: 2;
+        margin-bottom: 10px;
+      }
+
+      .post-4 .cta-text {
+        font-size: 32px;
+        font-weight: 700;
+        margin-top: 40px;
+      }
+
+      /* POST 5 - Social Proof */
+      .post-5 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .quote {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 60px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        margin: 40px 0;
+      }
+
+      .quote .icon {
+        font-size: 80px;
+        margin-bottom: 30px;
+      }
+
+      .quote p {
+        font-size: 32px;
+        line-height: 1.6;
+        font-style: italic;
+        margin-bottom: 30px;
+      }
+
+      .quote .author {
+        font-size: 24px;
+        font-weight: 600;
+        opacity: 0.9;
+      }
+
+      .post-5 h2 {
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          gap: 0;
+        }
+        .post {
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- POST 1 - Tecnologia -->
+    <div class="post post-1">
+      <div class="post-content">
+        <div class="icon">🔬</div>
+        <h2>Análise Facial<br />Inteligente</h2>
+        <p>
+          Descubra seus sinais vitais em 30 segundos usando apenas a câmera do
+          celular
+        </p>
+        <div class="badge">Tecnologia Validada pela FDA</div>
+      </div>
+    </div>
+
+    <!-- POST 2 - Benefício Principal -->
+    <div class="post post-2">
+      <div class="post-content">
+        <div class="stat">30"</div>
+        <h2>É Tudo Que Você<br />Precisa</h2>
+        <p>
+          Em apenas 30 segundos, descubra sua frequência cardíaca, variabilidade
+          cardíaca (HRV), idade da pele e estado emocional
+        </p>
+      </div>
+    </div>
+
+    <!-- POST 3 - Comparação Antes/Depois -->
+    <div class="post post-3">
+      <div class="post-content">
+        <h2>Transforme Sua Saúde</h2>
+        <p style="font-size: 28px; margin-bottom: 20px">
+          Veja a diferença com acompanhamento profissional
+        </p>
+        <div class="comparison">
+          <div class="comparison-item">
+            <div class="label">ANTES</div>
+            <div class="icon">😰</div>
+            <div class="text">
+              HRV Baixo<br />
+              Estresse Alto<br />
+              FC Elevada
+            </div>
+          </div>
+          <div class="comparison-item">
+            <div class="label">DEPOIS</div>
+            <div class="icon">😊</div>
+            <div class="text">
+              HRV Normal<br />
+              Estresse Controlado<br />
+              FC Estável
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 4 - Call to Action -->
+    <div class="post post-4">
+      <div class="post-content">
+        <div class="icon">✨</div>
+        <h2>Avaliação<br />Completa 360°</h2>
+        <div class="features">
+          <p>✓ Análise Facial com rPPG</p>
+          <p>✓ Questionário SOGI (200+ perguntas)</p>
+          <p>✓ Mapeamento Teia Funcional</p>
+          <p>✓ Protocolo Personalizado</p>
+        </div>
+        <p class="cta-text">Agende sua consulta agora!</p>
+      </div>
+    </div>
+
+    <!-- POST 5 - Social Proof -->
+    <div class="post post-5">
+      <div class="post-content">
+        <h2>O Que Dizem Nossos Pacientes</h2>
+        <div class="quote">
+          <div class="icon">💬</div>
+          <p>
+            "Fiquei impressionado com a precisão da análise facial. Descobrir
+            meus níveis de estresse me ajudou a focar no que realmente importa."
+          </p>
+          <div class="author">⭐⭐⭐⭐⭐<br />Paciente Verificado</div>
+        </div>
+        <p style="font-size: 28px">
+          Junte-se a centenas de pacientes satisfeitos
+        </p>
+      </div>
+    </div>
+
+    <!-- Navegação Flutuante -->
+    <style>
+      .material-nav-floating {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+      }
+      .nav-btn-back {
+        background: #f3f4f6;
+        color: #374151;
+      }
+      .nav-btn-back:hover {
+        background: #e5e7eb;
+      }
+      .nav-btn-print {
+        background: #3b82f6;
+        color: white;
+      }
+      .nav-btn-print:hover {
+        background: #2563eb;
+      }
+      @media print {
+        .material-nav-floating {
+          display: none !important;
+        }
+      }
+    </style>
+    <div class="material-nav-floating">
+      <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+        ← Voltar
+      </a>
+      <button onclick="window.print()" class="nav-btn nav-btn-print">
+        🖨️ Imprimir / Salvar PDF
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isEditMode = urlParams.get("edit") === "true";
+        const nav = document.querySelector(".material-nav-floating");
+
+        // Botão de Alternar Modo
+        const modeBtn = document.createElement("button");
+        modeBtn.className = "nav-btn";
+        modeBtn.style.background = isEditMode ? "#10B981" : "#8B5CF6";
+        modeBtn.style.color = "white";
+        modeBtn.style.marginRight = "10px";
+        modeBtn.innerHTML = isEditMode ? "🖼️ Gerar Imagens" : "📝 Modo Edição";
+
+        modeBtn.onclick = () => {
+          if (isEditMode) {
+            window.location.href = window.location.pathname;
+          } else {
+            window.location.href = window.location.pathname + "?edit=true";
+          }
+        };
+
+        // Inserir antes do botão de imprimir
+        const printBtn = nav.querySelector(".nav-btn-print");
+        nav.insertBefore(modeBtn, printBtn);
+
+        if (!isEditMode) {
+          // Loading Overlay
+          const loading = document.createElement("div");
+          loading.style.cssText =
+            "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: sans-serif;";
+          loading.innerHTML =
+            '<div style="font-size: 40px; margin-bottom: 20px;">⚙️</div><h3 style="color: #4a5568; margin-bottom: 10px;">Gerando Imagens...</h3><p style="color: #718096;">Transformando posts em imagens de alta qualidade.</p>';
+          document.body.appendChild(loading);
+
+          try {
+            const posts = document.querySelectorAll(".post");
+
+            // Container para as imagens
+            const imgContainer = document.createElement("div");
+            imgContainer.style.cssText =
+              "display: flex; flex-direction: column; align-items: center; gap: 40px; width: 100%;";
+
+            for (let i = 0; i < posts.length; i++) {
+              const post = posts[i];
+
+              // Renderizar
+              const canvas = await html2canvas(post, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: null,
+                logging: false,
+              });
+
+              const img = document.createElement("img");
+              img.src = canvas.toDataURL("image/png");
+              img.style.cssText =
+                "width: 600px; max-width: 90%; height: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 12px;";
+              img.title = "Botão direito > Salvar imagem como...";
+
+              // Container individual com botão de download
+              const wrapper = document.createElement("div");
+              wrapper.style.cssText =
+                "display: flex; flex-direction: column; align-items: center; gap: 15px;";
+
+              const downloadBtn = document.createElement("a");
+              downloadBtn.href = img.src;
+              downloadBtn.download = `post-social-${i + 1}.png`;
+              downloadBtn.innerHTML = "⬇️ Baixar Imagem";
+              downloadBtn.style.cssText =
+                "background: #3b82f6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);";
+
+              wrapper.appendChild(img);
+              wrapper.appendChild(downloadBtn);
+              imgContainer.appendChild(wrapper);
+
+              // Ocultar post original
+              post.style.display = "none";
+            }
+
+            // Adicionar container de imagens ao body
+            document.body.insertBefore(imgContainer, document.body.firstChild);
+
+            // Aviso de sucesso
+            const toast = document.createElement("div");
+            toast.innerHTML =
+              "✨ <strong>Imagens Geradas!</strong> Baixe ou clique com botão direito para salvar.";
+            toast.style.cssText =
+              "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #10B981; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10001; animation: slideDown 0.5s ease-out; font-family: sans-serif;";
+            document.body.appendChild(toast);
+
+            // Remover loading
+            setTimeout(() => loading.remove(), 500);
+          } catch (err) {
+            console.error(err);
+            loading.innerHTML =
+              '<h3 style="color: #e53e3e;">Erro ao gerar imagens</h3><p>Tente recarregar a página.</p>';
+          }
+        }
+      });
+
+      // Animação do Toast
+      const style = document.createElement("style");
+      style.innerHTML =
+        "@keyframes slideDown { from { transform: translate(-50%, -100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }";
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

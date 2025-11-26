@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kit Análise Facial - Índice de Materiais</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        color: white;
+        margin-bottom: 50px;
+      }
+
+      .header h1 {
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .header p {
+        font-size: 24px;
+        opacity: 0.95;
+      }
+
+      .header .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+
+      .card-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 15px;
+      }
+
+      .card-description {
+        font-size: 16px;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .card-type {
+        display: inline-block;
+        background: #f7fafc;
+        color: #667eea;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .card-features {
+        list-style: none;
+        font-size: 14px;
+        color: #718096;
+        line-height: 2;
+      }
+
+      .card-features li:before {
+        content: "✓ ";
+        color: #667eea;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .action-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 15px;
+        transition: transform 0.2s ease;
+      }
+
+      .action-button:hover {
+        transform: scale(1.05);
+      }
+
+      .section-title {
+        color: white;
+        font-size: 32px;
+        font-weight: 700;
+        margin: 50px 0 30px 0;
+        text-align: center;
+      }
+
+      .quick-start {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 40px;
+      }
+
+      .quick-start h2 {
+        font-size: 32px;
+        color: #2d3748;
+        margin-bottom: 25px;
+        font-weight: 700;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .step {
+        display: flex;
+        align-items: start;
+        gap: 15px;
+      }
+
+      .step-number {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        font-size: 15px;
+        color: #4a5568;
+        line-height: 1.6;
+      }
+
+      .footer {
+        text-align: center;
+        color: white;
+        margin-top: 60px;
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 36px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📦 Kit Completo<br />Análise Facial</h1>
+        <p>Materiais profissionais prontos para uso</p>
+        <div class="badge">🚀 Criado especialmente para você</div>
+      </div>
+
+      <div class="quick-start">
+        <h2>🎯 Comece Por Aqui</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <strong>Leia o README</strong><br />
+              Entenda o que cada material faz
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <strong>Estude o Guia</strong><br />
+              Aprenda como agregar valor
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <strong>Personalize</strong><br />
+              Adicione seu logo e contatos
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <strong>Compartilhe</strong><br />
+              Publique nas redes sociais
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">📚 Materiais Visuais</h2>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">📸</div>
+          <div class="card-type">REDES SOCIAIS</div>
+          <h3 class="card-title">Carrossel Instagram</h3>
+          <p class="card-description">
+            5 slides prontos explicando análise facial de forma visual e
+            atraente.
+          </p>
+          <ul class="card-features">
+            <li>1080x1080px cada slide</li>
+            <li>Cores vibrantes e modernas</li>
+            <li>Pronto para capturar e postar</li>
+          </ul>
+          <a href="post_carrossel_analise_facial.html" class="action-button"
+            >Abrir Material</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <div class="card-type">EDUCATIVO</div>
+          <h3 class="card-title">Infográfico rPPG</h3>
+          <p class="card-description">
+            Infográfico completo explicando a tecnologia com base científica.
+          </p>
+          <ul class="card-features">
+            <li>Visualmente atrativo</li>
+            <li>Conteúdo técnico simplificado</li>
+            <li>Ideal para Stories e Feed</li>
+          </ul>
+          <a href="infografico_rppg_tecnologia.html" class="action-button"
+            >Abrir Material</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📄</div>
+          <div class="card-type">PRESENCIAL</div>
+          <h3 class="card-title">Folder para Consultório</h3>
+          <p class="card-description">
+            Material impresso de 4 páginas para deixar na recepção e entregar
+            aos pacientes.
+          </p>
+          <ul class="card-features">
+            <li>Frente e verso prontos</li>
+            <li>Design profissional</li>
+            <li>Espaço para QR code</li>
+          </ul>
+          <a href="folder_consultorio_analise_facial.html" class="action-button"
+            >Abrir Material</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <div class="card-type">REDES SOCIAIS</div>
+          <h3 class="card-title">Posts Individuais</h3>
+          <p class="card-description">
+            5 posts quadrados independentes para publicar ao longo da semana.
+          </p>
+          <ul class="card-features">
+            <li>1080x1080px cada</li>
+            <li>Diferentes abordagens</li>
+            <li>Incluindo CTA e Social Proof</li>
+          </ul>
+          <a href="posts_individuais_redes_sociais.html" class="action-button"
+            >Abrir Material</a
+          >
+        </div>
+      </div>
+
+      <h2 class="section-title">📖 Materiais Estratégicos</h2>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">💎</div>
+          <div class="card-type">ESTRATÉGICO</div>
+          <h3 class="card-title">Guia do Profissional</h3>
+          <p class="card-description">
+            <strong>⭐ COMECE POR AQUI!</strong> Guia completo de como agregar
+            valor e scripts prontos.
+          </p>
+          <ul class="card-features">
+            <li>Casos de uso práticos</li>
+            <li>Scripts de comunicação</li>
+            <li>Estratégia de precificação</li>
+            <li>Plano de ação em 5 passos</li>
+          </ul>
+          <a href="guia_profissional_agregar_valor.html" class="action-button"
+            >Abrir Guia</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <div class="card-type">COPYWRITING</div>
+          <h3 class="card-title">Textos Prontos</h3>
+          <p class="card-description">
+            Legendas, posts, Stories, WhatsApp e e-mails prontos para copiar e
+            colar.
+          </p>
+          <ul class="card-features">
+            <li>Posts para Instagram/Facebook</li>
+            <li>Stories e WhatsApp Status</li>
+            <li>Scripts para consulta</li>
+            <li>Hashtags organizadas</li>
+          </ul>
+          <a href="TEXTOS_PRONTOS_COPIAR_COLAR.html" class="action-button"
+            >Ver Textos</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <div class="card-type">IMPLEMENTAÇÃO</div>
+          <h3 class="card-title">Checklist Completo</h3>
+          <p class="card-description">
+            Passo a passo completo da preparação até otimização. Use como guia
+            de progresso!
+          </p>
+          <ul class="card-features">
+            <li>6 fases de implementação</li>
+            <li>Metas sugeridas</li>
+            <li>Troubleshooting</li>
+            <li>Espaço para anotações</li>
+          </ul>
+          <a href="CHECKLIST_IMPLEMENTACAO.html" class="action-button"
+            >Ver Checklist</a
+          >
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📚</div>
+          <div class="card-type">DOCUMENTAÇÃO</div>
+          <h3 class="card-title">README Completo</h3>
+          <p class="card-description">
+            Instruções detalhadas sobre cada material, como usar, personalizar e
+            compartilhar.
+          </p>
+          <ul class="card-features">
+            <li>Descrição de cada arquivo</li>
+            <li>Como capturar materiais</li>
+            <li>Dicas de personalização</li>
+            <li>Cronograma sugerido</li>
+          </ul>
+          <a href="README_MATERIAIS.html" class="action-button">Ler README</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p><strong>🎯 Total: 8 materiais profissionais</strong></p>
+        <p style="margin-top: 15px">
+          Desenvolvido especialmente para profissionais que usam EssenciaLab
+        </p>
+        <p style="margin-top: 30px; opacity: 0.8">
+          ✨ Sucesso no seu atendimento! ✨
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

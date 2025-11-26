@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Análise Facial - Carrossel Instagram</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .slide {
+        width: 1080px;
+        height: 1080px;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 0;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .slide-content {
+        padding: 80px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Slide 1 - Capa */
+      .slide-1 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .slide-1 .emoji {
+        font-size: 120px;
+        margin-bottom: 40px;
+        display: block;
+      }
+
+      .slide-1 h1 {
+        font-size: 72px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .slide-1 .subtitle {
+        font-size: 32px;
+        font-weight: 400;
+        opacity: 0.95;
+        line-height: 1.4;
+      }
+
+      .slide-1 .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 40px;
+        backdrop-filter: blur(10px);
+      }
+
+      /* Slide 2 - O que é */
+      .slide-2 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .slide-title {
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 50px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .slide-text {
+        font-size: 28px;
+        line-height: 1.6;
+        opacity: 0.95;
+        margin-bottom: 40px;
+      }
+
+      .highlight-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 40px;
+        border-radius: 20px;
+        margin-top: 40px;
+        backdrop-filter: blur(10px);
+      }
+
+      .highlight-box strong {
+        font-size: 32px;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      /* Slide 3 - Como funciona */
+      .slide-3 {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .step-number {
+        font-size: 48px;
+        font-weight: 800;
+        background: white;
+        color: #4facfe;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .step-text {
+        font-size: 26px;
+        line-height: 1.4;
+      }
+
+      /* Slide 4 - Benefícios */
+      .slide-4 {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      }
+
+      .benefits {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: start;
+        gap: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .benefit-icon {
+        font-size: 48px;
+        flex-shrink: 0;
+      }
+
+      .benefit-text {
+        font-size: 26px;
+        line-height: 1.4;
+      }
+
+      /* Slide 5 - CTA */
+      .slide-5 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        text-align: center;
+      }
+
+      .slide-5 .emoji {
+        font-size: 100px;
+        margin-bottom: 40px;
+      }
+
+      .slide-5 h2 {
+        font-size: 64px;
+        font-weight: 800;
+        margin-bottom: 40px;
+        line-height: 1.2;
+      }
+
+      .slide-5 p {
+        font-size: 32px;
+        opacity: 0.95;
+        margin-bottom: 50px;
+        line-height: 1.5;
+      }
+
+      .cta-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 50px;
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-box strong {
+        font-size: 36px;
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .cta-box .small {
+        font-size: 24px;
+        opacity: 0.9;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          gap: 0;
+        }
+        .slide {
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SLIDE 1 - CAPA -->
+    <div class="slide slide-1">
+      <div class="slide-content">
+        <span class="emoji">📸</span>
+        <h1>Sua Saúde<br />Revelada pelo<br />Seu Rosto</h1>
+        <p class="subtitle">
+          Tecnologia de análise facial que monitora seus sinais vitais e estado
+          de saúde
+        </p>
+        <span class="badge">🔬 Baseado em Ciência</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 - O QUE É -->
+    <div class="slide slide-2">
+      <div class="slide-content">
+        <h2 class="slide-title">🎯 O Que É?</h2>
+        <p class="slide-text">
+          A análise facial é uma tecnologia que usa a câmera do seu smartphone
+          para detectar mudanças microscópicas na cor da sua pele causadas pelo
+          fluxo sanguíneo.
+        </p>
+        <div class="highlight-box">
+          <strong>rPPG - Fotopletismografia Remota</strong>
+          <p style="font-size: 24px; margin-top: 15px">
+            Mesma tecnologia validada cientificamente usada em hospitais, agora
+            acessível no seu celular
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 - COMO FUNCIONA -->
+    <div class="slide slide-3">
+      <div class="slide-content">
+        <h2 class="slide-title">⚙️ Como Funciona?</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+              <strong>Você olha para a câmera</strong> por 30 segundos em
+              ambiente iluminado
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+              <strong>O sistema captura</strong> variações microscópicas na cor
+              da sua pele
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+              <strong>A IA analisa</strong> e extrai seus sinais vitais e
+              indicadores de saúde
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 - BENEFÍCIOS -->
+    <div class="slide slide-4">
+      <div class="slide-content">
+        <h2 class="slide-title">✨ O Que Você Ganha</h2>
+        <div class="benefits">
+          <div class="benefit">
+            <span class="benefit-icon">❤️</span>
+            <div class="benefit-text">
+              <strong>Frequência Cardíaca</strong><br />
+              Monitore seu coração sem equipamentos
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">📊</span>
+            <div class="benefit-text">
+              <strong>Variabilidade Cardíaca (HRV)</strong><br />
+              Entenda seu nível de estresse e recuperação
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">🧬</span>
+            <div class="benefit-text">
+              <strong>Idade Estimada da Pele</strong><br />
+              Veja como seu estilo de vida afeta seu envelhecimento
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">😊</span>
+            <div class="benefit-text">
+              <strong>Estado Emocional</strong><br />
+              Identifique emoções dominantes e padrões de estresse
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 - CTA -->
+    <div class="slide slide-5">
+      <div class="slide-content">
+        <span class="emoji">🚀</span>
+        <h2>Transforme Seu<br />Atendimento!</h2>
+        <p>
+          Ofereça avaliações completas e personalizadas com tecnologia de ponta
+        </p>
+        <div class="cta-box">
+          <strong>📱 EssenciaLab</strong>
+          <p class="small">
+            A plataforma completa de saúde integrativa com análise facial
+            inclusa
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegação Flutuante -->
+    <style>
+      .material-nav-floating {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+      }
+      .nav-btn-back {
+        background: #f3f4f6;
+        color: #374151;
+      }
+      .nav-btn-back:hover {
+        background: #e5e7eb;
+      }
+      .nav-btn-print {
+        background: #3b82f6;
+        color: white;
+      }
+      .nav-btn-print:hover {
+        background: #2563eb;
+      }
+      @media print {
+        .material-nav-floating {
+          display: none !important;
+        }
+      }
+    </style>
+    <div class="material-nav-floating">
+      <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+        ← Voltar
+      </a>
+      <button onclick="window.print()" class="nav-btn nav-btn-print">
+        🖨️ Imprimir / Salvar PDF
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isEditMode = urlParams.get("edit") === "true";
+        const nav = document.querySelector(".material-nav-floating");
+
+        // Botão de Alternar Modo
+        const modeBtn = document.createElement("button");
+        modeBtn.className = "nav-btn";
+        modeBtn.style.background = isEditMode ? "#10B981" : "#8B5CF6";
+        modeBtn.style.color = "white";
+        modeBtn.style.marginRight = "10px";
+        modeBtn.innerHTML = isEditMode ? "🖼️ Gerar Imagens" : "📝 Modo Edição";
+
+        modeBtn.onclick = () => {
+          if (isEditMode) {
+            window.location.href = window.location.pathname;
+          } else {
+            window.location.href = window.location.pathname + "?edit=true";
+          }
+        };
+
+        // Inserir antes do botão de imprimir
+        const printBtn = nav.querySelector(".nav-btn-print");
+        nav.insertBefore(modeBtn, printBtn);
+
+        if (!isEditMode) {
+          // Loading Overlay
+          const loading = document.createElement("div");
+          loading.style.cssText =
+            "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: sans-serif;";
+          loading.innerHTML =
+            '<div style="font-size: 40px; margin-bottom: 20px;">⚙️</div><h3 style="color: #4a5568; margin-bottom: 10px;">Gerando Imagens...</h3><p style="color: #718096;">Transformando slides em imagens de alta qualidade.</p>';
+          document.body.appendChild(loading);
+
+          try {
+            const slides = document.querySelectorAll(".slide");
+            const container = document.body;
+
+            // Container para as imagens
+            const imgContainer = document.createElement("div");
+            imgContainer.style.cssText =
+              "display: flex; flex-direction: column; align-items: center; gap: 40px; width: 100%;";
+
+            for (let i = 0; i < slides.length; i++) {
+              const slide = slides[i];
+
+              // Renderizar
+              const canvas = await html2canvas(slide, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: null,
+                logging: false,
+              });
+
+              const img = document.createElement("img");
+              img.src = canvas.toDataURL("image/png");
+              img.style.cssText =
+                "width: 600px; max-width: 90%; height: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 12px;";
+              img.title = "Botão direito > Salvar imagem como...";
+
+              // Container individual com botão de download
+              const wrapper = document.createElement("div");
+              wrapper.style.cssText =
+                "display: flex; flex-direction: column; align-items: center; gap: 15px;";
+
+              const downloadBtn = document.createElement("a");
+              downloadBtn.href = img.src;
+              downloadBtn.download = `slide-analise-facial-${i + 1}.png`;
+              downloadBtn.innerHTML = "⬇️ Baixar Imagem";
+              downloadBtn.style.cssText =
+                "background: #3b82f6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);";
+
+              wrapper.appendChild(img);
+              wrapper.appendChild(downloadBtn);
+              imgContainer.appendChild(wrapper);
+
+              // Ocultar slide original
+              slide.style.display = "none";
+            }
+
+            // Adicionar container de imagens ao body
+            // Inserir no início do body mas manter nav flutuante
+            document.body.insertBefore(imgContainer, document.body.firstChild);
+
+            // Aviso de sucesso
+            const toast = document.createElement("div");
+            toast.innerHTML =
+              "✨ <strong>Imagens Geradas!</strong> Baixe ou clique com botão direito para salvar.";
+            toast.style.cssText =
+              "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #10B981; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10001; animation: slideDown 0.5s ease-out; font-family: sans-serif;";
+            document.body.appendChild(toast);
+
+            // Remover loading
+            setTimeout(() => loading.remove(), 500);
+          } catch (err) {
+            console.error(err);
+            loading.innerHTML =
+              '<h3 style="color: #e53e3e;">Erro ao gerar imagens</h3><p>Tente recarregar a página.</p>';
+          }
+        }
+      });
+
+      // Animação do Toast
+      const style = document.createElement("style");
+      style.innerHTML =
+        "@keyframes slideDown { from { transform: translate(-50%, -100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }";
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

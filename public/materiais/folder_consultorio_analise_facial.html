@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material para Consultório - Análise Facial</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f8f9fa;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .folder {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* FRENTE DO FOLDER */
+      .folder-front {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .folder-front .icon {
+        font-size: 100px;
+        margin-bottom: 30px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .folder-front h1 {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .folder-front .tagline {
+        font-size: 24px;
+        opacity: 0.95;
+        margin-bottom: 40px;
+      }
+
+      .folder-front .badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+      }
+
+      /* VERSO DO FOLDER */
+      .folder-back {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 28px;
+        font-weight: 700;
+        color: #2d3748;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #667eea;
+      }
+
+      .section-header .emoji {
+        font-size: 36px;
+      }
+
+      .feature-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .feature {
+        display: flex;
+        gap: 15px;
+        align-items: start;
+        padding: 20px;
+        background: #f7fafc;
+        border-radius: 15px;
+        border-left: 4px solid #667eea;
+      }
+
+      .feature .icon {
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+
+      .feature-content h3 {
+        font-size: 18px;
+        color: #2d3748;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      .feature-content p {
+        font-size: 15px;
+        color: #4a5568;
+        line-height: 1.5;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+      }
+
+      .highlight-box h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      .highlight-box p {
+        font-size: 16px;
+        line-height: 1.6;
+        opacity: 0.95;
+      }
+
+      /* PÁGINA INTERNA 1 */
+      .inner-page {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .benefit-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .benefit-card {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .benefit-card .icon {
+        font-size: 40px;
+        flex-shrink: 0;
+      }
+
+      .benefit-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .benefit-card p {
+        font-size: 15px;
+        opacity: 0.95;
+        line-height: 1.4;
+      }
+
+      /* PÁGINA INTERNA 2 */
+      .cta-page {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+      }
+
+      .cta-page .icon {
+        font-size: 80px;
+      }
+
+      .cta-page h2 {
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .cta-page p {
+        font-size: 20px;
+        opacity: 0.95;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      .qr-placeholder {
+        width: 200px;
+        height: 200px;
+        background: white;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 80px;
+        color: #667eea;
+      }
+
+      .contact-info {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 25px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .contact-info p {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          background: white;
+        }
+        .container {
+          gap: 0;
+        }
+        .folder {
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- PÁGINA 1 - FRENTE -->
+      <div class="folder folder-front">
+        <div class="icon">📸</div>
+        <h1>Análise Facial<br />Inteligente</h1>
+        <p class="tagline">Seus sinais vitais revelados através do seu rosto</p>
+        <div class="badge">🔬 Tecnologia Validada Cientificamente</div>
+      </div>
+
+      <!-- PÁGINA 2 - VERSO -->
+      <div class="folder folder-back">
+        <div class="section-header">
+          <span class="emoji">✨</span>
+          <span>O Que Você Descobre</span>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature">
+            <span class="icon">❤️</span>
+            <div class="feature-content">
+              <h3>Frequência Cardíaca</h3>
+              <p>
+                Monitore seu coração em tempo real sem necessidade de
+                equipamentos
+              </p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="icon">📊</span>
+            <div class="feature-content">
+              <h3>Variabilidade Cardíaca (HRV)</h3>
+              <p>
+                Entenda seu nível de estresse, recuperação e saúde do sistema
+                nervoso
+              </p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="icon">🧬</span>
+            <div class="feature-content">
+              <h3>Idade Estimada da Pele</h3>
+              <p>
+                Veja como seu estilo de vida está afetando seu envelhecimento
+                celular
+              </p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span class="icon">😊</span>
+            <div class="feature-content">
+              <h3>Estado Emocional</h3>
+              <p>
+                Identifique suas emoções dominantes e padrões de estresse
+                emocional
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <h3>🔬 Como Funciona?</h3>
+          <p>
+            Usamos tecnologia rPPG (Fotopletismografia Remota) que detecta
+            mudanças microscópicas na cor da sua pele causadas pelo fluxo
+            sanguíneo. É 100% não invasivo e leva apenas 30 segundos!
+          </p>
+        </div>
+      </div>
+
+      <!-- PÁGINA 3 - BENEFÍCIOS -->
+      <div class="folder inner-page">
+        <div class="section-header">
+          <span class="emoji">🎯</span>
+          <span>Por Que Fazer?</span>
+        </div>
+
+        <div class="benefit-grid">
+          <div class="benefit-card">
+            <span class="icon">⚡</span>
+            <div>
+              <h3>Rápido e Prático</h3>
+              <p>Apenas 30 segundos para uma avaliação completa</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <span class="icon">🔒</span>
+            <div>
+              <h3>100% Seguro</h3>
+              <p>Não invasivo, sem contato físico ou radiação</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <span class="icon">📱</span>
+            <div>
+              <h3>Tecnologia Acessível</h3>
+              <p>Usa apenas a câmera do seu smartphone</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <span class="icon">🎓</span>
+            <div>
+              <h3>Ciência Comprovada</h3>
+              <p>Baseado em mais de 100 estudos científicos</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <span class="icon">📈</span>
+            <div>
+              <h3>Acompanhamento</h3>
+              <p>Compare sua evolução ao longo do tempo</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="highlight-box"
+          style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+        >
+          <h3>💡 Integrado ao Seu Protocolo</h3>
+          <p>
+            A análise facial é apenas uma das ferramentas que uso para criar seu
+            protocolo personalizado de saúde. Combinada com questionários
+            detalhados e seus exames, consigo ter uma visão 360° da sua saúde!
+          </p>
+        </div>
+      </div>
+
+      <!-- PÁGINA 4 - CTA -->
+      <div class="folder cta-page">
+        <div class="icon">🚀</div>
+        <h2>Transforme Sua<br />Saúde Hoje!</h2>
+        <p>
+          Agende sua consulta e descubra o poder da tecnologia aplicada à sua
+          saúde integrativa
+        </p>
+
+        <div class="qr-placeholder">📱</div>
+
+        <div class="contact-info">
+          <p><strong>📞 Entre em Contato</strong></p>
+          <p>Agende sua avaliação completa</p>
+          <p style="margin-top: 15px; font-size: 16px">
+            Inclui: Análise Facial + Questionário SOGI + Teia Funcional +
+            Protocolo Personalizado
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Navegação Flutuante -->
+    <style>
+        .material-nav-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-btn-back {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .nav-btn-back:hover {
+            background: #e5e7eb;
+        }
+        .nav-btn-print {
+            background: #3b82f6;
+            color: white;
+        }
+        .nav-btn-print:hover {
+            background: #2563eb;
+        }
+        @media print {
+            .material-nav-floating {
+                display: none !important;
+            }
+        }
+    </style>
+    <div class="material-nav-floating">
+        <a href="INDICE_MATERIAIS.html" class="nav-btn nav-btn-back">
+            ← Voltar
+        </a>
+        <button onclick="window.print()" class="nav-btn nav-btn-print">
+            🖨️ Imprimir / Salvar PDF
+        </button>
+    </div>
+  </body>
+</html>
