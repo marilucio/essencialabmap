@@ -12,6 +12,7 @@ import {
 import { Badge } from "../components/ui/badge";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { getPlatformLink } from "../lib/utils";
 import {
   Camera,
   Sparkles,
@@ -38,7 +39,7 @@ import {
 
 function EssenciaLabHome() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const language = searchParams.get('lang') || 'pt';
+  const language = searchParams.get("lang") || "pt";
 
   const handleLanguageChange = (newLang) => {
     setSearchParams({ lang: newLang });
@@ -83,7 +84,8 @@ function EssenciaLabHome() {
           "💰 Aumente Suas Vendas",
           "🎁 Método CALMA de Presente",
         ],
-        iphoneNote: "iPhone: Acesse pelo navegador Chrome - funciona perfeitamente!",
+        iphoneNote:
+          "iPhone/iPad: Acesse pelo navegador (Safari ou Chrome) - funciona perfeitamente!",
       },
       problem: {
         badge: "😰 Você Se Identifica?",
@@ -123,7 +125,8 @@ function EssenciaLabHome() {
       },
       quickFaq: {
         title: "Tem dúvidas sobre como usar o EssenciaLab?",
-        subtitle: "Veja as respostas para as perguntas mais comuns de consultores",
+        subtitle:
+          "Veja as respostas para as perguntas mais comuns de consultores",
         button: "Ver Dúvidas Frequentes",
       },
       solution: {
@@ -285,7 +288,8 @@ function EssenciaLabHome() {
       faq: {
         badge: "❓ Dúvidas Frequentes",
         title: "Respostas para Suas Principais Dúvidas",
-        subtitle: "Consultores e amantes de óleos essenciais têm essas mesmas perguntas. Veja as respostas completas:",
+        subtitle:
+          "Consultores e amantes de óleos essenciais têm essas mesmas perguntas. Veja as respostas completas:",
         questions: [
           {
             q: "Eu não entendo nada de tecnologia, tenho medo de travar na hora",
@@ -366,7 +370,8 @@ function EssenciaLabHome() {
           "💰 Increase Your Sales",
           "🎁 CALM Method as Gift",
         ],
-        iphoneNote: "iPhone: Access via Chrome browser - works perfectly!",
+        iphoneNote:
+          "iPhone/iPad: Access via Safari or Chrome browser - works perfectly!",
       },
       problem: {
         badge: "😰 Do You Identify?",
@@ -406,7 +411,8 @@ function EssenciaLabHome() {
       },
       quickFaq: {
         title: "Have questions about how to use EssenciaLab?",
-        subtitle: "See the answers to the most common questions from consultants",
+        subtitle:
+          "See the answers to the most common questions from consultants",
         button: "View FAQ",
       },
       solution: {
@@ -568,7 +574,8 @@ function EssenciaLabHome() {
       faq: {
         badge: "❓ Frequently Asked Questions",
         title: "Answers to Your Main Questions",
-        subtitle: "Consultants and essential oil lovers have these same questions. See the complete answers:",
+        subtitle:
+          "Consultants and essential oil lovers have these same questions. See the complete answers:",
         questions: [
           {
             q: "I don't understand technology, I'm afraid of getting stuck",
@@ -649,7 +656,8 @@ function EssenciaLabHome() {
           "💰 Aumenta Tus Ventas",
           "🎁 Método CALMA de Regalo",
         ],
-        iphoneNote: "iPhone: Accede por el navegador Chrome - ¡funciona perfectamente!",
+        iphoneNote:
+          "iPhone/iPad: Accede por el navegador Safari o Chrome - ¡funciona perfectamente!",
       },
       problem: {
         badge: "😰 ¿Te Identificas?",
@@ -689,7 +697,8 @@ function EssenciaLabHome() {
       },
       quickFaq: {
         title: "¿Tienes dudas sobre cómo usar EssenciaLab?",
-        subtitle: "Ve las respuestas a las preguntas más comunes de consultores",
+        subtitle:
+          "Ve las respuestas a las preguntas más comunes de consultores",
         button: "Ver Preguntas Frecuentes",
       },
       solution: {
@@ -851,7 +860,8 @@ function EssenciaLabHome() {
       faq: {
         badge: "❓ Preguntas Frecuentes",
         title: "Respuestas a Tus Principales Dudas",
-        subtitle: "Los consultores y amantes de aceites esenciales tienen estas mismas preguntas. Ve las respuestas completas:",
+        subtitle:
+          "Los consultores y amantes de aceites esenciales tienen estas mismas preguntas. Ve las respuestas completas:",
         questions: [
           {
             q: "No entiendo nada de tecnología, tengo miedo de quedarme trabado",
@@ -973,12 +983,16 @@ function EssenciaLabHome() {
               {/* Download Buttons */}
               <div className="flex flex-col gap-4 items-center lg:items-start max-w-md">
                 <a
-                  href="https://play.google.com/store/apps/details?id=site.essencialab.app"
+                  href="https://play.google.com/store/apps/details?id=com.essencialab.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-black hover:bg-gray-900 text-white rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto justify-center"
                 >
-                  <svg className="h-10 w-10" viewBox="0 0 24 24" fill="currentColor">
+                  <svg
+                    className="h-10 w-10"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                   </svg>
                   <div className="text-left">
@@ -989,11 +1003,23 @@ function EssenciaLabHome() {
                 <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center lg:text-left w-full">
                   <p className="text-sm text-gray-700">
                     <span className="text-2xl mr-2">📱</span>
-                    <span dangerouslySetInnerHTML={{
-                      __html: t.hero.iphoneNote
-                        .replace(/(iPhone:)/gi, '<strong class="text-blue-700">$1</strong>')
-                        .replace(/(Chrome)/gi, '<strong class="text-blue-700">$1</strong>')
-                    }} />
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: t.hero.iphoneNote
+                          .replace(
+                            /(iPhone\/iPad:)/gi,
+                            '<strong class="text-blue-700">$1</strong>'
+                          )
+                          .replace(
+                            /(Chrome)/gi,
+                            '<strong class="text-blue-700">$1</strong>'
+                          )
+                          .replace(
+                            /(Safari)/gi,
+                            '<strong class="text-blue-700">$1</strong>'
+                          ),
+                      }}
+                    />
                   </p>
                 </div>
               </div>
@@ -1032,9 +1058,7 @@ function EssenciaLabHome() {
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 {t.quickFaq.title}
               </h3>
-              <p className="text-gray-600">
-                {t.quickFaq.subtitle}
-              </p>
+              <p className="text-gray-600">{t.quickFaq.subtitle}</p>
             </div>
             <Button
               size="lg"
@@ -1156,9 +1180,7 @@ function EssenciaLabHome() {
             <Button
               size="lg"
               className="text-lg px-10 py-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg"
-              onClick={() =>
-                window.open("https://app.essencialab.site", "_blank")
-              }
+              onClick={() => window.open(getPlatformLink(), "_blank")}
             >
               {t.solution.cta}
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -1293,9 +1315,7 @@ function EssenciaLabHome() {
                   <Button
                     size="lg"
                     className="w-full mt-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg"
-                    onClick={() =>
-                      window.open("https://app.essencialab.site", "_blank")
-                    }
+                    onClick={() => window.open(getPlatformLink(), "_blank")}
                   >
                     <Gift className="mr-2 h-5 w-5" />
                     {t.gift.cta}
@@ -1425,7 +1445,10 @@ function EssenciaLabHome() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+      <section
+        id="faq"
+        className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50"
+      >
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16" data-aos="fade-up">
             <Badge className="mb-4 bg-green-100 text-green-700 hover:bg-green-200">
@@ -1503,9 +1526,7 @@ function EssenciaLabHome() {
               <Button
                 size="lg"
                 className="text-lg px-10 py-7 bg-white text-green-700 hover:bg-green-50 shadow-2xl hover:shadow-3xl transition-all duration-300"
-                onClick={() =>
-                  window.open("https://app.essencialab.site", "_blank")
-                }
+                onClick={() => window.open(getPlatformLink(), "_blank")}
               >
                 <Sparkles className="mr-2 h-6 w-6" />
                 {t.cta.cta1}
