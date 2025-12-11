@@ -10,6 +10,12 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../components/ui/accordion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getPlatformLink } from "../lib/utils";
@@ -75,17 +81,16 @@ function EssenciaLabHome() {
         title: "Dobre a venda de óleos essenciais",
         titleHighlight: "com inteligência artificial",
         subtitle:
-          "Análise facial com IA que recomenda os óleos perfeitos para cada pessoa em segundos. Impressione seus clientes e aumente suas vendas naturalmente.",
-        cta1: "Quero Começar Agora",
-        cta2: "Ver Como Funciona",
+          "Análise facial com IA que ajuda consultores doTERRA a recomendar os óleos perfeitos para cada pessoa em segundos. Impressione seus clientes e aumente suas vendas naturalmente.",
+        cta1: "Começar gratuitamente",
+        cta2: "Ver como funciona",
         features: [
           "✨ Análise Facial Instantânea",
           "🎯 Recomendações Personalizadas",
           "💰 Aumente Suas Vendas",
-          "🎁 Método CALMA de Presente",
         ],
         iphoneNote:
-          "iPhone/iPad: Acesse pelo navegador (Safari ou Chrome) - funciona perfeitamente!",
+          "📱 iPhone/iPad: acesse pelo navegador (Safari ou Chrome) – funciona perfeitamente!",
       },
       problem: {
         badge: "😰 Você Se Identifica?",
@@ -158,7 +163,7 @@ function EssenciaLabHome() {
               icon: Leaf,
               title: "Relatório Autoexplicativo",
               description:
-                "É emitido um relatório completo com recomendações dos principais óleos essenciais e suplementos personalizados para aquela pessoa.",
+                "É emitido um relatório completo com recomendações dos principais óleos essenciais doTERRA e, quando fizer sentido, sugestões de suplementos da linha doTERRA (como ômega 3, colágeno, Lifelong Vitality e outros) personalizadas para aquela pessoa.",
             },
           ],
         },
@@ -214,7 +219,9 @@ function EssenciaLabHome() {
         subtitle:
           "Ao criar sua conta gratuita, você recebe de presente o Método CALMA - para você ou seus clientes",
         description:
-          "Acorda de madrugada com o coração disparado? Sua mente não desliga à noite? O Método CALMA é um protocolo natural desenvolvido por naturopata para acalmar a ansiedade noturna e melhorar o sono em minutos.",
+          "Ao criar sua conta gratuita, você recebe de presente o Método CALMA – um protocolo natural desenvolvido por naturopata para acalmar crises de ansiedade noturna e melhorar o sono.",
+        usage:
+          "Você pode usar o Método CALMA para você mesmo ou oferecer como valor extra aos seus clientes.",
         features: [
           {
             icon: "📋",
@@ -232,21 +239,15 @@ function EssenciaLabHome() {
             description: "Alimentação que acalma naturalmente",
           },
         ],
-        pains: [
-          "Acordar de madrugada com coração disparado",
-          "Mente que não desliga à noite",
-          "Noites em claro sem conseguir dormir",
-          "Sensação de que vai enlouquecer",
-        ],
         cta: "Quero o Método CALMA Grátis",
       },
       forProfessionals: {
-        badge: "🏥 Para Profissionais da Saúde",
+        badge: "🏥 Para Aromaterapeutas, Naturopatas e Terapeutas Integrativos",
         title: "Sistema MAP Completo",
         subtitle:
           "Aromaterapeutas e terapeutas: leve seu atendimento a outro nível",
         description:
-          "Se você é aromaterapeuta, naturopata ou terapeuta holístico, o Sistema MAP oferece ferramentas profissionais completas para avaliação metabólica, protocolos terapêuticos avançados e acompanhamento detalhado de pacientes.",
+          "Se você é aromaterapeuta, naturopata, terapeuta integrativo ou nutricionista funcional, o Sistema MAP oferece ferramentas profissionais completas para avaliação metabólica, protocolos terapêuticos avançados e acompanhamento detalhado de pacientes.",
         features: [
           "Avaliação metabólica completa (SOGI)",
           "Biblioteca de protocolos terapêuticos",
@@ -313,7 +314,7 @@ function EssenciaLabHome() {
           },
           {
             q: "Funciona com qualquer marca de óleos?",
-            a: "Sim! Embora muitos consultores doTERRA usem o EssenciaLab, as recomendações funcionam para qualquer marca de óleos essenciais terapêuticos de qualidade.",
+            a: "Sim. O EssenciaLab foi criado em colaboração com consultores doTERRA, mas as recomendações podem ser adaptadas para qualquer marca de óleos essenciais terapêuticos de qualidade. Você pode usar o relatório para indicar os óleos que já trabalha hoje.",
           },
           {
             q: "Preciso saber muito sobre óleos para usar?",
@@ -344,7 +345,7 @@ function EssenciaLabHome() {
           "📱 Use em qualquer celular",
           "🇧🇷 Suporte em português",
         ],
-        cta1: "Criar Minha Conta Grátis",
+        cta1: "Começar gratuitamente",
         cta2: "Ver Demonstração",
       },
     },
@@ -980,47 +981,76 @@ function EssenciaLabHome() {
                 ))}
               </div>
 
-              {/* Download Buttons */}
-              <div className="flex flex-col gap-4 items-center lg:items-start max-w-md">
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.essencialab.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-black hover:bg-gray-900 text-white rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto justify-center"
-                >
-                  <svg
-                    className="h-10 w-10"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+              {/* Action Buttons & App Info */}
+              <div className="flex flex-col gap-6 items-center lg:items-start max-w-xl">
+                {/* Main CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                  <Button
+                    size="lg"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-lg py-6 shadow-lg"
+                    onClick={() => window.open(getPlatformLink(), "_blank")}
                   >
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                  </svg>
-                  <div className="text-left">
-                    <div className="text-xs opacity-90">Disponível na</div>
-                    <div className="text-lg font-bold">Google Play</div>
+                    <Sparkles className="mr-2 h-5 w-5" />
+                    {t.hero.cta1}
+                  </Button>
+
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="flex-1 border-2 border-green-600 text-green-700 hover:bg-green-50 text-lg py-6"
+                    onClick={() => scrollToSection("how-it-works")}
+                  >
+                    {t.hero.cta2}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+
+                {/* Mobile App Info */}
+                <div className="flex flex-col sm:flex-row gap-4 items-center w-full">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.essencialab.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-3 bg-black hover:bg-gray-900 text-white rounded-xl transition-all shadow-md w-full sm:w-auto justify-center"
+                  >
+                    <svg
+                      className="h-8 w-8"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <div className="text-left">
+                      <div className="text-[10px] opacity-90 uppercase tracking-wide">
+                        Disponível na
+                      </div>
+                      <div className="text-base font-bold -mt-1">
+                        Google Play
+                      </div>
+                    </div>
+                  </a>
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-center lg:text-left flex-1 w-full flex items-center justify-center lg:justify-start">
+                    <p className="text-sm text-gray-700">
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: t.hero.iphoneNote
+                            .replace(
+                              /(iPhone\/iPad:)/gi,
+                              '<strong class="text-blue-700">$1</strong>'
+                            )
+                            .replace(
+                              /(Chrome)/gi,
+                              '<strong class="text-blue-700">$1</strong>'
+                            )
+                            .replace(
+                              /(Safari)/gi,
+                              '<strong class="text-blue-700">$1</strong>'
+                            ),
+                        }}
+                      />
+                    </p>
                   </div>
-                </a>
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center lg:text-left w-full">
-                  <p className="text-sm text-gray-700">
-                    <span className="text-2xl mr-2">📱</span>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: t.hero.iphoneNote
-                          .replace(
-                            /(iPhone\/iPad:)/gi,
-                            '<strong class="text-blue-700">$1</strong>'
-                          )
-                          .replace(
-                            /(Chrome)/gi,
-                            '<strong class="text-blue-700">$1</strong>'
-                          )
-                          .replace(
-                            /(Safari)/gi,
-                            '<strong class="text-blue-700">$1</strong>'
-                          ),
-                      }}
-                    />
-                  </p>
                 </div>
               </div>
             </div>
@@ -1260,24 +1290,14 @@ function EssenciaLabHome() {
             <div data-aos="fade-right">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
                 <Moon className="h-16 w-16 mb-6 text-purple-200" />
-                <h3 className="text-2xl font-bold mb-4">
-                  Acorda de Madrugada com Coração Disparado?
-                </h3>
-                <p className="text-purple-100 mb-6 leading-relaxed">
+                <p className="text-purple-100 mb-6 leading-relaxed text-lg">
                   {t.gift.description}
                 </p>
-
-                <div className="space-y-3 mb-8">
-                  <p className="font-semibold text-purple-200">
-                    Se você já passou por:
+                {t.gift.usage && (
+                  <p className="text-purple-100 leading-relaxed text-lg font-medium">
+                    {t.gift.usage}
                   </p>
-                  {t.gift.pains.map((pain, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-purple-300 flex-shrink-0 mt-0.5" />
-                      <span className="text-purple-100">{pain}</span>
-                    </div>
-                  ))}
-                </div>
+                )}
               </div>
             </div>
 
@@ -1464,25 +1484,28 @@ function EssenciaLabHome() {
             )}
           </div>
 
-          <div className="space-y-4">
-            {t.faq.questions.map((item, index) => (
-              <Card
-                key={index}
-                className="border-2 hover:border-green-500 transition-all duration-300"
-                data-aos="fade-up"
-                data-aos-delay={index * 50}
-              >
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-start gap-3">
-                    <Lightbulb className="h-5 w-5 text-green-600 flex-shrink-0 mt-1" />
-                    <span>{item.q}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 leading-relaxed pl-8">{item.a}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {t.faq.questions.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-white border-2 border-green-100 rounded-xl px-4 data-[state=open]:border-green-500 transition-all duration-300"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 50}
+                >
+                  <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-green-700 py-4">
+                    <div className="flex items-start gap-3">
+                      <Lightbulb className="h-5 w-5 text-green-600 flex-shrink-0 mt-1" />
+                      <span>{item.q}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 leading-relaxed pl-8 pb-4">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
@@ -1534,6 +1557,22 @@ function EssenciaLabHome() {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="py-8 px-4 bg-gray-50 border-t border-gray-200">
+        <div className="container mx-auto max-w-4xl text-center">
+          <p className="text-sm text-gray-500 flex flex-col md:flex-row items-center justify-center gap-2">
+            <span className="font-bold text-amber-600 flex items-center gap-1">
+              ⚠ Aviso importante:
+            </span>
+            <span>
+              O EssenciaLab não substitui consulta médica, psicológica ou
+              nutricional. As análises têm caráter educativo e de bem-estar,
+              servindo como apoio para conversas e escolhas saudáveis.
+            </span>
+          </p>
         </div>
       </section>
 
