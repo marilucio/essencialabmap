@@ -55,7 +55,7 @@ const SolutionSection = () => {
           >
             <div className="relative bg-gradient-to-br from-green-100 to-emerald-200 rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src="/public/images/iascaning.webp" 
+                src="/images/iascaning.webp" 
                 alt="Tecnologia de Análise Facial" 
                 className="w-full h-80 md:h-96 object-cover"
                 onError={(e) => {

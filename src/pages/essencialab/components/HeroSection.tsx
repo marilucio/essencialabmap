@@ -35,7 +35,7 @@ const HeroSection = () => {
               {/* Mockup de telefone com análise facial */}
               <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden">
                 <img 
-                  src="/public/images/scanface.webp" 
+                  src="/images/scanface.webp" 
                   alt="Análise Facial no EssenciaLab" 
                   className="w-full h-64 md:h-80 lg:h-96 object-cover"
                   onError={(e) => {
