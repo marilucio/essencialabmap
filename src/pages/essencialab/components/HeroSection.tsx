@@ -113,29 +113,37 @@ const HeroSection = () => {
                 </motion.button>
               </div>
 
-              <p className="text-center lg:text-left text-sm text-gray-600 font-semibold">
-                Comece seu Teste Grátis de 7 Dias
-              </p>
+              <div className="text-center lg:text-left space-y-2">
+                <p className="text-sm text-gray-700 font-bold">
+                  🚀 Não requer conhecimentos técnicos. Aponte, escaneie e venda.
+                </p>
+                <p className="text-sm text-gray-600 font-semibold">
+                  Comece seu Teste Grátis de 7 Dias
+                </p>
+                <p className="text-xs text-gray-500">
+                  Sem Cartão de Crédito • Cancelamento Fácil • Download Gratuito
+                </p>
+              </div>
+            </div>
 
-              {/* Garantias */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500 text-xl">✅</span>
-                  <span>Download Gratuito</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500 text-xl">✅</span>
-                  <span>7 Dias Grátis</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500 text-xl">✅</span>
-                  <span>Sem Cartão de Crédito</span>
-                </div>
+            {/* Garantias */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>Download Gratuito</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>7 Dias Grátis</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>Sem Cartão de Crédito</span>
               </div>
             </div>
 
             {/* Prova Social Rápida */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 border border-green-100 shadow-lg">
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 border border-green-100 shadow-lg mt-6">
               <p className="text-sm text-gray-700 leading-relaxed">
                 <span className="font-bold text-green-700">Mais de 500 consultores</span> já estão usando o EssenciaLab para 
                 <span className="font-semibold"> impressionar seus clientes e triplicar suas vendas</span>.

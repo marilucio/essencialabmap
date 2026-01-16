@@ -53,6 +53,13 @@ const ProofSection = () => {
             </span>
           </h2>
 
+          <div className="bg-gradient-to-r from-green-600 to-emerald-700 rounded-3xl p-8 md:p-10 mb-12 shadow-2xl relative overflow-hidden group">
+            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] pointer-events-none"></div>
+            <p className="text-xl md:text-2xl text-white leading-relaxed font-medium relative z-10 italic">
+              "Imagine chegar na sua próxima classe, apontar o celular e ver o rosto da sua cliente brilhar quando o app 'adivinha' exatamente o que ela está sentindo emocionalmente. O relatório sai na hora, a venda acontece naturalmente e você se torna a autoridade máxima no ambiente. É esse o poder que o EssenciaLab coloca na sua mão."
+            </p>
+          </div>
+
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
             Resultados reais de consultores que decidiram <span className="font-bold text-gray-900">parar de vender do jeito antigo</span>
           </p>
@@ -149,10 +156,10 @@ const ProofSection = () => {
                 <span>✅ Sem Cartão de Crédito</span>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-3 rounded-full">
-                <span>✅ Cancele Quando Quiser</span>
+                <span>✅ Download Gratuito</span>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-3 rounded-full">
-                <span>✅ Suporte 24/7</span>
+                <span>✅ Cancelamento Instantâneo</span>
               </div>
             </div>
           </div>
