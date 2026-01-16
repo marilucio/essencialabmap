@@ -1,8 +1,8 @@
 import "./App.css";
-import EssenciaLabHome from "./pages/EssenciaLabHome";
+import EssenciaLab from "./pages/essencialab/Index";
 
 function App() {
-  return <EssenciaLabHome />;
+  return <EssenciaLab />;
 }
 
 export default App;
