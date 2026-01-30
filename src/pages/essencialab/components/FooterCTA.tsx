@@ -10,7 +10,7 @@ const FooterCTA = () => {
 
   const handleGooglePlayClick = () => {
     // Link para Google Play
-    window.open('#', '_blank');
+    window.open('https://play.google.com/store/apps/details?id=com.essencialab.app', '_blank');
   };
 
   const finalBenefits = [
