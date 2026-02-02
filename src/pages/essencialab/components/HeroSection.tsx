@@ -5,7 +5,7 @@ import { Apple, Smartphone } from "lucide-react";
 const HeroSection = () => {
   const handleAppStoreClick = () => {
     // Link para App Store
-    window.open("#", "_blank");
+    window.open("https://apps.apple.com/app/id6756675158", "_blank");
   };
 
   const handleGooglePlayClick = () => {

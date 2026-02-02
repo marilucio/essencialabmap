@@ -15,6 +15,6 @@ export function getPlatformLink(): string {
       (navigator as any).maxTouchPoints > 1);
   if (isAndroid)
     return "https://play.google.com/store/apps/details?id=com.essencialab.app";
-  if (isIOS) return "https://essencialab.app";
+  if (isIOS) return "https://apps.apple.com/app/id6756675158";
   return "https://essencialab.app";
 }

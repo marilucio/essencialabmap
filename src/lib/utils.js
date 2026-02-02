@@ -10,6 +10,6 @@ export function getPlatformLink() {
   const isAndroid = /Android/i.test(ua);
   const isIOS = /iPad|iPhone|iPod/i.test(ua) || (typeof navigator !== 'undefined' && navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   if (isAndroid) return 'https://play.google.com/store/apps/details?id=com.essencialab.app';
-  if (isIOS) return 'https://essencialab.app';
+  if (isIOS) return 'https://apps.apple.com/app/id6756675158';
   return 'https://essencialab.app';
 }
