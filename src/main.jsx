@@ -19,6 +19,7 @@ import MetodoCalmaES from './pages/metodocalmaes/MetodoCalma'
 import MetodoCalmaB from './pages/metodocalmab/MetodoCalma'
 import MetodoCalmaBeS from './pages/metodocalmabes/MetodoCalma'
 import EssenciaLab from './pages/essencialab/Index'
+import Sinais from './pages/sinais/Index'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/metodocalmab/*" element={<MetodoCalmaB />} />
         <Route path="/metodocalmabes/*" element={<MetodoCalmaBeS />} />
         <Route path="/essencialab" element={<EssenciaLab />} />
+        <Route path="/sinais" element={<Sinais />} />
         <Route path="/termos-de-uso" element={<TermosDeUso />} />
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
         <Route path="/lgpd" element={<LGPD />} />
