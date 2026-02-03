@@ -17,6 +17,17 @@
   to = "/metodocalma/assets/:splat"
   status = 200
 
+# Serve autobot landing page
+[[redirects]]
+  from = "/autobot"
+  to = "/autobot/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/autobot/"
+  to = "/autobot/index.html"
+  status = 200
+
 # SPA fallback for main site (must be last)
 [[redirects]]
   from = "/*"

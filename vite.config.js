@@ -15,6 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
+        autobot: path.resolve(__dirname, 'autobot/index.html'),
       },
     },
   },
