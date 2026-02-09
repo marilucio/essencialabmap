@@ -69,6 +69,53 @@ function MapLandingPage({ language = "pt" }) {
   const [selectedDemoType, setSelectedDemoType] = useState(null);
   const [demoStep, setDemoStep] = useState(0);
 
+  // Form states
+  const [formEmail, setFormEmail] = useState("");
+  const [formEspecialidade, setFormEspecialidade] = useState("");
+  const [formStatus, setFormStatus] = useState("idle");
+  const [formError, setFormError] = useState("");
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!formEmail || !formEspecialidade) return;
+
+    setFormStatus("loading");
+    setFormError("");
+
+    try {
+      const response = await fetch(
+        "https://n8n.mariluciorocha.com/webhook/map-lead",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formEmail,
+            especialidade: formEspecialidade,
+            source: "map-landing-page",
+            language: language,
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Submission failed");
+
+      setFormStatus("success");
+      setTimeout(() => {
+        window.location.href = "https://essencialab.app";
+      }, 1500);
+    } catch (err) {
+      setFormStatus("error");
+      setFormError(
+        language === "es"
+          ? "Error al enviar. Intenta de nuevo."
+          : language === "en"
+            ? "Submission failed. Please try again."
+            : "Erro ao enviar. Tente novamente."
+      );
+    }
+  };
+
   // Inicializa a biblioteca de animações AOS
   useEffect(() => {
     if (typeof AOS !== "undefined") {
@@ -2639,25 +2686,9 @@ function MapLandingPage({ language = "pt" }) {
 
                 <div className="bg-gray-50 rounded-2xl p-6">
                   <form
-                    name="guia-essencialab"
-                    method="POST"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
+                    onSubmit={handleFormSubmit}
                     className="space-y-4"
-                    action="https://essencialab.app"
                   >
-                    <input
-                      type="hidden"
-                      name="form-name"
-                      value="guia-essencialab"
-                    />
-                    <p style={{ display: "none" }}>
-                      <label>
-                        Don't fill this out if you're human:{" "}
-                        <input name="bot-field" />
-                      </label>
-                    </p>
-
                     <div>
                       <label
                         htmlFor="email-guia"
@@ -2671,7 +2702,10 @@ function MapLandingPage({ language = "pt" }) {
                         name="email"
                         placeholder={t.form.emailPlaceholder}
                         required
+                        value={formEmail}
+                        onChange={(e) => setFormEmail(e.target.value)}
                         className="w-full"
+                        disabled={formStatus === "loading" || formStatus === "success"}
                       />
                     </div>
 
@@ -2682,7 +2716,11 @@ function MapLandingPage({ language = "pt" }) {
                       >
                         {t.form.specialtyLabel}
                       </label>
-                      <Select name="especialidade" required>
+                      <Select
+                        value={formEspecialidade}
+                        onValueChange={setFormEspecialidade}
+                        disabled={formStatus === "loading" || formStatus === "success"}
+                      >
                         <SelectTrigger className="w-full">
                           <SelectValue
                             placeholder={t.form.specialtyPlaceholder}
@@ -2712,10 +2750,30 @@ function MapLandingPage({ language = "pt" }) {
 
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                      disabled={formStatus === "loading" || formStatus === "success"}
+                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
                     >
-                      {t.form.submit}
+                      {formStatus === "loading" ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          {language === "es" ? "Enviando..." : language === "en" ? "Submitting..." : "Enviando..."}
+                        </span>
+                      ) : formStatus === "success" ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <CheckCircle className="w-5 h-5" />
+                          {language === "es" ? "¡Registrado!" : language === "en" ? "Registered!" : "Cadastrado!"}
+                        </span>
+                      ) : (
+                        t.form.submit
+                      )}
                     </Button>
+
+                    {formStatus === "error" && (
+                      <p className="text-sm text-red-600 text-center">{formError}</p>
+                    )}
 
                     <p className="text-xs text-gray-500 text-center">
                       {t.form.joinText}

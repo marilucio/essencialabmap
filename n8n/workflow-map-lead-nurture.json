@@ -1,0 +1,443 @@
+{
+  "name": "MAP Lead Capture & Nurture",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "map-lead",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://essencialab.app,http://localhost:5173"
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Receber Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "map-lead"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Lead recebido com sucesso' }) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond-webhook",
+      "name": "Responder Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+            "especialidade": "={{ $('Webhook - Receber Lead').item.json.body.especialidade }}",
+            "timestamp": "={{ $('Webhook - Receber Lead').item.json.body.timestamp }}",
+            "source": "={{ $('Webhook - Receber Lead').item.json.body.source }}",
+            "language": "={{ $('Webhook - Receber Lead').item.json.body.language }}",
+            "status": "new"
+          }
+        },
+        "options": {}
+      },
+      "id": "google-sheets-append",
+      "name": "Google Sheets - Salvar Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [700, 160],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - CONFIGURAR"
+        }
+      },
+      "notes": "CONFIGURAR: 1) Crie uma planilha com colunas na PRIMEIRA LINHA: email | especialidade | timestamp | source | language | status. 2) Configure as credenciais Google Sheets OAuth2. 3) Selecione o documento e a aba. IMPORTANTE: Se as expressões não funcionarem, troque mappingMode para 'autoMapInputData' ou teste com $json.body.email vs $json.email conforme sua versão do n8n."
+    },
+    {
+      "parameters": {
+        "url": "https://drive.google.com/uc?export=download&id=1JlxYJeI9WRNX_IUMPdnL8QVkt-wo5yN7",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "http-download-pdf",
+      "name": "HTTP - Baixar PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [700, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "map@essencialab.app",
+        "toEmail": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+        "subject": "Seu Guia MAP chegou! - EssenciaLab",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif'><table role='presentation' width='100%' cellpadding='0' cellspacing='0' style='background-color:#f8fafc'><tr><td align='center' style='padding:40px 20px'><table role='presentation' width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.07)'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);padding:40px 30px;text-align:center'><h1 style='color:#ffffff;font-size:28px;margin:0 0 8px'>EssenciaLab MAP</h1><p style='color:rgba(255,255,255,0.9);font-size:16px;margin:0'>Método de Avaliação Personalizada</p></td></tr><tr><td style='padding:40px 30px'><h2 style='color:#1e293b;font-size:22px;margin:0 0 16px'>Seu Guia MAP chegou!</h2><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Obrigado por se cadastrar! Em anexo você encontra o <strong>Guia do Método de Avaliação Personalizada (MAP)</strong> — um material exclusivo para profissionais de saúde que desejam elevar o nível dos seus atendimentos com tecnologia de ponta.</p><div style='background-color:#f0fdf4;border-left:4px solid #16a34a;padding:16px 20px;border-radius:0 8px 8px 0;margin:0 0 24px'><p style='color:#166534;font-size:14px;margin:0'><strong>O que você vai encontrar no guia:</strong></p><ul style='color:#166534;font-size:14px;margin:8px 0 0;padding-left:20px'><li>Como funciona a Análise Facial com rPPG (Fotopletismografia Remota)</li><li>Métricas em tempo real: FC, HRV, idade da pele, estado emocional e níveis de estresse</li><li>Como integrar o MAP com o Questionário SOGI e a Teia Funcional</li><li>Estratégia de Avaliação Completa 360° por especialidade</li><li>Como agregar valor ao atendimento sem cobrar separadamente pela análise</li></ul></div><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 8px'>Nos próximos dias, enviaremos conteúdos exclusivos sobre como o MAP está transformando a prática de profissionais de saúde integrativa.</p><p style='color:#475569;font-size:14px;line-height:1.6;margin:0 0 24px;font-style:italic'>Dica: a análise facial leva apenas 30 segundos com a câmera do celular — sem equipamentos adicionais.</p><table role='presentation' cellpadding='0' cellspacing='0' style='margin:0 auto'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50px;padding:14px 32px'><a href='https://essencialab.app' style='color:#ffffff;text-decoration:none;font-size:16px;font-weight:600'>Conhecer o EssenciaLab</a></td></tr></table></td></tr><tr><td style='background-color:#f8fafc;padding:24px 30px;text-align:center;border-top:1px solid #e2e8f0'><p style='color:#94a3b8;font-size:12px;margin:0'>EssenciaLab — Tecnologia para profissionais de saúde integrativa</p><p style='color:#94a3b8;font-size:12px;margin:4px 0 0'>Londrina, Paraná, Brasil | contato@essencialab.app</p></td></tr></table></td></tr></table></body></html>",
+        "options": {
+          "attachments": "data"
+        }
+      },
+      "id": "email-welcome",
+      "name": "Email - Boas-vindas + PDF",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [920, 440],
+      "credentials": {
+        "smtp": {
+          "id": "",
+          "name": "SMTP - CONFIGURAR"
+        }
+      },
+      "notes": "CONFIGURAR: Configure as credenciais SMTP com seu servidor de email."
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "days"
+      },
+      "id": "wait-3-days",
+      "name": "Esperar 3 Dias",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1140, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "map@essencialab.app",
+        "toEmail": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+        "subject": "Como a Análise Facial com rPPG transforma seus atendimentos",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif'><table role='presentation' width='100%' cellpadding='0' cellspacing='0' style='background-color:#f8fafc'><tr><td align='center' style='padding:40px 20px'><table role='presentation' width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.07)'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);padding:30px;text-align:center'><h1 style='color:#ffffff;font-size:24px;margin:0'>EssenciaLab MAP</h1><p style='color:rgba(255,255,255,0.85);font-size:14px;margin:4px 0 0'>Método de Avaliação Personalizada</p></td></tr><tr><td style='padding:40px 30px'><h2 style='color:#1e293b;font-size:22px;margin:0 0 16px'>De dados subjetivos a métricas objetivas — em 30 segundos</h2><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Já conferiu o Guia MAP? Hoje queremos aprofundar em algo que está transformando consultas: a <strong>Análise Facial com rPPG</strong> (Fotopletismografia Remota) — a mesma tecnologia validada pela FDA e utilizada em hospitais e telemedicina.</p><div style='margin:0 0 24px'><div style='background-color:#eff6ff;padding:16px 20px;border-radius:12px;margin:0 0 12px'><h3 style='color:#1e40af;font-size:16px;margin:0 0 6px'>1. Objetividade Imediata</h3><p style='color:#3b82f6;font-size:14px;margin:0;line-height:1.5'>Transforme queixas subjetivas como \"estou cansado\" em dados concretos: frequência cardíaca, HRV (variabilidade cardíaca), níveis de estresse e estado emocional — tudo em tempo real, apenas com a câmera do celular.</p></div><div style='background-color:#f0fdf4;padding:16px 20px;border-radius:12px;margin:0 0 12px'><h3 style='color:#166534;font-size:16px;margin:0 0 6px'>2. Avaliação Completa 360°</h3><p style='color:#16a34a;font-size:14px;margin:0;line-height:1.5'>Correlacione os dados da análise facial com o Questionário SOGI (200+ perguntas) e a Teia Funcional (8 sistemas corporais interconectados). Exemplo: \"Seu HRV baixo confirma o que o SOGI indicou no pilar de estresse crônico.\"</p></div><div style='background-color:#fefce8;padding:16px 20px;border-radius:12px'><h3 style='color:#854d0e;font-size:16px;margin:0 0 6px'>3. Prova Tangível para o Paciente</h3><p style='color:#a16207;font-size:14px;margin:0;line-height:1.5'>Pacientes que veem seus próprios dados se engajam mais no tratamento. Compare análises ao longo do tempo e mostre a evolução real — isso justifica o investimento e gera indicações espontâneas.</p></div></div><div style='background-color:#f8fafc;border-radius:12px;padding:20px;border:1px solid #e2e8f0;margin:0 0 24px'><p style='color:#475569;font-size:14px;line-height:1.6;margin:0;font-style:italic'>\"Eu nunca imaginei que uma análise simples pelo smartphone pudesse revelar tanto sobre minha saúde. Ver meu HRV melhorar a cada consulta me motiva a seguir o protocolo.\" — Paciente real</p></div><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>No próximo email, vamos mostrar na prática como um profissional integrou o MAP na rotina clínica e os resultados que obteve.</p><table role='presentation' cellpadding='0' cellspacing='0' style='margin:0 auto'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50px;padding:14px 32px'><a href='https://essencialab.app' style='color:#ffffff;text-decoration:none;font-size:16px;font-weight:600'>Experimentar o MAP</a></td></tr></table></td></tr><tr><td style='background-color:#f8fafc;padding:24px 30px;text-align:center;border-top:1px solid #e2e8f0'><p style='color:#94a3b8;font-size:12px;margin:0'>EssenciaLab — Tecnologia para profissionais de saúde integrativa</p><p style='color:#94a3b8;font-size:12px;margin:4px 0 0'>Se não deseja mais receber nossos emails, responda com \"cancelar\".</p></td></tr></table></td></tr></table></body></html>",
+        "options": {}
+      },
+      "id": "email-day3",
+      "name": "Email Dia 3 - Tecnologia rPPG",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1360, 440],
+      "credentials": {
+        "smtp": {
+          "id": "",
+          "name": "SMTP - CONFIGURAR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 4,
+        "unit": "days"
+      },
+      "id": "wait-4-days",
+      "name": "Esperar 4 Dias",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1580, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "map@essencialab.app",
+        "toEmail": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+        "subject": "Na prática: como integrar o MAP na sua consulta",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif'><table role='presentation' width='100%' cellpadding='0' cellspacing='0' style='background-color:#f8fafc'><tr><td align='center' style='padding:40px 20px'><table role='presentation' width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.07)'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);padding:30px;text-align:center'><h1 style='color:#ffffff;font-size:24px;margin:0'>EssenciaLab MAP</h1><p style='color:rgba(255,255,255,0.85);font-size:14px;margin:4px 0 0'>Método de Avaliação Personalizada</p></td></tr><tr><td style='padding:40px 30px'><h2 style='color:#1e293b;font-size:22px;margin:0 0 16px'>Roteiro prático: MAP na sua consulta</h2><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Muitos profissionais nos perguntam: <em>\"Como exatamente eu uso o MAP no dia a dia?\"</em> Aqui está um roteiro testado:</p><div style='margin:0 0 24px'><div style='background-color:#f8fafc;padding:16px 20px;border-radius:12px;margin:0 0 8px;border-left:4px solid #2563eb'><p style='color:#1e40af;font-size:14px;font-weight:600;margin:0 0 4px'>Primeira Consulta</p><p style='color:#475569;font-size:14px;margin:0;line-height:1.5'>\"Antes de analisar seu questionário, vamos fazer uma leitura rápida em tempo real. Olhe para a câmera por 30 segundos e eu vou te mostrar o que seu corpo está comunicando agora.\"</p></div><div style='background-color:#f8fafc;padding:16px 20px;border-radius:12px;margin:0 0 8px;border-left:4px solid #16a34a'><p style='color:#166534;font-size:14px;font-weight:600;margin:0 0 4px'>Correlação com SOGI + Teia Funcional</p><p style='color:#475569;font-size:14px;margin:0;line-height:1.5'>\"Sua análise facial mostra HRV baixo (indicador de estresse), o que se correlaciona perfeitamente com o score elevado no pilar de Submetilação do SOGI. Seu corpo está sinalizando isso tanto fisiologicamente quanto emocionalmente.\"</p></div><div style='background-color:#f8fafc;padding:16px 20px;border-radius:12px;margin:0 0 8px;border-left:4px solid #eab308'><p style='color:#854d0e;font-size:14px;font-weight:600;margin:0 0 4px'>Retorno (30-45 dias)</p><p style='color:#475569;font-size:14px;margin:0;line-height:1.5'>\"Vamos ver como seu corpo respondeu ao protocolo. Refaça a análise facial e eu te mostro a comparação com a primeira visita.\" — Pacientes adoram ver a evolução nos números!</p></div><div style='background-color:#f8fafc;padding:16px 20px;border-radius:12px;border-left:4px solid #dc2626'><p style='color:#991b1b;font-size:14px;font-weight:600;margin:0 0 4px'>Para Pacientes Céticos</p><p style='color:#475569;font-size:14px;margin:0;line-height:1.5'>\"Entendo sua preocupação. Por isso quero começar com algo objetivo — essa análise facial usa a mesma tecnologia validada pela FDA e usada em hospitais. Seu corpo vai nos mostrar os números.\"</p></div></div><div style='background-color:#eff6ff;border-radius:12px;padding:20px;margin:0 0 24px'><p style='color:#1e40af;font-size:14px;font-weight:600;margin:0 0 8px'>Dica de Ouro</p><p style='color:#3b82f6;font-size:14px;margin:0;line-height:1.5'>Nunca use a análise facial isoladamente. O valor máximo vem da <strong>correlação</strong> entre a análise facial + Questionário SOGI + Teia Funcional. Isso cria a experiência de Avaliação Completa 360° que diferencia seu atendimento.</p></div><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Essa abordagem integrada é o que permite oferecer um <strong>Protocolo Premium</strong> com valor percebido 30-50% maior — sem cobrar separadamente pela análise facial.</p><table role='presentation' cellpadding='0' cellspacing='0' style='margin:0 auto'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50px;padding:14px 32px'><a href='https://essencialab.app' style='color:#ffffff;text-decoration:none;font-size:16px;font-weight:600'>Começar a usar o MAP</a></td></tr></table></td></tr><tr><td style='background-color:#f8fafc;padding:24px 30px;text-align:center;border-top:1px solid #e2e8f0'><p style='color:#94a3b8;font-size:12px;margin:0'>EssenciaLab — Tecnologia para profissionais de saúde integrativa</p><p style='color:#94a3b8;font-size:12px;margin:4px 0 0'>Se não deseja mais receber nossos emails, responda com \"cancelar\".</p></td></tr></table></td></tr></table></body></html>",
+        "options": {}
+      },
+      "id": "email-day7",
+      "name": "Email Dia 7 - Roteiro Prático",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1800, 440],
+      "credentials": {
+        "smtp": {
+          "id": "",
+          "name": "SMTP - CONFIGURAR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 7,
+        "unit": "days"
+      },
+      "id": "wait-7-days-1",
+      "name": "Esperar 7 Dias",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [2020, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "map@essencialab.app",
+        "toEmail": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+        "subject": "Teste grátis: Avaliação Personalizada MAP por 14 dias",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif'><table role='presentation' width='100%' cellpadding='0' cellspacing='0' style='background-color:#f8fafc'><tr><td align='center' style='padding:40px 20px'><table role='presentation' width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.07)'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);padding:30px;text-align:center'><h1 style='color:#ffffff;font-size:24px;margin:0'>EssenciaLab MAP</h1><p style='color:rgba(255,255,255,0.85);font-size:14px;margin:4px 0 0'>Método de Avaliação Personalizada</p></td></tr><tr><td style='padding:40px 30px'><div style='background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-radius:12px;padding:24px;text-align:center;margin:0 0 24px;border:2px solid #2563eb'><p style='color:#2563eb;font-size:14px;font-weight:600;margin:0 0 8px;text-transform:uppercase;letter-spacing:1px'>Convite Exclusivo para Profissionais</p><h2 style='color:#1e293b;font-size:26px;margin:0 0 8px'>14 dias grátis no EssenciaLab MAP</h2><p style='color:#475569;font-size:14px;margin:0'>Acesso completo ao Método de Avaliação Personalizada</p></div><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Nas últimas semanas, compartilhamos o Guia MAP, a tecnologia rPPG e um roteiro prático de como integrar a avaliação nos seus atendimentos. Agora é a sua vez de experimentar.</p><h3 style='color:#1e293b;font-size:18px;margin:0 0 16px'>O que você terá acesso por 14 dias:</h3><ul style='color:#475569;font-size:15px;line-height:2;margin:0 0 24px;padding-left:20px'><li>Análise Facial com rPPG ilimitada (FC, HRV, estresse, estado emocional)</li><li>Questionário SOGI completo (200+ perguntas, 4 pilares de saúde)</li><li>Teia Funcional — mapeamento de 8 sistemas corporais interconectados</li><li>Protocolos personalizados gerados por IA e revisados por especialista</li><li>Relatórios profissionais para apresentar aos seus pacientes</li><li>Suporte prioritário via WhatsApp</li></ul><div style='background-color:#fefce8;border-left:4px solid #eab308;padding:12px 16px;border-radius:0 8px 8px 0;margin:0 0 24px'><p style='color:#854d0e;font-size:14px;margin:0'><strong>Sem cartão de crédito.</strong> Sem compromisso. Cancele quando quiser.</p></div><table role='presentation' cellpadding='0' cellspacing='0' style='margin:0 auto'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50px;padding:16px 40px'><a href='https://essencialab.app' style='color:#ffffff;text-decoration:none;font-size:18px;font-weight:700'>Começar meu teste grátis</a></td></tr></table></td></tr><tr><td style='background-color:#f8fafc;padding:24px 30px;text-align:center;border-top:1px solid #e2e8f0'><p style='color:#94a3b8;font-size:12px;margin:0'>EssenciaLab — Tecnologia para profissionais de saúde integrativa</p><p style='color:#94a3b8;font-size:12px;margin:4px 0 0'>Se não deseja mais receber nossos emails, responda com \"cancelar\".</p></td></tr></table></td></tr></table></body></html>",
+        "options": {}
+      },
+      "id": "email-day14",
+      "name": "Email Dia 14 - Teste Grátis",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [2240, 440],
+      "credentials": {
+        "smtp": {
+          "id": "",
+          "name": "SMTP - CONFIGURAR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 7,
+        "unit": "days"
+      },
+      "id": "wait-7-days-2",
+      "name": "Esperar 7 Dias (Final)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [2460, 440]
+    },
+    {
+      "parameters": {
+        "fromEmail": "map@essencialab.app",
+        "toEmail": "={{ $('Webhook - Receber Lead').item.json.body.email }}",
+        "subject": "Último lembrete: sua Avaliação Personalizada MAP",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif'><table role='presentation' width='100%' cellpadding='0' cellspacing='0' style='background-color:#f8fafc'><tr><td align='center' style='padding:40px 20px'><table role='presentation' width='600' cellpadding='0' cellspacing='0' style='background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.07)'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);padding:30px;text-align:center'><h1 style='color:#ffffff;font-size:24px;margin:0'>EssenciaLab MAP</h1><p style='color:rgba(255,255,255,0.85);font-size:14px;margin:4px 0 0'>Método de Avaliação Personalizada</p></td></tr><tr><td style='padding:40px 30px'><h2 style='color:#1e293b;font-size:22px;margin:0 0 16px'>Este é o nosso último email desta série</h2><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Nas últimas 3 semanas, compartilhamos com você:</p><ul style='color:#475569;font-size:15px;line-height:2;margin:0 0 24px;padding-left:20px'><li>O Guia Completo do Método de Avaliação Personalizada (MAP)</li><li>Como a tecnologia rPPG valida pela FDA funciona na prática</li><li>Roteiro passo a passo para integrar o MAP nos seus atendimentos</li><li>Convite para 14 dias de teste grátis com acesso completo</li></ul><p style='color:#475569;font-size:16px;line-height:1.6;margin:0 0 24px'>Sabemos que a rotina de um profissional de saúde é intensa. O MAP foi criado justamente para <strong>simplificar</strong> — uma análise de 30 segundos que gera dados objetivos e diferencia seu atendimento.</p><div style='background-color:#f0fdf4;border-radius:12px;padding:20px;margin:0 0 24px'><p style='color:#166534;font-size:15px;line-height:1.6;margin:0'><strong>O que profissionais relatam:</strong> aumento de 30-50% no valor percebido da consulta, maior adesão dos pacientes ao protocolo, e diferenciação competitiva através da experiência tecnológica da Avaliação Completa 360°.</p></div><table role='presentation' cellpadding='0' cellspacing='0' style='margin:0 auto 24px'><tr><td style='background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50px;padding:16px 40px'><a href='https://essencialab.app' style='color:#ffffff;text-decoration:none;font-size:18px;font-weight:700'>Começar agora — 14 dias grátis</a></td></tr></table><p style='color:#94a3b8;font-size:14px;text-align:center;margin:0'>Ou entre em contato pelo WhatsApp: <a href='https://wa.me/5543991343807' style='color:#2563eb;text-decoration:none'>+55 (43) 99134-3807</a></p></td></tr><tr><td style='background-color:#f8fafc;padding:24px 30px;text-align:center;border-top:1px solid #e2e8f0'><p style='color:#94a3b8;font-size:12px;margin:0'>EssenciaLab — Tecnologia para profissionais de saúde integrativa</p><p style='color:#94a3b8;font-size:12px;margin:4px 0 0'>Este foi o último email desta sequência. Obrigado pelo interesse!</p></td></tr></table></td></tr></table></body></html>",
+        "options": {}
+      },
+      "id": "email-day21",
+      "name": "Email Dia 21 - Follow-up Final",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [2680, 440],
+      "credentials": {
+        "smtp": {
+          "id": "",
+          "name": "SMTP - CONFIGURAR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "email",
+              "lookupValue": "={{ $('Webhook - Receber Lead').item.json.body.email }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "nurture_complete"
+          }
+        },
+        "options": {}
+      },
+      "id": "google-sheets-update",
+      "name": "Google Sheets - Atualizar Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [2900, 440],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - CONFIGURAR"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook - Receber Lead": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Responder Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Salvar Lead",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP - Baixar PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Baixar PDF": {
+      "main": [
+        [
+          {
+            "node": "Email - Boas-vindas + PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email - Boas-vindas + PDF": {
+      "main": [
+        [
+          {
+            "node": "Esperar 3 Dias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperar 3 Dias": {
+      "main": [
+        [
+          {
+            "node": "Email Dia 3 - Tecnologia rPPG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Dia 3 - Tecnologia rPPG": {
+      "main": [
+        [
+          {
+            "node": "Esperar 4 Dias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperar 4 Dias": {
+      "main": [
+        [
+          {
+            "node": "Email Dia 7 - Roteiro Prático",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Dia 7 - Roteiro Prático": {
+      "main": [
+        [
+          {
+            "node": "Esperar 7 Dias",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperar 7 Dias": {
+      "main": [
+        [
+          {
+            "node": "Email Dia 14 - Teste Grátis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Dia 14 - Teste Grátis": {
+      "main": [
+        [
+          {
+            "node": "Esperar 7 Dias (Final)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperar 7 Dias (Final)": {
+      "main": [
+        [
+          {
+            "node": "Email Dia 21 - Follow-up Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Dia 21 - Follow-up Final": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Atualizar Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "lead-capture"
+    },
+    {
+      "name": "email-nurture"
+    }
+  ]
+}
