@@ -28,7 +28,7 @@ const PredictiveHealthSection = () => {
         >
           <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
             <p className="text-gray-700 leading-relaxed text-lg mb-6">
-              Não é sobre prever o futuro. Não é sobre alarmes ou diagnósticos.
+              Não é sobre prever o futuro. Não é sobre alarmes ou diagnósticos médicos.
               É sobre uma ideia simples, mas poderosa:
             </p>
 
@@ -42,7 +42,7 @@ const PredictiveHealthSection = () => {
             <p className="text-gray-700 leading-relaxed">
               A saúde preventiva parte de um princípio fisiológico básico: o corpo não "quebra"
               de repente. Ele se desgasta gradualmente. E durante esse processo,{" "}
-              <strong>emite sinais</strong> — na pele, no olhar, na postura, na energia.
+              <strong>pode emitir sinais</strong> — na pele, no olhar, na postura, na energia.
             </p>
           </div>
 

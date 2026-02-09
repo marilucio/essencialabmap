@@ -40,9 +40,9 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8"
           >
-            Muito antes de um sintoma aparecer, existem padrões discretos que passam despercebidos.
-            Micro alterações na pele, no olhar, na expressão. Respostas silenciosas do corpo
-            — que a maioria das pessoas ignora até ser tarde demais.
+            Muito antes de um sintoma aparecer, podem existir padrões discretos que passam despercebidos.
+            Micro alterações na pele, no olhar, na expressão. Possíveis respostas silenciosas do corpo
+            — que a maioria das pessoas pode não perceber no dia a dia.
           </motion.p>
 
           {/* Introdução curta e envolvente */}

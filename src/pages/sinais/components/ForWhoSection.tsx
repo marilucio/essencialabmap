@@ -3,7 +3,7 @@ import { UserCheck, UserX } from "lucide-react";
 
 const ForWhoSection = () => {
   const forWho = [
-    "Você sente cansaço, estresse ou desequilíbrio com frequência — e quer entender melhor o porquê",
+    "Você pode apresentar sinais de cansaço, estresse ou desequilíbrio com frequência — e quer entender melhor o porquê",
     "Você valoriza prevenção e prefere agir antes de precisar remediar",
     "Você busca autonomia sobre sua saúde, sem depender exclusivamente de terceiros",
     "Você gosta de tecnologia e está aberto a novas formas de autoconhecimento",

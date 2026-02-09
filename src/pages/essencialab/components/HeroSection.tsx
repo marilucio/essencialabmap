@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Apple, Smartphone } from "lucide-react";
+import { AppStoreBadge } from "../../../components/badges/AppStoreBadge";
+import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 
 const HeroSection = () => {
   const handleAppStoreClick = () => {
@@ -98,31 +99,8 @@ const HeroSection = () => {
             {/* CTAs Principais - App Store e Google Play */}
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleAppStoreClick}
-                  className="flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-5 px-8 rounded-xl text-base transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <Apple className="w-6 h-6" />
-                  <div className="text-left">
-                    <div className="text-xs opacity-90">Baixar na</div>
-                    <div className="text-lg leading-tight">App Store</div>
-                  </div>
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleGooglePlayClick}
-                  className="flex items-center justify-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-5 px-8 rounded-xl text-base transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <Smartphone className="w-6 h-6" />
-                  <div className="text-left">
-                    <div className="text-xs opacity-90">Disponível no</div>
-                    <div className="text-lg leading-tight">Google Play</div>
-                  </div>
-                </motion.button>
+                <AppStoreBadge onClick={handleAppStoreClick} />
+                <GooglePlayBadge onClick={handleGooglePlayClick} />
               </div>
 
               <div className="text-center lg:text-left space-y-2">

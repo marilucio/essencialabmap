@@ -13,7 +13,7 @@ const WhatChangedSection = () => {
       icon: <Eye className="w-6 h-6" />,
       title: "Visão computacional avançada",
       description:
-        "Algoritmos treinados com milhões de imagens conseguem identificar padrões sutis na pele, nos olhos e nas expressões faciais — informações que o olho humano não capta.",
+        "Algoritmos treinados com milhões de imagens podem identificar possíveis padrões sutis na pele, nos olhos e nas expressões faciais — informações que o olho humano pode não captar.",
     },
     {
       icon: <Cpu className="w-6 h-6" />,

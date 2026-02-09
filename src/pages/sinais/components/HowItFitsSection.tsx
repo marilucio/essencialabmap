@@ -13,7 +13,7 @@ const HowItFitsSection = () => {
       icon: <BarChart3 className="w-6 h-6" />,
       title: "Análise de padrões",
       description:
-        "Algoritmos identificam padrões na pele, olhos e expressão — informações que refletem estados internos do corpo.",
+        "Algoritmos identificam possíveis padrões na pele, olhos e expressão — informações que podem refletir estados internos do corpo.",
     },
     {
       icon: <Lightbulb className="w-6 h-6" />,
