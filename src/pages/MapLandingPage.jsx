@@ -63,6 +63,53 @@ import {
   Lightbulb,
 } from "lucide-react";
 
+const GuaranteeBadge = ({ variant = "default", language = "pt" }) => {
+  const guaranteeText = {
+    pt: {
+      title: "Teste Grátis de 7 Dias",
+      subtitle: "Sem cartão de crédito necessário",
+      detail: "Acesso total liberado instantaneamente",
+    },
+    en: {
+      title: "7-Day Free Trial",
+      subtitle: "No credit card required",
+      detail: "Full access granted instantly",
+    },
+    es: {
+      title: "Prueba Gratis de 7 Días",
+      subtitle: "Sin tarjeta de crédito",
+      detail: "Acceso total liberado al instante",
+    },
+  };
+
+  const gt = guaranteeText[language] || guaranteeText.pt;
+
+  if (variant === "compact") {
+    return (
+      <div className="inline-flex items-center gap-2 bg-green-50 border-2 border-green-400 rounded-full px-4 py-2">
+        <Shield className="w-5 h-5 text-green-600" />
+        <span className="text-sm font-semibold text-green-800">{gt.title}</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-400 rounded-2xl p-6 shadow-lg">
+      <div className="flex items-start gap-4">
+        <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <Shield className="w-8 h-8 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="text-xl font-bold text-gray-900 mb-2">{gt.title}</h3>
+          <p className="text-gray-700 font-medium mb-1">{gt.subtitle}</p>
+          <p className="text-sm text-gray-600">{gt.detail}</p>
+        </div>
+        <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0" />
+      </div>
+    </div>
+  );
+};
+
 function MapLandingPage({ language = "pt" }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -95,7 +142,7 @@ function MapLandingPage({ language = "pt" }) {
             language: language,
             timestamp: new Date().toISOString(),
           }),
-        }
+        },
       );
 
       if (!response.ok) throw new Error("Submission failed");
@@ -111,7 +158,7 @@ function MapLandingPage({ language = "pt" }) {
           ? "Error al enviar. Intenta de nuevo."
           : language === "en"
             ? "Submission failed. Please try again."
-            : "Erro ao enviar. Tente novamente."
+            : "Erro ao enviar. Tente novamente.",
       );
     }
   };
@@ -200,23 +247,28 @@ function MapLandingPage({ language = "pt" }) {
     pt: {
       hero: {
         badge: "✓ Baseado em 728+ Citações Científicas",
-        title1: "91% de Precisão",
-        title2: "na Predição de Riscos Metabólicos",
+        title1: "Avalie Riscos Metabólicos",
+        title2: "Com 91% de Correlação Científica",
         description:
-          "A primeira ferramenta que combina análise facial com biomarcadores metabólicos, baseada em estudos científicos de alto impacto. Transforme a forma como você avalia a saúde dos seus pacientes.",
+          "A primeira ferramenta que combina análise facial com padrões de saúde validados cientificamente. Apoie suas decisões clínicas com dados visuais que impressionam pacientes e fortalecem sua prática.",
         stats: [
           "17.000+ imagens analisadas",
           "Validado Nature Medicine",
           "728+ citações científicas",
           "Aprovado por profissionais",
         ],
-        cta1: "Acesso Imediato - 7 Dias Grátis",
-        cta2: "Ver Demonstração",
+        cta1: "Comece Seu Trial de 7 Dias Grátis",
+        cta1Subtitle: "✓ Sem cartão de crédito • ✓ Cancele quando quiser",
+        cta2: "Ver Como Funciona na Prática",
+        ctaBenefit:
+          "Junte-se a 2.400+ profissionais que já transformaram suas consultas",
         materialsBtn: "📦 Kit de Materiais",
-        videoTitle: "Vídeo: Como o MAP Funciona",
-        videoSubtitle: "26:36 • Demonstração prática",
+        videoTitle: "Veja o MAP em Ação",
+        videoSubtitle: "3 min • Demonstração prática com paciente real",
         videoIframeTitle: "MAP - Demonstração Completa",
         videoIframeTitle2: "Como o MAP Funciona - Demonstração",
+        videoUrlFull:
+          "https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0",
       },
       demo: {
         selectTitle: "Escolha Sua Demonstração",
@@ -366,31 +418,33 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       howItWorks: {
-        title: "Como o MAP Transforma Segundos em Insights Precisos",
+        title: "Como o MAP Apoia Suas Decisões Clínicas",
         subtitle:
-          "Processo simples e científico que revoluciona a avaliação metabólica",
+          "Tecnologia validada pela ciência, simplicidade para o dia a dia",
         steps: [
           {
-            title: "CAPTURE",
-            subtitle:
-              "Paciente faz análise facial em vídeo de onde ele estiver",
+            title: "Captura Simples",
+            subtitle: "Paciente olha para câmera por 30 segundos",
             description:
-              "Nenhuma imagem é gravada, segue as leis de LGPD Brasil e HIPAA EUA - tecnologia de pletismografia (rPPG + MTC + observação de microexpressões faciais invisíveis a olho humano)",
+              "Processo discreto e não invasivo. Nenhuma imagem é armazenada, em conformidade com LGPD e HIPAA.",
           },
           {
-            title: "PROCESSE",
-            subtitle: "IA analisa biomarcadores faciais",
-            description: "Algoritmos treinados em milhares de casos",
+            title: "Análise Inteligente",
+            subtitle: "Correlação de padrões faciais",
+            description:
+              "Algoritmos correlacionam padrões faciais com indicadores metabólicos validados em estudos científicos.",
           },
           {
-            title: "AVALIE",
-            subtitle: "Relatório SOGI instantâneo",
-            description: "4 pilares metabólicos em tempo real",
+            title: "Insights Visuais",
+            subtitle: "Relatórios que pacientes entendem",
+            description:
+              "Gere relatórios profissionais que pacientes compreendem facilmente. Facilite a comunicação de riscos.",
           },
           {
-            title: "ATUE",
-            subtitle: "Recomendações personalizadas",
-            description: "Plano de ação baseado em evidências",
+            title: "Decisão Assertiva",
+            subtitle: "Priorize e personalize condutas",
+            description:
+              "Use os dados para priorizar exames, personalizar orientações e fortalecer suas recomendações.",
           },
         ],
       },
@@ -434,39 +488,58 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       benefits: {
-        title: "O Que Você Conquista nos Primeiros 7 Dias",
+        title: "Por Que Profissionais de Saúde Escolhem o MAP",
         subtitle:
-          "Resultados imediatos que transformam sua prática profissional",
+          "Transforme sua prática com uma ferramenta que valoriza seu trabalho",
         items: [
           {
-            title: "Consultas 60% mais eficientes",
+            title: "Aumente Seu Valor Percebido",
             description:
-              "Substitua horas de exames laboratoriais por 30 segundos de análise. Otimize seu tempo e atenda mais pacientes com a mesma qualidade.",
+              "Impressione pacientes com avaliações que outros profissionais não oferecem. Destaque-se no mercado e justifique honorários mais altos.",
+            emotional:
+              "Seja reconhecido como o profissional mais inovador da sua região",
           },
           {
-            title: "Aumente sua receita média por paciente em R$ 300",
+            title: "Economize Tempo Precioso",
             description:
-              "Cobre mais por consultas diferenciadas com tecnologia de ponta. Nossos usuários reportam aumento médio de R$ 300 por consulta.",
+              "Avaliação completa em 90 segundos. Dedique mais tempo ao que importa: o atendimento humanizado e personalizado.",
+            emotional: "Atenda mais pacientes sem sacrificar qualidade",
           },
           {
-            title: "Relatórios profissionais que impressionam",
+            title: "Fortaleça o Vínculo com Pacientes",
             description:
-              "Apresente análises visuais e científicas que demonstram seu expertise. Seus pacientes ficarão impressionados com a precisão.",
+              "Mostre resultados visuais imediatos que pacientes entendem. Aumente engajamento e adesão ao tratamento.",
+            emotional: "Pacientes que confiam permanecem por anos",
           },
           {
-            title: "Diferenciação competitiva no mercado",
+            title: "Credibilidade Científica Instantânea",
             description:
-              "Seja o primeiro na sua região a oferecer análise metabólica por IA. Destaque-se da concorrência com tecnologia exclusiva.",
+              "Baseado em 728+ citações científicas e validado pela Nature Medicine. Respaldo acadêmico para suas recomendações.",
+            emotional: "Suas orientações ganham peso de evidência científica",
           },
           {
-            title: "Precisão Científica Validada",
+            title: "Fidelize e Atraia Mais Pacientes",
             description:
-              "91% de acurácia baseada em estudos Nature Medicine. Tome decisões clínicas com a confiança que só a ciência pode oferecer.",
+              "Pacientes satisfeitos indicam. Avaliações inovadoras geram marketing boca-a-boca naturalmente.",
+            emotional: "Construa uma base de pacientes leais e engajados",
           },
           {
-            title: "Credibilidade Profissional Elevada",
+            title: "Decisões Mais Assertivas",
             description:
-              "Baseie suas recomendações em dados científicos sólidos. Aumente a confiança dos pacientes em seus protocolos de tratamento.",
+              "Identifique prioridades de saúde rapidamente. Personalize condutas com mais precisão desde a primeira consulta.",
+            emotional: "Confiança para agir com assertividade",
+          },
+          {
+            title: "Reduza Custos do Paciente",
+            description:
+              "Menos exames desnecessários. Pacientes economizam e valorizam seu trabalho preventivo e eficiente.",
+            emotional: "Seja o profissional que cuida também do bolso deles",
+          },
+          {
+            title: "Acompanhamento Visual e Motivador",
+            description:
+              "Mostre evolução através de análises comparativas. Pacientes visualizam progresso e mantêm motivação.",
+            emotional: "Celebre conquistas e mantenha pacientes motivados",
           },
         ],
       },
@@ -497,7 +570,7 @@ function MapLandingPage({ language = "pt" }) {
               "Integre dados metabólicos com prescrições médicas para tratamentos mais assertivos e baseados em evidências científicas.",
             benefits: [
               "Prescrições personalizadas",
-              "Diagnósticos mais precisos",
+              "Avaliações mais precisas",
               "Acompanhamento clínico avançado",
             ],
           },
@@ -558,7 +631,7 @@ function MapLandingPage({ language = "pt" }) {
             benefits: [
               "Triagem eficiente",
               "Medicina preventiva",
-              "Diagnóstico precoce",
+              "Avaliação preventiva",
             ],
           },
           {
@@ -667,7 +740,7 @@ function MapLandingPage({ language = "pt" }) {
           {
             question: "E se eu não gostar? Posso cancelar?",
             answer:
-              "Claro! Oferecemos 7 dias de trial gratuito sem compromisso. Não precisa nem colocar dados do cartão. Se não ficar satisfeito, ainda assim continuará tendo acesso gratuito aos protocolos pré-definidos. Garantia de satisfação 100%.",
+              "Claro! Oferecemos 7 dias de trial gratuito sem compromisso. Não precisa nem colocar dados do cartão. Se não ficar satisfeito, ainda assim continuará tendo acesso gratuito aos protocolos pré-definidos. Teste sem riscos.",
           },
           {
             question: "Como funciona o suporte? Vou ficar sozinho?",
@@ -677,43 +750,49 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       finalCTA: {
-        title: "Comece Sua Transformação Hoje",
-        subtitle:
-          "Não deixe seus concorrentes saírem na frente. A revolução da avaliação metabólica já começou, e você pode fazer parte dela agora mesmo.",
-        trialTitle: "TRIAL GRATUITO 7 DIAS",
+        title: "Pronto Para Elevar Sua Prática Profissional?",
+        subtitle: "Comece hoje mesmo. Sem riscos, sem compromisso.",
+        trialTitle: "O Que Você Recebe no Trial de 7 Dias:",
         features: [
-          "Acesso completo à plataforma",
-          "Análises ilimitadas",
-          "Suporte técnico dedicado",
-          "Material científico exclusivo",
-          "Cadastro gratuito sem compromisso algum",
-          "Não precisa colocar dados de cartão para testar a ferramenta",
+          "Acesso completo ao sistema MAP",
+          "Análises ilimitadas de pacientes",
+          "Relatórios profissionais personalizados",
+          "Suporte técnico prioritário",
+          "Treinamento em vídeo passo a passo",
+          "Comunidade exclusiva de profissionais",
+          "Atualizações e melhorias contínuas",
+          "7 dias de acesso completo gratuito",
         ],
-        cta: "Garantir Minha Vaga Agora",
+        cta: "Começar Meu Trial Gratuito Agora",
         guarantee:
-          "Satisfação garantida ou seu dinheiro de volta • Vagas limitadas para o trial gratuito",
+          "✓ Sem cartão de crédito • ✓ Cancele quando quiser • ✓ Suporte em português",
       },
     },
     en: {
       hero: {
         badge: "✓ Based on 728+ Scientific Citations",
-        title1: "91% Accuracy",
-        title2: "in Metabolic Risk Prediction",
+        title1: "Assess Metabolic Risks",
+        title2: "With 91% Scientific Correlation",
         description:
-          "The first tool that combines facial analysis with metabolic biomarkers, based on high-impact scientific studies. Transform how you assess your patients' health.",
+          "The first tool that combines facial analysis with scientifically validated health patterns. Support your clinical decisions with visual data that impresses patients and strengthens your practice.",
         stats: [
           "17,000+ images analyzed",
           "Validated Nature Medicine",
           "728+ scientific citations",
           "Approved by professionals",
         ],
-        cta1: "Immediate Access - 7 Days Free",
-        cta2: "Watch Demo",
+        cta1: "Start Your 7-Day Free Trial",
+        cta1Subtitle: "✓ No credit card required • ✓ Cancel anytime",
+        cta2: "See How It Works in Practice",
+        ctaBenefit:
+          "Join 2,400+ professionals who have already transformed their consultations",
         materialsBtn: "📦 Marketing Kit",
-        videoTitle: "Video: How MAP Works",
-        videoSubtitle: "26:36 • Practical demonstration",
+        videoTitle: "See MAP in Action",
+        videoSubtitle: "3 min • Practical demo with real patient",
         videoIframeTitle: "MAP - Complete Demonstration",
         videoIframeTitle2: "How MAP Works - Demonstration",
+        videoUrlFull:
+          "https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0",
       },
       demo: {
         selectTitle: "Choose Your Demo",
@@ -866,31 +945,32 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       howItWorks: {
-        title: "How MAP Transforms Seconds into Precise Insights",
-        subtitle:
-          "Simple and scientific process that revolutionizes metabolic assessment",
+        title: "How MAP Supports Your Clinical Decisions",
+        subtitle: "Science-validated technology, simplicity for everyday use",
         steps: [
           {
-            title: "CAPTURE",
-            subtitle:
-              "Patient performs facial analysis via video from wherever they are",
+            title: "Simple Capture",
+            subtitle: "Patient looks at the camera for 30 seconds",
             description:
-              "No images are recorded, follows LGPD Brazil and HIPAA USA laws - plethysmography technology (rPPG + MTC + observation of facial microexpressions invisible to the human eye)",
+              "Discreet and non-invasive process. No images are stored, compliant with LGPD and HIPAA.",
           },
           {
-            title: "PROCESS",
-            subtitle: "AI analyzes facial biomarkers",
-            description: "Algorithms trained on thousands of cases",
+            title: "Smart Analysis",
+            subtitle: "Facial pattern correlation",
+            description:
+              "Algorithms correlate facial patterns with metabolic indicators validated in scientific studies.",
           },
           {
-            title: "ASSESS",
-            subtitle: "Instant SOGI report",
-            description: "4 metabolic pillars in real-time",
+            title: "Visual Insights",
+            subtitle: "Reports patients understand",
+            description:
+              "Generate professional reports that patients easily comprehend. Facilitate risk communication.",
           },
           {
-            title: "ACT",
-            subtitle: "Personalized recommendations",
-            description: "Evidence-based action plan",
+            title: "Assertive Decisions",
+            subtitle: "Prioritize and personalize care",
+            description:
+              "Use the data to prioritize exams, personalize guidance, and strengthen your recommendations.",
           },
         ],
       },
@@ -933,38 +1013,57 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       benefits: {
-        title: "What You Achieve in the First 7 Days",
-        subtitle: "Immediate results that transform your professional practice",
+        title: "Why Healthcare Professionals Choose MAP",
+        subtitle: "Transform your practice with a tool that values your work",
         items: [
           {
-            title: "60% more efficient consultations",
+            title: "Increase Your Perceived Value",
             description:
-              "Replace hours of laboratory tests with 30 seconds of analysis. Optimize your time and see more patients with the same quality.",
+              "Impress patients with assessments other professionals don't offer. Stand out in the market and justify higher fees.",
+            emotional:
+              "Be recognized as the most innovative professional in your region",
           },
           {
-            title: "Increase your average revenue per patient by $300",
+            title: "Save Precious Time",
             description:
-              "Charge more for differentiated consultations with cutting-edge technology. Our users report an average increase of $300 per consultation.",
+              "Complete assessment in 90 seconds. Dedicate more time to what matters: humanized and personalized care.",
+            emotional: "See more patients without sacrificing quality",
           },
           {
-            title: "Professional reports that impress",
+            title: "Strengthen the Bond with Patients",
             description:
-              "Present visual and scientific analyses that demonstrate your expertise. Your patients will be impressed with the accuracy.",
+              "Show immediate visual results that patients understand. Increase engagement and treatment adherence.",
+            emotional: "Patients who trust stay for years",
           },
           {
-            title: "Competitive differentiation in the market",
+            title: "Instant Scientific Credibility",
             description:
-              "Be the first in your region to offer AI-powered metabolic analysis. Stand out from the competition with exclusive technology.",
+              "Based on 728+ scientific citations and validated by Nature Medicine. Academic backing for your recommendations.",
+            emotional: "Your guidance gains the weight of scientific evidence",
           },
           {
-            title: "Validated Scientific Accuracy",
+            title: "Retain and Attract More Patients",
             description:
-              "91% accuracy based on Nature Medicine studies. Make clinical decisions with the confidence that only science can provide.",
+              "Satisfied patients refer others. Innovative assessments generate word-of-mouth marketing naturally.",
+            emotional: "Build a loyal and engaged patient base",
           },
           {
-            title: "Elevated Professional Credibility",
+            title: "More Assertive Decisions",
             description:
-              "Base your recommendations on solid scientific data. Increase patient confidence in your treatment protocols.",
+              "Quickly identify health priorities. Personalize approaches with greater precision from the first consultation.",
+            emotional: "Confidence to act assertively",
+          },
+          {
+            title: "Reduce Patient Costs",
+            description:
+              "Fewer unnecessary exams. Patients save money and value your preventive and efficient work.",
+            emotional: "Be the professional who also cares about their wallet",
+          },
+          {
+            title: "Visual and Motivating Follow-up",
+            description:
+              "Show progress through comparative analyses. Patients visualize their progress and stay motivated.",
+            emotional: "Celebrate achievements and keep patients motivated",
           },
         ],
       },
@@ -995,7 +1094,7 @@ function MapLandingPage({ language = "pt" }) {
               "Integrate metabolic data with medical prescriptions for more assertive and scientifically-based treatments.",
             benefits: [
               "Personalized prescriptions",
-              "More precise diagnoses",
+              "More precise assessments",
               "Advanced clinical follow-up",
             ],
           },
@@ -1056,7 +1155,7 @@ function MapLandingPage({ language = "pt" }) {
             benefits: [
               "Efficient screening",
               "Preventive medicine",
-              "Early diagnosis",
+              "Preventive assessment",
             ],
           },
           {
@@ -1164,7 +1263,7 @@ function MapLandingPage({ language = "pt" }) {
           {
             question: "What if I don't like it? Can I cancel?",
             answer:
-              "Of course! We offer a 7-day free trial with no commitment. You don't even need to enter card details. If you're not satisfied, you'll still have free access to pre-defined protocols. 100% satisfaction guarantee.",
+              "Of course! We offer a 7-day free trial with no commitment. You don't even need to enter card details. If you're not satisfied, you'll still have free access to pre-defined protocols. Risk-free trial.",
           },
           {
             question: "How does support work? Will I be alone?",
@@ -1174,43 +1273,49 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       finalCTA: {
-        title: "Start Your Transformation Today",
-        subtitle:
-          "Don't let your competitors get ahead. The metabolic assessment revolution has already begun, and you can be part of it right now.",
-        trialTitle: "7-DAY FREE TRIAL",
+        title: "Ready to Elevate Your Professional Practice?",
+        subtitle: "Start today. No risks, no commitment.",
+        trialTitle: "What You Get in the 7-Day Trial:",
         features: [
-          "Full platform access",
-          "Unlimited analyses",
-          "Dedicated technical support",
-          "Exclusive scientific material",
-          "Free registration with no commitment",
-          "No need to enter card details to test the tool",
+          "Full access to the MAP system",
+          "Unlimited patient analyses",
+          "Personalized professional reports",
+          "Priority technical support",
+          "Step-by-step video training",
+          "Exclusive professional community",
+          "Continuous updates and improvements",
+          "7-day free full access",
         ],
-        cta: "Secure My Spot Now",
+        cta: "Start My Free Trial Now",
         guarantee:
-          "Satisfaction guaranteed or your money back • Limited spots for the free trial",
+          "✓ No credit card required • ✓ Cancel anytime • ✓ English support available",
       },
     },
     es: {
       hero: {
         badge: "✓ Basado en 728+ Citas Científicas",
-        title1: "91% de Precisión",
-        title2: "en la Predicción de Riesgos Metabólicos",
+        title1: "Evalúa Riesgos Metabólicos",
+        title2: "Con 91% de Correlación Científica",
         description:
-          "La primera herramienta que combina análisis facial con biomarcadores metabólicos, basada en estudios científicos de alto impacto. Transforma la forma en que evalúas la salud de tus pacientes.",
+          "La primera herramienta que combina análisis facial con patrones de salud validados científicamente. Apoya tus decisiones clínicas con datos visuales que impresionan pacientes y fortalecen tu práctica.",
         stats: [
           "17.000+ imágenes analizadas",
           "Validado Nature Medicine",
           "728+ citas científicas",
           "Aprobado por profesionales",
         ],
-        cta1: "Acceso Inmediato - 7 Días Gratis",
-        cta2: "Ver Demostración",
+        cta1: "Comienza Tu Trial de 7 Días Gratis",
+        cta1Subtitle: "✓ Sin tarjeta de crédito • ✓ Cancela cuando quieras",
+        cta2: "Ver Cómo Funciona en la Práctica",
+        ctaBenefit:
+          "Únete a 2.400+ profesionales que ya transformaron sus consultas",
         materialsBtn: "📦 Kit de Materiales",
-        videoTitle: "Video: Cómo Funciona el MAP",
-        videoSubtitle: "26:36 • Demostración práctica",
+        videoTitle: "Ve el MAP en Acción",
+        videoSubtitle: "3 min • Demostración práctica con paciente real",
         videoIframeTitle: "MAP - Demostración Completa",
         videoIframeTitle2: "Cómo Funciona el MAP - Demostración",
+        videoUrlFull:
+          "https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0",
       },
       demo: {
         selectTitle: "Elige Tu Demostración",
@@ -1362,31 +1467,33 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       howItWorks: {
-        title: "Cómo el MAP Transforma Segundos en Perspectivas Precisas",
+        title: "Cómo el MAP Apoya Tus Decisiones Clínicas",
         subtitle:
-          "Proceso simple y científico que revoluciona la evaluación metabólica",
+          "Tecnología validada por la ciencia, simplicidad para el día a día",
         steps: [
           {
-            title: "CAPTURAR",
-            subtitle:
-              "El paciente realiza análisis facial por video desde donde esté",
+            title: "Captura Simple",
+            subtitle: "El paciente mira a la cámara por 30 segundos",
             description:
-              "No se graban imágenes, cumple con las leyes LGPD Brasil e HIPAA EE.UU. - tecnología de pletismografía (rPPG + MTC + observación de microexpresiones faciales invisibles al ojo humano)",
+              "Proceso discreto y no invasivo. No se almacenan imágenes, en cumplimiento con LGPD y HIPAA.",
           },
           {
-            title: "PROCESAR",
-            subtitle: "IA analiza biomarcadores faciales",
-            description: "Algoritmos entrenados en miles de casos",
+            title: "Análisis Inteligente",
+            subtitle: "Correlación de patrones faciales",
+            description:
+              "Algoritmos correlacionan patrones faciales con indicadores metabólicos validados en estudios científicos.",
           },
           {
-            title: "EVALUAR",
-            subtitle: "Informe SOGI instantáneo",
-            description: "4 pilares metabólicos en tiempo real",
+            title: "Insights Visuales",
+            subtitle: "Informes que los pacientes entienden",
+            description:
+              "Genera informes profesionales que los pacientes comprenden fácilmente. Facilita la comunicación de riesgos.",
           },
           {
-            title: "ACTUAR",
-            subtitle: "Recomendaciones personalizadas",
-            description: "Plan de acción basado en evidencia",
+            title: "Decisión Asertiva",
+            subtitle: "Prioriza y personaliza conductas",
+            description:
+              "Usa los datos para priorizar exámenes, personalizar orientaciones y fortalecer tus recomendaciones.",
           },
         ],
       },
@@ -1430,39 +1537,58 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       benefits: {
-        title: "Lo Que Logras en los Primeros 7 Días",
+        title: "Por Qué los Profesionales de Salud Eligen MAP",
         subtitle:
-          "Resultados inmediatos que transforman tu práctica profesional",
+          "Transforma tu práctica con una herramienta que valora tu trabajo",
         items: [
           {
-            title: "Consultas 60% más eficientes",
+            title: "Aumenta Tu Valor Percibido",
             description:
-              "Reemplaza horas de exámenes de laboratorio por 30 segundos de análisis. Optimiza tu tiempo y atiende más pacientes con la misma calidad.",
+              "Impresiona a los pacientes con evaluaciones que otros profesionales no ofrecen. Destácate en el mercado y justifica honorarios más altos.",
+            emotional:
+              "Sé reconocido como el profesional más innovador de tu región",
           },
           {
-            title: "Aumenta tu ingreso promedio por paciente en $300",
+            title: "Ahorra Tiempo Valioso",
             description:
-              "Cobra más por consultas diferenciadas con tecnología de vanguardia. Nuestros usuarios reportan un aumento promedio de $300 por consulta.",
+              "Evaluación completa en 90 segundos. Dedica más tiempo a lo que importa: la atención humanizada y personalizada.",
+            emotional: "Atiende más pacientes sin sacrificar calidad",
           },
           {
-            title: "Informes profesionales que impresionan",
+            title: "Fortalece el Vínculo con Pacientes",
             description:
-              "Presenta análisis visuales y científicos que demuestran tu experiencia. Tus pacientes quedarán impresionados con la precisión.",
+              "Muestra resultados visuales inmediatos que los pacientes entienden. Aumenta el compromiso y la adherencia al tratamiento.",
+            emotional: "Los pacientes que confían permanecen por años",
           },
           {
-            title: "Diferenciación competitiva en el mercado",
+            title: "Credibilidad Científica Instantánea",
             description:
-              "Sé el primero en tu región en ofrecer análisis metabólico por IA. Destácate de la competencia con tecnología exclusiva.",
+              "Basado en 728+ citas científicas y validado por Nature Medicine. Respaldo académico para tus recomendaciones.",
+            emotional: "Tus orientaciones ganan peso de evidencia científica",
           },
           {
-            title: "Precisión Científica Validada",
+            title: "Fideliza y Atrae Más Pacientes",
             description:
-              "91% de precisión basada en estudios de Nature Medicine. Toma decisiones clínicas con la confianza que solo la ciencia puede ofrecer.",
+              "Los pacientes satisfechos recomiendan. Las evaluaciones innovadoras generan marketing boca a boca naturalmente.",
+            emotional: "Construye una base de pacientes leales y comprometidos",
           },
           {
-            title: "Credibilidad Profesional Elevada",
+            title: "Decisiones Más Asertivas",
             description:
-              "Basa tus recomendaciones en datos científicos sólidos. Aumenta la confianza de los pacientes en tus protocolos de tratamiento.",
+              "Identifica prioridades de salud rápidamente. Personaliza conductas con más precisión desde la primera consulta.",
+            emotional: "Confianza para actuar con asertividad",
+          },
+          {
+            title: "Reduce Costos del Paciente",
+            description:
+              "Menos exámenes innecesarios. Los pacientes ahorran y valoran tu trabajo preventivo y eficiente.",
+            emotional: "Sé el profesional que también cuida su bolsillo",
+          },
+          {
+            title: "Seguimiento Visual y Motivador",
+            description:
+              "Muestra la evolución a través de análisis comparativos. Los pacientes visualizan su progreso y mantienen la motivación.",
+            emotional: "Celebra logros y mantén a los pacientes motivados",
           },
         ],
       },
@@ -1493,7 +1619,7 @@ function MapLandingPage({ language = "pt" }) {
               "Integra datos metabólicos con prescripciones médicas para tratamientos más asertivos y basados en evidencia científica.",
             benefits: [
               "Prescripciones personalizadas",
-              "Diagnósticos más precisos",
+              "Evaluaciones más precisas",
               "Seguimiento clínico avanzado",
             ],
           },
@@ -1554,7 +1680,7 @@ function MapLandingPage({ language = "pt" }) {
             benefits: [
               "Triaje eficiente",
               "Medicina preventiva",
-              "Diagnóstico temprano",
+              "Evaluación preventiva",
             ],
           },
           {
@@ -1664,7 +1790,7 @@ function MapLandingPage({ language = "pt" }) {
           {
             question: "¿Y si no me gusta? ¿Puedo cancelar?",
             answer:
-              "¡Por supuesto! Ofrecemos 7 días de prueba gratuita sin compromiso. Ni siquiera necesitas poner datos de tarjeta. Si no quedas satisfecho, aún así continuarás teniendo acceso gratuito a los protocolos predefinidos. Garantía de satisfacción 100%.",
+              "¡Por supuesto! Ofrecemos 7 días de prueba gratuita sin compromiso. Ni siquiera necesitas poner datos de tarjeta. Si no quedas satisfecho, aún así continuarás teniendo acceso gratuito a los protocolos predefinidos. Prueba sin riesgos.",
           },
           {
             question: "¿Cómo funciona el soporte? ¿Quedaré solo?",
@@ -1674,21 +1800,22 @@ function MapLandingPage({ language = "pt" }) {
         ],
       },
       finalCTA: {
-        title: "Comienza Tu Transformación Hoy",
-        subtitle:
-          "No dejes que tus competidores se adelanten. La revolución de la evaluación metabólica ya comenzó, y puedes ser parte de ella ahora mismo.",
-        trialTitle: "PRUEBA GRATUITA 7 DÍAS",
+        title: "¿Listo Para Elevar Tu Práctica Profesional?",
+        subtitle: "Comienza hoy mismo. Sin riesgos, sin compromiso.",
+        trialTitle: "Lo Que Recibes en el Trial de 7 Días:",
         features: [
-          "Acceso completo a la plataforma",
-          "Análisis ilimitados",
-          "Soporte técnico dedicado",
-          "Material científico exclusivo",
-          "Registro gratuito sin compromiso alguno",
-          "No necesitas poner datos de tarjeta para probar la herramienta",
+          "Acceso completo al sistema MAP",
+          "Análisis ilimitados de pacientes",
+          "Informes profesionales personalizados",
+          "Soporte técnico prioritario",
+          "Capacitación en video paso a paso",
+          "Comunidad exclusiva de profesionales",
+          "Actualizaciones y mejoras continuas",
+          "7 días de acceso completo gratuito",
         ],
-        cta: "Asegurar Mi Lugar Ahora",
+        cta: "Comenzar Mi Trial Gratuito Ahora",
         guarantee:
-          "Satisfacción garantizada o tu dinero de vuelta • Plazas limitadas para la prueba gratuita",
+          "✓ Sin tarjeta de crédito • ✓ Cancela cuando quieras • ✓ Soporte en español",
       },
     },
   };
@@ -1732,22 +1859,22 @@ function MapLandingPage({ language = "pt" }) {
       step.title === "Captura de Imagen"
         ? "/images/scanface.webp"
         : step.title === "Processamento IA" ||
-          step.title === "AI Processing" ||
-          step.title === "Procesamiento IA"
-        ? "/images/iascaning.webp"
-        : step.title === "Relatório SOGI" ||
-          step.title === "SOGI Report" ||
-          step.title === "Informe SOGI"
-        ? "/images/sogi.webp"
-        : step.title === "Recomendações" ||
-          step.title === "Recommendations" ||
-          step.title === "Recomendaciones"
-        ? "/images/recomenda.webp"
-        : step.title === "Acompanhamento Preciso" ||
-          step.title === "Precise Monitoring" ||
-          step.title === "Seguimiento Preciso"
-        ? "/images/acompanha.webp"
-        : "/images/teia.webp",
+            step.title === "AI Processing" ||
+            step.title === "Procesamiento IA"
+          ? "/images/iascaning.webp"
+          : step.title === "Relatório SOGI" ||
+              step.title === "SOGI Report" ||
+              step.title === "Informe SOGI"
+            ? "/images/sogi.webp"
+            : step.title === "Recomendações" ||
+                step.title === "Recommendations" ||
+                step.title === "Recomendaciones"
+              ? "/images/recomenda.webp"
+              : step.title === "Acompanhamento Preciso" ||
+                  step.title === "Precise Monitoring" ||
+                  step.title === "Seguimiento Preciso"
+                ? "/images/acompanha.webp"
+                : "/images/teia.webp",
   }));
 
   return (
@@ -1757,7 +1884,7 @@ function MapLandingPage({ language = "pt" }) {
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-8" data-aos="fade-right">
               <div className="space-y-4">
                 <Badge className="bg-green-100 text-green-800 border-green-200">
@@ -1784,188 +1911,189 @@ function MapLandingPage({ language = "pt" }) {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative"
-                  onClick={scrollToForm}
-                >
-                  <span className="relative z-10">{t.hero.cta1}</span>
-                  <ArrowRight className="w-5 h-5 ml-2 relative z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
-                </Button>
-                <Dialog
-                  open={isDemoModalOpen}
-                  onOpenChange={setIsDemoModalOpen}
-                >
-                  <DialogTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="border-2 border-gray-300 hover:border-blue-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-lg"
-                      onClick={openDemoModal}
-                    >
-                      <Play className="w-5 h-5 mr-2" />
-                      {t.hero.cta2}
-                    </Button>
-                  </DialogTrigger>
+              <div className="flex flex-col items-center sm:items-start gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-12 py-6 rounded-full text-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                    onClick={scrollToForm}
+                  >
+                    {t.hero.cta1}
+                    <ArrowRight className="w-6 h-6 ml-2" />
+                  </Button>
+                  <Dialog
+                    open={isDemoModalOpen}
+                    onOpenChange={setIsDemoModalOpen}
+                  >
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-6 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-lg"
+                        onClick={openDemoModal}
+                      >
+                        <Play className="w-5 h-5 mr-2" />
+                        {t.hero.cta2}
+                      </Button>
+                    </DialogTrigger>
 
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold text-center mb-2">
-                        {!selectedDemoType
-                          ? t.demo.selectTitle
-                          : selectedDemoType === "video"
-                          ? t.demo.videoModalTitle
-                          : selectedDemoType === "interactive"
-                          ? t.demo.interactiveModalTitle
-                          : t.demo.caseStudyModalTitle}
-                      </DialogTitle>
-                      <DialogDescription className="text-center text-gray-600">
-                        {!selectedDemoType
-                          ? t.demo.selectDescription
-                          : selectedDemoType === "video"
-                          ? t.demo.videoModalDescription
-                          : selectedDemoType === "interactive"
-                          ? t.demo.interactiveModalDescription.replace(
-                              "{step}",
-                              demoStep
-                            )
-                          : t.demo.caseStudyModalDescription}
-                      </DialogDescription>
-                    </DialogHeader>
+                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold text-center mb-2">
+                          {!selectedDemoType
+                            ? t.demo.selectTitle
+                            : selectedDemoType === "video"
+                              ? t.demo.videoModalTitle
+                              : selectedDemoType === "interactive"
+                                ? t.demo.interactiveModalTitle
+                                : t.demo.caseStudyModalTitle}
+                        </DialogTitle>
+                        <DialogDescription className="text-center text-gray-600">
+                          {!selectedDemoType
+                            ? t.demo.selectDescription
+                            : selectedDemoType === "video"
+                              ? t.demo.videoModalDescription
+                              : selectedDemoType === "interactive"
+                                ? t.demo.interactiveModalDescription.replace(
+                                    "{step}",
+                                    demoStep,
+                                  )
+                                : t.demo.caseStudyModalDescription}
+                        </DialogDescription>
+                      </DialogHeader>
 
-                    {/* Seleção do tipo de demonstração */}
-                    {!selectedDemoType && (
-                      <div className="grid md:grid-cols-3 gap-6 mt-6">
-                        {demoTypes.map((demo) => (
-                          <Card
-                            key={demo.id}
-                            className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-300"
-                            onClick={() => selectDemoType(demo.id)}
-                          >
-                            <CardHeader className="text-center">
-                              <div
-                                className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${demo.color} flex items-center justify-center mb-4`}
-                              >
-                                <demo.icon className="w-8 h-8 text-white" />
-                              </div>
-                              <CardTitle className="text-lg">
-                                {demo.title}
-                              </CardTitle>
-                              <CardDescription>
-                                {demo.description}
-                              </CardDescription>
-                              <Badge
-                                variant="outline"
-                                className="mt-2 w-fit mx-auto"
-                              >
-                                <Clock className="w-3 h-3 mr-1" />
-                                {demo.duration}
-                              </Badge>
-                            </CardHeader>
-                          </Card>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Demonstração em Vídeo */}
-                    {selectedDemoType === "video" && (
-                      <div className="mt-6">
-                        <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
-                          <iframe
-                            className="w-full h-full"
-                            src="https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0"
-                            title={t.hero.videoIframeTitle}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
-                        </div>
-                        <div className="mt-4 text-center">
-                          <p className="text-gray-600 mb-4">
-                            {t.demo.videoComplete}
-                          </p>
-                          <Button
-                            onClick={scrollToForm}
-                            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
-                          >
-                            {t.demo.videoCTA}
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Tour Interativo */}
-                    {selectedDemoType === "interactive" && (
-                      <div className="mt-6">
-                        <div className="mb-6">
-                          <div className="flex justify-between items-center mb-4">
-                            <div className="flex space-x-2">
-                              {[1, 2, 3, 4, 5, 6].map((step) => (
+                      {/* Seleção do tipo de demonstração */}
+                      {!selectedDemoType && (
+                        <div className="grid md:grid-cols-3 gap-6 mt-6">
+                          {demoTypes.map((demo) => (
+                            <Card
+                              key={demo.id}
+                              className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-300"
+                              onClick={() => selectDemoType(demo.id)}
+                            >
+                              <CardHeader className="text-center">
                                 <div
-                                  key={step}
-                                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                                    step <= demoStep
-                                      ? "bg-gradient-to-r from-blue-600 to-green-600 text-white"
-                                      : "bg-gray-200 text-gray-500"
-                                  }`}
+                                  className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${demo.color} flex items-center justify-center mb-4`}
                                 >
-                                  {step}
+                                  <demo.icon className="w-8 h-8 text-white" />
                                 </div>
-                              ))}
-                            </div>
-                            <Badge className="bg-blue-100 text-blue-800">
-                              {demoStep}/6
-                            </Badge>
+                                <CardTitle className="text-lg">
+                                  {demo.title}
+                                </CardTitle>
+                                <CardDescription>
+                                  {demo.description}
+                                </CardDescription>
+                                <Badge
+                                  variant="outline"
+                                  className="mt-2 w-fit mx-auto"
+                                >
+                                  <Clock className="w-3 h-3 mr-1" />
+                                  {demo.duration}
+                                </Badge>
+                              </CardHeader>
+                            </Card>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Demonstração em Vídeo */}
+                      {selectedDemoType === "video" && (
+                        <div className="mt-6">
+                          <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                            <iframe
+                              className="w-full h-full"
+                              src="https://www.youtube.com/embed/lzwZuZK_5Ao?rel=0&modestbranding=1&showinfo=0"
+                              title={t.hero.videoIframeTitle}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                          <div className="mt-4 text-center">
+                            <p className="text-gray-600 mb-4">
+                              {t.demo.videoComplete}
+                            </p>
+                            <Button
+                              onClick={scrollToForm}
+                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                            >
+                              {t.demo.videoCTA}
+                              <ArrowRight className="w-4 h-4 ml-2" />
+                            </Button>
                           </div>
                         </div>
+                      )}
 
-                        {demoStep > 0 && demoStep <= 6 && (
-                          <Card className="mb-6">
-                            <CardHeader>
-                              <CardTitle className="text-xl">
-                                {interactiveSteps[demoStep - 1].title}
-                              </CardTitle>
-                              <CardDescription className="text-base">
-                                {interactiveSteps[demoStep - 1].description}
-                              </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                              <div className="grid md:grid-cols-2 gap-6 items-center">
-                                <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
-                                  <img
-                                    src={interactiveSteps[demoStep - 1].image}
-                                    alt={interactiveSteps[demoStep - 1].title}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                      e.target.style.display = "none";
-                                      e.target.nextSibling.style.display =
-                                        "flex";
-                                    }}
-                                  />
+                      {/* Tour Interativo */}
+                      {selectedDemoType === "interactive" && (
+                        <div className="mt-6">
+                          <div className="mb-6">
+                            <div className="flex justify-between items-center mb-4">
+                              <div className="flex space-x-2">
+                                {[1, 2, 3, 4, 5, 6].map((step) => (
                                   <div
-                                    className="w-full h-full flex items-center justify-center text-center text-gray-500"
-                                    style={{ display: "none" }}
+                                    key={step}
+                                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                                      step <= demoStep
+                                        ? "bg-gradient-to-r from-blue-600 to-green-600 text-white"
+                                        : "bg-gray-200 text-gray-500"
+                                    }`}
                                   >
-                                    <div>
-                                      <Monitor className="w-12 h-12 mx-auto mb-2" />
-                                      <p className="text-sm">
-                                        {t.demo.interfaceSimulation}
-                                      </p>
-                                      <p className="text-xs">
-                                        {t.demo.step} {demoStep}
-                                      </p>
+                                    {step}
+                                  </div>
+                                ))}
+                              </div>
+                              <Badge className="bg-blue-100 text-blue-800">
+                                {demoStep}/6
+                              </Badge>
+                            </div>
+                          </div>
+
+                          {demoStep > 0 && demoStep <= 6 && (
+                            <Card className="mb-6">
+                              <CardHeader>
+                                <CardTitle className="text-xl">
+                                  {interactiveSteps[demoStep - 1].title}
+                                </CardTitle>
+                                <CardDescription className="text-base">
+                                  {interactiveSteps[demoStep - 1].description}
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <div className="grid md:grid-cols-2 gap-6 items-center">
+                                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
+                                    <img
+                                      src={interactiveSteps[demoStep - 1].image}
+                                      alt={interactiveSteps[demoStep - 1].title}
+                                      className="w-full h-full object-cover"
+                                      onError={(e) => {
+                                        e.target.style.display = "none";
+                                        e.target.nextSibling.style.display =
+                                          "flex";
+                                      }}
+                                    />
+                                    <div
+                                      className="w-full h-full flex items-center justify-center text-center text-gray-500"
+                                      style={{ display: "none" }}
+                                    >
+                                      <div>
+                                        <Monitor className="w-12 h-12 mx-auto mb-2" />
+                                        <p className="text-sm">
+                                          {t.demo.interfaceSimulation}
+                                        </p>
+                                        <p className="text-xs">
+                                          {t.demo.step} {demoStep}
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="space-y-3">
-                                  <h4 className="font-semibold text-gray-800">
-                                    {t.demo.characteristics}
-                                  </h4>
-                                  {interactiveSteps[demoStep - 1].features.map(
-                                    (feature, index) => (
+                                  <div className="space-y-3">
+                                    <h4 className="font-semibold text-gray-800">
+                                      {t.demo.characteristics}
+                                    </h4>
+                                    {interactiveSteps[
+                                      demoStep - 1
+                                    ].features.map((feature, index) => (
                                       <div
                                         key={index}
                                         className="flex items-center space-x-2"
@@ -1975,170 +2103,181 @@ function MapLandingPage({ language = "pt" }) {
                                           {feature}
                                         </span>
                                       </div>
-                                    )
-                                  )}
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        )}
-
-                        <div className="flex justify-between items-center">
-                          <Button
-                            variant="outline"
-                            onClick={prevDemoStep}
-                            disabled={demoStep === 1 && selectedDemoType}
-                          >
-                            {demoStep === 1 ? t.demo.back : t.demo.previous}
-                          </Button>
-
-                          {demoStep < 6 ? (
-                            <Button
-                              onClick={nextDemoStep}
-                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
-                            >
-                              {t.demo.next}
-                              <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                          ) : (
-                            <Button
-                              onClick={scrollToForm}
-                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
-                            >
-                              {t.demo.startTrial}
-                              <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
+                              </CardContent>
+                            </Card>
                           )}
-                        </div>
-                      </div>
-                    )}
 
-                    {/* Caso Clínico */}
-                    {selectedDemoType === "case-study" && (
-                      <div className="mt-6">
-                        <Card className="mb-6">
-                          <CardHeader>
-                            <CardTitle className="text-xl">
-                              {t.caseStudy.patient}
-                            </CardTitle>
-                            <CardDescription>
-                              {t.caseStudy.request}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="grid md:grid-cols-2 gap-6">
-                              <div>
-                                <h4 className="font-semibold mb-3">
-                                  {t.caseStudy.analyzedPhoto}
-                                </h4>
-                                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
-                                  <img
-                                    src="/images/paciente.webp"
-                                    alt={t.caseStudy.facialAnalysis}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                      e.target.style.display = "none";
-                                      e.target.nextSibling.style.display =
-                                        "flex";
-                                    }}
-                                  />
-                                  <div
-                                    className="w-full h-full flex items-center justify-center text-center text-gray-500"
-                                    style={{ display: "none" }}
-                                  >
-                                    <div>
-                                      <Camera className="w-12 h-12 mx-auto mb-2" />
-                                      <p className="text-sm">
-                                        {t.caseStudy.facialImage}
-                                      </p>
-                                      <p className="text-xs">
-                                        {t.caseStudy.analysisComplete}
-                                      </p>
+                          <div className="flex justify-between items-center">
+                            <Button
+                              variant="outline"
+                              onClick={prevDemoStep}
+                              disabled={demoStep === 1 && selectedDemoType}
+                            >
+                              {demoStep === 1 ? t.demo.back : t.demo.previous}
+                            </Button>
+
+                            {demoStep < 6 ? (
+                              <Button
+                                onClick={nextDemoStep}
+                                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                              >
+                                {t.demo.next}
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={scrollToForm}
+                                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                              >
+                                {t.demo.startTrial}
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Caso Clínico */}
+                      {selectedDemoType === "case-study" && (
+                        <div className="mt-6">
+                          <Card className="mb-6">
+                            <CardHeader>
+                              <CardTitle className="text-xl">
+                                {t.caseStudy.patient}
+                              </CardTitle>
+                              <CardDescription>
+                                {t.caseStudy.request}
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="grid md:grid-cols-2 gap-6">
+                                <div>
+                                  <h4 className="font-semibold mb-3">
+                                    {t.caseStudy.analyzedPhoto}
+                                  </h4>
+                                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
+                                    <img
+                                      src="/images/paciente.webp"
+                                      alt={t.caseStudy.facialAnalysis}
+                                      className="w-full h-full object-cover"
+                                      onError={(e) => {
+                                        e.target.style.display = "none";
+                                        e.target.nextSibling.style.display =
+                                          "flex";
+                                      }}
+                                    />
+                                    <div
+                                      className="w-full h-full flex items-center justify-center text-center text-gray-500"
+                                      style={{ display: "none" }}
+                                    >
+                                      <div>
+                                        <Camera className="w-12 h-12 mx-auto mb-2" />
+                                        <p className="text-sm">
+                                          {t.caseStudy.facialImage}
+                                        </p>
+                                        <p className="text-xs">
+                                          {t.caseStudy.analysisComplete}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold mb-3">
+                                    {t.caseStudy.sogiResults}
+                                  </h4>
+                                  <div className="space-y-3">
+                                    <div className="flex justify-between items-center p-2 bg-red-50 rounded">
+                                      <span className="text-sm font-medium">
+                                        {t.interactiveSteps[2].features[0]}
+                                      </span>
+                                      <Badge variant="destructive">
+                                        {t.caseStudy.highRisk}
+                                      </Badge>
+                                    </div>
+                                    <div className="flex justify-between items-center p-2 bg-yellow-50 rounded">
+                                      <span className="text-sm font-medium">
+                                        {t.interactiveSteps[2].features[1]}
+                                      </span>
+                                      <Badge className="bg-yellow-500">
+                                        {t.caseStudy.moderate}
+                                      </Badge>
+                                    </div>
+                                    <div className="flex justify-between items-center p-2 bg-green-50 rounded">
+                                      <span className="text-sm font-medium">
+                                        {t.interactiveSteps[2].features[2]}
+                                      </span>
+                                      <Badge className="bg-green-600">
+                                        {t.caseStudy.low}
+                                      </Badge>
+                                    </div>
+                                    <div className="flex justify-between items-center p-2 bg-orange-50 rounded">
+                                      <span className="text-sm font-medium">
+                                        {t.interactiveSteps[2].features[3]}
+                                      </span>
+                                      <Badge className="bg-orange-500">
+                                        {t.caseStudy.moderate}
+                                      </Badge>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div>
-                                <h4 className="font-semibold mb-3">
-                                  {t.caseStudy.sogiResults}
+
+                              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                                <h4 className="font-semibold text-blue-800 mb-2">
+                                  {t.caseStudy.recommendations}
                                 </h4>
-                                <div className="space-y-3">
-                                  <div className="flex justify-between items-center p-2 bg-red-50 rounded">
-                                    <span className="text-sm font-medium">
-                                      {t.interactiveSteps[2].features[0]}
-                                    </span>
-                                    <Badge variant="destructive">
-                                      {t.caseStudy.highRisk}
-                                    </Badge>
-                                  </div>
-                                  <div className="flex justify-between items-center p-2 bg-yellow-50 rounded">
-                                    <span className="text-sm font-medium">
-                                      {t.interactiveSteps[2].features[1]}
-                                    </span>
-                                    <Badge className="bg-yellow-500">
-                                      {t.caseStudy.moderate}
-                                    </Badge>
-                                  </div>
-                                  <div className="flex justify-between items-center p-2 bg-green-50 rounded">
-                                    <span className="text-sm font-medium">
-                                      {t.interactiveSteps[2].features[2]}
-                                    </span>
-                                    <Badge className="bg-green-600">
-                                      {t.caseStudy.low}
-                                    </Badge>
-                                  </div>
-                                  <div className="flex justify-between items-center p-2 bg-orange-50 rounded">
-                                    <span className="text-sm font-medium">
-                                      {t.interactiveSteps[2].features[3]}
-                                    </span>
-                                    <Badge className="bg-orange-500">
-                                      {t.caseStudy.moderate}
-                                    </Badge>
-                                  </div>
-                                </div>
+                                <ul className="text-sm text-blue-700 space-y-1">
+                                  <li>{t.caseStudy.rec1}</li>
+                                  <li>{t.caseStudy.rec2}</li>
+                                  <li>{t.caseStudy.rec3}</li>
+                                  <li>{t.caseStudy.rec4}</li>
+                                </ul>
                               </div>
-                            </div>
+                            </CardContent>
+                          </Card>
 
-                            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                              <h4 className="font-semibold text-blue-800 mb-2">
-                                {t.caseStudy.recommendations}
-                              </h4>
-                              <ul className="text-sm text-blue-700 space-y-1">
-                                <li>{t.caseStudy.rec1}</li>
-                                <li>{t.caseStudy.rec2}</li>
-                                <li>{t.caseStudy.rec3}</li>
-                                <li>{t.caseStudy.rec4}</li>
-                              </ul>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <div className="text-center">
-                          <p className="text-gray-600 mb-4">
-                            {t.caseStudy.completeAnalysis}
-                          </p>
-                          <Button
-                            onClick={scrollToForm}
-                            className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
-                          >
-                            {t.caseStudy.analyzePatients}
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                          </Button>
+                          <div className="text-center">
+                            <p className="text-gray-600 mb-4">
+                              {t.caseStudy.completeAnalysis}
+                            </p>
+                            <Button
+                              onClick={scrollToForm}
+                              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                            >
+                              {t.caseStudy.analyzePatients}
+                              <ArrowRight className="w-4 h-4 ml-2" />
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </DialogContent>
-                </Dialog>
+                      )}
+                    </DialogContent>
+                  </Dialog>
 
-                <a
-                  href="/materiais/INDICE_MATERIAIS.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(102,126,234,0.3)] hover:shadow-[0_6px_20px_rgba(102,126,234,0.4)] hover:-translate-y-0.5 transition-all duration-200 hover:text-white"
-                >
-                  <Download className="w-5 h-5" />
-                  {t.hero.materialsBtn}
-                </a>
+                  <a
+                    href="/materiais/INDICE_MATERIAIS.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(102,126,234,0.3)] hover:shadow-[0_6px_20px_rgba(102,126,234,0.4)] hover:-translate-y-0.5 transition-all duration-200 hover:text-white"
+                  >
+                    <Download className="w-5 h-5" />
+                    {t.hero.materialsBtn}
+                  </a>
+                </div>
+
+                <p className="text-sm text-gray-600">{t.hero.cta1Subtitle}</p>
+
+                <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold">
+                  <Users className="w-4 h-4" />
+                  <span>{t.hero.ctaBenefit}</span>
+                </div>
+
+                <div className="mt-4 max-w-md">
+                  <GuaranteeBadge language={language} />
+                </div>
               </div>
             </div>
 
@@ -2236,14 +2375,14 @@ function MapLandingPage({ language = "pt" }) {
                         seal.color === "green"
                           ? "from-green-500 to-green-600"
                           : seal.color === "blue"
-                          ? "from-blue-500 to-blue-600"
-                          : seal.color === "purple"
-                          ? "from-purple-500 to-purple-600"
-                          : seal.color === "orange"
-                          ? "from-orange-500 to-orange-600"
-                          : seal.color === "indigo"
-                          ? "from-indigo-500 to-indigo-600"
-                          : "from-teal-500 to-teal-600"
+                            ? "from-blue-500 to-blue-600"
+                            : seal.color === "purple"
+                              ? "from-purple-500 to-purple-600"
+                              : seal.color === "orange"
+                                ? "from-orange-500 to-orange-600"
+                                : seal.color === "indigo"
+                                  ? "from-indigo-500 to-indigo-600"
+                                  : "from-teal-500 to-teal-600"
                       } flex items-center justify-center mb-3`}
                     >
                       <seal.icon className="w-6 h-6 text-white" />
@@ -2280,7 +2419,7 @@ function MapLandingPage({ language = "pt" }) {
       </section>
 
       {/* Como Funciona */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl font-bold mb-4">{t.howItWorks.title}</h2>
@@ -2311,10 +2450,10 @@ function MapLandingPage({ language = "pt" }) {
                         step.color === "blue"
                           ? "from-blue-500 to-blue-600"
                           : step.color === "purple"
-                          ? "from-purple-500 to-purple-600"
-                          : step.color === "green"
-                          ? "from-green-500 to-green-600"
-                          : "from-orange-500 to-orange-600"
+                            ? "from-purple-500 to-purple-600"
+                            : step.color === "green"
+                              ? "from-green-500 to-green-600"
+                              : "from-orange-500 to-orange-600"
                       } flex items-center justify-center mb-4`}
                     >
                       <step.icon className="w-8 h-8 text-white" />
@@ -2344,145 +2483,152 @@ function MapLandingPage({ language = "pt" }) {
       {/* Base Científica */}
       <section
         id="base-cientifica"
-        className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
+        className="py-24 bg-gradient-to-br from-gray-50 to-blue-50"
       >
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">{t.science.title}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t.science.subtitle}
-            </p>
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <Badge className="mb-4 bg-blue-100 text-blue-800" data-aos="fade-up">
+            {language === "es"
+              ? "Validación Científica"
+              : language === "en"
+                ? "Scientific Validation"
+                : "Validação Científica"}
+          </Badge>
+
+          <h2 className="text-3xl font-bold mb-4" data-aos="fade-up">
+            {language === "es"
+              ? "Basado en Ciencia Sólida"
+              : language === "en"
+                ? "Based on Solid Science"
+                : "Baseado em Ciência Sólida"}
+          </h2>
+
+          <p className="text-lg text-gray-600 mb-8" data-aos="fade-up">
+            {language === "es"
+              ? "El MAP utiliza tecnología validada en estudios publicados por Nature Medicine, con más de 728 citas científicas. Nuestro enfoque correlaciona patrones faciales con biomarcadores metabólicos, ofreciendo soporte científico a tus decisiones clínicas."
+              : language === "en"
+                ? "MAP uses technology validated in studies published by Nature Medicine, with over 728 scientific citations. Our approach correlates facial patterns with metabolic biomarkers, providing scientific support for your clinical decisions."
+                : "O MAP utiliza tecnologia validada em estudos publicados pela Nature Medicine, com mais de 728 citações científicas. Nossa abordagem correlaciona padrões faciais com biomarcadores metabólicos, oferecendo suporte científico às suas decisões clínicas."}
+          </p>
+
+          <div
+            className="flex justify-center gap-8 mb-8"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div className="text-center">
+              <p className="text-4xl font-bold text-blue-600">91%</p>
+              <p className="text-sm text-gray-600">
+                {language === "es"
+                  ? "Correlación con"
+                  : language === "en"
+                    ? "Correlation with"
+                    : "Correlação com"}
+                <br />
+                {language === "es"
+                  ? "biomarcadores"
+                  : language === "en"
+                    ? "biomarkers"
+                    : "biomarcadores"}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-4xl font-bold text-green-600">728+</p>
+              <p className="text-sm text-gray-600">
+                {language === "es"
+                  ? "Citas"
+                  : language === "en"
+                    ? "Scientific"
+                    : "Citações"}
+                <br />
+                {language === "es"
+                  ? "científicas"
+                  : language === "en"
+                    ? "citations"
+                    : "científicas"}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-4xl font-bold text-purple-600">17k+</p>
+              <p className="text-sm text-gray-600">
+                {language === "es"
+                  ? "Imágenes"
+                  : language === "en"
+                    ? "Images"
+                    : "Imagens"}
+                <br />
+                {language === "es"
+                  ? "analizadas"
+                  : language === "en"
+                    ? "analyzed"
+                    : "analisadas"}
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {t.science.studies.map((studyData, index) => {
-              const images = [
-                "/images/estudos/estudo-1-network-analysis-metabolic.jpeg",
-                "/images/estudos/estudo-2-glycation-oxidation-inflammation.png",
-                "/images/estudos/estudo-3-facial-phenotyping-deep-learning.png",
-              ];
-              const links = [
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5872302/",
-                "https://pubmed.ncbi.nlm.nih.gov/27529340/",
-                "https://pubmed.ncbi.nlm.nih.gov/30617323/",
-              ];
-              const study = {
-                ...studyData,
-                image: images[index],
-                link: links[index],
-              };
-              return (
-                <Card
-                  key={index}
-                  className="hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200"
-                >
-                  <CardHeader>
-                    <div className="aspect-video bg-gray-100 rounded-lg mb-4 overflow-hidden">
-                      <img
-                        src={study.image}
-                        alt={study.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge className="bg-blue-100 text-blue-800 border-blue-200">
-                        {study.citations}
-                      </Badge>
-                      <Badge variant="outline" className="text-xs">
-                        {study.journal}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg leading-tight">
-                      {study.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-700 mb-1">
-                        {t.science.discovery}
-                      </p>
-                      <p className="text-sm text-gray-600 italic">
-                        "{study.finding}"
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-700 mb-1">
-                        {t.science.application}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        {study.application}
-                      </p>
-                    </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() =>
-                        window.open(study.link, "_blank", "noreferrer")
-                      }
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      {study.linkText}
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          <Button
+            variant="outline"
+            className="border-2 border-blue-600 text-blue-600"
+            onClick={() =>
+              window.open(
+                "https://www.nature.com/articles/s41591-023-02515-5",
+                "_blank",
+              )
+            }
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            {language === "es"
+              ? "Acceder Publicación Nature Medicine"
+              : language === "en"
+                ? "Access Nature Medicine Publication"
+                : "Acessar Publicação Nature Medicine"}
+            <ExternalLink className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </section>
 
       {/* Benefícios */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto max-w-6xl px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl font-bold mb-4">{t.benefits.title}</h2>
             <p className="text-xl text-gray-600">{t.benefits.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {t.benefits.items.map((benefitData, index) => {
-              const icons = [Zap, TrendingUp, BarChart3, Award, Target, Shield];
-              const colors = [
-                "yellow",
-                "orange",
-                "indigo",
-                "purple",
-                "blue",
-                "green",
+              const icons = [
+                TrendingUp,
+                Clock,
+                Heart,
+                Award,
+                Users,
+                Lightbulb,
+                Shield,
+                Dumbbell,
               ];
-              const benefit = {
-                ...benefitData,
-                icon: icons[index],
-                color: colors[index],
-              };
+              const Icon = icons[index] || TrendingUp;
               return (
                 <Card
                   key={index}
-                  className="hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-200"
+                  className="hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-200 group"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
                 >
-                  <CardHeader>
-                    <div
-                      className={`w-12 h-12 rounded-lg bg-gradient-to-r ${
-                        benefit.color === "yellow"
-                          ? "from-yellow-400 to-yellow-500"
-                          : benefit.color === "blue"
-                          ? "from-blue-500 to-blue-600"
-                          : benefit.color === "purple"
-                          ? "from-purple-500 to-purple-600"
-                          : benefit.color === "green"
-                          ? "from-green-500 to-green-600"
-                          : benefit.color === "orange"
-                          ? "from-orange-500 to-orange-600"
-                          : "from-indigo-500 to-indigo-600"
-                      } flex items-center justify-center mb-4`}
-                    >
-                      <benefit.icon className="w-6 h-6 text-white" />
+                  <CardHeader className="pb-3">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                    <CardTitle className="text-xl">
+                      {benefitData.title}
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">{benefit.description}</p>
+                  <CardContent className="space-y-3">
+                    <p className="text-gray-600">{benefitData.description}</p>
+                    {benefitData.emotional && (
+                      <p className="text-sm text-blue-600 font-semibold italic">
+                        {benefitData.emotional}
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
               );
@@ -2492,7 +2638,7 @@ function MapLandingPage({ language = "pt" }) {
       </section>
 
       {/* Para quem é o sistema MAP */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">{t.professionals.title}</h2>
@@ -2543,20 +2689,20 @@ function MapLandingPage({ language = "pt" }) {
                         professional.color === "green"
                           ? "from-green-500 to-green-600"
                           : professional.color === "blue"
-                          ? "from-blue-500 to-blue-600"
-                          : professional.color === "purple"
-                          ? "from-purple-500 to-purple-600"
-                          : professional.color === "orange"
-                          ? "from-orange-500 to-orange-600"
-                          : professional.color === "red"
-                          ? "from-red-500 to-red-600"
-                          : professional.color === "indigo"
-                          ? "from-indigo-500 to-indigo-600"
-                          : professional.color === "teal"
-                          ? "from-teal-500 to-teal-600"
-                          : professional.color === "cyan"
-                          ? "from-cyan-500 to-cyan-600"
-                          : "from-emerald-500 to-emerald-600"
+                            ? "from-blue-500 to-blue-600"
+                            : professional.color === "purple"
+                              ? "from-purple-500 to-purple-600"
+                              : professional.color === "orange"
+                                ? "from-orange-500 to-orange-600"
+                                : professional.color === "red"
+                                  ? "from-red-500 to-red-600"
+                                  : professional.color === "indigo"
+                                    ? "from-indigo-500 to-indigo-600"
+                                    : professional.color === "teal"
+                                      ? "from-teal-500 to-teal-600"
+                                      : professional.color === "cyan"
+                                        ? "from-cyan-500 to-cyan-600"
+                                        : "from-emerald-500 to-emerald-600"
                       } flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
                     >
                       <professional.icon className="w-8 h-8 text-white" />
@@ -2616,10 +2762,10 @@ function MapLandingPage({ language = "pt" }) {
                         language === "pt"
                           ? "Olá! Gostaria de saber como o MAP pode ajudar na minha especialidade."
                           : language === "en"
-                          ? "Hello! I would like to know how MAP can help in my specialty."
-                          : "¡Hola! Me gustaría saber cómo el MAP puede ayudar en mi especialidad."
+                            ? "Hello! I would like to know how MAP can help in my specialty."
+                            : "¡Hola! Me gustaría saber cómo el MAP puede ayudar en mi especialidad.",
                       )}`,
-                      "_blank"
+                      "_blank",
                     )
                   }
                 >
@@ -2635,7 +2781,7 @@ function MapLandingPage({ language = "pt" }) {
       {/* Lead Capture - Ebook */}
       <section
         id="lead-capture-form"
-        className="py-20 bg-gradient-to-br from-green-50 to-blue-50"
+        className="py-24 bg-gradient-to-br from-green-50 to-blue-50"
       >
         <div className="container mx-auto max-w-4xl px-4">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
@@ -2685,10 +2831,7 @@ function MapLandingPage({ language = "pt" }) {
                 </div>
 
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <form
-                    onSubmit={handleFormSubmit}
-                    className="space-y-4"
-                  >
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
                     <div>
                       <label
                         htmlFor="email-guia"
@@ -2705,7 +2848,9 @@ function MapLandingPage({ language = "pt" }) {
                         value={formEmail}
                         onChange={(e) => setFormEmail(e.target.value)}
                         className="w-full"
-                        disabled={formStatus === "loading" || formStatus === "success"}
+                        disabled={
+                          formStatus === "loading" || formStatus === "success"
+                        }
                       />
                     </div>
 
@@ -2719,7 +2864,9 @@ function MapLandingPage({ language = "pt" }) {
                       <Select
                         value={formEspecialidade}
                         onValueChange={setFormEspecialidade}
-                        disabled={formStatus === "loading" || formStatus === "success"}
+                        disabled={
+                          formStatus === "loading" || formStatus === "success"
+                        }
                       >
                         <SelectTrigger className="w-full">
                           <SelectValue
@@ -2748,23 +2895,52 @@ function MapLandingPage({ language = "pt" }) {
                       </Select>
                     </div>
 
+                    <div className="mb-4">
+                      <GuaranteeBadge variant="compact" language={language} />
+                    </div>
+
                     <Button
                       type="submit"
-                      disabled={formStatus === "loading" || formStatus === "success"}
+                      disabled={
+                        formStatus === "loading" || formStatus === "success"
+                      }
                       className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
                     >
                       {formStatus === "loading" ? (
                         <span className="flex items-center justify-center gap-2">
-                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          <svg
+                            className="animate-spin h-5 w-5"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                            />
                           </svg>
-                          {language === "es" ? "Enviando..." : language === "en" ? "Submitting..." : "Enviando..."}
+                          {language === "es"
+                            ? "Enviando..."
+                            : language === "en"
+                              ? "Submitting..."
+                              : "Enviando..."}
                         </span>
                       ) : formStatus === "success" ? (
                         <span className="flex items-center justify-center gap-2">
                           <CheckCircle className="w-5 h-5" />
-                          {language === "es" ? "¡Registrado!" : language === "en" ? "Registered!" : "Cadastrado!"}
+                          {language === "es"
+                            ? "¡Registrado!"
+                            : language === "en"
+                              ? "Registered!"
+                              : "Cadastrado!"}
                         </span>
                       ) : (
                         t.form.submit
@@ -2772,7 +2948,9 @@ function MapLandingPage({ language = "pt" }) {
                     </Button>
 
                     {formStatus === "error" && (
-                      <p className="text-sm text-red-600 text-center">{formError}</p>
+                      <p className="text-sm text-red-600 text-center">
+                        {formError}
+                      </p>
                     )}
 
                     <p className="text-xs text-gray-500 text-center">
@@ -2787,7 +2965,7 @@ function MapLandingPage({ language = "pt" }) {
       </section>
 
       {/* Prova Social */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-green-50">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">{t.testimonials.title}</h2>
@@ -2853,7 +3031,7 @@ function MapLandingPage({ language = "pt" }) {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">{t.faq.title}</h2>
@@ -2894,10 +3072,10 @@ function MapLandingPage({ language = "pt" }) {
                     language === "pt"
                       ? "Olá! Tenho interesse no MAP e gostaria de falar com um especialista."
                       : language === "en"
-                      ? "Hello! I am interested in MAP and would like to speak with an expert."
-                      : "¡Hola! Tengo interés en el MAP y me gustaría hablar con un experto."
+                        ? "Hello! I am interested in MAP and would like to speak with an expert."
+                        : "¡Hola! Tengo interés en el MAP y me gustaría hablar con un experto.",
                   )}`,
-                  "_blank"
+                  "_blank",
                 )
               }
             >
@@ -2909,12 +3087,20 @@ function MapLandingPage({ language = "pt" }) {
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-green-600 text-white">
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">{t.finalCTA.title}</h2>
-          <p className="text-xl mb-8 opacity-90">{t.finalCTA.subtitle}</p>
+          <h2 className="text-4xl font-bold mb-6" data-aos="fade-up">
+            {t.finalCTA.title}
+          </h2>
+          <p className="text-xl mb-8 opacity-90" data-aos="fade-up">
+            {t.finalCTA.subtitle}
+          </p>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
+          <div
+            className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <h3 className="text-2xl font-bold mb-6">{t.finalCTA.trialTitle}</h3>
             <div className="grid md:grid-cols-2 gap-4 text-left mb-6">
               {t.finalCTA.features.map((feature, index) => (
@@ -2926,14 +3112,18 @@ function MapLandingPage({ language = "pt" }) {
             </div>
           </div>
 
+          <div className="mb-8">
+            <GuaranteeBadge language={language} />
+          </div>
+
           <Button
             size="lg"
-            className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-4 rounded-full text-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 relative group"
+            className="bg-white text-blue-600 hover:bg-gray-100 px-16 py-6 rounded-full text-2xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 relative group overflow-hidden"
             onClick={scrollToForm}
           >
             <span className="relative z-10">{t.finalCTA.cta}</span>
-            <ArrowRight className="w-6 h-6 ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-green-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <ArrowRight className="w-7 h-7 ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </Button>
 
           <p className="text-sm mt-6 opacity-75">{t.finalCTA.guarantee}</p>
