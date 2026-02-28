@@ -2,8 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AppStoreBadge } from "../../../components/badges/AppStoreBadge";
 import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
+import { useLanguage } from "../LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
   const handleAppStoreClick = () => {
     // Link para App Store
     window.open("https://apps.apple.com/app/id6756675158", "_blank");
@@ -27,125 +29,119 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center py-12 md:py-16">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Imagem/Visual - Primeiro no mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative order-first lg:order-last"
-          >
-            <div className="relative bg-gradient-to-br from-green-100 to-emerald-200 rounded-3xl overflow-hidden shadow-2xl p-8">
-              {/* Mockup de telefone com análise facial */}
-              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden">
-                <img
-                  src="/images/scanface.webp"
-                  alt="Análise Facial no EssenciaLab"
-                  className="w-full h-64 md:h-80 lg:h-96 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600"%3E%3Crect fill="%2310b981" width="400" height="600"/%3E%3Ctext x="50%25" y="50%25" font-size="20" text-anchor="middle" fill="white"%3EAnálise Facial%3C/text%3E%3C/svg%3E';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent"></div>
-              </div>
-
-              {/* Elementos decorativos */}
-              <div className="absolute -top-3 -right-3 bg-white rounded-full p-3 shadow-xl border border-green-100">
-                <span className="text-3xl">🌿</span>
-              </div>
-              <div className="absolute -bottom-3 -left-3 bg-white rounded-full p-3 shadow-xl border border-green-100">
-                <span className="text-3xl">✨</span>
-              </div>
-            </div>
-          </motion.div>
-
+        <div className="max-w-4xl mx-auto">
           {/* Conteúdo principal */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left space-y-6"
+            className="text-center space-y-8"
           >
-            {/* Badge de Nova Oportunidade */}
-            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-green-700 border border-green-200 shadow-md">
-              ✨ Tecnologia Exclusiva para Consultores doTERRA
+            <div className="space-y-6">
+              {/* Badge de Nova Oportunidade */}
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-green-700 border border-green-200 shadow-md">
+                {t("hero.badge")}
+              </div>
+
+              {/* Headline Principal - Fórmula de Copywriting #6 */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                {t("hero.title")}
+              </h1>
+
+              {/* Sub-headline */}
+              <h2 className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mt-4">
+                {t("hero.subtitle")}
+              </h2>
             </div>
-
-            {/* Headline Principal - Fórmula de Copywriting #6 */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-              Como Consultores doTERRA Estão Fechando Até 3x Mais Vendas Usando
-              Apenas a Câmera do Celular... Sem Precisar Decorar Manuais
-              Complexos ou Ser 'Vendedor Chato'.
-            </h1>
-
-            {/* Sub-headline */}
-            <h2 className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 mt-4">
-              A tecnologia de Análise Facial que desperta a curiosidade imediata
-              do seu cliente e revela exatamente quais óleos ele precisa
-              emocionalmente e fisicamente.
-            </h2>
 
             {/* Badge de Teste Grátis */}
-            <div className="bg-gradient-to-r from-orange-100 to-yellow-100 border-2 border-orange-300 rounded-2xl p-6 shadow-lg">
+            <div className="bg-gradient-to-r from-orange-100 to-yellow-100 border-2 border-orange-300 rounded-2xl p-6 shadow-lg max-w-lg mx-auto">
               <p className="text-orange-800 font-bold text-xl mb-2">
-                🎁 7 DIAS DE TESTE GRÁTIS
+                {t("hero.freeTrialBadge")}
               </p>
               <p className="text-orange-700 text-sm">
-                Todas as funções liberadas + Download Gratuito
+                {t("hero.freeTrialSubtitle")}
               </p>
-            </div>
-
-            {/* CTAs Principais - App Store e Google Play */}
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <AppStoreBadge onClick={handleAppStoreClick} />
-                <GooglePlayBadge onClick={handleGooglePlayClick} />
-              </div>
-
-              <div className="text-center lg:text-left space-y-2">
-                <p className="text-sm text-gray-700 font-bold">
-                  🚀 Não requer conhecimentos técnicos. Aponte, escaneie e
-                  venda.
-                </p>
-                <p className="text-sm text-gray-600 font-semibold">
-                  Comece seu Teste Grátis de 7 Dias
-                </p>
-                <p className="text-xs text-gray-500">
-                  Sem Cartão de Crédito • Cancelamento Fácil • Download Gratuito
-                </p>
-              </div>
-            </div>
-
-            {/* Garantias */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <span className="text-green-500 text-xl">✅</span>
-                <span>Download Gratuito</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500 text-xl">✅</span>
-                <span>7 Dias Grátis</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500 text-xl">✅</span>
-                <span>Sem Cartão de Crédito</span>
-              </div>
             </div>
 
             {/* Prova Social Rápida */}
             <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 border border-green-100 shadow-lg mt-6">
-              <p className="text-sm text-gray-700 leading-relaxed">
-                <span className="font-bold text-green-700">
-                  Mais de 500 consultores
-                </span>{" "}
-                já estão usando o EssenciaLab para
-                <span className="font-semibold">
-                  {" "}
-                  impressionar seus clientes e triplicar suas vendas
-                </span>
-                .
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {t("hero.socialProof")}
               </p>
+            </div>
+
+            {/* Video do YouTube - MOVIDO PARA CÁ */}
+            <div className="pt-12">
+              <div className="mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  {t("hero.videoTitle")}
+                </h3>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  {t("hero.videoSubtitle")}
+                </p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative bg-gradient-to-br from-green-100 to-emerald-200 rounded-3xl overflow-hidden shadow-2xl p-4 md:p-8"
+              >
+                <div className="relative bg-black rounded-2xl shadow-xl overflow-hidden aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/aBbHcW7_zb8?rel=0&modestbranding=1"
+                    title="EssenciaLab - Análise Facial"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+                {/* Elementos decorativos */}
+                <div className="absolute -top-3 -right-3 bg-white rounded-full p-3 shadow-xl border border-green-100">
+                  <span className="text-3xl">🌿</span>
+                </div>
+                <div className="absolute -bottom-3 -left-3 bg-white rounded-full p-3 shadow-xl border border-green-100">
+                  <span className="text-3xl">✨</span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* CTAs Principais - App Store e Google Play */}
+            <div className="space-y-6 pt-12 border-t border-green-100">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <AppStoreBadge onClick={handleAppStoreClick} />
+                <GooglePlayBadge onClick={handleGooglePlayClick} />
+              </div>
+
+              <div className="text-center space-y-2">
+                <p className="text-sm text-gray-700 font-bold">
+                  {t("hero.ctaNoTech")}
+                </p>
+                <p className="text-sm text-gray-600 font-semibold">
+                  {t("hero.ctaStartTrial")}
+                </p>
+                <p className="text-xs text-gray-500">{t("hero.ctaDetails")}</p>
+              </div>
+            </div>
+
+            {/* Garantias */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>{t("hero.guarantee1")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>{t("hero.guarantee2")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500 text-xl">✅</span>
+                <span>{t("hero.guarantee3")}</span>
+              </div>
             </div>
           </motion.div>
         </div>

@@ -1,32 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Shield, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const ProofSection = () => {
+  const { t } = useLanguage();
   const testimonials = [
     {
-      name: "Maria Silva",
-      role: "Consultora doTERRA há 2 anos",
+      name: t('proof.testimonials.0.name'),
+      role: t('proof.testimonials.0.role'),
       photo: "👩‍💼",
       rating: 5,
-      text: "Dobrei minhas vendas usando o scanner facial! Os clientes ficam impressionados com a tecnologia e querem comprar na hora. Não é mais 'vou pensar', agora é 'qual o melhor kit para começar?'",
-      highlight: "Dobrou as vendas"
+      text: t('proof.testimonials.0.text'),
+      highlight: t('proof.testimonials.0.highlight')
     },
     {
-      name: "Ana Costa",
-      role: "Consultora doTERRA há 6 meses",
+      name: t('proof.testimonials.1.name'),
+      role: t('proof.testimonials.1.role'),
       photo: "👩",
       rating: 5,
-      text: "Comecei há pouco tempo e estava insegura. O EssenciaLab me deu a confiança que eu precisava! Agora pareço uma especialista e meus clientes me respeitam muito mais. Resultado: 3x mais vendas!",
-      highlight: "3x mais vendas em 6 meses"
+      text: t('proof.testimonials.1.text'),
+      highlight: t('proof.testimonials.1.highlight')
     },
     {
-      name: "Carla Mendes",
-      role: "Consultora doTERRA há 5 anos",
+      name: t('proof.testimonials.2.name'),
+      role: t('proof.testimonials.2.role'),
       photo: "👱‍♀️",
       rating: 5,
-      text: "Trabalho com óleos há anos, mas nunca vi algo tão poderoso. O relatório da análise facial cria uma curiosidade instantânea. Meus clientes compartilham a experiência e isso gera vendas em cascata!",
-      highlight: "Vendas em cascata"
+      text: t('proof.testimonials.2.text'),
+      highlight: t('proof.testimonials.2.highlight')
     }
   ];
 
@@ -43,25 +45,25 @@ const ProofSection = () => {
         >
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6">
             <Star className="w-5 h-5" />
-            <span className="font-semibold">Prova Social</span>
+            <span className="font-semibold">{t('proof.badge')}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Veja o Que Outros Consultores
+            {t('proof.title')}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mt-2">
-              Estão Conquistando
+              {t('proof.titleGradient')}
             </span>
           </h2>
 
           <div className="bg-gradient-to-r from-green-600 to-emerald-700 rounded-3xl p-8 md:p-10 mb-12 shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')] pointer-events-none"></div>
             <p className="text-xl md:text-2xl text-white leading-relaxed font-medium relative z-10 italic">
-              "Imagine chegar na sua próxima classe, apontar o celular e ver o rosto da sua cliente brilhar quando o app 'adivinha' exatamente o que ela está sentindo emocionalmente. O relatório sai na hora, a venda acontece naturalmente e você se torna a autoridade máxima no ambiente. É esse o poder que o EssenciaLab coloca na sua mão."
+              "{t('proof.mainQuote')}"
             </p>
           </div>
 
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Resultados reais de consultores que decidiram <span className="font-bold text-gray-900">parar de vender do jeito antigo</span>
+            {t('proof.subtitle')}
           </p>
         </motion.div>
 
@@ -117,15 +119,15 @@ const ProofSection = () => {
         >
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 text-center border border-green-200">
             <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">500+</div>
-            <p className="text-gray-700 font-medium">Consultores Ativos</p>
+            <p className="text-gray-700 font-medium">{t('proof.stats1')}</p>
           </div>
           <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-6 text-center border border-orange-200">
             <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">3x</div>
-            <p className="text-gray-700 font-medium">Aumento Médio em Vendas</p>
+            <p className="text-gray-700 font-medium">{t('proof.stats2')}</p>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center border border-blue-200">
             <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">98%</div>
-            <p className="text-gray-700 font-medium">Taxa de Satisfação</p>
+            <p className="text-gray-700 font-medium">{t('proof.stats3')}</p>
           </div>
         </motion.div>
 
@@ -143,23 +145,22 @@ const ProofSection = () => {
             </div>
             
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Teste 100% Gratuito e Sem Riscos.
+              {t('proof.zeroRiskTitle')}
             </h3>
             
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed mb-6">
-              Baixe o app agora e tenha <span className="font-bold underline">acesso total ilimitado por 7 dias</span>. 
-              Todas as funções liberadas. Sem cartão de crédito. Sem compromisso.
+              {t('proof.zeroRiskDesc')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 text-base">
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-3 rounded-full">
-                <span>✅ Sem Cartão de Crédito</span>
+                <span>✅ {t('proof.zeroRiskCheck1')}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-3 rounded-full">
-                <span>✅ Download Gratuito</span>
+                <span>✅ {t('proof.zeroRiskCheck2')}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-3 rounded-full">
-                <span>✅ Cancelamento Instantâneo</span>
+                <span>✅ {t('proof.zeroRiskCheck3')}</span>
               </div>
             </div>
           </div>

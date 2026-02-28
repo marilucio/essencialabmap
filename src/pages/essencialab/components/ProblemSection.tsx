@@ -1,23 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AlertCircle, Frown, BookOpen, MessageSquare } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const ProblemSection = () => {
+  const { t } = useLanguage();
   const problems = [
     {
       icon: <Frown className="w-8 h-8" />,
-      title: "Sensação de 'Empurrar' Produtos",
-      description: "Você ama os óleos, mas odeia parecer insistente com seus clientes."
+      title: t('problem.card1.title'),
+      description: t('problem.card1.description')
     },
     {
       icon: <BookOpen className="w-8 h-8" />,
-      title: "Centenas de Protocolos para Decorar",
-      description: "É impossível lembrar qual óleo serve para cada situação específica."
+      title: t('problem.card2.title'),
+      description: t('problem.card2.description')
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
-      title: "Cliente Sempre Diz: 'Vou Pensar'",
-      description: "Sem curiosidade instantânea, o cliente perde o interesse rapidamente."
+      title: t('problem.card3.title'),
+      description: t('problem.card3.description')
     }
   ];
 
@@ -34,15 +36,15 @@ const ProblemSection = () => {
         >
           <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full mb-6">
             <AlertCircle className="w-5 h-5" />
-            <span className="font-semibold">O Problema</span>
+            <span className="font-semibold">{t('problem.badge')}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            A Maneira Antiga de Vender Óleos Está Te Cansando?
+            {t('problem.title')}
           </h2>
 
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Você ama os óleos, mas odeia a sensação de ter que 'empurrar' produtos? É frustrante tentar adivinhar o que o cliente precisa, decorar centenas de protocolos e ainda ouvir 'vou pensar'. O problema não é você, é que vender baseando-se apenas em argumentos lógicos é difícil.
+            {t('problem.description')}
           </p>
         </motion.div>
 

@@ -1,20 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Camera, TrendingUp, Heart } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const SolutionSection = () => {
+  const { t } = useLanguage();
   const features = [
     {
       icon: <Camera className="w-6 h-6" />,
-      text: "Escaneie o rosto em segundos"
+      text: t('solution.feature1')
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      text: "Detecte emoções e lacunas de saúde"
+      text: t('solution.feature2')
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      text: "Gere relatório científico automaticamente"
+      text: t('solution.feature3')
     }
   ];
 
@@ -31,15 +33,15 @@ const SolutionSection = () => {
         >
           <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full mb-6">
             <Sparkles className="w-5 h-5" />
-            <span className="font-semibold">A Nova Oportunidade</span>
+            <span className="font-semibold">{t('solution.badge')}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Apresentando a Tecnologia de Análise Facial do EssenciaLab
+            {t('solution.title')}
           </h2>
 
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Imagine apontar a câmera, escanear o rosto do seu cliente e, em segundos, um relatório científico mostrar exatamente as emoções e lacunas de saúde que ele está enfrentando. O cliente não sente que está sendo vendido; ele sente que está sendo CONSULTADO. A curiosidade é instantânea.
+            {t('solution.description')}
           </p>
         </motion.div>
 
@@ -66,7 +68,7 @@ const SolutionSection = () => {
               
               {/* Badge flutuante */}
               <div className="absolute top-4 right-4 bg-white rounded-full px-4 py-2 shadow-lg">
-                <span className="text-sm font-bold text-green-700">✨ IA Avançada</span>
+                <span className="text-sm font-bold text-green-700">{t('solution.iaBadge')}</span>
               </div>
             </div>
 

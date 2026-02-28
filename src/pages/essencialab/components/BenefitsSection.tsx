@@ -1,28 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, ShoppingCart, Zap, BookOpen, Check } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const BenefitsSection = () => {
+  const { t } = useLanguage();
   const benefits = [
     {
       icon: <Award className="w-10 h-10" />,
-      title: "Gere Autoridade Imediata",
-      description: "Pareça um especialista instantâneo, mesmo que tenha começado hoje."
+      title: t('benefits.card1.title'),
+      description: t('benefits.card1.description')
     },
     {
       icon: <ShoppingCart className="w-10 h-10" />,
-      title: "Venda Sem Vender",
-      description: "Deixe que o relatório da análise facial diga ao cliente o que ele precisa comprar (o app faz o fechamento por você)."
+      title: t('benefits.card2.title'),
+      description: t('benefits.card2.description')
     },
     {
       icon: <Zap className="w-10 h-10" />,
-      title: "Engajamento Total",
-      description: "Transforme uma apresentação chata em uma experiência interativa e divertida que seus clientes vão querer compartilhar."
+      title: t('benefits.card3.title'),
+      description: t('benefits.card3.description')
     },
     {
       icon: <BookOpen className="w-10 h-10" />,
-      title: "Protocolos Prontos na Palma da Mão",
-      description: "Nunca mais trave sem saber qual óleo indicar para ansiedade, sono ou imunidade."
+      title: t('benefits.card4.title'),
+      description: t('benefits.card4.description')
     }
   ];
 
@@ -39,11 +41,11 @@ const BenefitsSection = () => {
         >
           <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full mb-6">
             <Check className="w-5 h-5" />
-            <span className="font-semibold">Benefícios Transformadores</span>
+            <span className="font-semibold">{t('benefits.badge')}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Benefícios Transformadores
+            {t('benefits.title')}
           </h2>
         </motion.div>
 
