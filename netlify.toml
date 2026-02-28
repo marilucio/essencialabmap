@@ -9,7 +9,7 @@
   skip_processing = false
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # Serve metodocalma assets
 [[redirects]]
