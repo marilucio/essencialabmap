@@ -3,9 +3,18 @@ import { motion } from "framer-motion";
 import { AppStoreBadge } from "../../../components/badges/AppStoreBadge";
 import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 import { useLanguage } from "../LanguageContext";
+import { MessageSquare, TrendingUp } from "lucide-react";
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  
+  const scrollToProof = () => {
+    const proofSection = document.getElementById('whatsapp-proof');
+    if (proofSection) {
+      proofSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleAppStoreClick = () => {
     // Link para App Store
     window.open("https://apps.apple.com/app/id6756675158", "_blank");
@@ -53,6 +62,34 @@ const HeroSection = () => {
                 {t("hero.subtitle")}
               </h2>
             </div>
+
+            {/* Destaque 844 PV - Novo componente de prova rápida */}
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="bg-white/80 backdrop-blur-md border-2 border-green-200 rounded-3xl p-6 shadow-xl max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6 cursor-pointer"
+              onClick={scrollToProof}
+            >
+              <div className="bg-green-100 p-4 rounded-2xl">
+                <TrendingUp className="w-10 h-10 text-green-600" />
+              </div>
+              <div className="text-left flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+                    {t("hero.whatsappProof.badge")}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 leading-tight">
+                  {t("hero.whatsappProof.title")}
+                </h3>
+                <p className="text-gray-600 text-sm mt-1">
+                  {t("hero.whatsappProof.description")}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-green-600 font-bold text-sm bg-green-50 px-4 py-2 rounded-xl">
+                <MessageSquare className="w-4 h-4" />
+                {t("hero.whatsappProof.button")}
+              </div>
+            </motion.div>
 
             {/* Badge de Teste Grátis */}
             <div className="bg-gradient-to-r from-orange-100 to-yellow-100 border-2 border-orange-300 rounded-2xl p-6 shadow-lg max-w-lg mx-auto">

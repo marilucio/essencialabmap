@@ -12,6 +12,13 @@ export const translations = {
       freeTrialSubtitle: "Todas as funções liberadas + Download Gratuito",
       socialProof:
         "Mais de 500 consultores já estão usando o EssenciaLab para impressionar seus clientes e triplicar suas vendas.",
+      whatsappProof: {
+        badge: "🔥 RESULTADO REAL",
+        title: "844 PV de cadastro em uma única semana",
+        description:
+          "O Wellington usou a Análise Facial e viu os resultados acontecerem na prática.",
+        button: "Veja o Print do WhatsApp",
+      },
       videoTitle: "📺 Aula: Como Conquistar e Reter Clientes",
       videoSubtitle:
         "Assista à demonstração prática de como usar a Análise Facial para encantar seus clientes, gerar autoridade imediata e aumentar sua retenção.",
@@ -87,6 +94,13 @@ export const translations = {
         "Imagine chegar na sua próxima classe, apontar o celular e ver o rosto da sua cliente brilhar quando o app 'adivinha' exatamente o que ela está sentindo emocionalmente. O relatório sai na hora, a venda acontece naturalmente e você se torna a autoridade máxima no ambiente. É esse o poder que o EssenciaLab coloca na sua mão.",
       subtitle:
         "Resultados reais de consultores que decidiram parar de vender do jeito antigo",
+      whatsappSection: {
+        title: "Conversas que Valem Ouro",
+        subtitle:
+          "Veja o que acontece nos bastidores quando um consultor começa a usar o EssenciaLab.",
+        caption:
+          "Wellington D. alcançou 844 PV em apenas 7 dias usando a análise facial em suas apresentações.",
+      },
       stats1: "Consultores Ativos",
       stats2: "Aumento Médio em Vendas",
       stats3: "Taxa de Satisfação",
@@ -96,26 +110,7 @@ export const translations = {
       zeroRiskCheck1: "Sem Cartão de Crédito",
       zeroRiskCheck2: "Download Gratuito",
       zeroRiskCheck3: "Cancelamento Instantâneo",
-      testimonials: [
-        {
-          name: "Maria Silva",
-          role: "Consultora doTERRA há 2 anos",
-          text: "Dobrei minhas vendas usando o scanner facial! Os clientes ficam impressionados com a tecnologia e querem comprar na hora. Não é mais 'vou pensar', agora é 'qual o melhor kit para começar?'",
-          highlight: "Dobrou as vendas",
-        },
-        {
-          name: "Ana Costa",
-          role: "Consultora doTERRA há 6 meses",
-          text: "Comecei há pouco tempo e estava insegura. O EssenciaLab me deu a confiança que eu precisava! Agora pareço uma especialista e meus clientes me respeitam muito mais. Resultado: 3x mais vendas!",
-          highlight: "3x mais vendas em 6 meses",
-        },
-        {
-          name: "Carla Mendes",
-          role: "Consultora doTERRA há 5 anos",
-          text: "Trabalho com óleos há anos, mas nunca vi algo tão poderoso. O relatório da análise facial cria uma curiosidade instantânea. Meus clientes compartilham a experiência e isso gera vendas em cascata!",
-          highlight: "Vendas em cascata",
-        },
-      ],
+      testimonials: [],
     },
     footer: {
       badge: "Última Chance de Começar Hoje",
@@ -136,11 +131,6 @@ export const translations = {
       disclaimerTitle: "Aviso Importante:",
       disclaimerText:
         "O EssenciaLab é uma ferramenta educacional de apoio ao bem-estar e desenvolvimento pessoal. As análises faciais utilizam tecnologia de processamento de imagem (MediaPipe) para fins informativos e não substituem avaliação médica, diagnóstico ou tratamento profissional. Os produtos e informações apresentados, incluindo óleos essenciais, não se destinam a diagnosticar, tratar, curar ou prevenir qualquer doença. Consulte sempre um profissional de saúde qualificado antes de iniciar qualquer programa de saúde ou bem-estar. Resultados individuais podem variar.",
-      proTitle: "Informações Profissionais",
-      proName: "Marilúcio Rocha - Naturopata Ortomolecular",
-      proReg: "Registro Profissional: CRT 50859",
-      proContact:
-        "Contato: contato@essencialab.app | WhatsApp: +55 (43) 99134-3807",
       privacy: "Política de Privacidade",
       terms: "Termos de Uso",
       contact: "Contato",
@@ -158,6 +148,13 @@ export const translations = {
       freeTrialSubtitle: "All features unlocked + Free Download",
       socialProof:
         "More than 500 consultants are already using EssenciaLab to impress their clients and triple their sales.",
+      whatsappProof: {
+        badge: "🔥 REAL RESULT",
+        title: "844 PV enrollment in a single week",
+        description:
+          "Wellington (Brazilian Consultant) used Facial Analysis and saw results in practice.",
+        button: "See WhatsApp Screenshot",
+      },
       videoTitle: "📺 Lesson: How to Win and Retain Clients",
       videoSubtitle:
         "Watch a practical demonstration of how to use Facial Analysis to delight your clients, generate immediate authority, and increase your retention.",
@@ -230,6 +227,28 @@ export const translations = {
         "Imagine arriving at your next class, pointing your phone, and seeing your client's face light up when the app 'guesses' exactly what they are feeling emotionally. The report comes out instantly, the sale happens naturally, and you become the maximum authority in the room. This is the power EssenciaLab puts in your hand.",
       subtitle:
         "Real results from consultants who decided to stop selling the old way",
+      whatsappSection: {
+        title: "Conversations Worth Gold",
+        subtitle:
+          "See what happens behind the scenes when a consultant starts using EssenciaLab.",
+        caption:
+          "Wellington (a Brazilian leader) achieved 844 PV in just 7 days using facial analysis in his classes.",
+        chatTranslation: [
+          {
+            author: "Wellington",
+            text: "Yes, for information. We did 700pv enrollment this week with essencialab. There will be much more this month.",
+          },
+          {
+            author: "You",
+            text: "man, I'm going to use that phrase of yours as a testimonial on the site kkkk",
+          },
+          { author: "Wellington", text: "844* Had added wrong." },
+          {
+            author: "Wellington",
+            text: "You can put it, yes. And people really liked the assessment.",
+          },
+        ],
+      },
       stats1: "Active Consultants",
       stats2: "Average Sales Increase",
       stats3: "Satisfaction Rate",
@@ -239,26 +258,7 @@ export const translations = {
       zeroRiskCheck1: "No Credit Card Required",
       zeroRiskCheck2: "Free Download",
       zeroRiskCheck3: "Instant Cancellation",
-      testimonials: [
-        {
-          name: "Maria Silva",
-          role: "doTERRA Consultant for 2 years",
-          text: "I doubled my sales using the facial scanner! Clients are impressed with the technology and want to buy right away. It's no longer 'I'll think about it', now it's 'what's the best kit to start?'",
-          highlight: "Doubled sales",
-        },
-        {
-          name: "Ana Costa",
-          role: "doTERRA Consultant for 6 months",
-          text: "I started recently and was insecure. EssenciaLab gave me the confidence I needed! Now I look like an expert and my clients respect me much more. Result: 3x more sales!",
-          highlight: "3x more sales in 6 months",
-        },
-        {
-          name: "Carla Mendes",
-          role: "doTERRA Consultant for 5 years",
-          text: "I've worked with oils for years, but I've never seen something so powerful. The facial analysis report creates instant curiosity. My clients share the experience and that generates cascading sales!",
-          highlight: "Cascading sales",
-        },
-      ],
+      testimonials: [],
     },
     footer: {
       badge: "Last Chance to Start Today",
@@ -279,11 +279,6 @@ export const translations = {
       disclaimerTitle: "Important Notice:",
       disclaimerText:
         "EssenciaLab is an educational tool supporting wellness and personal development. Facial analyses use image processing technology (MediaPipe) for informational purposes and do not replace medical evaluation, diagnosis, or professional treatment. The products and information presented, including essential oils, are not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified health professional before starting any health or wellness program. Individual results may vary.",
-      proTitle: "Professional Information",
-      proName: "Marilúcio Rocha - Orthomolecular Naturopath",
-      proReg: "Professional Registration: CRT 50859",
-      proContact:
-        "Contact: contacto@essencialab.app | WhatsApp: +55 (43) 99134-3807",
       privacy: "Privacy Policy",
       terms: "Terms of Use",
       contact: "Contact",
@@ -301,6 +296,13 @@ export const translations = {
       freeTrialSubtitle: "Todas las funciones liberadas + Descarga gratuita",
       socialProof:
         "Más de 500 consultores ya están usando EssenciaLab para impresionar a sus clientes y triplicar sus ventas.",
+      whatsappProof: {
+        badge: "🔥 RESULTADO REAL",
+        title: "844 PV de inscripción en una sola semana",
+        description:
+          "Wellington (Consultor Brasileño) usó el Análisis Facial y vio resultados en la práctica.",
+        button: "Ver captura de WhatsApp",
+      },
       videoTitle: "📺 Clase: Cómo captar y retener clientes",
       videoSubtitle:
         "Mira una demostración práctica de cómo usar el Análisis Facial para encantar a tus clientes, generar autoridad inmediata y aumentar tu retención.",
@@ -376,6 +378,28 @@ export const translations = {
         "Imagina llegar a tu próxima clase, apuntar tu celular y ver el rostro de tu cliente iluminarse cuando la app 'adivina' exactamente lo que está sintiendo emocionalmente. El informe sale al momento, la venta ocurre de forma natural y tú te conviertes en la máxima autoridad en el lugar. Es este el poder que EssenciaLab pone en tu mano.",
       subtitle:
         "Resultados reales de consultores que decidieron dejar de vender a la antigua usanza",
+      whatsappSection: {
+        title: "Conversaciones que valen oro",
+        subtitle:
+          "Mira lo que sucede tras bastidores cuando un consultor comienza a usar EssenciaLab.",
+        caption:
+          "Wellington (un líder brasileño) logró 844 PV en solo 7 días usando el análisis facial en sus clases.",
+        chatTranslation: [
+          {
+            author: "Wellington",
+            text: "Sí, a título de información. Hicimos 700pv de inscripción esta semana con essencialab. Habrá mucho más este mes.",
+          },
+          {
+            author: "Tú",
+            text: "chico, voy a usar esa frase tuya como testimonio en el sitio kkkk",
+          },
+          { author: "Wellington", text: "844* Había sumado mal." },
+          {
+            author: "Wellington",
+            text: "Puedes ponerlo, sí. Y a la gente le gustó mucho la evaluación.",
+          },
+        ],
+      },
       stats1: "Consultores Activos",
       stats2: "Aumento Promedio en Ventas",
       stats3: "Tasa de Satisfacción",
@@ -385,26 +409,7 @@ export const translations = {
       zeroRiskCheck1: "Sin Tarjeta de Crédito",
       zeroRiskCheck2: "Descarga Gratuita",
       zeroRiskCheck3: "Cancelación Instantánea",
-      testimonials: [
-        {
-          name: "Maria Silva",
-          role: "Consultora de doTERRA desde hace 2 años",
-          text: "¡Dupliqué mis ventas usando el escáner facial! Los clientes se quedan impresionados con la tecnología y quieren comprar al momento. Ya no es 'lo voy a pensar', ahora es '¿cuál es el mejor kit para empezar?'",
-          highlight: "Duplicó las ventas",
-        },
-        {
-          name: "Ana Costa",
-          role: "Consultora de doTERRA desde hace 6 meses",
-          text: "Empecé hace poco y no estaba segura. ¡EssenciaLab me dio la confianza que necesitaba! Ahora parezco una experta y mis clientes me respetan mucho más. Resultado: ¡3 veces más ventas!",
-          highlight: "3x más ventas en 6 meses",
-        },
-        {
-          name: "Carla Mendes",
-          role: "Consultora de doTERRA desde hace 5 años",
-          text: "Trabajo con aceites desde hace años, pero nunca había visto algo tan poderoso. El informe del análisis facial crea una curiosidad instantánea. ¡Mis clientes comparten la experiencia y eso genera ventas en cascada!",
-          highlight: "Ventas en cascada",
-        },
-      ],
+      testimonials: [],
     },
     footer: {
       badge: "Última Oportunidad para Empezar Hoy",
@@ -424,12 +429,7 @@ export const translations = {
       rights: "Todos los derechos reservados.",
       disclaimerTitle: "Aviso Importante:",
       disclaimerText:
-        "EssenciaLab es una herramienta educativa de apoyo al bienestar y desarrollo personal. Los análisis faciales utilizan tecnología de procesamiento de imágenes (MediaPipe) con fines informativos y no sustituyen la evaluación médica, el diagnóstico o el tratamiento profesional. Los productos e información presentados, incluidos los aceites esenciales, no están destinados a diagnosticar, tratar, curar o prevenir ninguna enfermedad. Consulte siempre a un profesional de la salud cualificado antes de iniciar cualquier programa de salud o bienestar. Los resultados individuales pueden variar.",
-      proTitle: "Información Profesional",
-      proName: "Marilúcio Rocha - Naturopata Ortomolecular",
-      proReg: "Registro Profesional: CRT 50859",
-      proContact:
-        "Contacto: contacto@essencialab.app | WhatsApp: +55 (43) 99134-3807",
+        "EssenciaLab es una herramienta educativa de apoyo al bienestar y desarrollo personal. Los análisis faciales utilizan tecnología de procesamiento de imágenes (MediaPipe) con fines informativos y no sustituyen la evaluación médica, el diagnóstico o el tratamento profesional. Los productos e información presentados, incluidos los aceites esenciales, no están destinados a diagnosticar, tratar, curar o prevenir ninguna enfermedad. Consulte siempre a un profesional de la salud cualificado antes de iniciar cualquier programa de salud o bienestar. Los resultados individuales pueden variar.",
       privacy: "Política de Privacidad",
       terms: "Términos de Uso",
       contact: "Contacto",

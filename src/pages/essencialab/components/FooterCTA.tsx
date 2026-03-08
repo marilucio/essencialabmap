@@ -155,26 +155,6 @@ const FooterCTA = () => {
         </div>
       </div>
 
-      {/* Seção de Credenciais */}
-      <section className="bg-gray-50 py-8 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-lg font-semibold mb-4">
-            {t('footer.proTitle')}
-          </h3>
-          <div className="text-sm text-gray-700 space-y-2">
-            <p>
-              <strong>{t('footer.proName')}</strong>
-            </p>
-            <p>{t('footer.proReg')}</p>
-            <p>CNPJ: 38.494.267/0001-55</p>
-            <p>
-              {t('footer.proContact')}
-            </p>
-            <p>Londrina, Paraná, Brasil</p>
-          </div>
-        </div>
-      </section>
-
       {/* Footer com Links Obrigatórios */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-4xl mx-auto px-4">
