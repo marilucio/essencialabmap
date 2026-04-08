@@ -20,6 +20,9 @@ import MetodoCalmaB from './pages/metodocalmab/MetodoCalma'
 import MetodoCalmaBeS from './pages/metodocalmabes/MetodoCalma'
 import EssenciaLab from './pages/essencialab/Index'
 import Sinais from './pages/sinais/Index'
+import RenalLanding from './pages/renal/RenalLanding'
+import RenalObrigado from './pages/renal/RenalObrigado'
+import RenalAdmin from './pages/renal/admin/RenalAdmin'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -42,6 +45,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/central-de-ajuda" element={<CentralDeAjuda />} />
         <Route path="/status-do-sistema" element={<StatusDoSistema />} />
         <Route path="/obrigado" element={<Obrigado />} />
+        <Route path="/renal" element={<RenalLanding />} />
+        <Route path="/renal/obrigado" element={<RenalObrigado />} />
+        <Route path="/admin" element={<RenalAdmin />} />
         <Route path="/oferta" element={<Oferta />} />
       </Routes>
     </BrowserRouter>

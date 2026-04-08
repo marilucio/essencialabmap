@@ -3,7 +3,11 @@
     "allow": [
       "Bash(npm run build:*)",
       "Bash(ls -la \"C:\\\\app\\\\landing-page-map\\\\src\\\\pages\"\" | find \"C:applanding-page-mapsrcpages\" -type d -name \"*sinais*\" 2>/dev/null || echo \"No sinais directory found with find \")",
-      "Bash(pnpm run build:*)"
+      "Bash(pnpm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(python3:*)",
+      "Bash(node:*)"
     ]
   }
 }
