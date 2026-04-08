@@ -37,12 +37,13 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
 
     const trimmedName = name.trim();
 
-    // Store lead in local database
-    createLead({
+    // Store lead in Supabase
+    await createLead({
       name: trimmedName,
       whatsapp: normalized,
       profile,
       utm: props.utm,
+      source: "site",
     });
 
     // Also send to external endpoint if configured

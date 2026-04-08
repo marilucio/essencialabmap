@@ -1,11 +1,14 @@
 /**
- * Lead database — localStorage-based.
+ * Lead database — Supabase-backed.
  *
- * Works for single-machine operation. For production with multiple devices,
- * swap the storage calls for a real backend (Supabase, Firebase, etc.).
+ * Table: renal_leads
+ * Events table: renal_lead_events
+ *
+ * All public functions are async.
  */
 
 import type { RenalProfile, RenalUtm } from "./lib";
+import { supabase } from "./supabase";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -35,6 +38,8 @@ export const LEAD_STATUS_ORDER: LeadStatus[] = [
 ];
 
 export interface LeadEvent {
+  id?: string;
+  lead_id?: string;
   type: string;
   ts: string;
   meta?: Record<string, unknown>;
@@ -46,126 +51,203 @@ export interface Lead {
   whatsapp: string;
   profile: RenalProfile;
   status: LeadStatus;
+  source: string;
   created_at: string;
   updated_at: string;
-  utm: RenalUtm;
-  events: LeadEvent[];
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
+  utm_content: string | null;
+  utm_term: string | null;
+  referrer: string | null;
+  click_id: string | null;
+  events?: LeadEvent[];
 }
 
 /* ------------------------------------------------------------------ */
-/*  Storage helpers                                                    */
+/*  Helpers                                                            */
 /* ------------------------------------------------------------------ */
 
-const STORAGE_KEY = "renal_leads_db_v1";
-
-function readAll(): Lead[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw) as Lead[];
-  } catch {
-    return [];
-  }
+function flattenUtm(utm: RenalUtm) {
+  return {
+    utm_source: utm.utm_source || null,
+    utm_medium: utm.utm_medium || null,
+    utm_campaign: utm.utm_campaign || null,
+    utm_content: utm.utm_content || null,
+    utm_term: utm.utm_term || null,
+    referrer: utm.referrer || null,
+    click_id: utm.click_id || null,
+  };
 }
 
-function writeAll(leads: Lead[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+/** Reconstruct utm object from flat lead row (for backward compat) */
+export function leadToUtm(lead: Lead): RenalUtm {
+  return {
+    utm_source: lead.utm_source || undefined,
+    utm_medium: lead.utm_medium || undefined,
+    utm_campaign: lead.utm_campaign || undefined,
+    utm_content: lead.utm_content || undefined,
+    utm_term: lead.utm_term || undefined,
+    referrer: lead.referrer || undefined,
+    click_id: lead.click_id || undefined,
+  };
 }
 
 /* ------------------------------------------------------------------ */
 /*  Public API                                                         */
 /* ------------------------------------------------------------------ */
 
-export function generateId(): string {
-  return `lead_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-}
-
-export function createLead(input: {
+export async function createLead(input: {
   name: string;
   whatsapp: string;
   profile: RenalProfile;
   utm: RenalUtm;
-}): Lead {
+  source?: string;
+}): Promise<Lead | null> {
   const now = new Date().toISOString();
-  const lead: Lead = {
-    id: generateId(),
-    name: input.name,
-    whatsapp: input.whatsapp,
-    profile: input.profile,
-    status: "inscrito",
-    created_at: now,
-    updated_at: now,
-    utm: input.utm,
-    events: [{ type: "inscricao", ts: now }],
-  };
 
-  const leads = readAll();
-  // Avoid duplicates by whatsapp
-  const existing = leads.findIndex((l) => l.whatsapp === input.whatsapp);
-  if (existing >= 0) {
-    leads[existing] = {
-      ...leads[existing],
-      name: input.name,
-      profile: input.profile,
-      updated_at: now,
-      events: [...leads[existing].events, { type: "reinscricao", ts: now }],
-    };
-    writeAll(leads);
-    return leads[existing];
+  // Check for existing lead by whatsapp (upsert)
+  const { data: existing } = await supabase
+    .from("renal_leads")
+    .select("id")
+    .eq("whatsapp", input.whatsapp)
+    .maybeSingle();
+
+  if (existing) {
+    // Update existing lead
+    const { data, error } = await supabase
+      .from("renal_leads")
+      .update({
+        name: input.name,
+        profile: input.profile,
+        updated_at: now,
+      })
+      .eq("id", existing.id)
+      .select()
+      .single();
+
+    if (!error && data) {
+      await addLeadEvent(existing.id, { type: "reinscricao", ts: now });
+    }
+    return (data as Lead) || null;
   }
 
-  leads.unshift(lead);
-  writeAll(leads);
-  return lead;
+  // Insert new lead
+  const { data, error } = await supabase
+    .from("renal_leads")
+    .insert({
+      name: input.name,
+      whatsapp: input.whatsapp,
+      profile: input.profile,
+      status: "inscrito" as LeadStatus,
+      source: input.source || "site",
+      created_at: now,
+      updated_at: now,
+      ...flattenUtm(input.utm),
+    })
+    .select()
+    .single();
+
+  if (error) {
+    console.error("[renal] createLead error:", error);
+    return null;
+  }
+
+  // Insert initial event
+  if (data) {
+    await addLeadEvent(data.id, { type: "inscricao", ts: now, meta: { source: input.source || "site" } });
+  }
+
+  return data as Lead;
 }
 
-export function getAllLeads(): Lead[] {
-  return readAll();
+export async function getAllLeads(): Promise<Lead[]> {
+  const { data: leads, error } = await supabase
+    .from("renal_leads")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("[renal] getAllLeads error:", error);
+    return [];
+  }
+
+  // Fetch events for all leads
+  const ids = (leads || []).map((l: Lead) => l.id);
+  const { data: events } = await supabase
+    .from("renal_lead_events")
+    .select("*")
+    .in("lead_id", ids.length > 0 ? ids : ["__none__"])
+    .order("ts", { ascending: true });
+
+  const eventsByLead: Record<string, LeadEvent[]> = {};
+  for (const ev of events || []) {
+    if (!eventsByLead[ev.lead_id]) eventsByLead[ev.lead_id] = [];
+    eventsByLead[ev.lead_id].push(ev);
+  }
+
+  return (leads || []).map((l: Lead) => ({
+    ...l,
+    events: eventsByLead[l.id] || [],
+  }));
 }
 
-export function getLeadById(id: string): Lead | null {
-  return readAll().find((l) => l.id === id) || null;
+export async function getLeadById(id: string): Promise<Lead | null> {
+  const { data, error } = await supabase
+    .from("renal_leads")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error || !data) return null;
+
+  const { data: events } = await supabase
+    .from("renal_lead_events")
+    .select("*")
+    .eq("lead_id", id)
+    .order("ts", { ascending: true });
+
+  return { ...data, events: events || [] } as Lead;
 }
 
-export function getLeadByWhatsapp(whatsapp: string): Lead | null {
-  return readAll().find((l) => l.whatsapp === whatsapp) || null;
-}
-
-export function updateLeadStatus(id: string, status: LeadStatus): Lead | null {
-  const leads = readAll();
-  const idx = leads.findIndex((l) => l.id === id);
-  if (idx < 0) return null;
-
+export async function updateLeadStatus(id: string, status: LeadStatus): Promise<Lead | null> {
   const now = new Date().toISOString();
-  leads[idx].status = status;
-  leads[idx].updated_at = now;
-  leads[idx].events.push({ type: `status_${status}`, ts: now });
-  writeAll(leads);
-  return leads[idx];
+
+  const { data, error } = await supabase
+    .from("renal_leads")
+    .update({ status, updated_at: now })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("[renal] updateLeadStatus error:", error);
+    return null;
+  }
+
+  await addLeadEvent(id, { type: `status_${status}`, ts: now });
+  return data as Lead;
 }
 
-export function addLeadEvent(id: string, event: LeadEvent): Lead | null {
-  const leads = readAll();
-  const idx = leads.findIndex((l) => l.id === id);
-  if (idx < 0) return null;
-
-  leads[idx].events.push(event);
-  leads[idx].updated_at = event.ts;
-  writeAll(leads);
-  return leads[idx];
+export async function addLeadEvent(leadId: string, event: LeadEvent): Promise<void> {
+  await supabase.from("renal_lead_events").insert({
+    lead_id: leadId,
+    type: event.type,
+    ts: event.ts,
+    meta: event.meta || null,
+  });
 }
 
-export function deleteLead(id: string): boolean {
-  const leads = readAll();
-  const filtered = leads.filter((l) => l.id !== id);
-  if (filtered.length === leads.length) return false;
-  writeAll(filtered);
-  return true;
+export async function deleteLead(id: string): Promise<boolean> {
+  // Delete events first
+  await supabase.from("renal_lead_events").delete().eq("lead_id", id);
+  const { error } = await supabase.from("renal_leads").delete().eq("id", id);
+  return !error;
 }
 
-export function exportLeadsCsv(): string {
-  const leads = readAll();
-  const header = "ID,Nome,WhatsApp,Perfil,Status,Criado em,Atualizado em,UTM Source,UTM Medium,UTM Campaign";
+export async function exportLeadsCsv(): Promise<string> {
+  const leads = await getAllLeads();
+  const header = "ID,Nome,WhatsApp,Perfil,Status,Origem,Criado em,Atualizado em,UTM Source,UTM Medium,UTM Campaign";
   const rows = leads.map((l) =>
     [
       l.id,
@@ -173,18 +255,19 @@ export function exportLeadsCsv(): string {
       l.whatsapp,
       l.profile,
       l.status,
+      l.source,
       l.created_at,
       l.updated_at,
-      l.utm.utm_source || "",
-      l.utm.utm_medium || "",
-      l.utm.utm_campaign || "",
+      l.utm_source || "",
+      l.utm_medium || "",
+      l.utm_campaign || "",
     ].join(","),
   );
   return [header, ...rows].join("\n");
 }
 
-export function getLeadStats() {
-  const leads = readAll();
+export async function getLeadStats() {
+  const leads = await getAllLeads();
   const total = leads.length;
   const byStatus: Record<LeadStatus, number> = {
     inscrito: 0,
@@ -194,14 +277,16 @@ export function getLeadStats() {
     trial_ativo: 0,
   };
   const byProfile: Record<string, number> = {};
+  const bySource: Record<string, number> = {};
 
   for (const l of leads) {
     byStatus[l.status]++;
     byProfile[l.profile] = (byProfile[l.profile] || 0) + 1;
+    bySource[l.source || "site"] = (bySource[l.source || "site"] || 0) + 1;
   }
 
   const today = new Date().toISOString().slice(0, 10);
   const todayCount = leads.filter((l) => l.created_at.slice(0, 10) === today).length;
 
-  return { total, todayCount, byStatus, byProfile };
+  return { total, todayCount, byStatus, byProfile, bySource };
 }

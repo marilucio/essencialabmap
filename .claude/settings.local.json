@@ -7,7 +7,11 @@
       "Bash(npx tsc:*)",
       "Bash(npx vite:*)",
       "Bash(python3:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(pnpm install:*)",
+      "Bash(taskkill:*)",
+      "Bash(curl:*)",
+      "Bash(npx supabase:*)"
     ]
   }
 }

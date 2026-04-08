@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import {
   getAllLeads,
   getLeadStats,
+  getLeadById,
   updateLeadStatus,
   deleteLead,
   exportLeadsCsv,
@@ -30,13 +31,15 @@ import {
   Smartphone,
   Play,
   RefreshCw,
+  Globe,
+  Loader2,
 } from "lucide-react";
 
 const ADMIN_PASSWORD = "essencia2026";
 const AUTH_KEY = "renal_admin_auth";
 
 /* ------------------------------------------------------------------ */
-/*  Status badge colors                                                */
+/*  Status helpers                                                     */
 /* ------------------------------------------------------------------ */
 
 const STATUS_COLORS: Record<LeadStatus, string> = {
@@ -53,6 +56,11 @@ const STATUS_ICONS: Record<LeadStatus, React.ReactNode> = {
   assistiu_webinar: <Eye className="size-3" />,
   baixou_app: <Smartphone className="size-3" />,
   trial_ativo: <Play className="size-3" />,
+};
+
+const SOURCE_LABELS: Record<string, string> = {
+  site: "Site",
+  whatsapp_agent: "WhatsApp",
 };
 
 const PROFILE_LABELS: Record<string, string> = {
@@ -84,7 +92,7 @@ function LoginScreen(props: { onLogin: () => void }) {
       <Card className="w-full max-w-sm shadow-lg">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Painel Administrativo</CardTitle>
-          <p className="text-sm text-gray-500 mt-1">Webinar Módulo Renal</p>
+          <p className="text-sm text-gray-500 mt-1">Webinar Renal</p>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
@@ -113,13 +121,35 @@ function LoginScreen(props: { onLogin: () => void }) {
 /*  Lead detail                                                        */
 /* ------------------------------------------------------------------ */
 
-function LeadDetail(props: { lead: Lead; onBack: () => void; onRefresh: () => void }) {
-  const { lead, onBack, onRefresh } = props;
+function LeadDetail(props: { leadId: string; onBack: () => void; onRefresh: () => void }) {
+  const { leadId, onBack, onRefresh } = props;
+  const [lead, setLead] = useState<Lead | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const handleStatusChange = (status: string) => {
-    updateLeadStatus(lead.id, status as LeadStatus);
+  const load = useCallback(async () => {
+    setLoading(true);
+    const data = await getLeadById(leadId);
+    setLead(data);
+    setLoading(false);
+  }, [leadId]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleStatusChange = async (status: string) => {
+    await updateLeadStatus(leadId, status as LeadStatus);
+    await load();
     onRefresh();
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <Loader2 className="size-6 animate-spin text-emerald-600" />
+      </div>
+    );
+  }
+
+  if (!lead) return <p className="text-gray-500">Lead not found.</p>;
 
   return (
     <div className="space-y-6">
@@ -137,11 +167,17 @@ function LeadDetail(props: { lead: Lead; onBack: () => void; onRefresh: () => vo
             <div><strong>Nome:</strong> {lead.name}</div>
             <div><strong>WhatsApp:</strong> {lead.whatsapp}</div>
             <div><strong>Perfil:</strong> {PROFILE_LABELS[lead.profile] || lead.profile}</div>
+            <div>
+              <strong>Origem:</strong>{" "}
+              <Badge variant="secondary" className="text-xs">
+                {lead.source === "whatsapp_agent" ? <><MessageCircle className="size-3 inline mr-1" />WhatsApp</> : <><Globe className="size-3 inline mr-1" />Site</>}
+              </Badge>
+            </div>
             <div><strong>Inscrito em:</strong> {new Date(lead.created_at).toLocaleString("pt-BR")}</div>
-            <div><strong>Última atualização:</strong> {new Date(lead.updated_at).toLocaleString("pt-BR")}</div>
-            {lead.utm.utm_source && <div><strong>UTM Source:</strong> {lead.utm.utm_source}</div>}
-            {lead.utm.utm_medium && <div><strong>UTM Medium:</strong> {lead.utm.utm_medium}</div>}
-            {lead.utm.utm_campaign && <div><strong>UTM Campaign:</strong> {lead.utm.utm_campaign}</div>}
+            <div><strong>Atualizado:</strong> {new Date(lead.updated_at).toLocaleString("pt-BR")}</div>
+            {lead.utm_source && <div><strong>UTM Source:</strong> {lead.utm_source}</div>}
+            {lead.utm_medium && <div><strong>UTM Medium:</strong> {lead.utm_medium}</div>}
+            {lead.utm_campaign && <div><strong>UTM Campaign:</strong> {lead.utm_campaign}</div>}
           </CardContent>
         </Card>
 
@@ -161,7 +197,6 @@ function LeadDetail(props: { lead: Lead; onBack: () => void; onRefresh: () => vo
               </SelectContent>
             </Select>
 
-            {/* Funnel progress */}
             <div className="mt-6 space-y-2">
               {LEAD_STATUS_ORDER.map((s, i) => {
                 const currentIdx = LEAD_STATUS_ORDER.indexOf(lead.status);
@@ -182,25 +217,28 @@ function LeadDetail(props: { lead: Lead; onBack: () => void; onRefresh: () => vo
         </Card>
       </div>
 
-      {/* Timeline */}
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Linha do Tempo</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {lead.events.map((ev, i) => (
-              <div key={i} className="flex items-start gap-3 text-sm">
-                <div className="mt-0.5 flex size-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                  <Clock className="size-3" />
+          {(lead.events && lead.events.length > 0) ? (
+            <div className="space-y-3">
+              {lead.events.map((ev, i) => (
+                <div key={i} className="flex items-start gap-3 text-sm">
+                  <div className="mt-0.5 flex size-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                    <Clock className="size-3" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">{ev.type}</div>
+                    <div className="text-xs text-gray-500">{new Date(ev.ts).toLocaleString("pt-BR")}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-medium text-gray-900">{ev.type}</div>
-                  <div className="text-xs text-gray-500">{new Date(ev.ts).toLocaleString("pt-BR")}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-400">Nenhum evento registrado.</p>
+          )}
         </CardContent>
       </Card>
     </div>
@@ -212,20 +250,23 @@ function LeadDetail(props: { lead: Lead; onBack: () => void; onRefresh: () => vo
 /* ------------------------------------------------------------------ */
 
 function Dashboard() {
-  const [leads, setLeads] = useState<Lead[]>(() => getAllLeads());
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [stats, setStats] = useState<Awaited<ReturnType<typeof getLeadStats>> | null>(null);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [filterSource, setFilterSource] = useState<string>("all");
+  const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
 
-  const refresh = useCallback(() => {
-    setLeads(getAllLeads());
-    if (selectedLead) {
-      const updated = getAllLeads().find((l) => l.id === selectedLead.id);
-      if (updated) setSelectedLead(updated);
-    }
-  }, [selectedLead]);
+  const refresh = useCallback(async () => {
+    setLoading(true);
+    const [leadsData, statsData] = await Promise.all([getAllLeads(), getLeadStats()]);
+    setLeads(leadsData);
+    setStats(statsData);
+    setLoading(false);
+  }, []);
 
-  const stats = getLeadStats();
+  useEffect(() => { refresh(); }, [refresh]);
 
   const filtered = leads.filter((l) => {
     const matchSearch =
@@ -233,11 +274,12 @@ function Dashboard() {
       l.name.toLowerCase().includes(search.toLowerCase()) ||
       l.whatsapp.includes(search);
     const matchStatus = filterStatus === "all" || l.status === filterStatus;
-    return matchSearch && matchStatus;
+    const matchSource = filterSource === "all" || (l.source || "site") === filterSource;
+    return matchSearch && matchStatus && matchSource;
   });
 
-  const handleExport = () => {
-    const csv = exportLeadsCsv();
+  const handleExport = async () => {
+    const csv = await exportLeadsCsv();
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -247,11 +289,11 @@ function Dashboard() {
     URL.revokeObjectURL(url);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (!confirm("Tem certeza que deseja excluir este lead?")) return;
-    deleteLead(id);
-    refresh();
-    if (selectedLead?.id === id) setSelectedLead(null);
+    await deleteLead(id);
+    await refresh();
+    if (selectedLeadId === id) setSelectedLeadId(null);
   };
 
   const handleLogout = () => {
@@ -259,12 +301,12 @@ function Dashboard() {
     window.location.reload();
   };
 
-  if (selectedLead) {
+  if (selectedLeadId) {
     return (
       <div className="min-h-screen bg-gray-50">
         <header className="border-b bg-white px-4 py-3">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
-            <span className="text-lg font-bold text-emerald-700">Admin — Lead</span>
+            <span className="text-lg font-bold text-emerald-700">Admin &mdash; Lead</span>
             <Button variant="outline" size="sm" onClick={handleLogout}>
               <LogOut className="size-4" />
               Sair
@@ -272,7 +314,7 @@ function Dashboard() {
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-4 py-6">
-          <LeadDetail lead={selectedLead} onBack={() => setSelectedLead(null)} onRefresh={refresh} />
+          <LeadDetail leadId={selectedLeadId} onBack={() => setSelectedLeadId(null)} onRefresh={refresh} />
         </main>
       </div>
     );
@@ -280,13 +322,12 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="border-b bg-white px-4 py-3">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <span className="text-lg font-bold text-emerald-700">Painel — Webinar Renal</span>
+          <span className="text-lg font-bold text-emerald-700">Painel &mdash; Webinar Renal</span>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={refresh}>
-              <RefreshCw className="size-4" />
+            <Button variant="outline" size="sm" onClick={refresh} disabled={loading}>
+              <RefreshCw className={`size-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
             <Button variant="outline" size="sm" onClick={handleLogout}>
               <LogOut className="size-4" />
@@ -298,93 +339,101 @@ function Dashboard() {
 
       <main className="mx-auto max-w-6xl px-4 py-6 space-y-6">
         {/* Stats */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
-                  <Users className="size-5" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">{stats.total}</div>
-                  <div className="text-xs text-gray-500">Total de leads</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
-                  <UserPlus className="size-5" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">{stats.todayCount}</div>
-                  <div className="text-xs text-gray-500">Hoje</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-green-100 text-green-700">
-                  <MessageCircle className="size-5" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">{stats.byStatus.confirmou_whatsapp}</div>
-                  <div className="text-xs text-gray-500">Confirmaram WhatsApp</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
-                  <TrendingUp className="size-5" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">
-                    {stats.total > 0 ? Math.round((stats.byStatus.confirmou_whatsapp / stats.total) * 100) : 0}%
+        {stats && (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                    <Users className="size-5" />
                   </div>
-                  <div className="text-xs text-gray-500">Taxa de confirmação</div>
+                  <div>
+                    <div className="text-2xl font-bold">{stats.total}</div>
+                    <div className="text-xs text-gray-500">Total</div>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                    <UserPlus className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{stats.todayCount}</div>
+                    <div className="text-xs text-gray-500">Hoje</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-green-100 text-green-700">
+                    <MessageCircle className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{stats.byStatus.confirmou_whatsapp}</div>
+                    <div className="text-xs text-gray-500">Confirmaram</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                    <Globe className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{stats.bySource?.site || 0}</div>
+                    <div className="text-xs text-gray-500">Via Site</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                    <MessageCircle className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{stats.bySource?.whatsapp_agent || 0}</div>
+                    <div className="text-xs text-gray-500">Via WhatsApp</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Funnel */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Funil de Conversão</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col sm:flex-row gap-2">
-              {LEAD_STATUS_ORDER.map((s, i) => {
-                const count = stats.byStatus[s];
-                const pct = stats.total > 0 ? Math.round((count / stats.total) * 100) : 0;
-                const widthPct = stats.total > 0 ? Math.max(20, (count / stats.total) * 100) : 20;
-                return (
-                  <div key={s} className="flex-1 min-w-0">
-                    <div
-                      className={`rounded-lg p-3 text-center ${STATUS_COLORS[s]}`}
-                      style={{ opacity: Math.max(0.4, widthPct / 100) }}
-                    >
-                      <div className="text-xl font-bold">{count}</div>
-                      <div className="text-xs truncate">{LEAD_STATUS_LABELS[s]}</div>
-                      <div className="text-xs opacity-70">{pct}%</div>
+        {stats && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Funil de Conversa&#771;o</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col sm:flex-row gap-2">
+                {LEAD_STATUS_ORDER.map((s) => {
+                  const count = stats.byStatus[s];
+                  const pct = stats.total > 0 ? Math.round((count / stats.total) * 100) : 0;
+                  return (
+                    <div key={s} className="flex-1 min-w-0">
+                      <div className={`rounded-lg p-3 text-center ${STATUS_COLORS[s]}`}>
+                        <div className="text-xl font-bold">{count}</div>
+                        <div className="text-xs truncate">{LEAD_STATUS_LABELS[s]}</div>
+                        <div className="text-xs opacity-70">{pct}%</div>
+                      </div>
                     </div>
-                    {i < LEAD_STATUS_ORDER.length - 1 && (
-                      <div className="hidden sm:flex justify-center py-1 text-gray-300">→</div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3">
@@ -398,8 +447,8 @@ function Dashboard() {
             />
           </div>
           <Select value={filterStatus} onValueChange={setFilterStatus}>
-            <SelectTrigger className="w-full sm:w-48">
-              <SelectValue placeholder="Filtrar por status" />
+            <SelectTrigger className="w-full sm:w-44">
+              <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos os status</SelectItem>
@@ -408,16 +457,30 @@ function Dashboard() {
               ))}
             </SelectContent>
           </Select>
+          <Select value={filterSource} onValueChange={setFilterSource}>
+            <SelectTrigger className="w-full sm:w-40">
+              <SelectValue placeholder="Origem" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todas origens</SelectItem>
+              <SelectItem value="site">Site</SelectItem>
+              <SelectItem value="whatsapp_agent">WhatsApp</SelectItem>
+            </SelectContent>
+          </Select>
           <Button variant="outline" onClick={handleExport}>
             <Download className="size-4" />
-            Exportar CSV
+            CSV
           </Button>
         </div>
 
-        {/* Lead table */}
+        {/* Table */}
         <Card>
           <CardContent className="p-0">
-            {filtered.length === 0 ? (
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="size-6 animate-spin text-emerald-600" />
+              </div>
+            ) : filtered.length === 0 ? (
               <div className="p-8 text-center text-gray-500">
                 {leads.length === 0 ? "Nenhum lead registrado ainda." : "Nenhum resultado para este filtro."}
               </div>
@@ -429,9 +492,10 @@ function Dashboard() {
                       <th className="px-4 py-3">Nome</th>
                       <th className="px-4 py-3">WhatsApp</th>
                       <th className="px-4 py-3">Perfil</th>
+                      <th className="px-4 py-3">Origem</th>
                       <th className="px-4 py-3">Status</th>
                       <th className="px-4 py-3">Data</th>
-                      <th className="px-4 py-3 text-right">Ações</th>
+                      <th className="px-4 py-3 text-right">{"A\u00e7\u00f5es"}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -439,13 +503,18 @@ function Dashboard() {
                       <tr
                         key={lead.id}
                         className="border-b hover:bg-gray-50 cursor-pointer transition-colors"
-                        onClick={() => setSelectedLead(lead)}
+                        onClick={() => setSelectedLeadId(lead.id)}
                       >
                         <td className="px-4 py-3 font-medium text-gray-900">{lead.name}</td>
                         <td className="px-4 py-3 text-gray-600">{lead.whatsapp}</td>
                         <td className="px-4 py-3">
                           <Badge variant="secondary" className="text-xs">
                             {PROFILE_LABELS[lead.profile] || lead.profile}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3">
+                          <Badge variant="outline" className="text-xs">
+                            {(lead.source === "whatsapp_agent") ? "WhatsApp" : "Site"}
                           </Badge>
                         </td>
                         <td className="px-4 py-3">
