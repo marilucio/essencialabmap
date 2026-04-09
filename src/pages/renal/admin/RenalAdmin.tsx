@@ -11,6 +11,7 @@ import {
   updateLeadStatus,
   deleteLead,
   exportLeadsCsv,
+  getWebinarStats,
   LEAD_STATUS_LABELS,
   LEAD_STATUS_ORDER,
   type Lead,
@@ -33,6 +34,9 @@ import {
   RefreshCw,
   Globe,
   Loader2,
+  Video,
+  MousePointerClick,
+  Timer,
 } from "lucide-react";
 
 const ADMIN_PASSWORD = "essencia2026";
@@ -217,6 +221,49 @@ function LeadDetail(props: { leadId: string; onBack: () => void; onRefresh: () =
         </Card>
       </div>
 
+      {/* Webinar data derived from events */}
+      {lead.events && (() => {
+        const webinarEvents = lead.events.filter(e => e.type === "webinar_progress" || e.type === "webinar_started" || e.type === "webinar_cta_click");
+        if (webinarEvents.length === 0) return null;
+        const maxMin = Math.max(0, ...lead.events.filter(e => e.type === "webinar_progress").map(e => (e.meta as Record<string, number>)?.minutes || 0));
+        const clickedCta = lead.events.some(e => e.type === "webinar_cta_click");
+        const ctaPlatform = lead.events.find(e => e.type === "webinar_cta_click")?.meta as Record<string, string> | undefined;
+        return (
+          <Card className="border-purple-200">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2"><Video className="size-5 text-purple-600" /> Webinar</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="flex items-center gap-2">
+                  <Timer className="size-4 text-purple-500" />
+                  <div>
+                    <div className="text-lg font-bold">{maxMin} min</div>
+                    <div className="text-xs text-gray-500">Assistidos</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Eye className="size-4 text-purple-500" />
+                  <div>
+                    <div className="text-lg font-bold">Sim</div>
+                    <div className="text-xs text-gray-500">Assistiu</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MousePointerClick className="size-4 text-purple-500" />
+                  <div>
+                    <div className={`text-lg font-bold ${clickedCta ? "text-emerald-600" : "text-gray-400"}`}>
+                      {clickedCta ? `Sim (${ctaPlatform?.platform || "?"})` : "N\u00e3o"}
+                    </div>
+                    <div className="text-xs text-gray-500">Clicou no CTA</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })()}
+
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Linha do Tempo</CardTitle>
@@ -252,6 +299,7 @@ function LeadDetail(props: { leadId: string; onBack: () => void; onRefresh: () =
 function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [stats, setStats] = useState<Awaited<ReturnType<typeof getLeadStats>> | null>(null);
+  const [webinarStats, setWebinarStats] = useState<Awaited<ReturnType<typeof getWebinarStats>> | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
@@ -260,9 +308,10 @@ function Dashboard() {
 
   const refresh = useCallback(async () => {
     setLoading(true);
-    const [leadsData, statsData] = await Promise.all([getAllLeads(), getLeadStats()]);
+    const [leadsData, statsData, wStats] = await Promise.all([getAllLeads(), getLeadStats(), getWebinarStats()]);
     setLeads(leadsData);
     setStats(statsData);
+    setWebinarStats(wStats);
     setLoading(false);
   }, []);
 
@@ -435,6 +484,46 @@ function Dashboard() {
           </Card>
         )}
 
+        {/* Webinar Stats */}
+        {webinarStats && webinarStats.totalViewers > 0 && (
+          <Card className="border-purple-200">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2"><Video className="size-5 text-purple-600" /> Webinar</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                    <Eye className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{webinarStats.totalViewers}</div>
+                    <div className="text-xs text-gray-500">Assistiram</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                    <Timer className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{webinarStats.avgMinutes} min</div>
+                    <div className="text-xs text-gray-500">{"M\u00e9dia assistida"}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+                    <MousePointerClick className="size-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">{webinarStats.ctaClicks}</div>
+                    <div className="text-xs text-gray-500">Clicaram no download</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
@@ -494,6 +583,7 @@ function Dashboard() {
                       <th className="px-4 py-3">Perfil</th>
                       <th className="px-4 py-3">Origem</th>
                       <th className="px-4 py-3">Status</th>
+                      <th className="px-4 py-3">Webinar</th>
                       <th className="px-4 py-3">Data</th>
                       <th className="px-4 py-3 text-right">{"A\u00e7\u00f5es"}</th>
                     </tr>
@@ -522,6 +612,22 @@ function Dashboard() {
                             {STATUS_ICONS[lead.status]}
                             {LEAD_STATUS_LABELS[lead.status]}
                           </span>
+                        </td>
+                        <td className="px-4 py-3 text-xs">
+                          {(() => {
+                            const evts = lead.events || [];
+                            const watched = evts.some(e => e.type === "webinar_started" || e.type === "webinar_progress");
+                            if (!watched) return <span className="text-gray-300">&mdash;</span>;
+                            const maxMin = Math.max(0, ...evts.filter(e => e.type === "webinar_progress").map(e => (e.meta as Record<string, number>)?.minutes || 0));
+                            const clicked = evts.some(e => e.type === "webinar_cta_click");
+                            return (
+                              <span className="inline-flex items-center gap-1">
+                                <Video className="size-3 text-purple-500" />
+                                <span className="font-medium">{maxMin}min</span>
+                                {clicked && <MousePointerClick className="size-3 text-emerald-500" />}
+                              </span>
+                            );
+                          })()}
                         </td>
                         <td className="px-4 py-3 text-gray-500 text-xs">
                           {new Date(lead.created_at).toLocaleDateString("pt-BR")}

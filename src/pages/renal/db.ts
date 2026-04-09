@@ -290,3 +290,56 @@ export async function getLeadStats() {
 
   return { total, todayCount, byStatus, byProfile, bySource };
 }
+
+/* ------------------------------------------------------------------ */
+/*  Webinar helpers                                                    */
+/* ------------------------------------------------------------------ */
+
+export async function getLeadByWhatsapp(whatsapp: string): Promise<Lead | null> {
+  const { data, error } = await supabase
+    .from("renal_leads")
+    .select("*")
+    .eq("whatsapp", whatsapp)
+    .maybeSingle();
+
+  if (error || !data) return null;
+  return data as Lead;
+}
+
+export async function getWebinarStats() {
+  // Get all webinar-related events
+  const { data: events } = await supabase
+    .from("renal_lead_events")
+    .select("lead_id, type, meta")
+    .in("type", ["webinar_started", "webinar_progress", "webinar_cta_click"]);
+
+  const viewers = new Set<string>();
+  const ctaClickers = new Set<string>();
+  const maxMinutes: Record<string, number> = {};
+
+  for (const ev of events || []) {
+    if (ev.type === "webinar_started") {
+      viewers.add(ev.lead_id);
+    }
+    if (ev.type === "webinar_progress" && ev.meta?.minutes) {
+      const prev = maxMinutes[ev.lead_id] || 0;
+      maxMinutes[ev.lead_id] = Math.max(prev, ev.meta.minutes as number);
+      viewers.add(ev.lead_id);
+    }
+    if (ev.type === "webinar_cta_click") {
+      ctaClickers.add(ev.lead_id);
+    }
+  }
+
+  const minutesValues = Object.values(maxMinutes);
+  const avgMinutes = minutesValues.length > 0
+    ? Math.round(minutesValues.reduce((a, b) => a + b, 0) / minutesValues.length)
+    : 0;
+
+  return {
+    totalViewers: viewers.size,
+    ctaClicks: ctaClickers.size,
+    avgMinutes,
+    maxMinutesByLead: maxMinutes,
+  };
+}

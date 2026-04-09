@@ -23,6 +23,7 @@ import Sinais from './pages/sinais/Index'
 import RenalLanding from './pages/renal/RenalLanding'
 import RenalObrigado from './pages/renal/RenalObrigado'
 import RenalAdmin from './pages/renal/admin/RenalAdmin'
+import RenalWebinar from './pages/renal/RenalWebinar'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -47,6 +48,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/obrigado" element={<Obrigado />} />
         <Route path="/renal" element={<RenalLanding />} />
         <Route path="/renal/obrigado" element={<RenalObrigado />} />
+        <Route path="/webinar" element={<RenalWebinar />} />
         <Route path="/admin" element={<RenalAdmin />} />
         <Route path="/oferta" element={<Oferta />} />
       </Routes>
