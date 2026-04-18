@@ -36,7 +36,7 @@ export function RenalLearnSection() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">O que você vai descobrir na aula</h2>
           <p className="mt-3 text-gray-600">
-            60 minutos que podem mudar sua relação com a comida, o tratamento e a rotina.
+            38 minutos que podem mudar sua relação com a comida, o tratamento e a rotina.
           </p>
         </div>
 

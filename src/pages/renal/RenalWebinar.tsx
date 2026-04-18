@@ -67,7 +67,7 @@ const QUERY_VIDEO_PARAM = (() => {
   }
 })();
 const ENV_VIDEO_ID = (import.meta as any)?.env?.VITE_WEBINAR_YT_ID || "";
-const YOUTUBE_VIDEO_ID = extractYouTubeId(QUERY_VIDEO_PARAM || ENV_VIDEO_ID);
+const YOUTUBE_VIDEO_ID = extractYouTubeId(QUERY_VIDEO_PARAM || ENV_VIDEO_ID || "0xGlgGrG8ok");
 const CTA_DELAY_SECONDS = 300; // 5 minutes
 const PROGRESS_INTERVAL_MS = 30_000; // Log progress every 30s
 const PROGRESS_SAVE_INTERVAL = 60; // Save to DB every 60s of play

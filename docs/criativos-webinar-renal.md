@@ -449,7 +449,7 @@
 >
 > No dia [data], vou mostrar ao vivo como milhares de pacientes estão recuperando o controle — e a confiança — com tecnologia feita especificamente para quem tem doença renal.
 >
-> 60 minutos que podem mudar a sua relação com a comida, com o tratamento e com a vida.
+> 38 minutos que podem mudar a sua relação com a comida, com o tratamento e com a vida.
 >
 > 🔗 Inscrição gratuita — link na bio.
 >

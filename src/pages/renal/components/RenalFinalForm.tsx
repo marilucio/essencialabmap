@@ -95,7 +95,7 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-gray-900">Conteúdo direto ao ponto</div>
-                  <div className="text-xs text-gray-500">60 minutos que podem mudar sua rotina.</div>
+                  <div className="text-xs text-gray-500">38 minutos que podem mudar sua rotina.</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">

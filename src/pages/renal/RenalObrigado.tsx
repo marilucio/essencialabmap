@@ -138,7 +138,7 @@ export default function RenalObrigado() {
                       <Calendar className="size-3.5" />
                     </div>
                     <div className="text-sm">
-                      <strong>Assista à aula</strong> — 60 minutos que podem mudar sua relação com a rotina renal.
+                      <strong>Assista à aula</strong> — 38 minutos que podem mudar sua relação com a rotina renal.
                     </div>
                   </div>
                 </div>
