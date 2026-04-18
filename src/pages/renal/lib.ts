@@ -134,7 +134,7 @@ export function buildPrefilledWhatsAppMessage(input: {
   profile?: RenalProfile;
 }) {
   const parts: string[] = [];
-  parts.push("Olá! Quero me inscrever na aula online gratuita sobre rotina renal e receber os lembretes no WhatsApp.");
+  parts.push("Olá! Quero confirmar a inscrição na aula online gratuita sobre rotina renal e receber os lembretes no WhatsApp.");
   if (input.name) parts.push(`Meu nome é ${input.name}.`);
   if (input.profile && input.profile !== "outro") {
     const label =
@@ -294,4 +294,3 @@ export function setFaqSchema(schemaId: string, faq: Array<{ question: string; an
   });
   document.head.appendChild(script);
 }
-
