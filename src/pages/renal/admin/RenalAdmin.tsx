@@ -617,7 +617,14 @@ function Dashboard() {
                           {(() => {
                             const evts = lead.events || [];
                             const watched = evts.some(e => e.type === "webinar_started" || e.type === "webinar_progress");
-                            if (!watched) return <span className="text-gray-300">&mdash;</span>;
+                            const linkSent = evts.some(e => e.type === "webinar_link_sent");
+                            if (!watched && !linkSent) return <span className="text-gray-300">&mdash;</span>;
+                            if (!watched && linkSent) return (
+                              <span className="inline-flex items-center gap-1 text-blue-600">
+                                <Video className="size-3" />
+                                <span className="font-medium">Link enviado</span>
+                              </span>
+                            );
                             const maxMin = Math.max(0, ...evts.filter(e => e.type === "webinar_progress").map(e => (e.meta as Record<string, number>)?.minutes || 0));
                             const clicked = evts.some(e => e.type === "webinar_cta_click");
                             return (

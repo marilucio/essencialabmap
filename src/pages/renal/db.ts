@@ -295,11 +295,29 @@ export async function getLeadStats() {
 /*  Webinar helpers                                                    */
 /* ------------------------------------------------------------------ */
 
+function getBrazilianPhoneVariants(whatsapp: string): string[] {
+  const digits = whatsapp.replace(/\D/g, "");
+  const variants: string[] = [whatsapp];
+  if (digits.startsWith("55") && digits.length >= 12) {
+    const ddd = digits.slice(2, 4);
+    const local = digits.slice(4);
+    if (digits.length === 12 && !local.startsWith("9")) {
+      variants.push(`+55${ddd}9${local}`);
+    } else if (digits.length === 13 && local.startsWith("9")) {
+      variants.push(`+55${ddd}${local.slice(1)}`);
+    }
+  }
+  return variants;
+}
+
 export async function getLeadByWhatsapp(whatsapp: string): Promise<Lead | null> {
+  const variants = getBrazilianPhoneVariants(whatsapp);
+
   const { data, error } = await supabase
     .from("renal_leads")
     .select("*")
-    .eq("whatsapp", whatsapp)
+    .in("whatsapp", variants)
+    .limit(1)
     .maybeSingle();
 
   if (error || !data) return null;

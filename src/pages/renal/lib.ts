@@ -24,6 +24,35 @@ export type RenalLeadPayload = {
 const STORAGE_KEY_UTM = "renal_utms_v1";
 const STORAGE_KEY_FORM = "renal_form_v1";
 
+function writeBrowserStorage(key: string, value: string) {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    // Ignore unavailable storage.
+  }
+
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore unavailable storage.
+  }
+}
+
+function readBrowserStorage(key: string): string | null {
+  try {
+    const sessionValue = sessionStorage.getItem(key);
+    if (sessionValue) return sessionValue;
+  } catch {
+    // Ignore unavailable storage.
+  }
+
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
 export function getRenalConfig() {
   const leadEndpoint = (import.meta.env.VITE_RENAL_LEAD_ENDPOINT as string | undefined) || "";
   const whatsappPhone = (import.meta.env.VITE_RENAL_WHATSAPP_PHONE as string | undefined) || "5543991948185";
@@ -64,7 +93,7 @@ export function parseUtmFromLocation(): RenalUtm {
 
 export function persistUtm(utm: RenalUtm) {
   try {
-    sessionStorage.setItem(STORAGE_KEY_UTM, JSON.stringify(utm));
+    writeBrowserStorage(STORAGE_KEY_UTM, JSON.stringify(utm));
   } catch {
     return;
   }
@@ -72,7 +101,7 @@ export function persistUtm(utm: RenalUtm) {
 
 export function readPersistedUtm(): RenalUtm {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY_UTM);
+    const raw = readBrowserStorage(STORAGE_KEY_UTM);
     if (!raw) return {};
     return JSON.parse(raw) as RenalUtm;
   } catch {
@@ -86,7 +115,7 @@ export function persistFormDraft(input: {
   profile: RenalProfile;
 }) {
   try {
-    sessionStorage.setItem(STORAGE_KEY_FORM, JSON.stringify(input));
+    writeBrowserStorage(STORAGE_KEY_FORM, JSON.stringify(input));
   } catch {
     return;
   }
@@ -94,7 +123,7 @@ export function persistFormDraft(input: {
 
 export function readFormDraft(): { name: string; whatsapp: string; profile: RenalProfile } | null {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY_FORM);
+    const raw = readBrowserStorage(STORAGE_KEY_FORM);
     if (!raw) return null;
     return JSON.parse(raw) as { name: string; whatsapp: string; profile: RenalProfile };
   } catch {

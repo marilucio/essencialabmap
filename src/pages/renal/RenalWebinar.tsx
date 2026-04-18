@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { readFormDraft, normalizePhone, track } from "./lib";
-import { addLeadEvent, getLeadByWhatsapp, updateLeadStatus } from "./db";
+import { readFormDraft, normalizePhone, persistFormDraft, track } from "./lib";
+import { addLeadEvent, getLeadById, getLeadByWhatsapp, updateLeadStatus, type Lead } from "./db";
 import { setSeoTags } from "./lib";
 
 /* ------------------------------------------------------------------ */
@@ -93,40 +93,41 @@ export default function RenalWebinar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const draft = useMemo(() => readFormDraft(), []);
+  const [leadName, setLeadName] = useState(() => draft?.name || "");
 
   // Identify lead
   useEffect(() => {
-    const identify = async () => {
-      if (draft?.whatsapp) {
-        const phone = normalizePhone(draft.whatsapp);
-        const lead = await getLeadByWhatsapp(phone);
-        if (lead) {
-          leadIdRef.current = lead.id;
-          setAuthorized(true);
-          setAuthChecked(true);
-          return;
-        }
-      }
-      const params = new URLSearchParams(window.location.search);
-      const w = params.get("w");
-      if (w) {
-        const phone = normalizePhone(w);
-        const lead = await getLeadByWhatsapp(phone);
-        if (lead) {
-          leadIdRef.current = lead.id;
-          setAuthorized(true);
-          setAuthChecked(true);
-          return;
-        }
-      }
+    const authorizeLead = (lead: Lead | null) => {
+      if (!lead) return false;
+
+      leadIdRef.current = lead.id;
+      setLeadName(lead.name || draft?.name || "");
+      persistFormDraft({ name: lead.name, whatsapp: lead.whatsapp, profile: lead.profile });
+      setAuthorized(true);
       setAuthChecked(true);
-      try {
-        window.location.replace("/renal");
-      } catch {
-        window.location.href = "/renal";
-      }
+      return true;
     };
-    identify();
+
+    const identify = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const leadId = params.get("lead") || params.get("lead_id") || params.get("id");
+      const phoneParam = params.get("w") || params.get("whatsapp") || params.get("phone");
+
+      if (leadId && authorizeLead(await getLeadById(leadId))) return;
+      if (phoneParam && authorizeLead(await getLeadByWhatsapp(normalizePhone(phoneParam)))) return;
+      if (draft?.whatsapp && authorizeLead(await getLeadByWhatsapp(normalizePhone(draft.whatsapp)))) return;
+
+      // The WhatsApp agent currently sends the clean /webinar link. In that
+      // case there is no reliable identifier, so the page must still open.
+      track("webinar_public_access", { page: "/webinar" });
+      setAuthorized(true);
+      setAuthChecked(true);
+    };
+    identify().catch(() => {
+      track("webinar_public_access_error", { page: "/webinar" });
+      setAuthorized(true);
+      setAuthChecked(true);
+    });
   }, [draft]);
 
   // SEO
@@ -153,7 +154,7 @@ export default function RenalWebinar() {
 
   // Load YouTube IFrame API
   useEffect(() => {
-    if (!YOUTUBE_VIDEO_ID) return;
+    if (!authorized || !YOUTUBE_VIDEO_ID) return;
 
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
@@ -197,7 +198,7 @@ export default function RenalWebinar() {
         try { playerRef.current.destroy(); } catch { /* ignore */ }
       }
     };
-  }, []);
+  }, [authorized]);
 
   // Play time counter
   useEffect(() => {
@@ -256,10 +257,10 @@ export default function RenalWebinar() {
   const minutes = Math.floor(playSeconds / 60);
   const seconds = playSeconds % 60;
 
-  if (!authorized) {
+  if (!authChecked || !authorized) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <span className="text-sm text-slate-400">Redirecionando...</span>
+        <span className="text-sm text-slate-400">Carregando sua aula...</span>
       </div>
     );
   }
@@ -277,7 +278,7 @@ export default function RenalWebinar() {
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-xl md:text-2xl font-bold text-white">
-            {draft?.name ? `${draft.name}, sua aula est\u00e1 pronta.` : "Sua aula est\u00e1 pronta."}
+            {leadName ? `${leadName}, sua aula est\u00e1 pronta.` : "Sua aula est\u00e1 pronta."}
           </h1>
           <p className="mt-2 text-sm text-slate-400">
             Assista com aten\u00e7\u00e3o. Essa aula pode mudar sua rela\u00e7\u00e3o com a rotina renal.
