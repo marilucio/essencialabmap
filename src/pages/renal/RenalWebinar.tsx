@@ -15,6 +15,8 @@ declare global {
         el: string | HTMLElement,
         opts: {
           videoId: string;
+          width?: string | number;
+          height?: string | number;
           playerVars?: Record<string, unknown>;
           events?: Record<string, (e: unknown) => void>;
         },
@@ -164,10 +166,13 @@ export default function RenalWebinar() {
       if (!window.YT) return;
       playerRef.current = new window.YT.Player("yt-player", {
         videoId: YOUTUBE_VIDEO_ID,
+        width: "100%",
+        height: "100%",
         playerVars: {
           rel: 0,
           modestbranding: 1,
           playsinline: 1,
+          iv_load_policy: 3,
         },
         events: {
           onStateChange: (e: unknown) => {
@@ -256,6 +261,9 @@ export default function RenalWebinar() {
 
   const minutes = Math.floor(playSeconds / 60);
   const seconds = playSeconds % 60;
+  const webinarTitle = leadName
+    ? `${leadName}, sua aula gratuita está pronta.`
+    : "Sua aula gratuita está pronta.";
 
   if (!authChecked || !authorized) {
     return (
@@ -274,38 +282,40 @@ export default function RenalWebinar() {
         </div>
       </header>
 
-      <main className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
+      <main className="container mx-auto max-w-5xl px-4 py-8 md:py-10">
         {/* Title */}
-        <div className="text-center mb-8">
-          <h1 className="text-xl md:text-2xl font-bold text-white">
-            {leadName ? `${leadName}, sua aula est\u00e1 pronta.` : "Sua aula est\u00e1 pronta."}
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-8">
+          <h1 className="text-2xl font-bold leading-tight text-white md:text-4xl">
+            {webinarTitle}
           </h1>
-          <p className="mt-2 text-sm text-slate-400">
-            Assista com aten\u00e7\u00e3o. Essa aula pode mudar sua rela\u00e7\u00e3o com a rotina renal.
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
+            Assista com atenção. Essa aula pode mudar sua relação com a rotina renal.
           </p>
         </div>
 
         {/* Video container */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
-          <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-            {YOUTUBE_VIDEO_ID ? (
-              <div
-                id="yt-player"
-                className="absolute inset-0"
-              />
-            ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="flex size-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <svg className="size-8 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+        <section aria-label="Vídeo da aula" className="mx-auto w-full max-w-4xl">
+          <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl ring-1 ring-white/5">
+            <div className="relative aspect-video w-full bg-black">
+              {YOUTUBE_VIDEO_ID ? (
+                <div
+                  id="yt-player"
+                  className="absolute inset-0 h-full w-full"
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <div className="flex size-16 items-center justify-center rounded-full bg-emerald-500/20">
+                    <svg className="size-8 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-slate-400">O vídeo será disponibilizado em breve.</p>
+                  <p className="text-xs text-slate-600">Fique de olho no WhatsApp para receber o aviso.</p>
                 </div>
-                <p className="text-sm text-slate-400">O v\u00eddeo ser\u00e1 disponibilizado em breve.</p>
-                <p className="text-xs text-slate-600">Fique de olho no WhatsApp para receber o aviso.</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Watch time indicator */}
         {isPlaying && (
@@ -327,10 +337,10 @@ export default function RenalWebinar() {
         >
           <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950 to-slate-900 p-6 md:p-8 text-center">
             <h2 className="text-lg md:text-xl font-bold text-white">
-              Pronto(a) para experimentar na pr\u00e1tica?
+              Pronto(a) para experimentar na prática?
             </h2>
             <p className="mt-2 text-sm text-slate-400 max-w-md mx-auto">
-              Baixe o app e ative seus 7 dias de teste gr\u00e1tis. Comece a ter clareza nas suas escolhas hoje.
+              Baixe o app e ative seus 7 dias de teste grátis. Comece a ter clareza nas suas escolhas hoje.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -367,14 +377,14 @@ export default function RenalWebinar() {
             </div>
 
             <p className="mt-4 text-xs text-slate-600">
-              7 dias gr\u00e1tis. Sem compromisso. Cancele quando quiser.
+              7 dias grátis. Sem compromisso. Cancele quando quiser.
             </p>
           </div>
         </div>
 
         {/* Disclaimer */}
         <p className="mt-8 text-center text-xs text-slate-700">
-          Conte\u00fado educativo. N\u00e3o substitui acompanhamento m\u00e9dico ou nutricional.
+          Conteúdo educativo. Não substitui acompanhamento médico ou nutricional.
         </p>
       </main>
     </div>
