@@ -1,6 +1,14 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { readFormDraft, normalizePhone, persistFormDraft, track } from "./lib";
-import { addLeadEvent, getLeadById, getLeadByWhatsapp, updateLeadStatus, type Lead } from "./db";
+import {
+  buildPrefilledWhatsAppMessage,
+  buildWhatsAppUrl,
+  getRenalConfig,
+  readFormDraft,
+  normalizePhone,
+  persistFormDraft,
+  track,
+} from "./lib";
+import { addLeadEvent, getLeadById, getLeadByWhatsapp, updateLeadStatus, type Lead, type LeadStatus } from "./db";
 import { setSeoTags } from "./lib";
 
 /* ------------------------------------------------------------------ */
@@ -41,41 +49,38 @@ interface YTPlayer {
 /*  Config                                                             */
 /* ------------------------------------------------------------------ */
 
-function extractYouTubeId(input: string): string {
-  if (!input) return "";
-  try {
-    if (/^[a-zA-Z0-9_-]{10,}$/.test(input) && !input.includes("http")) return input;
-    const url = new URL(input);
-    if (url.hostname.includes("youtu.be")) {
-      return url.pathname.replace("/", "");
-    }
-    if (url.hostname.includes("youtube.com")) {
-      const v = url.searchParams.get("v");
-      if (v) return v;
-      const parts = url.pathname.split("/");
-      const idx = parts.findIndex((p) => p === "embed");
-      if (idx >= 0 && parts[idx + 1]) return parts[idx + 1];
-    }
-  } catch {
-  }
-  return input;
+function getConfiguredYouTubeId(input: string, fallback: string): string {
+  const videoId = input.trim();
+  return /^[a-zA-Z0-9_-]{11}$/.test(videoId) ? videoId : fallback;
 }
 
-const QUERY_VIDEO_PARAM = (() => {
-  try {
-    return new URLSearchParams(window.location.search).get("v") || "";
-  } catch {
-    return "";
-  }
-})();
 const ENV_VIDEO_ID = (import.meta as any)?.env?.VITE_WEBINAR_YT_ID || "";
-const YOUTUBE_VIDEO_ID = extractYouTubeId(QUERY_VIDEO_PARAM || ENV_VIDEO_ID || "0xGlgGrG8ok");
+const YOUTUBE_VIDEO_ID = getConfiguredYouTubeId(ENV_VIDEO_ID, "0xGlgGrG8ok");
 const CTA_DELAY_SECONDS = 300; // 5 minutes
 const PROGRESS_INTERVAL_MS = 30_000; // Log progress every 30s
 const PROGRESS_SAVE_INTERVAL = 60; // Save to DB every 60s of play
+const QUALIFIED_WATCH_MIN_SECONDS = 20 * 60; // 20 minutes
+const QUALIFIED_WATCH_RATIO = 0.6; // Or 60% of the video, whichever comes first
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6756675158";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.essencialab.app";
+// Statuses after "confirmou_whatsapp" keep access because they represent later funnel steps.
+const WEBINAR_ACCESS_STATUSES = new Set<LeadStatus>([
+  "confirmou_whatsapp",
+  "assistiu_webinar",
+  "baixou_app",
+  "trial_ativo",
+]);
+
+function hasWebinarAccess(lead: Lead) {
+  return WEBINAR_ACCESS_STATUSES.has(lead.status);
+}
+
+function formatWhatsAppPhone(phone: string) {
+  const digits = phone.replace(/\D+/g, "").replace(/^55/, "");
+  if (digits.length !== 11) return phone;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -86,6 +91,9 @@ export default function RenalWebinar() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const lastSavedMinute = useRef(0);
   const leadIdRef = useRef<string | null>(null);
+  const leadStatusRef = useRef<LeadStatus | null>(null);
+  const hasLoggedStartRef = useRef(false);
+  const hasMarkedQualifiedWatchRef = useRef(false);
 
   const [authChecked, setAuthChecked] = useState(false);
   const [authorized, setAuthorized] = useState(false);
@@ -94,19 +102,47 @@ export default function RenalWebinar() {
   const [ctaAnimating, setCtaAnimating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const cfg = useMemo(() => getRenalConfig(), []);
   const draft = useMemo(() => readFormDraft(), []);
   const [leadName, setLeadName] = useState(() => draft?.name || "");
+  const confirmationMessage = useMemo(
+    () => buildPrefilledWhatsAppMessage({ name: draft?.name, profile: draft?.profile }),
+    [draft],
+  );
+  const whatsappUrl = useMemo(
+    () => buildWhatsAppUrl({ phone: cfg.whatsappPhone, message: confirmationMessage }),
+    [cfg.whatsappPhone, confirmationMessage],
+  );
 
   // Identify lead
   useEffect(() => {
-    const authorizeLead = (lead: Lead | null) => {
+    const denyAccess = () => {
+      leadIdRef.current = null;
+      leadStatusRef.current = null;
+      hasLoggedStartRef.current = false;
+      hasMarkedQualifiedWatchRef.current = false;
+      setAuthorized(false);
+      setAuthChecked(true);
+      track("webinar_access_denied", { page: "/webinar" });
+    };
+
+    const resolveLeadAccess = (lead: Lead | null, source: string) => {
       if (!lead) return false;
 
+      if (!hasWebinarAccess(lead)) {
+        denyAccess();
+        return true;
+      }
+
       leadIdRef.current = lead.id;
+      leadStatusRef.current = lead.status;
+      hasLoggedStartRef.current = false;
+      hasMarkedQualifiedWatchRef.current = lead.status !== "confirmou_whatsapp";
       setLeadName(lead.name || draft?.name || "");
       persistFormDraft({ name: lead.name, whatsapp: lead.whatsapp, profile: lead.profile });
       setAuthorized(true);
       setAuthChecked(true);
+      track("webinar_access_granted", { page: "/webinar", source });
       return true;
     };
 
@@ -115,20 +151,14 @@ export default function RenalWebinar() {
       const leadId = params.get("lead") || params.get("lead_id") || params.get("id");
       const phoneParam = params.get("w") || params.get("whatsapp") || params.get("phone");
 
-      if (leadId && authorizeLead(await getLeadById(leadId))) return;
-      if (phoneParam && authorizeLead(await getLeadByWhatsapp(normalizePhone(phoneParam)))) return;
-      if (draft?.whatsapp && authorizeLead(await getLeadByWhatsapp(normalizePhone(draft.whatsapp)))) return;
+      if (leadId && resolveLeadAccess(await getLeadById(leadId), "query_lead_id")) return;
+      if (phoneParam && resolveLeadAccess(await getLeadByWhatsapp(normalizePhone(phoneParam)), "query_phone")) return;
+      if (draft?.whatsapp && resolveLeadAccess(await getLeadByWhatsapp(normalizePhone(draft.whatsapp)), "local_draft")) return;
 
-      // The WhatsApp agent currently sends the clean /webinar link. In that
-      // case there is no reliable identifier, so the page must still open.
-      track("webinar_public_access", { page: "/webinar" });
-      setAuthorized(true);
-      setAuthChecked(true);
+      denyAccess();
     };
     identify().catch(() => {
-      track("webinar_public_access_error", { page: "/webinar" });
-      setAuthorized(true);
-      setAuthChecked(true);
+      denyAccess();
     });
   }, [draft]);
 
@@ -153,6 +183,30 @@ export default function RenalWebinar() {
       meta: { minutes },
     });
   }, []);
+
+  const getQualifiedWatchThreshold = useCallback(() => {
+    try {
+      const duration = playerRef.current?.getDuration() || 0;
+      if (duration > 0) {
+        return Math.min(QUALIFIED_WATCH_MIN_SECONDS, Math.ceil(duration * QUALIFIED_WATCH_RATIO));
+      }
+    } catch {
+      // If YouTube duration is unavailable, fall back to the absolute threshold.
+    }
+    return QUALIFIED_WATCH_MIN_SECONDS;
+  }, []);
+
+  const markQualifiedWatch = useCallback((secondsWatched: number) => {
+    if (!leadIdRef.current || hasMarkedQualifiedWatchRef.current) return;
+    if (leadStatusRef.current !== "confirmou_whatsapp") return;
+    if (secondsWatched < getQualifiedWatchThreshold()) return;
+
+    const leadId = leadIdRef.current;
+    hasMarkedQualifiedWatchRef.current = true;
+    leadStatusRef.current = "assistiu_webinar";
+    track("webinar_qualified_watch", { page: "/webinar", seconds_watched: secondsWatched });
+    void updateLeadStatus(leadId, "assistiu_webinar");
+  }, [getQualifiedWatchThreshold]);
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -182,14 +236,14 @@ export default function RenalWebinar() {
 
             if (event.data === YT.PlayerState.PLAYING) {
               setIsPlaying(true);
-              // Log start only once
-              if (leadIdRef.current) {
-                addLeadEvent(leadIdRef.current, {
+              if (leadIdRef.current && !hasLoggedStartRef.current) {
+                hasLoggedStartRef.current = true;
+                void addLeadEvent(leadIdRef.current, {
                   type: "webinar_started",
                   ts: new Date().toISOString(),
                 });
+                track("webinar_play", { page: "/webinar" });
               }
-              track("webinar_play", { page: "/webinar" });
             } else {
               setIsPlaying(false);
             }
@@ -215,6 +269,7 @@ export default function RenalWebinar() {
           if (next >= CTA_DELAY_SECONDS) {
             setShowCta(true);
           }
+          markQualifiedWatch(next);
           // Save progress to DB every PROGRESS_SAVE_INTERVAL seconds
           const minutes = Math.floor(next / 60);
           if (next % PROGRESS_SAVE_INTERVAL === 0 && minutes > 0) {
@@ -232,16 +287,12 @@ export default function RenalWebinar() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPlaying, saveProgress]);
+  }, [isPlaying, saveProgress, markQualifiedWatch]);
 
   // Animate CTA entrance
   useEffect(() => {
     if (showCta) {
       setTimeout(() => setCtaAnimating(true), 50);
-      // Update lead status
-      if (leadIdRef.current) {
-        updateLeadStatus(leadIdRef.current, "assistiu_webinar");
-      }
     }
   }, [showCta]);
 
@@ -254,6 +305,8 @@ export default function RenalWebinar() {
         meta: { platform, minutes_watched: Math.floor(playSeconds / 60) },
       });
       await updateLeadStatus(leadIdRef.current, "baixou_app");
+      leadStatusRef.current = "baixou_app";
+      hasMarkedQualifiedWatchRef.current = true;
     }
     const url = platform === "ios" ? APP_STORE_URL : PLAY_STORE_URL;
     window.open(url, "_blank", "noopener,noreferrer");
@@ -264,11 +317,61 @@ export default function RenalWebinar() {
   const webinarTitle = leadName
     ? `${leadName}, sua aula gratuita está pronta.`
     : "Sua aula gratuita está pronta.";
+  const blockedTitle = "Confirme sua inscrição para acessar a aula";
+  const blockedMessage = "Para assistir, você precisa concluir a inscrição e confirmar seu WhatsApp. Isso garante que seu contato fique registrado para receber o acesso, lembretes e acompanhamento.";
 
-  if (!authChecked || !authorized) {
+  if (!authChecked) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
         <span className="text-sm text-slate-400">Carregando sua aula...</span>
+      </div>
+    );
+  }
+
+  if (!authorized) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-white">
+        <header className="w-full border-b border-white/10 bg-slate-950/95 backdrop-blur">
+          <div className="container mx-auto flex h-12 max-w-5xl items-center px-4">
+            <span className="text-base font-bold text-emerald-400">Aula Gratuita</span>
+          </div>
+        </header>
+
+        <main className="container mx-auto flex min-h-[calc(100vh-3rem)] max-w-3xl items-center px-4 py-12">
+          <section className="w-full rounded-lg border border-white/10 bg-slate-900/80 p-6 text-center shadow-2xl ring-1 ring-white/5 md:p-8">
+            <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300">
+              <svg className="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.25v3.5m0-9.5a4 4 0 00-4 4v2h8v-2a4 4 0 00-4-4z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 11.25h10.5v8H6.75z" />
+              </svg>
+            </div>
+            <h1 className="mt-5 text-2xl font-bold leading-tight md:text-3xl">{blockedTitle}</h1>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-300 md:text-base">{blockedMessage}</p>
+
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href="/renal#inscricao"
+                onClick={() => track("webinar_blocked_signup_click", { page: "/webinar" })}
+                className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-emerald-500 px-5 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/15 transition hover:bg-emerald-400 sm:w-auto"
+              >
+                Fazer inscrição gratuita
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("webinar_blocked_whatsapp_click", { page: "/webinar" })}
+                className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-white/15 px-5 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
+              >
+                Confirmar pelo WhatsApp
+              </a>
+            </div>
+
+            <p className="mt-5 text-xs leading-5 text-slate-500">
+              Confirmação válida pelo WhatsApp {formatWhatsAppPhone(cfg.whatsappPhone)}.
+            </p>
+          </section>
+        </main>
       </div>
     );
   }
@@ -296,7 +399,7 @@ export default function RenalWebinar() {
         {/* Video container */}
         <section aria-label="Vídeo da aula" className="mx-auto w-full max-w-4xl">
           <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl ring-1 ring-white/5">
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-black [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:border-0">
               {YOUTUBE_VIDEO_ID ? (
                 <div
                   id="yt-player"
