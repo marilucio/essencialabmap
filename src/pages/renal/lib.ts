@@ -56,6 +56,8 @@ function readBrowserStorage(key: string): string | null {
 export function getRenalConfig() {
   const leadEndpoint = (import.meta.env.VITE_RENAL_LEAD_ENDPOINT as string | undefined) || "";
   const whatsappPhone = (import.meta.env.VITE_RENAL_WHATSAPP_PHONE as string | undefined) || "5543991948185";
+  const adminWhatsappPhone =
+    (import.meta.env.VITE_RENAL_ADMIN_WHATSAPP_PHONE as string | undefined) || "5543991246422";
   const webinarSlug = (import.meta.env.VITE_RENAL_WEBINAR_SLUG as string | undefined) || "renal";
   const appIosUrl =
     (import.meta.env.VITE_ESSENCIALAB_IOS_URL as string | undefined) ||
@@ -67,6 +69,7 @@ export function getRenalConfig() {
   return {
     leadEndpoint,
     whatsappPhone,
+    adminWhatsappPhone,
     webinarSlug,
     appIosUrl,
     appAndroidUrl,
@@ -156,6 +159,25 @@ export function buildWhatsAppUrl(params: {
   const phoneDigits = (params.phone || "").replace(/\D+/g, "");
   const msg = encodeURIComponent(params.message || "");
   return `https://wa.me/${phoneDigits}?text=${msg}`;
+}
+
+export function buildWebinarFeedbackMessage(input: {
+  name?: string;
+  whatsapp?: string;
+  reason?: string;
+  message?: string;
+  minutesWatched?: number;
+}) {
+  const lines: string[] = [];
+  lines.push("📝 Feedback do Webinar Rotina Renal");
+  if (input.name) lines.push(`Lead: ${input.name}`);
+  if (input.whatsapp) lines.push(`WhatsApp: ${input.whatsapp}`);
+  if (typeof input.minutesWatched === "number") {
+    lines.push(`Minutos assistidos: ${input.minutesWatched}`);
+  }
+  if (input.reason) lines.push(`Motivo: ${input.reason}`);
+  if (input.message) lines.push(`Mensagem: ${input.message}`);
+  return lines.join("\n");
 }
 
 export function buildPrefilledWhatsAppMessage(input: {

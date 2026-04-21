@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback, type FormEvent } from "react";
 import {
   buildPrefilledWhatsAppMessage,
+  buildWebinarFeedbackMessage,
   buildWhatsAppUrl,
   getRenalConfig,
   readFormDraft,
@@ -61,6 +62,8 @@ const PROGRESS_INTERVAL_MS = 30_000; // Log progress every 30s
 const PROGRESS_SAVE_INTERVAL = 60; // Save to DB every 60s of play
 const QUALIFIED_WATCH_MIN_SECONDS = 20 * 60; // 20 minutes
 const QUALIFIED_WATCH_RATIO = 0.6; // Or 60% of the video, whichever comes first
+const PAUSE_FEEDBACK_MS = 60_000; // Prompt for feedback after 60s of pause
+const PAUSE_FEEDBACK_MIN_WATCHED_SECONDS = 30; // Only prompt if user actually watched something first
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6756675158";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.essencialab.app";
@@ -94,6 +97,10 @@ export default function RenalWebinar() {
   const leadStatusRef = useRef<LeadStatus | null>(null);
   const hasLoggedStartRef = useRef(false);
   const hasMarkedQualifiedWatchRef = useRef(false);
+  const hasEverPlayedRef = useRef(false);
+  const playSecondsRef = useRef(0);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const feedbackSectionRef = useRef<HTMLElement | null>(null);
 
   const [authChecked, setAuthChecked] = useState(false);
   const [authorized, setAuthorized] = useState(false);
@@ -101,6 +108,11 @@ export default function RenalWebinar() {
   const [showCta, setShowCta] = useState(false);
   const [ctaAnimating, setCtaAnimating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [feedbackReason, setFeedbackReason] = useState<string>("");
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [feedbackSending, setFeedbackSending] = useState(false);
+  const [feedbackSent, setFeedbackSent] = useState(false);
+  const [feedbackPrompted, setFeedbackPrompted] = useState(false);
 
   const cfg = useMemo(() => getRenalConfig(), []);
   const draft = useMemo(() => readFormDraft(), []);
@@ -236,6 +248,7 @@ export default function RenalWebinar() {
 
             if (event.data === YT.PlayerState.PLAYING) {
               setIsPlaying(true);
+              hasEverPlayedRef.current = true;
               if (leadIdRef.current && !hasLoggedStartRef.current) {
                 hasLoggedStartRef.current = true;
                 void addLeadEvent(leadIdRef.current, {
@@ -265,6 +278,7 @@ export default function RenalWebinar() {
       timerRef.current = setInterval(() => {
         setPlaySeconds((prev) => {
           const next = prev + 1;
+          playSecondsRef.current = next;
           // Show CTA at 5 min
           if (next >= CTA_DELAY_SECONDS) {
             setShowCta(true);
@@ -295,6 +309,95 @@ export default function RenalWebinar() {
       setTimeout(() => setCtaAnimating(true), 50);
     }
   }, [showCta]);
+
+  // Auto-prompt for feedback after a prolonged pause
+  useEffect(() => {
+    if (!authorized || feedbackSent || feedbackPrompted) return;
+
+    if (isPlaying) {
+      if (pauseTimerRef.current) {
+        clearTimeout(pauseTimerRef.current);
+        pauseTimerRef.current = null;
+      }
+      return;
+    }
+
+    if (!hasEverPlayedRef.current) return;
+    if (playSecondsRef.current < PAUSE_FEEDBACK_MIN_WATCHED_SECONDS) return;
+
+    pauseTimerRef.current = setTimeout(() => {
+      pauseTimerRef.current = null;
+      setFeedbackPrompted(true);
+      const minutesWatched = Math.floor(playSecondsRef.current / 60);
+      track("webinar_feedback_prompt", {
+        page: "/webinar",
+        trigger: "paused_60s",
+        minutes_watched: minutesWatched,
+      });
+      if (leadIdRef.current) {
+        void addLeadEvent(leadIdRef.current, {
+          type: "webinar_feedback_prompt",
+          ts: new Date().toISOString(),
+          meta: { trigger: "paused_60s", minutes_watched: minutesWatched },
+        });
+      }
+      feedbackSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, PAUSE_FEEDBACK_MS);
+
+    return () => {
+      if (pauseTimerRef.current) {
+        clearTimeout(pauseTimerRef.current);
+        pauseTimerRef.current = null;
+      }
+    };
+  }, [authorized, isPlaying, feedbackSent, feedbackPrompted]);
+
+  const handleSubmitFeedback = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (feedbackSending || feedbackSent) return;
+    const trimmedMessage = feedbackMessage.trim();
+    if (!feedbackReason && !trimmedMessage) return;
+
+    setFeedbackSending(true);
+    const minutesWatched = Math.floor(playSeconds / 60);
+    const whatsappDigits = draft?.whatsapp || "";
+
+    try {
+      if (leadIdRef.current) {
+        await addLeadEvent(leadIdRef.current, {
+          type: "webinar_feedback",
+          ts: new Date().toISOString(),
+          meta: {
+            reason: feedbackReason || null,
+            message: trimmedMessage || null,
+            minutes_watched: minutesWatched,
+          },
+        });
+      }
+      track("webinar_feedback_submit", {
+        page: "/webinar",
+        reason: feedbackReason || "none",
+        minutes_watched: minutesWatched,
+        has_message: Boolean(trimmedMessage),
+      });
+
+      const adminMessage = buildWebinarFeedbackMessage({
+        name: leadName,
+        whatsapp: whatsappDigits,
+        reason: feedbackReason || undefined,
+        message: trimmedMessage || undefined,
+        minutesWatched,
+      });
+      const url = buildWhatsAppUrl({
+        phone: cfg.adminWhatsappPhone,
+        message: adminMessage,
+      });
+      window.open(url, "_blank", "noopener,noreferrer");
+      setFeedbackSent(true);
+    } finally {
+      setFeedbackSending(false);
+    }
+  };
 
   const handleCtaClick = async (platform: "ios" | "android") => {
     track("webinar_cta_click", { platform, minutes: Math.floor(playSeconds / 60) });
@@ -429,6 +532,129 @@ export default function RenalWebinar() {
             </span>
           </div>
         )}
+
+        {/* Feedback — always visible to recover leads who stopped early */}
+        <section
+          ref={feedbackSectionRef}
+          aria-label="Feedback da aula"
+          className="mx-auto mt-10 max-w-3xl scroll-mt-16"
+        >
+          <div
+            className={`rounded-2xl border bg-slate-900/60 p-6 md:p-8 transition-all duration-500 ${
+              feedbackPrompted && !feedbackSent
+                ? "border-emerald-400/60 ring-2 ring-emerald-400/40 shadow-lg shadow-emerald-500/10"
+                : "border-white/10"
+            }`}
+          >
+            {feedbackSent ? (
+              <div className="text-center">
+                <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300">
+                  <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="mt-3 text-lg font-bold text-white">Recebemos seu feedback. Obrigado!</h3>
+                <p className="mt-2 text-sm text-slate-400">
+                  Se o WhatsApp não abriu automaticamente, toque no botão abaixo para concluir o envio.
+                </p>
+                <a
+                  href={buildWhatsAppUrl({
+                    phone: cfg.adminWhatsappPhone,
+                    message: buildWebinarFeedbackMessage({
+                      name: leadName,
+                      whatsapp: draft?.whatsapp || "",
+                      reason: feedbackReason || undefined,
+                      message: feedbackMessage.trim() || undefined,
+                      minutesWatched: Math.floor(playSeconds / 60),
+                    }),
+                  })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex h-10 items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  Reenviar pelo WhatsApp
+                </a>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmitFeedback} className="space-y-5">
+                <div>
+                  <h3 className="text-lg font-bold text-white md:text-xl">
+                    {feedbackPrompted
+                      ? "Percebemos que você pausou. Está tudo bem?"
+                      : "Conta pra gente: o que você achou da aula?"}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-400">
+                    {feedbackPrompted
+                      ? "Se algo te incomodou ou ficou faltando, conta pra gente em uma linha. Leva 30 segundos e vai direto para nossa equipe pelo WhatsApp."
+                      : "Seu retorno nos ajuda a melhorar. Leva menos de 30 segundos e seu feedback vai direto para nossa equipe pelo WhatsApp."}
+                  </p>
+                </div>
+
+                <fieldset className="space-y-2">
+                  <legend className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    Selecione o que mais combina (opcional)
+                  </legend>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {[
+                      "Gostei muito da aula",
+                      "Conteúdo não era o que eu esperava",
+                      "Aula ficou longa demais",
+                      "Tive dificuldade técnica para assistir",
+                    ].map((option) => {
+                      const checked = feedbackReason === option;
+                      return (
+                        <label
+                          key={option}
+                          className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm transition ${
+                            checked
+                              ? "border-emerald-400/60 bg-emerald-500/10 text-white"
+                              : "border-white/10 bg-slate-950/40 text-slate-300 hover:border-white/20"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="feedback_reason"
+                            value={option}
+                            checked={checked}
+                            onChange={() => setFeedbackReason(option)}
+                            className="size-4 accent-emerald-400"
+                          />
+                          <span>{option}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
+                <div>
+                  <label htmlFor="feedback_message" className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    Conta mais (opcional)
+                  </label>
+                  <textarea
+                    id="feedback_message"
+                    value={feedbackMessage}
+                    onChange={(ev) => setFeedbackMessage(ev.target.value)}
+                    rows={4}
+                    maxLength={600}
+                    placeholder="O que faltou, o que gostaria de ver, dúvidas..."
+                    className="mt-1 w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-600 focus:border-emerald-400/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/20"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={feedbackSending || (!feedbackReason && !feedbackMessage.trim())}
+                  className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-emerald-500 px-5 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/15 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                >
+                  {feedbackSending ? "Enviando..." : "Enviar feedback pelo WhatsApp"}
+                </button>
+                <p className="text-xs text-slate-500">
+                  Ao enviar, o WhatsApp será aberto com sua mensagem pré-preenchida para a nossa equipe.
+                </p>
+              </form>
+            )}
+          </div>
+        </section>
 
         {/* CTA — appears after 5 min */}
         <div
