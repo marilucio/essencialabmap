@@ -297,17 +297,23 @@ export async function getLeadStats() {
 
 function getBrazilianPhoneVariants(whatsapp: string): string[] {
   const digits = whatsapp.replace(/\D/g, "");
-  const variants: string[] = [whatsapp];
+  const variants = new Set<string>();
+  variants.add(whatsapp);
   if (digits.startsWith("55") && digits.length >= 12) {
     const ddd = digits.slice(2, 4);
     const local = digits.slice(4);
-    if (digits.length === 12 && !local.startsWith("9")) {
-      variants.push(`+55${ddd}9${local}`);
+    if (digits.length === 12) {
+      // Old 8-digit local → add modern 9-prefixed form.
+      // Always generate the variant: Brazilian 8-digit mobile numbers
+      // can legitimately start with "9" themselves (e.g. 9124-6422),
+      // so a `!local.startsWith("9")` guard would miss valid matches.
+      variants.add(`+55${ddd}9${local}`);
     } else if (digits.length === 13 && local.startsWith("9")) {
-      variants.push(`+55${ddd}${local.slice(1)}`);
+      // Modern 9-prefixed mobile → add legacy 8-digit form.
+      variants.add(`+55${ddd}${local.slice(1)}`);
     }
   }
-  return variants;
+  return Array.from(variants);
 }
 
 export async function getLeadByWhatsapp(whatsapp: string): Promise<Lead | null> {
