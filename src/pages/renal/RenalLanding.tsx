@@ -16,6 +16,40 @@ export default function RenalLanding() {
   const utm: RenalUtm = useMemo(() => parseUtmFromLocation(), []);
 
   useEffect(() => {
+    const w = window as any;
+    if (!document.querySelector('script[data-meta-pixel-renal="1"]')) {
+      const script = document.createElement("script");
+      script.setAttribute("data-meta-pixel-renal", "1");
+      script.text = `
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1176389559234307');
+fbq('track', 'PageView');
+window.__renalCompleteRegistration = function() { fbq('track', 'CompleteRegistration'); };
+      `;
+      document.head.appendChild(script);
+    }
+
+    if (!document.querySelector('noscript[data-meta-pixel-renal="1"]')) {
+      const ns = document.createElement("noscript");
+      ns.setAttribute("data-meta-pixel-renal", "1");
+      ns.innerHTML =
+        '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1176389559234307&ev=PageView&noscript=1" />';
+      document.head.appendChild(ns);
+    }
+
+    w.__renalCompleteRegistration =
+      w.__renalCompleteRegistration ||
+      (() => {
+        if (typeof w.fbq === "function") w.fbq("track", "CompleteRegistration");
+      });
+
     setSeoTags({
       title: "Doença Renal Não Precisa Ser Uma Sentença — Aula Gratuita",
       description:

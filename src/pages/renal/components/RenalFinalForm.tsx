@@ -64,7 +64,9 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
 
       try {
         const w = window as any;
-        if (typeof w.fbq === "function") {
+        if (typeof w.__renalCompleteRegistration === "function") {
+          w.__renalCompleteRegistration();
+        } else if (typeof w.fbq === "function") {
           w.fbq("track", "CompleteRegistration");
         }
       } catch {
