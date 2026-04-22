@@ -37,31 +37,46 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
 
     const trimmedName = name.trim();
 
-    // Store lead in Supabase
-    await createLead({
-      name: trimmedName,
-      whatsapp: normalized,
-      profile,
-      utm: props.utm,
-      source: "site",
-    });
+    try {
+      // Store lead in Supabase
+      await createLead({
+        name: trimmedName,
+        whatsapp: normalized,
+        profile,
+        utm: props.utm,
+        source: "site",
+      });
 
-    // Also send to external endpoint if configured
-    const payload = {
-      page: "/renal",
-      event: "submit_renal_webinar_form",
-      ts: new Date().toISOString(),
-      name: trimmedName,
-      whatsapp: normalized,
-      profile,
-      utm: props.utm,
-    };
+      // Also send to external endpoint if configured
+      const payload = {
+        page: "/renal",
+        event: "submit_renal_webinar_form",
+        ts: new Date().toISOString(),
+        name: trimmedName,
+        whatsapp: normalized,
+        profile,
+        utm: props.utm,
+      };
 
-    track("submit_renal_webinar_form", { profile });
-    persistFormDraft({ name: trimmedName, whatsapp: normalized, profile });
-    await captureLead(payload);
-    setSubmitting(false);
-    navigate("/renal/obrigado");
+      track("submit_renal_webinar_form", { profile });
+      persistFormDraft({ name: trimmedName, whatsapp: normalized, profile });
+      await captureLead(payload);
+
+      try {
+        const w = window as any;
+        if (typeof w.fbq === "function") {
+          w.fbq("track", "CompleteRegistration");
+        }
+      } catch {
+        // Ignore pixel failures to avoid blocking conversion flow.
+      }
+
+      navigate("/renal/obrigado");
+    } catch {
+      setError("Não foi possível concluir sua inscrição agora. Tente novamente em instantes.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
