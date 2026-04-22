@@ -45,27 +45,43 @@
     <!-- AOS - Animate On Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Meta Pixel removido do HTML base para evitar duplicidade.
-         O carregamento do pixel (ID: 1176389559234307) é feito via useEffect nas páginas de landing. -->
-    <!-- Taboola Pixel Code -->
-    <script type="text/javascript">
-      window._tfa = window._tfa || [];
-      window._tfa.push({ notify: "event", name: "page_view", id: 1987370 });
-      !(function (t, f, a, x) {
-        if (!document.getElementById(x)) {
-          t.async = 1;
-          t.src = a;
-          t.id = x;
-          f.parentNode.insertBefore(t, f);
-        }
-      })(
-        document.createElement("script"),
-        document.getElementsByTagName("script")[0],
-        "//cdn.taboola.com/libtrc/unip/1987370/tfa.js",
-        "tb_tfa_script",
-      );
+    <!-- Meta Pixel (somente /renal, no head) -->
+    <script>
+      (function () {
+        var path = window.location.pathname.replace(/\/+$/, "") || "/";
+        if (path !== "/renal") return;
+
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod
+              ? n.callMethod.apply(n, arguments)
+              : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = true;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = true;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(
+          window,
+          document,
+          "script",
+          "https://connect.facebook.net/en_US/fbevents.js",
+        );
+
+        fbq("init", "1176389559234307");
+        fbq("track", "PageView");
+        window.__renalCompleteRegistration = function () {
+          fbq("track", "CompleteRegistration");
+        };
+      })();
     </script>
-    <!-- End of Taboola Pixel Code -->
   </head>
   <body>
     <!-- Noscript do Meta Pixel removido para evitar carregamento de ID incorreto
