@@ -29,7 +29,7 @@ function Obrigado() {
 
     // fbq (shim) já existe aqui; as chamadas ficam em fila até o script carregar
     // @ts-ignore
-    window.fbq('init', '1289139885831063');
+    window.fbq('init', '1176389559234307');
     // @ts-ignore
     window.fbq('track', 'PageView');
 
