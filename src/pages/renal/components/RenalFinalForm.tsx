@@ -4,9 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ArrowRight, ShieldCheck, Users, Clock } from "lucide-react";
-import { captureLead, formatWhatsappForInput, normalizePhone, persistFormDraft, track, type RenalProfile, type RenalUtm } from "../lib";
-import { createLead } from "../db";
+import {
+  captureLead,
+  formatWhatsappForInput,
+  isValidBrazilianMobilePhone,
+  normalizePhone,
+  persistFormDraft,
+  track,
+  type RenalProfile,
+  type RenalUtm,
+} from "../lib";
+import { checkDuplicateLeadByWhatsapp, createLead } from "../db";
 import { useNavigate } from "react-router-dom";
 
 export function RenalFinalForm(props: { utm: RenalUtm }) {
@@ -17,19 +27,29 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
   const [profile, setProfile] = useState<RenalProfile>("paciente");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  const [duplicateLead, setDuplicateLead] = useState<{ name: string; whatsapp: string } | null>(null);
 
   const normalized = useMemo(() => normalizePhone(whatsappRaw), [whatsappRaw]);
+  const webinarAccessUrl = useMemo(
+    () => (duplicateLead ? `/webinar?w=${encodeURIComponent(duplicateLead.whatsapp)}` : "/webinar"),
+    [duplicateLead],
+  );
 
   const isValid = useMemo(() => {
     const n = name.trim();
-    const digits = (whatsappRaw || "").replace(/\D+/g, "").replace(/^55/, "");
-    return n.length >= 2 && digits.length >= 10;
+    return n.length >= 2 && isValidBrazilianMobilePhone(whatsappRaw);
   }, [name, whatsappRaw]);
 
   const submit = async () => {
     setError(null);
-    if (!isValid) {
-      setError("Preencha seu nome e um WhatsApp válido.");
+    if (name.trim().length < 2) {
+      setError("Preencha seu nome completo para continuar.");
+      return;
+    }
+
+    if (!isValidBrazilianMobilePhone(whatsappRaw)) {
+      setError("Informe um WhatsApp brasileiro válido com DDD + 9 dígitos. Ex.: (11) 99999-9999.");
       return;
     }
 
@@ -38,14 +58,34 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
     const trimmedName = name.trim();
 
     try {
+      const duplicateCheck = await checkDuplicateLeadByWhatsapp(normalized);
+
+      if (duplicateCheck.status === "invalid_phone" || duplicateCheck.status === "lookup_error") {
+        setError(duplicateCheck.message);
+        return;
+      }
+
+      if (duplicateCheck.lead) {
+        setDuplicateLead({
+          name: duplicateCheck.lead.name,
+          whatsapp: duplicateCheck.lead.whatsapp,
+        });
+        setShowDuplicateModal(true);
+        track("duplicate_signup_detected", { page: "/renal", lead_id: duplicateCheck.lead.id });
+        return;
+      }
+
       // Store lead in Supabase
-      await createLead({
+      const createdLead = await createLead({
         name: trimmedName,
         whatsapp: normalized,
         profile,
         utm: props.utm,
         source: "site",
       });
+      if (!createdLead) {
+        throw new Error("lead_create_failed");
+      }
 
       // Also send to external endpoint if configured
       const payload = {
@@ -195,6 +235,30 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
           </Card>
         </div>
       </div>
+
+      <Dialog open={showDuplicateModal} onOpenChange={setShowDuplicateModal}>
+        <DialogContent className="border-emerald-200 sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl text-emerald-700">Inscrição já confirmada</DialogTitle>
+            <DialogDescription className="text-sm text-gray-600">
+              {duplicateLead?.name
+                ? `${duplicateLead.name}, identificamos que seu WhatsApp já está inscrito no webinário renal.`
+                : "Identificamos que esse WhatsApp já está inscrito no webinário renal."}
+              {" "}Você já pode entrar direto na sala da aula.
+            </DialogDescription>
+          </DialogHeader>
+
+          <Button
+            className="h-11 w-full bg-emerald-600 hover:bg-emerald-500 font-bold"
+            onClick={() => {
+              track("duplicate_signup_open_webinar_click", { page: "/renal" });
+              window.open(webinarAccessUrl, "_blank", "noopener,noreferrer");
+            }}
+          >
+            Acessar sala da aula agora
+          </Button>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

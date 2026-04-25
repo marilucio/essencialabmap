@@ -7,7 +7,7 @@
  * All public functions are async.
  */
 
-import type { RenalProfile, RenalUtm } from "./lib";
+import { isValidBrazilianMobilePhone, normalizePhone, type RenalProfile, type RenalUtm } from "./lib";
 import { supabase } from "./supabase";
 
 /* ------------------------------------------------------------------ */
@@ -328,6 +328,48 @@ export async function getLeadByWhatsapp(whatsapp: string): Promise<Lead | null> 
 
   if (error || !data) return null;
   return data as Lead;
+}
+
+export type DuplicateLeadCheckResult =
+  | { status: "ok"; lead: Lead | null }
+  | { status: "invalid_phone"; message: string }
+  | { status: "lookup_error"; message: string };
+
+export async function checkDuplicateLeadByWhatsapp(rawWhatsapp: string): Promise<DuplicateLeadCheckResult> {
+  const normalized = normalizePhone(rawWhatsapp);
+
+  if (!isValidBrazilianMobilePhone(normalized)) {
+    return {
+      status: "invalid_phone",
+      message: "Informe um WhatsApp brasileiro válido com DDD + 9 dígitos. Ex.: (11) 99999-9999.",
+    };
+  }
+
+  try {
+    const lead = await getLeadByWhatsapp(normalized);
+    if (!lead) return { status: "ok", lead: null };
+
+    try {
+      await addLeadEvent(lead.id, {
+        type: "duplicate_signup_attempt",
+        ts: new Date().toISOString(),
+        meta: {
+          attempted_whatsapp: normalized,
+          source: "renal_landing_form",
+        },
+      });
+    } catch (auditError) {
+      console.error("[renal] duplicate audit log error:", auditError);
+    }
+
+    return { status: "ok", lead };
+  } catch (lookupError) {
+    console.error("[renal] duplicate lookup error:", lookupError);
+    return {
+      status: "lookup_error",
+      message: "Não conseguimos validar seu número agora. Tente novamente em instantes.",
+    };
+  }
 }
 
 export async function getWebinarStats() {

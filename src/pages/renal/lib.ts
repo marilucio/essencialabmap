@@ -54,11 +54,16 @@ function readBrowserStorage(key: string): string | null {
 }
 
 export function getRenalConfig() {
-  const leadEndpoint = (import.meta.env.VITE_RENAL_LEAD_ENDPOINT as string | undefined) || "";
-  const whatsappPhone = (import.meta.env.VITE_RENAL_WHATSAPP_PHONE as string | undefined) || "5543991948185";
+  const leadEndpoint =
+    (import.meta.env.VITE_RENAL_LEAD_ENDPOINT as string | undefined) || "";
+  const whatsappPhone =
+    (import.meta.env.VITE_RENAL_WHATSAPP_PHONE as string | undefined) ||
+    "5543991948185";
   const adminWhatsappPhone =
-    (import.meta.env.VITE_RENAL_ADMIN_WHATSAPP_PHONE as string | undefined) || "5543991246422";
-  const webinarSlug = (import.meta.env.VITE_RENAL_WEBINAR_SLUG as string | undefined) || "renal";
+    (import.meta.env.VITE_RENAL_ADMIN_WHATSAPP_PHONE as string | undefined) ||
+    "5543991246422";
+  const webinarSlug =
+    (import.meta.env.VITE_RENAL_WEBINAR_SLUG as string | undefined) || "renal";
   const appIosUrl =
     (import.meta.env.VITE_ESSENCIALAB_IOS_URL as string | undefined) ||
     "https://apps.apple.com/app/id6756675158";
@@ -124,11 +129,19 @@ export function persistFormDraft(input: {
   }
 }
 
-export function readFormDraft(): { name: string; whatsapp: string; profile: RenalProfile } | null {
+export function readFormDraft(): {
+  name: string;
+  whatsapp: string;
+  profile: RenalProfile;
+} | null {
   try {
     const raw = readBrowserStorage(STORAGE_KEY_FORM);
     if (!raw) return null;
-    return JSON.parse(raw) as { name: string; whatsapp: string; profile: RenalProfile };
+    return JSON.parse(raw) as {
+      name: string;
+      whatsapp: string;
+      profile: RenalProfile;
+    };
   } catch {
     return null;
   }
@@ -142,20 +155,24 @@ export function normalizePhone(input: string) {
   return `+${digits}`;
 }
 
+export function isValidBrazilianMobilePhone(input: string) {
+  const normalized = normalizePhone(input);
+  const digits = normalized.replace(/\D+/g, "").replace(/^55/, "");
+  return /^[1-9]{2}9\d{8}$/.test(digits);
+}
+
 export function formatWhatsappForInput(input: string) {
   const digits = (input || "").replace(/\D+/g, "");
   if (!digits) return "";
   const d = digits.replace(/^55/, "");
   if (d.length <= 2) return `(${d}`;
   if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
-  if (d.length <= 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+  if (d.length <= 11)
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
   return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7, 11)}`;
 }
 
-export function buildWhatsAppUrl(params: {
-  phone: string;
-  message: string;
-}) {
+export function buildWhatsAppUrl(params: { phone: string; message: string }) {
   const phoneDigits = (params.phone || "").replace(/\D+/g, "");
   const msg = encodeURIComponent(params.message || "");
   return `https://wa.me/${phoneDigits}?text=${msg}`;
@@ -185,7 +202,9 @@ export function buildPrefilledWhatsAppMessage(input: {
   profile?: RenalProfile;
 }) {
   const parts: string[] = [];
-  parts.push("Olá! Quero confirmar a inscrição na aula online gratuita sobre rotina renal e receber os lembretes no WhatsApp.");
+  parts.push(
+    "Olá! Quero confirmar a inscrição na aula online gratuita sobre rotina renal e receber os lembretes no WhatsApp.",
+  );
   if (input.name) parts.push(`Meu nome é ${input.name}.`);
   if (input.profile && input.profile !== "outro") {
     const label =
@@ -227,7 +246,9 @@ export function track(eventName: string, params?: Record<string, unknown>) {
   }
 }
 
-export async function captureLead(payload: RenalLeadPayload): Promise<{ ok: boolean; lead_id?: string }> {
+export async function captureLead(
+  payload: RenalLeadPayload,
+): Promise<{ ok: boolean; lead_id?: string }> {
   const { leadEndpoint } = getRenalConfig();
   if (!leadEndpoint) return { ok: true };
 
@@ -325,7 +346,10 @@ export function setSeoTags(input: {
   }).setAttribute("href", window.location.origin + input.canonicalPath);
 }
 
-export function setFaqSchema(schemaId: string, faq: Array<{ question: string; answer: string }>) {
+export function setFaqSchema(
+  schemaId: string,
+  faq: Array<{ question: string; answer: string }>,
+) {
   const existing = document.getElementById(schemaId);
   if (existing) existing.remove();
   const script = document.createElement("script");
