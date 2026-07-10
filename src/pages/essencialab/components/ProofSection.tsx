@@ -124,9 +124,9 @@ const ProofSection = () => {
           </div>
           <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-6 text-center border border-orange-200">
             <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">
-              3x
-            </div>
-            <p className="text-gray-700 font-medium">{t("proof.stats2")}</p>
+               [+X%]
+             </div>
+             <p className="text-gray-700 font-medium">{t("proof.stats2")}</p>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center border border-blue-200">
             <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
