@@ -61,6 +61,16 @@ export const translations = {
       feature1: "Escaneie o rosto em segundos",
       feature2: "Obtenha um mapa de bem-estar emocional",
       feature3: "Sugestões personalizadas na hora",
+      techTransparency: {
+        badge: "🔬 Como a Tecnologia Funciona",
+        title: "Transparência que Gera Confiança",
+        items: [
+          "O app usa processamento de imagem (MediaPipe) para identificar expressões e traços faciais — a mesma tecnologia usada em câmeras e filtros de celular.",
+          "Com base nessa leitura, o EssenciaLab sugere óleos essenciais e protocolos de bem-estar personalizados, alinhados ao seu conhecimento como consultor.",
+          "É uma ferramenta de apoio ao bem-estar e autoconhecimento — não realiza diagnóstico, não substitui avaliação médica e não trata doenças.",
+        ],
+        note: "Você mantém total autonomia sobre as recomendações. O app é um ponto de partida para o diálogo com seu cliente."
+      },
     },
     benefits: {
       badge: "Por Que Consultores Estão Adotando o EssenciaLab",
@@ -100,6 +110,9 @@ export const translations = {
           "Quando um consultor usa a análise facial, a conversa flui naturalmente.",
         caption:
           "Wellington D. usou a análise facial para conquistar dezenas de novos contatos — e os 844 PV vieram como consequência natural do relacionamento construído.",
+        authenticityBadge: "📬 RESULTADO REAL E TRANSPARENTE",
+        authenticityNote:
+          "O Wellington nos enviou esta mensagem espontaneamente, empolgado com o resultado. Ele escreveu 700 PV, mas logo em seguida corrigiu: eram 844 (ele havia somado errado). Deixamos o print original exatamente como recebemos — porque resultado real não precisa de edição.",
       },
       stats1: "Consultores Ativos",
       stats2: "Clientes que Compram Novamente",
@@ -111,6 +124,52 @@ export const translations = {
       zeroRiskCheck2: "Download Gratuito",
       zeroRiskCheck3: "Cancelamento Instantâneo",
       testimonials: [],
+    },
+    pricing: {
+      badge: "💰 Planos e Preços",
+      title: "Teste Grátis por 7 Dias, Depois Escolha o Seu Plano",
+      description:
+        "Após o período gratuito, você escolhe o plano que faz sentido para o seu momento:",
+      monthly: "Plano Mensal — R$ 29,90/mês",
+      yearly: "Plano Anual — R$ 24,90/mês (economia de 2 meses)",
+      professional: "Profissional — R$ 49,90/mês (análises ilimitadas + suporte prioritário)",
+      cta: "Sem compromisso. Cancele quando quiser.",
+    },
+    faq: {
+      badge: "❓ Dúvidas Frequentes",
+      title: "Respostas Rápidas para Quem Quer Começar",
+      questions: [
+        {
+          question: "Preciso de conhecimento técnico para usar o EssenciaLab?",
+          answer:
+            "Não. O app foi feito para consultores e aromaterapeutas que não são experts em tecnologia. Você aponta a câmera, escaneia o rosto e o mapa de bem-estar é gerado automaticamente. Se você sabe usar o WhatsApp, sabe usar o EssenciaLab.",
+        },
+        {
+          question: "Funciona offline?",
+          answer:
+            "A análise facial requer conexão com a internet para processar as imagens. Mas depois de gerado, o mapa de bem-estar e as sugestões ficam salvos no seu dispositivo para consulta offline.",
+        },
+        {
+          question: "Preciso da autorização do cliente para fazer a análise?",
+          answer:
+            "Sim, e isso é importante. O app não armazena fotos ou dados biométricos sem consentimento. As imagens são processadas localmente e você decide se quer salvar o histórico. Total respeito à privacidade e à LGPD.",
+        },
+        {
+          question: "Quanto custa depois dos 7 dias grátis?",
+          answer:
+            "Os planos começam em R$ 29,90/mês no plano mensal, com opção anual a partir de R$ 24,90/mês. Também temos o plano Profissional por R$ 49,90/mês, com análises ilimitadas e suporte prioritário. Você pode cancelar quando quiser, sem multa.",
+        },
+        {
+          question: "Em quais celulares o EssenciaLab funciona?",
+          answer:
+            "O app funciona em iPhones a partir do iOS 15 e em celulares Android com Android 8.0 ou superior. É necessário que o dispositivo tenha câmera frontal para a análise facial. Você pode verificar a compatibilidade na App Store ou Google Play.",
+        },
+        {
+          question: "O EssenciaLab substitui o conhecimento que eu já tenho como consultor?",
+          answer:
+            "De forma alguma. O app é uma ferramenta de apoio que potencializa o seu conhecimento. Ele sugere caminhos com base na análise facial, mas quem interpreta, adapta e decide a melhor recomendação para cada cliente é você. O EssenciaLab agiliza o processo — não substitui o seu tato e sua experiência.",
+        },
+      ],
     },
     footer: {
       badge: "Sua Nova Ferramenta de Trabalho",
@@ -195,6 +254,16 @@ export const translations = {
       feature1: "Scan the face in seconds",
       feature2: "Get an emotional wellness map",
       feature3: "Personalized suggestions instantly",
+      techTransparency: {
+        badge: "🔬 How the Technology Works",
+        title: "Transparency That Builds Trust",
+        items: [
+          "The app uses image processing (MediaPipe) to identify facial expressions and features — the same technology used in phone cameras and filters.",
+          "Based on this reading, EssenciaLab suggests essential oils and personalized wellness protocols, aligned with your expertise as a consultant.",
+          "It is a wellness and self-discovery support tool — it does not diagnose, replace medical evaluation, or treat diseases.",
+        ],
+        note: "You maintain full autonomy over recommendations. The app is a starting point for dialogue with your client."
+      },
     },
     benefits: {
       badge: "Why Consultants Are Adopting EssenciaLab",
@@ -234,6 +303,9 @@ export const translations = {
           "When a consultant uses facial analysis, the conversation flows naturally.",
         caption:
           "Wellington used facial analysis to win dozens of new contacts — and the 844 PV came as a natural consequence of the relationship built.",
+        authenticityBadge: "📬 REAL AND TRANSPARENT RESULT",
+        authenticityNote:
+          "Wellington sent us this message spontaneously, excited about the result. He wrote 700 PV, but immediately corrected it: it was 844 (he had added wrong). We kept the original screenshot exactly as received — because real results don't need editing.",
         chatTranslation: [
           {
             author: "Wellington",
@@ -260,6 +332,52 @@ export const translations = {
       zeroRiskCheck2: "Free Download",
       zeroRiskCheck3: "Instant Cancellation",
       testimonials: [],
+    },
+    pricing: {
+      badge: "💰 Plans & Pricing",
+      title: "Try Free for 7 Days, Then Choose Your Plan",
+      description:
+        "After the free trial, pick the plan that fits your moment:",
+      monthly: "Monthly Plan — $5.99/month",
+      yearly: "Yearly Plan — $4.99/month (save 2 months)",
+      professional: "Professional — $9.99/month (unlimited analyses + priority support)",
+      cta: "No commitment. Cancel anytime.",
+    },
+    faq: {
+      badge: "❓ Frequently Asked Questions",
+      title: "Quick Answers to Get You Started",
+      questions: [
+        {
+          question: "Do I need technical knowledge to use EssenciaLab?",
+          answer:
+            "No. The app was built for consultants and aromatherapists who aren't tech experts. You point the camera, scan the face, and the wellness map is generated automatically. If you know how to use WhatsApp, you know how to use EssenciaLab.",
+        },
+        {
+          question: "Does it work offline?",
+          answer:
+            "Facial analysis requires an internet connection to process images. However, once generated, the wellness map and suggestions are saved on your device for offline viewing.",
+        },
+        {
+          question: "Do I need my client's authorization for the analysis?",
+          answer:
+            "Yes, and this is important. The app does not store photos or biometric data without consent. Images are processed locally and you decide whether to save the history. Full respect for privacy and data protection regulations.",
+        },
+        {
+          question: "How much does it cost after the 7-day trial?",
+          answer:
+            "Plans start at $5.99/month for the monthly plan, with an annual option from $4.99/month. We also have a Professional plan at $9.99/month with unlimited analyses and priority support. Cancel anytime with no penalty.",
+        },
+        {
+          question: "Which phones does EssenciaLab work on?",
+          answer:
+            "The app works on iPhones with iOS 15 or later and Android phones with Android 8.0 or higher. A front-facing camera is required for facial analysis. Check compatibility on the App Store or Google Play.",
+        },
+        {
+          question: "Does EssenciaLab replace my knowledge as a consultant?",
+          answer:
+            "Not at all. The app is a support tool that enhances your expertise. It suggests paths based on facial analysis, but you interpret, adapt, and decide the best recommendation for each client. EssenciaLab streamlines the process — it doesn't replace your judgment and experience.",
+        },
+      ],
     },
     footer: {
       badge: "Your New Work Tool",
@@ -346,6 +464,16 @@ export const translations = {
       feature1: "Escanea el rostro en segundos",
       feature2: "Obtén un mapa de bienestar emocional",
       feature3: "Sugerencias personalizadas al instante",
+      techTransparency: {
+        badge: "🔬 Cómo Funciona la Tecnología",
+        title: "Transparencia que Genera Confianza",
+        items: [
+          "La app usa procesamiento de imágenes (MediaPipe) para identificar expresiones y rasgos faciales — la misma tecnología usada en cámaras y filtros de celulares.",
+          "Con base en esta lectura, EssenciaLab sugiere aceites esenciales y protocolos de bienestar personalizados, alineados a tu conocimiento como consultor.",
+          "Es una herramienta de apoyo al bienestar y autoconocimiento — no realiza diagnósticos, no reemplaza la evaluación médica ni trata enfermedades.",
+        ],
+        note: "Mantienes total autonomía sobre las recomendaciones. La app es un punto de partida para el diálogo con tu cliente."
+      },
     },
     benefits: {
       badge: "Por Qué los Consultores Están Adoptando EssenciaLab",
@@ -385,6 +513,9 @@ export const translations = {
           "Cuando un consultor usa el análisis facial, la conversación fluye naturalmente.",
         caption:
           "Wellington usó el análisis facial para conquistar decenas de nuevos contactos — y los 844 PV vinieron como consecuencia natural de la relación construida.",
+        authenticityBadge: "📬 RESULTADO REAL Y TRANSPARENTE",
+        authenticityNote:
+          "Wellington nos envió este mensaje espontáneamente, entusiasmado con el resultado. Escribió 700 PV, pero inmediatamente corrigió: eran 844 (había sumado mal). Dejamos la captura original exactamente como la recibimos — porque un resultado real no necesita edición.",
         chatTranslation: [
           {
             author: "Wellington",
@@ -411,6 +542,52 @@ export const translations = {
       zeroRiskCheck2: "Descarga Gratuita",
       zeroRiskCheck3: "Cancelación Instantánea",
       testimonials: [],
+    },
+    pricing: {
+      badge: "💰 Planes y Precios",
+      title: "Prueba Gratis por 7 Días, Luego Elige tu Plan",
+      description:
+        "Después del período gratuito, elige el plan que se ajuste a tu momento:",
+      monthly: "Plan Mensual — R$ 29,90/mes",
+      yearly: "Plan Anual — R$ 24,90/mes (ahorra 2 meses)",
+      professional: "Profesional — R$ 49,90/mes (análisis ilimitados + soporte prioritario)",
+      cta: "Sin compromiso. Cancela cuando quieras.",
+    },
+    faq: {
+      badge: "❓ Preguntas Frecuentes",
+      title: "Respuestas Rápidas para Quien Quiere Empezar",
+      questions: [
+        {
+          question: "¿Necesito conocimiento técnico para usar EssenciaLab?",
+          answer:
+            "No. La app fue hecha para consultores y aromaterapeutas que no son expertos en tecnología. Apuntas la cámara, escaneas el rostro y el mapa de bienestar se genera automáticamente. Si sabes usar WhatsApp, sabes usar EssenciaLab.",
+        },
+        {
+          question: "¿Funciona sin conexión?",
+          answer:
+            "El análisis facial requiere conexión a internet para procesar las imágenes. Pero una vez generado, el mapa de bienestar y las sugerencias se guardan en tu dispositivo para consulta sin conexión.",
+        },
+        {
+          question: "¿Necesito autorización del cliente para hacer el análisis?",
+          answer:
+            "Sí, y esto es importante. La app no almacena fotos ni datos biométricos sin consentimiento. Las imágenes se procesan localmente y tú decides si quieres guardar el historial. Respeto total a la privacidad y a la LGPD.",
+        },
+        {
+          question: "¿Cuánto cuesta después de los 7 días gratis?",
+          answer:
+            "Los planes comienzan en R$ 29,90/mes en el plan mensual, con opción anual desde R$ 24,90/mes. También tenemos el plan Profesional por R$ 49,90/mes, con análisis ilimitados y soporte prioritario. Puedes cancelar cuando quieras, sin multa.",
+        },
+        {
+          question: "¿En qué celulares funciona EssenciaLab?",
+          answer:
+            "La app funciona en iPhones con iOS 15 o superior y en celulares Android con Android 8.0 o superior. Se necesita cámara frontal para el análisis facial. Verifica la compatibilidad en App Store o Google Play.",
+        },
+        {
+          question: "¿EssenciaLab reemplaza mi conocimiento como consultor?",
+          answer:
+            "De ninguna manera. La app es una herramienta de apoyo que potencia tu conocimiento. Sugiere caminos basados en el análisis facial, pero quien interpreta, adapta y decide la mejor recomendación para cada cliente eres tú. EssenciaLab agiliza el proceso — no reemplaza tu criterio ni tu experiencia.",
+        },
+      ],
     },
     footer: {
       badge: "Tu Nueva Herramienta de Trabajo",

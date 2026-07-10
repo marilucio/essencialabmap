@@ -3,6 +3,8 @@ import { ProblemSection } from "./components/ProblemSection";
 import { SolutionSection } from "./components/SolutionSection";
 import { BenefitsSection } from "./components/BenefitsSection";
 import { ProofSection } from "./components/ProofSection";
+import { PricingSection } from "./components/PricingSection";
+import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
 import { LanguageProvider } from "./LanguageContext";
 import LanguageSelector from "./LanguageSelector";
@@ -39,6 +41,16 @@ const Index = () => {
             {/* Prova Social - Quebrar Objeções */}
             <section className="w-full py-12 md:py-16 lg:py-20 bg-gradient-to-r from-green-50 to-emerald-50">
               <ProofSection />
+            </section>
+
+            {/* Preços */}
+            <section className="w-full">
+              <PricingSection />
+            </section>
+
+            {/* FAQ */}
+            <section className="w-full bg-white">
+              <FAQSection />
             </section>
           </div>
 

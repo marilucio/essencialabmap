@@ -52,6 +52,19 @@ const ProofSection = () => {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
+          {/* Contexto de autenticidade — antes do print */}
+          <div className="max-w-3xl mx-auto mb-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 md:p-5 text-center">
+              <div className="inline-flex items-center gap-2 bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase mb-2">
+                <MessageCircle className="w-3 h-3" />
+                {t("proof.whatsappSection.authenticityBadge")}
+              </div>
+              <p className="text-sm text-amber-900 leading-relaxed">
+                {t("proof.whatsappSection.authenticityNote")}
+              </p>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8 items-center bg-emerald-50 rounded-[2.5rem] p-8 md:p-12 border-2 border-emerald-100">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-green-200 text-green-800 px-4 py-1 rounded-full text-sm font-bold">
