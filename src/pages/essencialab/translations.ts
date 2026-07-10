@@ -14,7 +14,7 @@ export const translations = {
         "Mais de 500 consultores já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
       whatsappProof: {
         badge: "🔥 RELACIONAMENTO QUE GERA RESULTADO",
-        title: "844 PV em uma semana — e dezenas de clientes encantados",
+        title: "844 PV em uma semana usando a Análise Facial",
         description:
           "O Wellington usou a Análise Facial para atrair, engajar e fidelizar. As vendas vieram como consequência.",
         button: "Veja o Print do WhatsApp",
@@ -126,13 +126,11 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Planos e Preços",
-      title: "Teste Grátis por 7 Dias, Depois Escolha o Seu Plano",
+      badge: "💰 Preço Acessível",
+      title: "Teste Grátis por 7 Dias",
       description:
-        "Após o período gratuito, você escolhe o plano que faz sentido para o seu momento:",
-      monthly: "Plano Mensal — R$ 29,90/mês",
-      yearly: "Plano Anual — R$ 24,90/mês (economia de 2 meses)",
-      professional: "Profissional — R$ 49,90/mês (análises ilimitadas + suporte prioritário)",
+        "Depois do período gratuito, os planos começam a partir de R$ 29,90/mês — sem compromisso, cancele quando quiser.",
+      price: "a partir de R$ 29,90/mês",
       cta: "Sem compromisso. Cancele quando quiser.",
     },
     faq: {
@@ -157,7 +155,7 @@ export const translations = {
         {
           question: "Quanto custa depois dos 7 dias grátis?",
           answer:
-            "Os planos começam em R$ 29,90/mês no plano mensal, com opção anual a partir de R$ 24,90/mês. Também temos o plano Profissional por R$ 49,90/mês, com análises ilimitadas e suporte prioritário. Você pode cancelar quando quiser, sem multa.",
+            "Os planos começam a partir de R$ 29,90/mês, sem compromisso. Você pode cancelar quando quiser, sem multa. O teste grátis já libera todas as funções para você experimentar sem pressa.",
         },
         {
           question: "Em quais celulares o EssenciaLab funciona?",
@@ -209,7 +207,7 @@ export const translations = {
         "More than 500 consultants already use EssenciaLab to attract new contacts and strengthen client relationships.",
       whatsappProof: {
         badge: "🔥 RELATIONSHIPS THAT DELIVER",
-        title: "844 PV in one week — and dozens of delighted clients",
+        title: "844 PV in one week using Facial Analysis",
         description:
           "Wellington used Facial Analysis to attract, engage, and retain. The sales came as a natural consequence.",
         button: "See WhatsApp Screenshot",
@@ -334,13 +332,11 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Plans & Pricing",
-      title: "Try Free for 7 Days, Then Choose Your Plan",
+      badge: "💰 Affordable Pricing",
+      title: "Try Free for 7 Days",
       description:
-        "After the free trial, pick the plan that fits your moment:",
-      monthly: "Monthly Plan — $5.99/month",
-      yearly: "Yearly Plan — $4.99/month (save 2 months)",
-      professional: "Professional — $9.99/month (unlimited analyses + priority support)",
+        "After the free trial, plans start from $5.99/month — no commitment, cancel anytime.",
+      price: "from $5.99/month",
       cta: "No commitment. Cancel anytime.",
     },
     faq: {
@@ -365,7 +361,7 @@ export const translations = {
         {
           question: "How much does it cost after the 7-day trial?",
           answer:
-            "Plans start at $5.99/month for the monthly plan, with an annual option from $4.99/month. We also have a Professional plan at $9.99/month with unlimited analyses and priority support. Cancel anytime with no penalty.",
+            "Plans start from $5.99/month, no commitment. Cancel anytime with no penalty. The free trial already unlocks all features so you can try without pressure.",
         },
         {
           question: "Which phones does EssenciaLab work on?",
@@ -417,7 +413,7 @@ export const translations = {
         "Más de 500 consultores ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
       whatsappProof: {
         badge: "🔥 RELACIONAMIENTO QUE GENERA RESULTADO",
-        title: "844 PV en una semana — y decenas de clientes encantados",
+        title: "844 PV en una semana usando el Análisis Facial",
         description:
           "Wellington usó el Análisis Facial para atraer, involucrar y fidelizar. Las ventas vinieron como consecuencia natural.",
         button: "Ver captura de WhatsApp",
@@ -544,13 +540,11 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Planes y Precios",
-      title: "Prueba Gratis por 7 Días, Luego Elige tu Plan",
+      badge: "💰 Precio Accesible",
+      title: "Prueba Gratis por 7 Días",
       description:
-        "Después del período gratuito, elige el plan que se ajuste a tu momento:",
-      monthly: "Plan Mensual — R$ 29,90/mes",
-      yearly: "Plan Anual — R$ 24,90/mes (ahorra 2 meses)",
-      professional: "Profesional — R$ 49,90/mes (análisis ilimitados + soporte prioritario)",
+        "Después del período gratuito, los planes comienzan desde R$ 29,90/mes — sin compromiso, cancela cuando quieras.",
+      price: "a partir de R$ 29,90/mes",
       cta: "Sin compromiso. Cancela cuando quieras.",
     },
     faq: {
@@ -575,7 +569,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta después de los 7 días gratis?",
           answer:
-            "Los planes comienzan en R$ 29,90/mes en el plan mensual, con opción anual desde R$ 24,90/mes. También tenemos el plan Profesional por R$ 49,90/mes, con análisis ilimitados y soporte prioritario. Puedes cancelar cuando quieras, sin multa.",
+            "Los planes comienzan desde R$ 29,90/mes, sin compromiso. Puedes cancelar cuando quieras, sin multa. La prueba gratis ya libera todas las funciones para que puedas probar sin presión.",
         },
         {
           question: "¿En qué celulares funciona EssenciaLab?",

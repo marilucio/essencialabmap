@@ -127,27 +127,21 @@ const ProofSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-3 gap-6 mb-12"
+          className="grid md:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto"
         >
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 text-center border border-green-200">
             <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">
-              500+
-            </div>
-            <p className="text-gray-700 font-medium">{t("proof.stats1")}</p>
-          </div>
-          <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-6 text-center border border-orange-200">
-            <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">
-               [+X%]
+               500+
              </div>
-             <p className="text-gray-700 font-medium">{t("proof.stats2")}</p>
-          </div>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center border border-blue-200">
-            <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
-              98%
-            </div>
-            <p className="text-gray-700 font-medium">{t("proof.stats3")}</p>
-          </div>
-        </motion.div>
+             <p className="text-gray-700 font-medium">{t("proof.stats1")}</p>
+           </div>
+           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center border border-blue-200">
+             <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
+               98%
+             </div>
+             <p className="text-gray-700 font-medium">{t("proof.stats3")}</p>
+           </div>
+         </motion.div>
 
         {/* Seção de Risco Zero */}
         <motion.div
