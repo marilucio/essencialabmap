@@ -5,20 +5,26 @@ import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 import { useLanguage } from "../LanguageContext";
 import { MessageCircle, Play } from "lucide-react";
 import { buildWhatsappLink, trackPixel } from "../../../lib/whatsapp";
+import { localizedAsset } from "../../../lib/i18nAssets";
+import { isWhatsappVariant } from "../../../lib/trafficSource";
 
 /**
  * Vídeo demo vertical (9:16) dentro de um mockup de smartphone.
  * - autoplay muted loop playsinline preload=metadata
  * - carrega o <source> só quando a seção se aproxima do viewport (IntersectionObserver)
  * - respeita prefers-reduced-motion: sem autoplay, exibe poster + botão de play
+ * - vídeo e poster resolvidos por idioma (com fallback -pt)
  */
 const DemoVideo = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
+
+  const posterSrc = localizedAsset("/demo-poster.jpg", language);
+  const videoSrc = localizedAsset("/demo-analise-facial.mp4", language);
 
   // Lazy load: só marca inView quando a seção se aproxima
   useEffect(() => {
@@ -40,14 +46,15 @@ const DemoVideo = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Autoplay quando em view, exceto reduced-motion
+  // Autoplay quando em view (exceto reduced-motion); recarrega ao trocar de idioma
   useEffect(() => {
     if (inView && !shouldReduceMotion && videoRef.current) {
+      videoRef.current.load();
       videoRef.current.play().catch(() => {
         /* autoplay bloqueado — poster + botão de play permanecem */
       });
     }
-  }, [inView, shouldReduceMotion]);
+  }, [inView, shouldReduceMotion, videoSrc]);
 
   const handleManualPlay = () => {
     videoRef.current?.play().catch(() => {});
@@ -81,7 +88,7 @@ const DemoVideo = () => {
             <video
               ref={videoRef}
               className="w-full h-full object-cover bg-gray-100"
-              poster="/demo-poster.jpg"
+              poster={posterSrc}
               muted
               loop
               playsInline
@@ -90,7 +97,7 @@ const DemoVideo = () => {
               onPause={() => setPlaying(false)}
               aria-label={t("hero.videoTitle")}
             >
-              {inView && <source src="/demo-analise-facial.mp4" type="video/mp4" />}
+              {inView && <source src={videoSrc} type="video/mp4" />}
             </video>
 
             {/* Overlay de play — visível quando não está tocando
@@ -135,6 +142,8 @@ const DemoVideo = () => {
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  // Origem de tráfego lida uma vez na montagem (persiste na sessão)
+  const [waVariant] = useState(() => isWhatsappVariant());
 
   const scrollToDownload = () => {
     document
@@ -201,29 +210,56 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* CTA primário único da dobra + alternativa WhatsApp */}
+            {/* CTA da dobra — hierarquia depende da origem de tráfego (?src=wa) */}
             <div className="space-y-3">
-              <button
-                type="button"
-                onClick={scrollToDownload}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
-              >
-                {t("hero.primaryCta")}
-              </button>
-
-              <div className="text-sm text-gray-600">
-                <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
-                <a
-                  href={buildWhatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleWhatsappClick}
-                  className="inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  {t("hero.whatsappCta")}
-                </a>
-              </div>
+              {waVariant ? (
+                <>
+                  {/* Variante Click-to-WhatsApp: WhatsApp primário */}
+                  <a
+                    href={buildWhatsappLink(t("whatsappPrefill"))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleWhatsappClick}
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    {t("hero.whatsappCta")}
+                  </a>
+                  <div className="text-sm text-gray-600">
+                    <button
+                      type="button"
+                      onClick={scrollToDownload}
+                      className="inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+                    >
+                      {t("hero.primaryCta")}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Padrão: teste grátis primário, WhatsApp secundário */}
+                  <button
+                    type="button"
+                    onClick={scrollToDownload}
+                    className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+                  >
+                    {t("hero.primaryCta")}
+                  </button>
+                  <div className="text-sm text-gray-600">
+                    <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
+                    <a
+                      href={buildWhatsappLink(t("whatsappPrefill"))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleWhatsappClick}
+                      className="inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      {t("hero.whatsappCta")}
+                    </a>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Vídeo demo em mockup de smartphone */}
@@ -253,7 +289,7 @@ const HeroSection = () => {
               <div className="text-center text-sm text-gray-600">
                 <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
                 <a
-                  href={buildWhatsappLink()}
+                  href={buildWhatsappLink(t("whatsappPrefill"))}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleWhatsappClick}

@@ -2,28 +2,31 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
+import { localizedAsset } from "../../../lib/i18nAssets";
 
 const HowItWorksSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
+  // Screenshots resolvidas por idioma (com fallback -pt). Convenção em /public:
+  // step-1-pt.jpg, step-2-en.jpg, step-3-es.jpg, ...
   const steps = [
     {
       number: "1",
       title: t("howItWorks.step1.title"),
       description: t("howItWorks.step1.description"),
-      image: "/step1.jpg",
+      image: localizedAsset("/step-1.jpg", language),
     },
     {
       number: "2",
       title: t("howItWorks.step2.title"),
       description: t("howItWorks.step2.description"),
-      image: "/step2.jpg",
+      image: localizedAsset("/step-2.jpg", language),
     },
     {
       number: "3",
       title: t("howItWorks.step3.title"),
       description: t("howItWorks.step3.description"),
-      image: "/step3.jpg",
+      image: localizedAsset("/step-3.jpg", language),
     },
   ];
 

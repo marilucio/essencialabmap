@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, CheckCircle } from "lucide-react";
-import { MessageCircle } from "lucide-react";
+import { Sparkles, CheckCircle, MessageCircle } from "lucide-react";
 import { AppStoreBadge } from "../../../components/badges/AppStoreBadge";
 import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 import { useLanguage } from "../LanguageContext";
 import { buildWhatsappLink, trackPixel } from "../../../lib/whatsapp";
+import { isWhatsappVariant } from "../../../lib/trafficSource";
 
 const FooterCTA = () => {
   const { t } = useLanguage();
+  // Origem de tráfego lida uma vez na montagem (persiste na sessão)
+  const [waVariant] = useState(() => isWhatsappVariant());
   const handleAppStoreClick = () => {
     trackPixel("InitiateCheckout", { platform: "appstore" });
     window.open("https://apps.apple.com/app/id6756675158", "_blank");
@@ -107,25 +109,52 @@ const FooterCTA = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="space-y-6"
             >
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <AppStoreBadge onClick={handleAppStoreClick} />
-                <GooglePlayBadge onClick={handleGooglePlayClick} />
-              </div>
+              {waVariant ? (
+                <>
+                  {/* Variante Click-to-WhatsApp: WhatsApp primário */}
+                  <a
+                    href={buildWhatsappLink(t("whatsappPrefill"))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleWhatsappClick}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-green-700 hover:bg-green-50 font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    {t("hero.whatsappCta")}
+                  </a>
 
-              {/* Alternativa WhatsApp abaixo da loja */}
-              <div className="text-white/90 text-sm">
-                <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
-                <a
-                  href={buildWhatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleWhatsappClick}
-                  className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl border border-white/20 transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  {t("hero.whatsappCta")}
-                </a>
-              </div>
+                  {/* Loja como alternativa secundária, logo abaixo */}
+                  <div className="text-white/90 text-sm space-y-3">
+                    <p>{t("hero.whatsappCtaHint")}</p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <AppStoreBadge onClick={handleAppStoreClick} />
+                      <GooglePlayBadge onClick={handleGooglePlayClick} />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Padrão: loja primária, WhatsApp secundário */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <AppStoreBadge onClick={handleAppStoreClick} />
+                    <GooglePlayBadge onClick={handleGooglePlayClick} />
+                  </div>
+
+                  <div className="text-white/90 text-sm">
+                    <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
+                    <a
+                      href={buildWhatsappLink(t("whatsappPrefill"))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleWhatsappClick}
+                      className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl border border-white/20 transition-colors"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      {t("hero.whatsappCta")}
+                    </a>
+                  </div>
+                </>
+              )}
 
               {/* Badge de 7 Dias Grátis */}
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 shadow-2xl inline-block">

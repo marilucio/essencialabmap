@@ -2,6 +2,8 @@ export type Language = "pt" | "en" | "es";
 
 export const translations = {
   pt: {
+    whatsappPrefill:
+      "Olá! Vi o EssenciaLab e quero ver a demonstração da análise facial.",
     hero: {
       badge: "✨ Tecnologia Exclusiva para Consultores de Óleos Essenciais e Aromaterapeutas",
       title:
@@ -223,6 +225,8 @@ export const translations = {
     },
   },
   en: {
+    whatsappPrefill:
+      "Hi! I saw EssenciaLab and I'd like to see the facial analysis demo.",
     hero: {
       badge: "✨ Exclusive Technology for Essential Oil Consultants & Aromatherapists",
       title:
@@ -457,6 +461,8 @@ export const translations = {
     },
   },
   es: {
+    whatsappPrefill:
+      "¡Hola! Vi EssenciaLab y quiero ver la demostración del análisis facial.",
     hero: {
       badge: "✨ Tecnología Exclusiva para Consultores de Aceites Esenciales y Aromaterapeutas",
       title:

@@ -31,6 +31,12 @@
     <meta name="author" content="Marilúcio Rocha" />
 
     <!-- Open Graph / Facebook -->
+    <!--
+      NOTA: as tags OG permanecem em pt-BR (idioma padrão). Crawlers de preview
+      de link (WhatsApp, Facebook) não executam JS, então esta é uma limitação
+      estrutural de SPA — não há como variar og:title/description/image por
+      idioma sem SSR/prerender ou rotas dedicadas (/en, /es). Decisão registrada.
+    -->
     <meta
       property="og:title"
       content="EssenciaLab — A ferramenta que atrai clientes novos e fideliza os antigos"

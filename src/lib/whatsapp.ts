@@ -7,10 +7,13 @@ const DEFAULT_WHATSAPP_NUMBER = "5543991948185";
 export const WHATSAPP_NUMBER: string =
   (import.meta.env.VITE_WHATSAPP_NUMBER as string) || DEFAULT_WHATSAPP_NUMBER;
 
+// Fallback caso a mensagem localizada (translations.whatsappPrefill) não seja
+// passada. A mensagem no idioma do visitante é enviada como sinal para o agente
+// de atendimento identificar o idioma da conversa já na primeira mensagem.
 export const WHATSAPP_DEMO_MESSAGE =
   "Olá! Vi o EssenciaLab e quero ver a demonstração da análise facial.";
 
-/** Monta o link wa.me com a mensagem pré-preenchida. */
+/** Monta o link wa.me com a mensagem pré-preenchida (idealmente localizada). */
 export function buildWhatsappLink(
   message: string = WHATSAPP_DEMO_MESSAGE,
   number: string = WHATSAPP_NUMBER,
