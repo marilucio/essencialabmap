@@ -3,7 +3,7 @@ export type Language = "pt" | "en" | "es";
 export const translations = {
   pt: {
     hero: {
-      badge: "✨ Tecnologia Exclusiva para Consultores doTERRA e Aromaterapeutas",
+      badge: "✨ Tecnologia Exclusiva para Consultores de Óleos Essenciais e Aromaterapeutas",
       title:
         "A Ferramenta que Atrai Clientes Novos e Fideliza os Antigos — Usando Apenas a Câmera do Celular",
       subtitle:
@@ -12,6 +12,9 @@ export const translations = {
       freeTrialSubtitle: "Todas as funções liberadas + Download Gratuito",
       socialProof:
         "Mais de 500 consultores já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
+      primaryCta: "Teste Grátis por 7 Dias",
+      whatsappCtaHint: "Prefere ver antes de baixar?",
+      whatsappCta: "Receber demonstração no WhatsApp",
       whatsappProof: {
         badge: "🔥 RELACIONAMENTO QUE GERA RESULTADO",
         title: "844 PV em uma semana usando a Análise Facial",
@@ -22,6 +25,7 @@ export const translations = {
       videoTitle: "📱 Veja a Análise Facial em Ação",
       videoSubtitle:
         "Assista a uma demonstração rápida de como o EssenciaLab escaneia o rosto, gera o mapa de bem-estar e ajuda você a iniciar conversas naturais com seus clientes.",
+      videoFullLink: "Ver demonstração completa com narração",
       ctaNoTech:
         "🚀 Não requer conhecimentos técnicos. Aponte, escaneie e conquiste.",
       ctaStartTrial: "Comece seu Teste Grátis de 7 Dias",
@@ -30,6 +34,25 @@ export const translations = {
       guarantee1: "Download Gratuito",
       guarantee2: "7 Dias Grátis",
       guarantee3: "Sem Cartão de Crédito",
+    },
+    howItWorks: {
+      badge: "Passo a Passo",
+      title: "Do primeiro contato ao protocolo em 3 passos",
+      step1: {
+        title: "Aponte a câmera",
+        description:
+          "O cliente faz a análise facial no seu celular ou no dele. Leva menos de um minuto e desperta curiosidade imediata.",
+      },
+      step2: {
+        title: "Receba o mapa de bem-estar",
+        description:
+          "O app gera um mapa personalizado com sugestões de óleos essenciais e cuidados — sem diagnóstico, com total transparência.",
+      },
+      step3: {
+        title: "Converse com autoridade",
+        description:
+          "Você apresenta o resultado, recomenda com embasamento e transforma curiosidade em relacionamento — e relacionamento em cliente.",
+      },
     },
     problem: {
       badge: "O Desafio",
@@ -113,6 +136,8 @@ export const translations = {
         authenticityBadge: "📬 RESULTADO REAL E TRANSPARENTE",
         authenticityNote:
           "O Wellington nos enviou esta mensagem espontaneamente, empolgado com o resultado. Ele escreveu 700 PV, mas logo em seguida corrigiu: eram 844 (ele havia somado errado). Deixamos o print original exatamente como recebemos — porque resultado real não precisa de edição.",
+        disclaimer:
+          "Resultado individual. Resultados variam conforme dedicação e contexto de cada consultor.",
       },
       stats1: "Consultores Ativos",
       stats2: "Clientes que Compram Novamente",
@@ -126,11 +151,14 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Preço Acessível",
-      title: "Teste Grátis por 7 Dias",
+      badge: "💰 Plano Profissional",
+      title: "Plano Profissional — R$ 127/mês",
       description:
-        "Depois do período gratuito, os planos começam a partir de R$ 29,90/mês — sem compromisso, cancele quando quiser.",
-      price: "a partir de R$ 29,90/mês",
+        "Um único cliente novo com um kit fechado paga meses de assinatura. A partir daí, cada análise facial é lucro.",
+      price: "R$ 127/mês",
+      trialLine: "7 dias grátis • Sem cartão de crédito • Cancele quando quiser",
+      annualLabel: "Plano anual: R$ 1.270/ano",
+      annualBadge: "2 meses grátis",
       cta: "Sem compromisso. Cancele quando quiser.",
     },
     faq: {
@@ -155,7 +183,7 @@ export const translations = {
         {
           question: "Quanto custa depois dos 7 dias grátis?",
           answer:
-            "Os planos começam a partir de R$ 29,90/mês, sem compromisso. Você pode cancelar quando quiser, sem multa. O teste grátis já libera todas as funções para você experimentar sem pressa.",
+            "O Plano Profissional custa R$ 127/mês (ou R$ 1.270/ano, com 2 meses grátis), sem compromisso. Você pode cancelar quando quiser, sem multa. Um único cliente novo com um kit fechado já paga meses de assinatura. O teste grátis libera todas as funções para você experimentar sem pressa.",
         },
         {
           question: "Em quais celulares o EssenciaLab funciona?",
@@ -183,7 +211,7 @@ export const translations = {
       guarantee2: "Sem Cartão de Crédito",
       guarantee3: "Cancele Quando Quiser",
       copyright:
-        "© 2026 EssenciaLab - Análise Facial para Consultores doTERRA e Aromaterapeutas",
+        "© 2026 EssenciaLab - Análise Facial para Consultores de Óleos Essenciais e Aromaterapeutas",
       rights: "Todos os direitos reservados.",
       disclaimerTitle: "Aviso Importante:",
       disclaimerText:
@@ -196,7 +224,7 @@ export const translations = {
   },
   en: {
     hero: {
-      badge: "✨ Exclusive Technology for doTERRA Consultants & Aromatherapists",
+      badge: "✨ Exclusive Technology for Essential Oil Consultants & Aromatherapists",
       title:
         "The Tool That Attracts New Clients and Keeps Them Coming Back — Using Only Your Phone Camera",
       subtitle:
@@ -205,6 +233,9 @@ export const translations = {
       freeTrialSubtitle: "All features unlocked + Free Download",
       socialProof:
         "More than 500 consultants already use EssenciaLab to attract new contacts and strengthen client relationships.",
+      primaryCta: "Start 7-Day Free Trial",
+      whatsappCtaHint: "Rather see it before downloading?",
+      whatsappCta: "Get a demo on WhatsApp",
       whatsappProof: {
         badge: "🔥 RELATIONSHIPS THAT DELIVER",
         title: "844 PV in one week using Facial Analysis",
@@ -215,12 +246,32 @@ export const translations = {
       videoTitle: "📱 See Facial Analysis in Action",
       videoSubtitle:
         "Watch a quick demonstration of how EssenciaLab scans the face, generates a wellness map, and helps you start natural conversations with your clients.",
+      videoFullLink: "Watch the full narrated demo",
       ctaNoTech: "🚀 No technical knowledge required. Point, scan, and connect.",
       ctaStartTrial: "Start your 7-Day Free Trial",
       ctaDetails: "No Credit Card Required • Easy Cancellation • Free Download",
       guarantee1: "Free Download",
       guarantee2: "7 Days Free",
       guarantee3: "No Credit Card",
+    },
+    howItWorks: {
+      badge: "Step by Step",
+      title: "From first contact to protocol in 3 steps",
+      step1: {
+        title: "Point the camera",
+        description:
+          "The client does the facial analysis on your phone or theirs. It takes less than a minute and sparks immediate curiosity.",
+      },
+      step2: {
+        title: "Get the wellness map",
+        description:
+          "The app generates a personalized map with essential oil suggestions and care tips — no diagnosis, full transparency.",
+      },
+      step3: {
+        title: "Speak with authority",
+        description:
+          "You present the result, recommend with substance, and turn curiosity into a relationship — and a relationship into a client.",
+      },
     },
     problem: {
       badge: "The Challenge",
@@ -304,6 +355,8 @@ export const translations = {
         authenticityBadge: "📬 REAL AND TRANSPARENT RESULT",
         authenticityNote:
           "Wellington sent us this message spontaneously, excited about the result. He wrote 700 PV, but immediately corrected it: it was 844 (he had added wrong). We kept the original screenshot exactly as received — because real results don't need editing.",
+        disclaimer:
+          "Individual result. Results vary based on each consultant's dedication and context.",
         chatTranslation: [
           {
             author: "Wellington",
@@ -332,11 +385,14 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Affordable Pricing",
-      title: "Try Free for 7 Days",
+      badge: "💰 Professional Plan",
+      title: "Professional Plan — R$ 127/month",
       description:
-        "After the free trial, plans start from $5.99/month — no commitment, cancel anytime.",
-      price: "from $5.99/month",
+        "A single new client with one closed kit pays for months of subscription. From there, every facial analysis is profit.",
+      price: "R$ 127/month",
+      trialLine: "7 days free • No credit card • Cancel anytime",
+      annualLabel: "Annual plan: R$ 1,270/year",
+      annualBadge: "2 months free",
       cta: "No commitment. Cancel anytime.",
     },
     faq: {
@@ -361,7 +417,7 @@ export const translations = {
         {
           question: "How much does it cost after the 7-day trial?",
           answer:
-            "Plans start from $5.99/month, no commitment. Cancel anytime with no penalty. The free trial already unlocks all features so you can try without pressure.",
+            "The Professional Plan is R$ 127/month (or R$ 1,270/year, with 2 months free), no commitment. Cancel anytime with no penalty. A single new client with one closed kit already pays for months of subscription. The free trial unlocks all features so you can try without pressure.",
         },
         {
           question: "Which phones does EssenciaLab work on?",
@@ -389,7 +445,7 @@ export const translations = {
       guarantee2: "No Credit Card",
       guarantee3: "Cancel Anytime",
       copyright:
-        "© 2026 EssenciaLab - Facial Analysis for doTERRA Consultants & Aromatherapists",
+        "© 2026 EssenciaLab - Facial Analysis for Essential Oil Consultants & Aromatherapists",
       rights: "All rights reserved.",
       disclaimerTitle: "Important Notice:",
       disclaimerText:
@@ -402,7 +458,7 @@ export const translations = {
   },
   es: {
     hero: {
-      badge: "✨ Tecnología Exclusiva para Consultores doTERRA y Aromaterapeutas",
+      badge: "✨ Tecnología Exclusiva para Consultores de Aceites Esenciales y Aromaterapeutas",
       title:
         "La Herramienta que Atrae Clientes Nuevos y Fideliza a los Antiguos — Usando Solo la Cámara del Celular",
       subtitle:
@@ -411,6 +467,9 @@ export const translations = {
       freeTrialSubtitle: "Todas las funciones liberadas + Descarga gratuita",
       socialProof:
         "Más de 500 consultores ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
+      primaryCta: "Prueba Gratis por 7 Días",
+      whatsappCtaHint: "¿Prefieres verlo antes de descargar?",
+      whatsappCta: "Recibir demostración por WhatsApp",
       whatsappProof: {
         badge: "🔥 RELACIONAMIENTO QUE GENERA RESULTADO",
         title: "844 PV en una semana usando el Análisis Facial",
@@ -421,6 +480,7 @@ export const translations = {
       videoTitle: "📱 Vea el Análisis Facial en Acción",
       videoSubtitle:
         "Mira una demostración rápida de cómo EssenciaLab escanea el rostro, genera el mapa de bienestar y te ayuda a iniciar conversaciones naturales con tus clientes.",
+      videoFullLink: "Ver la demostración completa con narración",
       ctaNoTech:
         "🚀 No requiere conocimientos técnicos. Apunta, escanea y conquista.",
       ctaStartTrial: "Comienza tu prueba gratuita de 7 días",
@@ -429,6 +489,25 @@ export const translations = {
       guarantee1: "Descarga gratuita",
       guarantee2: "7 días gratis",
       guarantee3: "Sin tarjeta de crédito",
+    },
+    howItWorks: {
+      badge: "Paso a Paso",
+      title: "Del primer contacto al protocolo en 3 pasos",
+      step1: {
+        title: "Apunta la cámara",
+        description:
+          "El cliente hace el análisis facial en tu celular o en el suyo. Toma menos de un minuto y despierta curiosidad inmediata.",
+      },
+      step2: {
+        title: "Recibe el mapa de bienestar",
+        description:
+          "La app genera un mapa personalizado con sugerencias de aceites esenciales y cuidados — sin diagnóstico, con total transparencia.",
+      },
+      step3: {
+        title: "Conversa con autoridad",
+        description:
+          "Presentas el resultado, recomiendas con fundamento y transformas la curiosidad en relación — y la relación en cliente.",
+      },
     },
     problem: {
       badge: "El Desafío",
@@ -512,6 +591,8 @@ export const translations = {
         authenticityBadge: "📬 RESULTADO REAL Y TRANSPARENTE",
         authenticityNote:
           "Wellington nos envió este mensaje espontáneamente, entusiasmado con el resultado. Escribió 700 PV, pero inmediatamente corrigió: eran 844 (había sumado mal). Dejamos la captura original exactamente como la recibimos — porque un resultado real no necesita edición.",
+        disclaimer:
+          "Resultado individual. Los resultados varían según la dedicación y el contexto de cada consultor.",
         chatTranslation: [
           {
             author: "Wellington",
@@ -540,11 +621,14 @@ export const translations = {
       testimonials: [],
     },
     pricing: {
-      badge: "💰 Precio Accesible",
-      title: "Prueba Gratis por 7 Días",
+      badge: "💰 Plan Profesional",
+      title: "Plan Profesional — R$ 127/mes",
       description:
-        "Después del período gratuito, los planes comienzan desde R$ 29,90/mes — sin compromiso, cancela cuando quieras.",
-      price: "a partir de R$ 29,90/mes",
+        "Un solo cliente nuevo con un kit cerrado paga meses de suscripción. A partir de ahí, cada análisis facial es ganancia.",
+      price: "R$ 127/mes",
+      trialLine: "7 días gratis • Sin tarjeta de crédito • Cancela cuando quieras",
+      annualLabel: "Plan anual: R$ 1.270/año",
+      annualBadge: "2 meses gratis",
       cta: "Sin compromiso. Cancela cuando quieras.",
     },
     faq: {
@@ -569,7 +653,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta después de los 7 días gratis?",
           answer:
-            "Los planes comienzan desde R$ 29,90/mes, sin compromiso. Puedes cancelar cuando quieras, sin multa. La prueba gratis ya libera todas las funciones para que puedas probar sin presión.",
+            "El Plan Profesional cuesta R$ 127/mes (o R$ 1.270/año, con 2 meses gratis), sin compromiso. Puedes cancelar cuando quieras, sin multa. Un solo cliente nuevo con un kit cerrado ya paga meses de suscripción. La prueba gratis libera todas las funciones para que puedas probar sin presión.",
         },
         {
           question: "¿En qué celulares funciona EssenciaLab?",
@@ -597,7 +681,7 @@ export const translations = {
       guarantee2: "Sin Tarjeta de Crédito",
       guarantee3: "Cancela Cuando Quieras",
       copyright:
-        "© 2026 EssenciaLab - Análisis Facial para Consultores doTERRA y Aromaterapeutas",
+        "© 2026 EssenciaLab - Análisis Facial para Consultores de Aceites Esenciales y Aromaterapeutas",
       rights: "Todos los derechos reservados.",
       disclaimerTitle: "Aviso Importante:",
       disclaimerText:

@@ -24,7 +24,8 @@ const PricingSection = () => {
             {t("pricing.title")}
           </h2>
 
-          <p className="text-lg text-gray-600 mb-8">
+          {/* Ancoragem de ROI */}
+          <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
             {t("pricing.description")}
           </p>
 
@@ -32,6 +33,17 @@ const PricingSection = () => {
             <p className="text-4xl md:text-5xl font-bold text-green-700">
               {t("pricing.price")}
             </p>
+            <p className="text-sm text-gray-500 mt-3">{t("pricing.trialLine")}</p>
+          </div>
+
+          {/* Opção anual secundária */}
+          <div className="mt-6 inline-flex items-center gap-3 bg-white/70 border border-green-200 rounded-full px-5 py-2 shadow-sm">
+            <span className="text-gray-700 font-medium text-sm">
+              {t("pricing.annualLabel")}
+            </span>
+            <span className="bg-green-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase">
+              {t("pricing.annualBadge")}
+            </span>
           </div>
 
           <div className="flex items-center justify-center gap-2 text-gray-500 text-sm mt-6">

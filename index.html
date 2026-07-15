@@ -19,37 +19,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Básico -->
-    <title>EssenciaLab Aplicativo de Saúde e Desenvolvimento Pessoal</title>
+    <title>EssenciaLab — Atraia e Fidelize Clientes com Análise Facial | Para Consultores de Bem-Estar</title>
     <meta
       name="description"
-      content="Transforme sua vida através da integração entre ciência, tecnologia e bem-estar humano. Aromaterapia, cursos e ferramentas de autoconhecimento."
+      content="A ferramenta que transforma a câmera do celular em porta de entrada para novos clientes. Análise facial gera mapas de bem-estar personalizados e abre conversas naturais. Teste grátis 7 dias."
     />
     <meta
       name="keywords"
-      content="aromaterapia, naturopatia, desenvolvimento pessoal, saúde preventiva, autoconhecimento, bem-estar, EssenciaLab, método CALMA"
+      content="análise facial, prospecção de clientes, consultores de bem-estar, aromaterapia, fidelização de clientes, óleos essenciais, ferramenta para consultores"
     />
     <meta name="author" content="Marilúcio Rocha" />
 
     <!-- Open Graph / Facebook -->
     <meta
       property="og:title"
-      content="EssenciaLab - Aplicativo de Saúde e Desenvolvimento Pessoal"
+      content="EssenciaLab — A ferramenta que atrai clientes novos e fideliza os antigos"
     />
     <meta
       property="og:description"
-      content="Transforme sua vida através da sabedoria da natureza e tecnologia. Acesso gratuito + Método CALMA de presente."
+      content="Análise facial que gera mapas de bem-estar e abre conversas naturais com clientes. Usada por centenas de consultores. Teste grátis por 7 dias, sem cartão."
     />
     <meta property="og:image" content="/capa-meta.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://essencialab.site/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="EssenciaLab" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="EssenciaLab — A ferramenta que atrai clientes novos e fideliza os antigos"
+    />
+    <meta
+      name="twitter:description"
+      content="Análise facial que gera mapas de bem-estar e abre conversas naturais com clientes. Usada por centenas de consultores. Teste grátis por 7 dias, sem cartão."
+    />
+    <meta name="twitter:image" content="/capa-meta.jpg" />
 
     <!-- AOS - Animate On Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Meta Pixel (somente /renal, no head) -->
+    <!-- Meta Pixel (landing "/" + /essencialab + /renal) -->
     <script>
       (function () {
         var path = window.location.pathname.replace(/\/+$/, "") || "/";
-        if (path !== "/renal") return;
+        var pixelPaths = ["/", "/essencialab", "/renal"];
+        if (pixelPaths.indexOf(path) === -1) return;
 
         !(function (f, b, e, v, n, t, s) {
           if (f.fbq) return;

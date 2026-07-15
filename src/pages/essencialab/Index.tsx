@@ -1,7 +1,9 @@
+import { MotionConfig } from "framer-motion";
 import { HeroSection } from "./components/HeroSection";
 import { ProblemSection } from "./components/ProblemSection";
 import { SolutionSection } from "./components/SolutionSection";
 import { BenefitsSection } from "./components/BenefitsSection";
+import { HowItWorksSection } from "./components/HowItWorksSection";
 import { ProofSection } from "./components/ProofSection";
 import { PricingSection } from "./components/PricingSection";
 import { FAQSection } from "./components/FAQSection";
@@ -11,6 +13,9 @@ import LanguageSelector from "./LanguageSelector";
 
 const Index = () => {
   return (
+    // reducedMotion="user" faz o framer-motion respeitar prefers-reduced-motion
+    // globalmente, desativando animações de opacity/transform para quem pediu.
+    <MotionConfig reducedMotion="user">
     <LanguageProvider>
       <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-50 overflow-x-hidden">
         <LanguageSelector />
@@ -36,6 +41,11 @@ const Index = () => {
             {/* Benefícios - Bullets com Curiosidade */}
             <section className="w-full py-12 md:py-16 lg:py-20">
               <BenefitsSection />
+            </section>
+
+            {/* Como Funciona - 3 Passos */}
+            <section className="w-full py-12 md:py-16 lg:py-20 bg-gradient-to-r from-emerald-50 to-green-50">
+              <HowItWorksSection />
             </section>
 
             {/* Prova Social - Quebrar Objeções */}
@@ -68,6 +78,7 @@ const Index = () => {
         </div>
       </div>
     </LanguageProvider>
+    </MotionConfig>
   );
 };
 

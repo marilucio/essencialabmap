@@ -77,6 +77,10 @@ const ProofSection = () => {
               <p className="text-lg text-gray-700 leading-relaxed italic border-l-4 border-green-500 pl-6">
                 {t("proof.whatsappSection.caption")}
               </p>
+              {/* Microcopy de conformidade — resultado individual (Tarefa 2.3) */}
+              <p className="text-xs text-gray-400 leading-relaxed pl-6">
+                {t("proof.whatsappSection.disclaimer")}
+              </p>
             </div>
 
             <div className="relative group">
@@ -122,26 +126,22 @@ const ProofSection = () => {
         </motion.div>
 
         {/* Estatísticas */}
+        {/* Card "98% Taxa de Satisfação" removido: sem fonte verificável. */}
+        {/* TODO: confirmar métrica real com Marilúcio para reintroduzir um 2º card. */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto"
+          className="mb-12 max-w-md mx-auto"
         >
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 text-center border border-green-200">
-            <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">
-               500+
-             </div>
-             <p className="text-gray-700 font-medium">{t("proof.stats1")}</p>
-           </div>
-           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center border border-blue-200">
-             <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
-               98%
-             </div>
-             <p className="text-gray-700 font-medium">{t("proof.stats3")}</p>
-           </div>
-         </motion.div>
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 text-center border border-green-200">
+            <div className="text-5xl md:text-6xl font-bold text-green-600 mb-2">
+              500+
+            </div>
+            <p className="text-gray-700 font-medium">{t("proof.stats1")}</p>
+          </div>
+        </motion.div>
 
         {/* Seção de Risco Zero */}
         <motion.div
