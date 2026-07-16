@@ -14,7 +14,17 @@
       "Bash(npx supabase:*)",
       "mcp__plugin_context-mode_context-mode__ctx_batch_execute",
       "mcp__plugin_context-mode_context-mode__ctx_execute",
-      "mcp__plugin_context-mode_context-mode__ctx_execute_file"
+      "mcp__plugin_context-mode_context-mode__ctx_execute_file",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git mv *)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(git reset *)",
+      "Bash(git -c user.name=\"Marilucio Rocha\" -c user.email=\"marilucio@marilucios-imac.local\" commit -q -F -)",
+      "Bash(git push *)",
+      "Bash(git rm *)",
+      "Bash(printf '.DS_Store\\\\n')",
+      "Bash(git commit *)"
     ]
   }
 }
