@@ -24,7 +24,11 @@ const DemoVideo = () => {
   const [playing, setPlaying] = useState(false);
 
   const posterSrc = localizedAsset("/demo-poster.jpg", language);
-  const videoSrc = localizedAsset("/demo-analise-facial.mp4", language);
+  // Dois formatos: HEVC (menor, Safari/iOS — exige tag hvc1) e H.264 como
+  // fallback universal para Chrome/Firefox. O browser baixa só o primeiro
+  // <source> que sabe decodificar.
+  const videoSrcHevc = localizedAsset("/demo-analise-facial.mp4", language);
+  const videoSrcH264 = localizedAsset("/demo-analise-facial-h264.mp4", language);
 
   // Lazy load: só marca inView quando a seção se aproxima
   useEffect(() => {
@@ -54,7 +58,7 @@ const DemoVideo = () => {
         /* autoplay bloqueado — poster + botão de play permanecem */
       });
     }
-  }, [inView, shouldReduceMotion, videoSrc]);
+  }, [inView, shouldReduceMotion, videoSrcHevc]);
 
   const handleManualPlay = () => {
     videoRef.current?.play().catch(() => {});
@@ -97,7 +101,15 @@ const DemoVideo = () => {
               onPause={() => setPlaying(false)}
               aria-label={t("hero.videoTitle")}
             >
-              {inView && <source src={videoSrc} type="video/mp4" />}
+              {inView && (
+                <>
+                  <source
+                    src={videoSrcHevc}
+                    type='video/mp4; codecs="hvc1"'
+                  />
+                  <source src={videoSrcH264} type="video/mp4" />
+                </>
+              )}
             </video>
 
             {/* Overlay de play — visível quando não está tocando

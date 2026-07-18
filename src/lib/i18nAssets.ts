@@ -7,7 +7,7 @@
 // usamos este manifesto estático. ATUALIZE AVAILABLE_ASSET_LANGS sempre que
 // publicar os assets de um novo idioma em /public. Idiomas fora da lista
 // caem no fallback -pt (que é publicado primeiro).
-export const AVAILABLE_ASSET_LANGS = ["pt"];
+export const AVAILABLE_ASSET_LANGS = ["pt", "en"];
 
 /**
  * Monta o caminho do asset para o idioma ativo, com fallback para pt.
