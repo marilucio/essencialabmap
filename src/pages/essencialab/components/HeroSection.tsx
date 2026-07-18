@@ -137,16 +137,19 @@ const DemoVideo = () => {
           </div>
         </div>
 
-        {/* Link discreto para a demonstração completa com narração (YouTube) */}
-        <a
-          href="https://www.youtube.com/watch?v=aBbHcW7_zb8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 text-sm text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
-        >
-          <Play className="w-4 h-4" />
-          {t("hero.videoFullLink")}
-        </a>
+        {/* Link discreto para a demonstração completa com narração (YouTube).
+            Oculto em inglês: a narração do vídeo está em português. */}
+        {language !== "en" && (
+          <a
+            href="https://www.youtube.com/watch?v=aBbHcW7_zb8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 text-sm text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+          >
+            <Play className="w-4 h-4" />
+            {t("hero.videoFullLink")}
+          </a>
+        )}
       </motion.div>
     </div>
   );
