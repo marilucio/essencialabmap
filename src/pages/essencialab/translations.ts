@@ -390,12 +390,12 @@ export const translations = {
     },
     pricing: {
       badge: "💰 Professional Plan",
-      title: "Professional Plan — R$ 127/month",
+      title: "Professional Plan — $29/month",
       description:
         "A single new client with one closed kit pays for months of subscription. From there, every facial analysis is profit.",
-      price: "R$ 127/month",
+      price: "$29/month",
       trialLine: "7 days free • No credit card • Cancel anytime",
-      annualLabel: "Annual plan: R$ 1,270/year",
+      annualLabel: "Annual plan: $290/year",
       annualBadge: "2 months free",
       cta: "No commitment. Cancel anytime.",
     },
@@ -421,7 +421,7 @@ export const translations = {
         {
           question: "How much does it cost after the 7-day trial?",
           answer:
-            "The Professional Plan is R$ 127/month (or R$ 1,270/year, with 2 months free), no commitment. Cancel anytime with no penalty. A single new client with one closed kit already pays for months of subscription. The free trial unlocks all features so you can try without pressure.",
+            "The Professional Plan is $29/month (or $290/year, with 2 months free), no commitment. Cancel anytime with no penalty. A single new client with one closed kit already pays for months of subscription. The free trial unlocks all features so you can try without pressure.",
         },
         {
           question: "Which phones does EssenciaLab work on?",
