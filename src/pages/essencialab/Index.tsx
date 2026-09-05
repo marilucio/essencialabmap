@@ -6,6 +6,7 @@ import { BenefitsSection } from "./components/BenefitsSection";
 import { HowItWorksSection } from "./components/HowItWorksSection";
 import { ProofSection } from "./components/ProofSection";
 import { PricingSection } from "./components/PricingSection";
+import { TherapistsSection } from "./components/TherapistsSection";
 import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
 import { LanguageProvider } from "./LanguageContext";
@@ -56,6 +57,11 @@ const Index = () => {
             {/* Preços */}
             <section className="w-full">
               <PricingSection />
+            </section>
+
+            {/* Profissionais integrativos - segundo público, encaminha para /map */}
+            <section className="w-full bg-white">
+              <TherapistsSection />
             </section>
 
             {/* FAQ */}
