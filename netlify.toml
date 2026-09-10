@@ -28,6 +28,17 @@
   to = "/autobot/index.html"
   status = 200
 
+# /map: HTML dedicado com meta tags/OG proprias (ver map.html)
+[[redirects]]
+  from = "/map"
+  to = "/map.html"
+  status = 200
+
+[[redirects]]
+  from = "/map/"
+  to = "/map.html"
+  status = 200
+
 # SPA fallback for main site (must be last)
 [[redirects]]
   from = "/*"

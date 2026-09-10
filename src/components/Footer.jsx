@@ -1,6 +1,6 @@
 import { Leaf, Mail, MapPin, Phone } from 'lucide-react'
 
-export default function Footer({ language = 'pt' }) {
+export default function Footer({ language = 'pt', legalNotice }) {
   const content = {
     pt: {
       about: 'Sobre',
@@ -158,6 +158,13 @@ export default function Footer({ language = 'pt' }) {
           </div>
         </div>
         
+        {/* Aviso legal opcional (usado pela landing /map) */}
+        {legalNotice && (
+          <p className="text-xs text-gray-400 leading-relaxed mb-6 max-w-3xl">
+            {legalNotice}
+          </p>
+        )}
+
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

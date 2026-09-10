@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-ico32x32.png" />
+    <link rel="icon" type="image/png" sizes="60x60" href="/favicon-ico60x60.png" />
+    <link rel="shortcut icon" href="/favicon-ico32x32.png" />
+
+    <!-- Head dedicado da rota /map. Servido pelo redirect /map -> /map.html (Netlify),
+         para que WhatsApp e o scraper da Meta recebam as tags sem executar JS. -->
+    <title>EssenciaLab MAP — organize relatos, exames e decisão de cada caso</title>
+    <meta
+      name="description"
+      content="Para nutricionistas, naturopatas e terapeutas integrativos. O MAP organiza relatos, exames e hipóteses de cada caso e registra a sua decisão, para comparar no retorno em vez de recomeçar. Teste de 7 dias, sem cartão."
+    />
+    <meta name="author" content="Marilúcio Rocha" />
+    <link rel="canonical" href="https://essencialab.site/map" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="EssenciaLab" />
+    <meta property="og:url" content="https://essencialab.site/map" />
+    <meta property="og:title" content="EssenciaLab MAP — ela responde antes da consulta. Você chega sabendo o que já existe e o que ainda falta." />
+    <meta
+      property="og:description"
+      content="Relatos, exames e hipóteses de cada caso no mesmo lugar, do primeiro atendimento ao retorno, com a sua decisão registrada. Teste de 7 dias, sem cartão."
+    />
+    <meta property="og:image" content="https://essencialab.site/images/map/og-map.jpg" />
+    <meta property="og:image:secure_url" content="https://essencialab.site/images/map/og-map.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Telas do EssenciaLab MAP com a frase: ela responde antes da consulta, você chega sabendo o que já existe e o que ainda falta" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EssenciaLab MAP — organize relatos, exames e decisão de cada caso" />
+    <meta name="twitter:description" content="Para profissionais que acompanham pacientes. Teste de 7 dias, sem cartão." />
+    <meta name="twitter:image" content="https://essencialab.site/images/map/og-map.jpg" />
+
+    <!-- LCP: poster do vídeo -->
+    <link rel="preload" as="image" href="/images/map/video-poster.webp" imagesrcset="/images/map/video-poster-640.webp 640w, /images/map/video-poster.webp 1280w" imagesizes="(min-width: 1024px) 560px, 100vw" fetchpriority="high" />
+
+    <!-- Meta Pixel da landing /map. PageView aqui; o evento StartTrial é disparado
+         pelos CTAs (src/pages/map/tracking.ts). [CONFIRMAR] ID do pixel. -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "1147561227476007");
+      fbq("track", "PageView");
+    </script>
+  </head>
+  <body>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1147561227476007&ev=PageView&noscript=1"
+        alt=""
+    /></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/map-main.jsx"></script>
+  </body>
+</html>
