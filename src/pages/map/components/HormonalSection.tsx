@@ -18,6 +18,8 @@ export function HormonalSection() {
         <figure className="overflow-hidden rounded-2xl bg-slate-900 shadow-lg ring-1 ring-slate-200">
           <img
             src={hormonal.image.src}
+            srcSet={hormonal.image.srcSet}
+            sizes="(min-width: 1024px) 560px, 100vw"
             alt={hormonal.image.alt}
             width={hormonal.image.width}
             height={hormonal.image.height}

@@ -10,7 +10,7 @@ type Props = {
 export function Section({ id, children, className = "", width = "wide" }: Props) {
   const max = width === "narrow" ? "max-w-3xl" : "max-w-6xl";
   return (
-    <section id={id} className={`px-4 py-16 md:py-24 ${className}`}>
+    <section id={id} className={`scroll-mt-20 px-4 py-16 md:py-24 ${className}`}>
       <div className={`container mx-auto ${max}`}>{children}</div>
     </section>
   );

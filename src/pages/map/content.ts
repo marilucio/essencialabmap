@@ -47,9 +47,10 @@ export const secondConsult = {
         "Extração por documento, cálculos com estado explícito (calculado, dados faltantes, não elegível) e contexto conferido antes de calcular.",
       image: {
         src: "/images/map/exames.webp",
-        alt: "Aba Exames do MAP: área de upload de laudos em PDF ou imagem e painel de análise integrativa com função renal, perfil lipídico, glicemia e função hepática",
-        width: 510,
-        height: 410,
+        srcSet: "/images/map/exames-700.webp 700w, /images/map/exames.webp 1400w",
+        alt: "Aba Exames do MAP: aviso de leitura automática com segunda passagem para documentos difíceis, área para enviar PDF ou imagem de até 10 MB, botão para inserir parâmetros manualmente e, abaixo, a análise integrativa do exame 1 com a lista de cálculos indisponíveis e o contexto da coleta a confirmar",
+        width: 1400,
+        height: 915,
       } as Screenshot,
     },
     {
@@ -60,9 +61,10 @@ export const secondConsult = {
         "Para cada linha, o que sustenta, o que não se encaixa, o que falta, e a sua decisão registrada.",
       image: {
         src: "/images/map/raciocinio.webp",
-        alt: "Aba Raciocínio do MAP: resumo do raciocínio do caso, focos principais listados e bloco de próximos passos",
-        width: 390,
-        height: 435,
+        srcSet: "/images/map/raciocinio-700.webp 700w, /images/map/raciocinio.webp 1400w",
+        alt: "Aba Raciocínio do MAP: cabeçalho de apoio ao atendimento com botões de reanalisar caso e recarregar fontes, base factual com o Delta MAP, síntese investigativa do caso com botão para encerrar as perguntas deste atendimento e a assinatura do caso com a queixa principal e os exames disponíveis",
+        width: 1400,
+        height: 1260,
       } as Screenshot,
     },
     {
@@ -71,10 +73,11 @@ export const secondConsult = {
       answer:
         "T0 e retorno lado a lado, com o que não tem comparação marcado como ausente, não como zero.",
       image: {
-        src: "/images/map/delta-comparacao.webp",
-        alt: "Comparação de análises no MAP: avaliação anterior e avaliação atual lado a lado, com sinais vitais e emoção dominante de cada uma",
-        width: 405,
-        height: 390,
+        src: "/images/map/delta-map.webp",
+        srcSet: "/images/map/delta-map-700.webp 700w, /images/map/delta-map.webp 1400w",
+        alt: "Delta MAP, resumo pré-consulta: comparação com a avaliação anterior, dois sinais de evolução favorável e oito pontos para confirmar na consulta, com a Teia musculoesquelética de 3,5 para 6,5, energia percebida de 6 para 4 e Teia neurológica de 6,5 para 7,7",
+        width: 1400,
+        height: 337,
       } as Screenshot,
     },
   ],
@@ -144,9 +147,10 @@ export const hormonal = {
     "Os pontos de corte do instrumento são convenção operacional declarada, sem validação psicométrica. Ele orienta hipótese; não confirma nem estabelece diagnóstico.",
   image: {
     src: "/images/map/perfil-hormonal.webp",
-    alt: "Aba Perfil Hormonal do MAP: resumo do perfil com os eixos tireoidiano, adrenal, sexual e metabolismo, cada um com o seu estado, e o aviso de que o relatório não substitui avaliação clínica individual",
-    width: 460,
-    height: 340,
+    srcSet: "/images/map/perfil-hormonal-700.webp 700w, /images/map/perfil-hormonal.webp 1400w",
+    alt: "Aba Perfil Hormonal do MAP com o Instrumento dos Cinco Padrões apurado: dados da aplicação (datas de envio, resposta e apuração, período de referência de 30 dias, autoria e regra da apuração), os blocos A a E incluídos na apuração com botão de reapurar, e a tabela dos cinco subtotais com padrão, subtotal, âncora média e classificação da faixa",
+    width: 1400,
+    height: 989,
   } as Screenshot,
 };
 

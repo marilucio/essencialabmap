@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import { MapHeader } from "./components/MapHeader";
 import Footer from "@/components/Footer";
 import { legalNotice } from "./content";
 import { HeroSection } from "./components/HeroSection";
@@ -16,11 +16,11 @@ import { FinalCTASection } from "./components/FinalCTASection";
 type Props = { language?: string };
 
 // Landing do EssenciaLab MAP (rota /map). Copy somente em português;
-// o idioma recebido só afeta os rótulos do header e do footer compartilhados.
+// o idioma recebido só afeta os rótulos do footer compartilhado.
 export default function MapLanding({ language = "pt" }: Props) {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <Header language={language} />
+    <div id="topo" className="min-h-screen bg-white text-slate-900">
+      <MapHeader />
       <main>
         <HeroSection />
         <SecondConsultSection />

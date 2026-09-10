@@ -11,6 +11,7 @@ Fonte: `prompt-reescrita-pagina-map.md`. Nada foi mergeado nem publicado em prod
 - `src/pages/MapWrapper.jsx` — passa a renderizar `MapLanding`.
 - `src/pages/MapLandingPage.jsx` — removido (página antiga).
 - `src/components/Footer.jsx` — prop opcional `legalNotice` (só `/map` usa).
+- `src/pages/map/components/MapHeader.tsx` — header próprio da landing: âncoras para seções da própria página e CTA do teste (o Header compartilhado levava para outras páginas).
 - `src/types/layout.d.ts` — tipos mínimos de Header/Footer para TSX.
 - `public/images/map/` — capturas em WebP, foto, poster do vídeo e `og-map.jpg` (1200×630).
 
@@ -29,7 +30,7 @@ Se algum desses tiver documento, me avise para reintroduzir.
 5. **Bloco 9 (preço)** — "Avaliações e retornos ilimitados": confirmar limites reais (cota de análises). R$ 127/mês e R$ 1.270/ano.
 6. **FAQ 5** — resposta sobre banco/acesso por conta escrita de forma genérica ("banco de dados gerenciado, acesso separado por conta, políticas no próprio banco"). Ajustar se quiser citar Supabase.
 7. **FAQ 6** — atualizar quando o curso em módulos for gravado.
-8. **Capturas** — só a Teia Funcional (bloco 2, dúvida 1) é captura crua do MAP (`teia.webp` já existente). Exames, Raciocínio, Delta/Comparação e Perfil Hormonal são recortes dos mockups ilustrativos usados em orbina.com.br/profissionais. Substituir por capturas reais das abas quando tiver: `[CAPTURA: Exames]`, `[CAPTURA: Raciocínio]`, `[CAPTURA: Delta MAP]`, `[CAPTURA: Perfil Hormonal]`.
+8. **Capturas** — Exames, Raciocínio, Delta MAP e Perfil Hormonal agora são capturas reais do MAP (recortes em WebP em `public/images/map/`). A Teia Funcional continua sendo a captura já existente (`teia.webp`).
 9. **Foto** — `marilucio-rocha.webp` é a mesma de orbina.com.br/profissionais (`marilucio_consultorio.webp`).
 10. **Vídeo** — mantido o atual (`lzwZuZK_5Ao`), agora com facade. Trocar em `constants.ts` quando o vídeo de caso existir.
 11. **Idiomas** — a copy nova existe só em português. O seletor de idioma do header continua funcionando para os rótulos do header/footer, mas o corpo da página fica em PT em `?lang=en|es`.
