@@ -1,9 +1,10 @@
 // Constantes da landing /map. Alterar aqui reflete em todos os CTAs da página.
 
-// [CONFIRMAR] URL real do fluxo de cadastro do teste de 7 dias no app.
+// Destino do teste de 7 dias: o app do MAP no domínio essencialab.site (mesmo destino
+// usado em Funcionalidades e Central de Ajuda). Nunca usar o domínio essencialab.app.
 // O parâmetro ?src=map serve para atribuição. Pode ser sobrescrito por VITE_MAP_TRIAL_URL.
 export const TRIAL_URL =
-  import.meta.env.VITE_MAP_TRIAL_URL || "https://essencialab.app/?src=map";
+  import.meta.env.VITE_MAP_TRIAL_URL || "https://app.essencialab.site/?src=map";
 
 export const WHATSAPP_NUMBER = "5543991343807";
 export const WHATSAPP_MESSAGE =
