@@ -22,7 +22,7 @@ Se algum desses tiver documento, me avise para reintroduzir.
 
 ## [CONFIRMAR] antes de publicar
 
-1. **URL do cadastro do teste** — `src/pages/map/constants.ts` usa `https://app.essencialab.site/?src=map`, o mesmo destino de "Acessar o MAP" em Funcionalidades e Central de Ajuda (pode ser sobrescrita por `VITE_MAP_TRIAL_URL`). O domínio essencialab.app não é usado em lugar nenhum da página.
+1. **URL do teste** — confirmado: `https://essencialab.app/?src=map` (aplicativo EssenciaLab, onde o MAP roda). Definido em `src/pages/map/constants.ts`.
 2. **ID do Pixel** — `map.html` usa `1147561227476007` (o único presente no repositório, hoje usado em `/renal`). Confirmar se é o pixel correto para `/map`. Evento de conversão: `StartTrial` (custom) com `{source:'map', placement}`; contato WhatsApp dispara `MapWhatsAppContact`.
 3. **Bloco 6, frase final** — "O MAP nasceu da minha própria dificuldade de manter relato, exame e decisão no mesmo lugar ao longo de noventa dias."
 4. **Bloco 7 (dados e segurança)** — confirmar cada item contra o código do MAP (não está neste repositório): consentimento antes do envio; token com validade; TLS + RLS; imagens da análise facial não armazenadas; LGPD.
