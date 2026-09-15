@@ -10,6 +10,10 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Supabase das páginas /renal. Apenas a chave anônima (pública, vai no bundle).
+  # Segredos nunca entram aqui nem em variáveis VITE_*.
+  VITE_SUPABASE_URL = "https://vbdirkokkxvlphyenjko.supabase.co"
+  VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZiZGlya29ra3h2bHBoeWVuamtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEzMzc5NjksImV4cCI6MjA0NjkxMzk2OX0.xSBblvnrmJuPGLCsSix1UGR31kD139nP34Iije8wiRM"
 
 # Serve metodocalma assets
 [[redirects]]
