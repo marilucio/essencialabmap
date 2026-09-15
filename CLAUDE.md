@@ -27,7 +27,7 @@ npm run lint     # Run ESLint
 - TypeScript/JSX mixed codebase
 
 ### Path Alias
-`@` maps to `./src` (configured in vite.config.js)
+`@` maps to `./src` (configured in vite.config.mjs)
 
 ### Directory Structure
 ```
