@@ -56,7 +56,7 @@ export function MapHeader() {
           onClick={() => trackStartTrial("header")}
           className="shrink-0 rounded-full bg-green-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400"
         >
-          Testar 7 dias grátis
+          Testar 30 dias grátis
         </a>
       </div>
     </header>

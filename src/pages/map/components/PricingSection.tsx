@@ -27,7 +27,7 @@ export function PricingSection() {
           ))}
         </ul>
 
-        <TrialButton placement="pricing" label="Começar o teste de 7 dias" className="mt-10" />
+        <TrialButton placement="pricing" label="Começar o teste de 30 dias" className="mt-10" />
       </div>
     </Section>
   );

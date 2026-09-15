@@ -1,6 +1,6 @@
 // Constantes da landing /map. Alterar aqui reflete em todos os CTAs da página.
 
-// Destino do teste de 7 dias: o aplicativo EssenciaLab, onde o sistema MAP roda.
+// Destino do teste de 30 dias: o aplicativo EssenciaLab, onde o sistema MAP roda.
 // O parâmetro ?src=map serve para atribuição. Pode ser sobrescrito por VITE_MAP_TRIAL_URL.
 export const TRIAL_URL =
   import.meta.env.VITE_MAP_TRIAL_URL || "https://essencialab.app/?src=map";

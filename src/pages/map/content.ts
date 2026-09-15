@@ -16,7 +16,7 @@ export const hero = {
     "Ela responde antes da consulta. Você chega sabendo o que já existe e o que ainda falta.",
   subtitle:
     "O EssenciaLab MAP organiza relatos, exames e hipóteses de cada caso e registra a sua decisão, para que no retorno você compare, em vez de recomeçar.",
-  ctaPrimary: "Começar o teste de 7 dias",
+  ctaPrimary: "Começar o teste de 30 dias",
   ctaSecondary: "Ver um caso conduzido no MAP",
   videoTitle: "Apresentação do EssenciaLab MAP",
 };
@@ -262,7 +262,7 @@ export const fit = {
 export const pricing = {
   title: "Um plano, sem surpresa",
   plan: "Profissional",
-  trial: "7 dias grátis, sem cartão. Cancele quando quiser.",
+  trial: "30 dias grátis, sem cartão. Cancele quando quiser.",
   // [CONFIRMAR] limites reais de uso, inclusive cota de análises, antes de manter "ilimitados".
   included: [
     "Avaliações e retornos ilimitados",
@@ -293,7 +293,7 @@ export const faq = {
     },
     {
       q: "E se eu não gostar?",
-      a: "O teste de 7 dias não pede cartão. Depois, é assinatura mensal ou anual, cancelável a qualquer momento.",
+      a: "O teste de 30 dias não pede cartão. Depois, é assinatura mensal ou anual, cancelável a qualquer momento.",
     },
     {
       // [CONFIRMAR] resposta sobre o banco e o acesso por conta.
@@ -311,7 +311,7 @@ export const faq = {
 export const finalCta = {
   title:
     "Na próxima paciente que chegar com tudo ao mesmo tempo, você vai ter as fontes na frente.",
-  cta: "Começar o teste de 7 dias",
+  cta: "Começar o teste de 30 dias",
   whatsapp: "Tirar uma dúvida no WhatsApp antes de começar",
 };
 
