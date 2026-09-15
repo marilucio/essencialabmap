@@ -7,6 +7,7 @@ import { trackStartTrial } from "../tracking";
 // Não usa o Header compartilhado porque os links dele levam para outras páginas do site.
 const anchors = [
   { href: "#segunda-consulta", label: "A segunda consulta" },
+  { href: "#caso", label: "Um caso" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#o-que-nao-faz", label: "O que não faz" },
   { href: "#perfil-hormonal", label: "Perfil Hormonal" },

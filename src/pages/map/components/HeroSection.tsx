@@ -1,17 +1,20 @@
-import { useRef } from "react";
-import { Play } from "lucide-react";
+import type { MouseEvent } from "react";
+import { ArrowDown } from "lucide-react";
 import { hero } from "../content";
 import { TrialButton } from "./TrialButton";
-import { VideoFacade, type VideoFacadeHandle } from "./VideoFacade";
+import { VideoFacade } from "./VideoFacade";
+
+// O CTA secundário leva à seção "Um caso conduzido no MAP" (#caso).
+// O vídeo continua no hero, com o próprio botão de play.
+function scrollToCase(e: MouseEvent<HTMLAnchorElement>) {
+  const el = document.getElementById("caso");
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  history.replaceState(null, "", "#caso");
+}
 
 export function HeroSection() {
-  const video = useRef<VideoFacadeHandle>(null);
-
-  const openVideo = () => {
-    video.current?.play();
-    document.getElementById("video-map")?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
-
   return (
     <section className="bg-gradient-to-b from-green-50 to-white px-4 py-16 md:py-24">
       <div className="container mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
@@ -27,18 +30,18 @@ export function HeroSection() {
           <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-start">
             <TrialButton placement="hero" label={hero.ctaPrimary} />
           </div>
-          <button
-            type="button"
-            onClick={openVideo}
+          <a
+            href="#caso"
+            onClick={scrollToCase}
             className="inline-flex items-center gap-2 rounded-full border-2 border-green-700 px-6 py-3 font-semibold text-green-800 transition-colors hover:bg-green-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400"
           >
-            <Play className="h-5 w-5" aria-hidden="true" />
+            <ArrowDown className="h-5 w-5" aria-hidden="true" />
             {hero.ctaSecondary}
-          </button>
+          </a>
         </div>
 
         <div id="video-map">
-          <VideoFacade ref={video} title={hero.videoTitle} />
+          <VideoFacade title={hero.videoTitle} />
         </div>
       </div>
     </section>

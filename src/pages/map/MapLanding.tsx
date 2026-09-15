@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { legalNotice } from "./content";
 import { HeroSection } from "./components/HeroSection";
 import { SecondConsultSection } from "./components/SecondConsultSection";
+import { CaseSection } from "./components/CaseSection";
 import { FlowSection } from "./components/FlowSection";
 import { NotDoSection } from "./components/NotDoSection";
 import { HormonalSection } from "./components/HormonalSection";
@@ -24,6 +25,7 @@ export default function MapLanding({ language = "pt" }: Props) {
       <main>
         <HeroSection />
         <SecondConsultSection />
+        <CaseSection />
         <FlowSection />
         <NotDoSection />
         <HormonalSection />

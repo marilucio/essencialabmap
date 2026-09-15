@@ -25,19 +25,13 @@ export const secondConsult = {
   title: "Você já sabe o que fazer. O que trava é o que vem antes e em volta.",
   intro:
     "A primeira consulta costuma correr bem. O problema aparece no retorno, quando ela diz “melhorei um pouco” e você olha para o plano sem saber qual parte funcionou.",
+  // As telas que respondem a cada dúvida aparecem na seção "Um caso conduzido no MAP" (caseStudy).
   doubts: [
     {
       question: "Ela relata muita coisa ao mesmo tempo. Por onde começo?",
       screen: "Resumo e Teia Funcional",
       answer:
         "As respostas agrupadas em 12 sistemas, com cobertura de cada um e a origem de cada valor.",
-      image: {
-        src: "/images/map/teia-funcional.webp",
-        srcSet: "/images/map/teia-funcional-640.webp 640w, /images/map/teia-funcional.webp 1229w",
-        alt: "Aba Teia Funcional do MAP: doze sistemas dispostos em círculo com a pontuação de cada um, e ao lado a interpretação do sistema endócrino com perguntas investigativas sugeridas",
-        width: 1229,
-        height: 693,
-      } as Screenshot,
     },
     {
       question:
@@ -45,13 +39,6 @@ export const secondConsult = {
       screen: "Exames",
       answer:
         "Extração por documento, cálculos com estado explícito (calculado, dados faltantes, não elegível) e contexto conferido antes de calcular.",
-      image: {
-        src: "/images/map/exames.webp",
-        srcSet: "/images/map/exames-700.webp 700w, /images/map/exames.webp 1400w",
-        alt: "Aba Exames do MAP: aviso de leitura automática com segunda passagem para documentos difíceis, área para enviar PDF ou imagem de até 10 MB, botão para inserir parâmetros manualmente e, abaixo, a análise integrativa do exame 1 com a lista de cálculos indisponíveis e o contexto da coleta a confirmar",
-        width: 1400,
-        height: 915,
-      } as Screenshot,
     },
     {
       question:
@@ -59,61 +46,136 @@ export const secondConsult = {
       screen: "Raciocínio",
       answer:
         "Para cada linha, o que sustenta, o que não se encaixa, o que falta, e a sua decisão registrada.",
-      image: {
-        src: "/images/map/raciocinio.webp",
-        srcSet: "/images/map/raciocinio-700.webp 700w, /images/map/raciocinio.webp 1400w",
-        alt: "Aba Raciocínio do MAP: cabeçalho de apoio ao atendimento com botões de reanalisar caso e recarregar fontes, base factual com o Delta MAP, síntese investigativa do caso com botão para encerrar as perguntas deste atendimento e a assinatura do caso com a queixa principal e os exames disponíveis",
-        width: 1400,
-        height: 1260,
-      } as Screenshot,
     },
     {
       question: "Trinta dias depois, “um pouco melhor”. O que mudou de fato?",
       screen: "Delta MAP e Relatório de Evolução",
       answer:
         "T0 e retorno lado a lado, com o que não tem comparação marcado como ausente, não como zero.",
-      image: {
-        src: "/images/map/delta-map.webp",
-        srcSet: "/images/map/delta-map-700.webp 700w, /images/map/delta-map.webp 1400w",
-        alt: "Delta MAP, resumo pré-consulta: comparação com a avaliação anterior, dois sinais de evolução favorável e oito pontos para confirmar na consulta, com a Teia musculoesquelética de 3,5 para 6,5, energia percebida de 6 para 4 e Teia neurológica de 6,5 para 7,7",
-        width: 1400,
-        height: 337,
-      } as Screenshot,
     },
   ],
   closing:
     "Nenhuma dessas respostas vem do sistema. Vêm de você, com as fontes organizadas na frente.",
 };
 
-export const flow = {
-  title: "Como funciona em um atendimento",
-  strip: ["Preparar", "Avaliar", "Investigar", "Decidir", "Orientar", "Acompanhar"],
+// Seção "Um caso conduzido no MAP": a demonstração visual principal da página.
+// Caso fictício provisório. Datas, exames, hipóteses, evidências e lacunas serão
+// definidos depois da análise dos prints reais; por enquanto os textos são gerais.
+// Cada etapa aceita `image?: Screenshot` (sem imagem, o componente mostra um placeholder 16:10).
+// Prints em public/images/map/caso/: 0N-<slug>.webp (1400×875) e 0N-<slug>-700.webp (700×438),
+// gerados a partir das capturas fornecidas em 2026-09-15 (caso fictício L. M., 47 anos).
+export const caseStudy = {
+  eyebrow: "Caso ilustrativo",
+  title: "Do relato inicial ao retorno: um caso conduzido no MAP",
+  subtitle:
+    "Exemplo ilustrativo baseado em um fluxo real do EssenciaLab. Nome, idade, datas e valores foram alterados para preservar a privacidade. A lógica das telas é a do produto.",
+  patient: {
+    label: "Paciente",
+    name: "L. M., 47 anos",
+    complaints:
+      "Cansaço ao acordar, sono fragmentado, ciclos irregulares e ganho de peso abdominal.",
+  },
   steps: [
     {
+      slug: "antes-da-consulta",
       moment: "Antes da consulta",
-      text: "A paciente responde a avaliação por link, no próprio celular, com consentimento para dados de saúde.",
+      title: "Ela responde no celular, antes de chegar",
+      text: "Por link, com consentimento para dados de saúde. Sintomas, contexto e questionários entram no caso antes do primeiro encontro.",
+      screen: "Respostas",
+      image: {
+        src: "/images/map/caso/01-antes-da-consulta.webp",
+        srcSet: "/images/map/caso/01-antes-da-consulta-700.webp 700w, /images/map/caso/01-antes-da-consulta.webp 1400w",
+        alt: "Aba Respostas da avaliação de L. M., respondida em 12/08/2026: dados pessoais, energia e bem-estar com nível de energia 4/10 e estresse 7/10, queixa principal com cansaço ao acordar, sono fragmentado, ciclos irregulares e ganho de peso abdominal, objetivo com o acompanhamento nas palavras dela, e blocos de sono e digestão",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
     },
     {
+      slug: "reunir-o-que-existe",
       moment: "Na consulta",
-      text: "Resumo, Respostas e Teia mostram o que foi relatado e o que precisa de confirmação.",
+      title: "Você reúne o que já existe",
+      text: "Os laudos que ela já tem entram por upload. O MAP lista o que já existe no caso e o que ainda falta, antes de qualquer interpretação.",
+      screen: "Exames",
+      image: {
+        src: "/images/map/caso/02-reunir-o-que-existe.webp",
+        srcSet: "/images/map/caso/02-reunir-o-que-existe-700.webp 700w, /images/map/caso/02-reunir-o-que-existe.webp 1400w",
+        alt: "Aba Exames do mesmo caso: área para enviar PDF ou imagem, dois laudos de datas diferentes já analisados, e a análise integrativa separando o que já existe no caso (hemograma, perfil lipídico, função hepática, glicemia e insulina, função tireoidiana, vitamina D) dos dados faltantes (função renal, marcadores inflamatórios, exames de fezes)",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
     },
     {
-      moment: "Com os exames dela",
-      text: "Upload do laudo, conferência dos valores extraídos, cálculos disponíveis e o que ficou pendente.",
+      slug: "organizar-o-caso",
+      moment: "Na consulta",
+      title: "O MAP organiza o caso",
+      text: "Respostas e exames viram uma leitura só: os sistemas analisados, com a fonte de cada dado, e uma assinatura do caso com a queixa principal e os pontos identificados.",
+      screen: "Raciocínio",
+      image: {
+        src: "/images/map/caso/03-organizar-o-caso.webp",
+        srcSet: "/images/map/caso/03-organizar-o-caso-700.webp 700w, /images/map/caso/03-organizar-o-caso.webp 1400w",
+        alt: "Aba Raciocínio do mesmo caso: assinatura do caso em texto, com os principais pontos identificados e o objetivo terapêutico principal, e ao lado a visão integrada dos sistemas, com oito sistemas analisados a partir de questionários, exames, análise facial, perfil hormonal e histórico",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
     },
     {
+      slug: "sustenta-e-falta",
+      moment: "Na investigação",
+      title: "Você enxerga o que sustenta e o que falta",
+      text: "Para cada hipótese: o que sustenta, o que não se encaixa e qual dado falta. Sistema sem resposta aparece como não avaliado, não como normal.",
+      screen: "Raciocínio",
+      image: {
+        src: "/images/map/caso/04-sustenta-e-falta.webp",
+        srcSet: "/images/map/caso/04-sustenta-e-falta-700.webp 700w, /images/map/caso/04-sustenta-e-falta.webp 1400w",
+        alt: "Hipótese em análise na aba Raciocínio, com selo automático de força moderada e três colunas: o que sustenta (quatro itens do relato), o que não se encaixa (sem dados conflitantes até o momento) e ainda falta saber (função renal, marcadores inflamatórios, exames de fezes e progesterona, não informados nesta avaliação)",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
+    },
+    {
+      slug: "decisao-registrada",
       moment: "Na decisão",
-      text: "Na aba Raciocínio, você registra sua posição sobre cada hipótese: priorizar, deixar em segundo plano, aguardar dado, encerrar.",
+      title: "A decisão fica registrada, e é sua",
+      text: "Você marca a sua posição sobre cada hipótese: priorizar, segundo plano, aguardar dado ou encerrar. O selo de força de evidência fica ao lado, separado da sua decisão.",
+      screen: "Raciocínio",
+      image: {
+        src: "/images/map/caso/05-decisao-registrada.webp",
+        srcSet: "/images/map/caso/05-decisao-registrada-700.webp 700w, /images/map/caso/05-decisao-registrada.webp 1400w",
+        alt: "Lista de seis hipóteses de trabalho ordenadas por força automática e, à direita, a primeira hipótese aberta com o campo Decisão do profissional marcado como Aguardar dado, a indicação de que a hipótese permanece aberta e ainda não orienta o protocolo, e a confirmação de decisão registrada nesta consulta",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
     },
     {
-      moment: "Entre consultas",
-      text: "No Perfil Hormonal, quando pertinente, o diário de 30 dias registra o que foi combinado.",
-    },
-    {
+      slug: "comparar-no-retorno",
       moment: "No retorno",
-      text: "Nova avaliação vinculada ao mesmo caso; o Delta mostra o que se moveu.",
+      title: "Trinta dias depois, você compara em vez de recomeçar",
+      text: "Nova avaliação vinculada ao mesmo caso. O Delta mostra o que se moveu, o que precisa confirmar e o que não tem comparação.",
+      screen: "Delta MAP",
+      image: {
+        src: "/images/map/caso/06-comparar-no-retorno.webp",
+        srcSet: "/images/map/caso/06-comparar-no-retorno-700.webp 700w, /images/map/caso/06-comparar-no-retorno.webp 1400w",
+        alt: "Delta MAP, comparação entre a consulta inicial de 12/08/2026 e o retorno de 11/09/2026: peso, sono, energia e qualidade de vida lado a lado com evolução favorável, ciclos sem mudança relevante marcados para manter acompanhamento e sintomas principais com melhora parcial",
+        width: 1400,
+        height: 875,
+      } as Screenshot,
     },
   ],
+  placeholderNote: "Tela em preparação",
+  credibility: [
+    "O MAP organiza o raciocínio. A decisão continua sendo sua.",
+    "Ausência de dado aparece como lacuna, nunca como normalidade.",
+    "O sistema apoia investigação e acompanhamento. Não substitui o julgamento profissional.",
+  ],
+  closing: "Agora pense no próximo paciente da sua agenda.",
+  cta: "Analisar meu primeiro caso",
+};
+
+export const flow = {
+  title: "Como funciona em um atendimento",
+  intro:
+    "Seis momentos, sempre na mesma ordem. A demonstração acima mostra cada um deles na tela.",
+  strip: ["Preparar", "Avaliar", "Investigar", "Decidir", "Orientar", "Acompanhar"],
 };
 
 export const notDo = {
