@@ -7,6 +7,7 @@ import { CaseSection } from "./components/CaseSection";
 import { FlowSection } from "./components/FlowSection";
 import { NotDoSection } from "./components/NotDoSection";
 import { HormonalSection } from "./components/HormonalSection";
+import { GuidedSessionsSection } from "./components/GuidedSessionsSection";
 import { AuthorSection } from "./components/AuthorSection";
 import { DataSecuritySection } from "./components/DataSecuritySection";
 import { FitSection } from "./components/FitSection";
@@ -29,6 +30,7 @@ export default function MapLanding({ language = "pt" }: Props) {
         <FlowSection />
         <NotDoSection />
         <HormonalSection />
+        <GuidedSessionsSection />
         <AuthorSection />
         <DataSecuritySection />
         <FitSection />

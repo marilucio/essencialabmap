@@ -34,7 +34,8 @@ Se algum desses tiver documento, me avise para reintroduzir.
 9. **Foto** — `marilucio-rocha.webp` é a mesma de orbina.com.br/profissionais (`marilucio_consultorio.webp`).
 10. **Vídeo** — mantido o atual (`lzwZuZK_5Ao`), agora com facade. Trocar em `constants.ts` quando o vídeo de caso existir.
 11. **Idiomas** — a copy nova existe só em português. O seletor de idioma do header continua funcionando para os rótulos do header/footer, mas o corpo da página fica em PT em `?lang=en|es`.
-12. **Formulário oculto `guia-essencialab`** em `index.html` (raiz) e a pasta `public/materiais/` não foram tocados: estão fora de `/map`. Podem ser removidos se nada mais os usar.
+12. **Jornadas Guiadas Personalizadas** — bloco novo (`GuidedSessionsSection.tsx`), com base em `essencialab_guided_sessions_landing_map.md`. Marcado como "em piloto controlado" e sem alegação de eficácia. Confirmar: (a) se o recurso está disponível no teste de 7 dias e no plano Profissional (entrou na lista do preço como "em piloto"); (b) a tela da paciente é ilustração em CSS, substituir por captura real quando existir.
+13. **Formulário oculto `guia-essencialab`** em `index.html` (raiz) e a pasta `public/materiais/` não foram tocados: estão fora de `/map`. Podem ser removidos se nada mais os usar.
 
 ## Meta tags por rota — decisão
 

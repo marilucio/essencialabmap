@@ -11,6 +11,7 @@ const anchors = [
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#o-que-nao-faz", label: "O que não faz" },
   { href: "#perfil-hormonal", label: "Perfil Hormonal" },
+  { href: "#jornadas-guiadas", label: "Jornadas Guiadas" },
   { href: "#preco", label: "Preço" },
   { href: "#faq", label: "Perguntas" },
 ];

@@ -271,6 +271,7 @@ export const pricing = {
     "Raciocínio com decisão registrada",
     "Perfil Hormonal",
     "Delta e relatórios em PDF",
+    "Jornadas Guiadas Personalizadas (em piloto)",
     "Treinamento em vídeo na área de membros",
     "Suporte por e-mail e WhatsApp",
   ],
@@ -285,7 +286,11 @@ export const faq = {
     },
     {
       q: "O MAP usa inteligência artificial?",
-      a: "Há uma etapa de redação automática na aba Raciocínio, sobre uma estrutura determinística de regras. Ela não pode inventar evidência nem aumentar a força de uma hipótese, e toda saída passa por revisão sua antes de virar decisão.",
+      a: "Há etapas de redação automática: na aba Raciocínio, sobre uma estrutura determinística de regras, e na formulação e na narrativa das Jornadas Guiadas. Nenhuma delas inventa evidência, aumenta a força de uma hipótese ou chega à paciente sem revisão e aprovação sua.",
+    },
+    {
+      q: "Preciso gravar áudio para as Jornadas Guiadas?",
+      a: "Não. Você define o foco, revisa a formulação e aprova a narrativa; o sistema gera a voz em português, natural e calma. Nada é enviado à paciente sem a sua aprovação, e ela precisa consentir antes de receber. O recurso está em piloto controlado.",
     },
     {
       q: "Funciona na minha especialidade?",
@@ -317,3 +322,70 @@ export const finalCta = {
 
 export const legalNotice =
   "O EssenciaLab MAP organiza dados e raciocínio; não diagnostica, não prescreve e não decide pelo profissional. Nenhum resultado clínico é prometido.";
+
+// Bloco Jornadas Guiadas Personalizadas. Fonte: essencialab_guided_sessions_landing_map.md.
+// Recurso em piloto controlado: sem alegação de eficácia clínica (seção 22 do documento).
+export const guided = {
+  eyebrow: "Jornadas Guiadas Personalizadas",
+  status: "Novo no MAP · em piloto controlado",
+  title: "O atendimento termina. O acompanhamento não precisa terminar junto.",
+  lead:
+    "Ela sai da consulta com clareza. Três dias depois, a rotina engoliu tudo: trabalho, família, os hábitos de sempre. Agora o que foi trabalhado com você vira uma jornada de áudio de 8 a 12 minutos, feita para aquela paciente, revisada e aprovada por você, entregue no aplicativo dela.",
+  contrastTitle: "Não é uma biblioteca de meditações. É a sua consulta continuando.",
+  contrastGeneric: "O que uma biblioteca oferece: “áudio de autoconfiança”, o mesmo para todo mundo.",
+  contrastPersonal:
+    "O que a jornada trabalha: perceber o impulso de ficar em silêncio na reunião, notar o corpo e a respiração, organizar uma fala curta, imaginar-se dizendo, permanecer presente depois. O contexto dela, não um tema genérico.",
+  stepsTitle: "Como uma jornada nasce",
+  steps: [
+    {
+      title: "Você define o foco",
+      text: "Objetivo, contexto, sua hipótese de trabalho, a direção desejada e os temas que não podem aparecer.",
+    },
+    {
+      title: "O sistema organiza a formulação",
+      text: "Só com o que você autorizou, separando fatos, hipótese, direção, limites e incertezas. Nada de infância, trauma ou causa oculta inventados.",
+    },
+    {
+      title: "Você revisa e aprova",
+      text: "Edita, regenera ou aprova. Só uma formulação aprovada vira narrativa.",
+    },
+    {
+      title: "A narrativa vira áudio",
+      text: "Sete momentos, da chegada ao encerramento, com uma metáfora central e ensaio mental. Voz natural em português, calma, sem tom de locutora.",
+    },
+    {
+      title: "Ela ouve no aplicativo",
+      text: "Com ou sem ambiente sonoro, pausa, retoma de onde parou e pode ouvir de novo quando quiser.",
+    },
+    {
+      title: "Você vê o que aconteceu",
+      text: "Abriu, começou, concluiu, ouviu de novo, tempo total. Fatos para a próxima conversa, sem rótulos de “engajada” ou “resistente”.",
+    },
+  ],
+  controlTitle: "Você continua no comando",
+  controlText:
+    "Nada chega à paciente sem a sua aprovação: formulação, narrativa, áudio e entrega. O sistema bloqueia diagnóstico apresentado como certeza, promessa de cura, memória induzida, ordem moral e qualquer tema que você vetou. E revalida isso antes de liberar.",
+  privacyItems: [
+    "Consentimento explícito da paciente, revogável a qualquer momento.",
+    "Áudio em armazenamento privado: só ela acessa, nenhum outro paciente ou profissional.",
+    "As reflexões dela ficam com ela. Nada é compartilhado com você automaticamente.",
+  ],
+  relief: {
+    title: "Sem roteiro, sem gravar, sem editar",
+    text: "Você não escreve o texto do zero, não grava a própria voz, não monta trilha nem hospeda arquivo. Você cuida do raciocínio. O sistema cuida da produção.",
+  },
+  patientCard: {
+    caption: "O que ela vê no aplicativo (ilustração)",
+    label: "Sua Jornada",
+    name: "O ponto certo da voz",
+    by: "Preparada pelo seu profissional",
+    duration: "10 min",
+    button: "Ouvir minha jornada",
+    time: "03:42 / 09:57",
+    ambiences: ["Sem fundo", "Ambiente suave", "Relaxamento profundo", "Foco tranquilo"],
+    ambienceNote: "Ambiente sonoro opcional. Batimentos binaurais são técnica experimental; melhor com fones estéreo.",
+  },
+  closing: "Ela não recebe só orientações. Recebe uma experiência que conversa com o que vocês trabalharam.",
+  note: "Recurso em piloto controlado. Não substitui consulta, psicoterapia ou tratamento médico, e nenhum resultado clínico é prometido.",
+  cta: "Começar o teste de 30 dias",
+};
