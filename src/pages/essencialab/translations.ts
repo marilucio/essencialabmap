@@ -27,7 +27,6 @@ export const translations = {
       videoTitle: "📱 Veja a Análise Facial em Ação",
       videoSubtitle:
         "Assista a uma demonstração rápida de como o EssenciaLab escaneia o rosto, gera o mapa de bem-estar e ajuda você a iniciar conversas naturais com seus clientes.",
-      videoFullLink: "Ver demonstração completa com narração",
       ctaNoTech:
         "🚀 Não requer conhecimentos técnicos. Aponte, escaneie e conquiste.",
       ctaStartTrial: "Comece seu Teste Grátis de 14 Dias",
@@ -309,7 +308,6 @@ export const translations = {
       videoTitle: "📱 See Facial Analysis in Action",
       videoSubtitle:
         "Watch a quick demonstration of how EssenciaLab scans the face, generates a wellness map, and helps you start natural conversations with your clients.",
-      videoFullLink: "Watch the full narrated demo",
       ctaNoTech: "🚀 No technical knowledge required. Point, scan, and connect.",
       ctaStartTrial: "Start your 14-Day Free Trial",
       ctaDetails: "No Credit Card Required • Easy Cancellation • Free Download",
@@ -589,7 +587,6 @@ export const translations = {
       videoTitle: "📱 Vea el Análisis Facial en Acción",
       videoSubtitle:
         "Mira una demostración rápida de cómo EssenciaLab escanea el rostro, genera el mapa de bienestar y te ayuda a iniciar conversaciones naturales con tus clientes.",
-      videoFullLink: "Ver la demostración completa con narración",
       ctaNoTech:
         "🚀 No requiere conocimientos técnicos. Apunta, escanea y conquista.",
       ctaStartTrial: "Comienza tu prueba gratuita de 14 días",
