@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { TRIAL_URL, TRIAL_GUARANTEE } from "../constants";
 import { trackStartTrial } from "../tracking";
+import { buildTrialUrl, getStoredPublico } from "@/lib/audience";
 
 type Props = {
   placement: string;
@@ -21,6 +23,10 @@ export function TrialButton({
 }: Props) {
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-semibold transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2";
+  // O HTML do /map é pré-renderizado sem window: começa com o TRIAL_URL puro e,
+  // no navegador, acrescenta publico (quando conhecido) e pagina=map.
+  const [href, setHref] = useState(TRIAL_URL);
+  useEffect(() => setHref(buildTrialUrl("map", getStoredPublico())), []);
   const styles =
     tone === "dark"
       ? "bg-green-700 text-white hover:bg-green-800 focus-visible:ring-green-400 focus-visible:ring-offset-white"
@@ -29,7 +35,7 @@ export function TrialButton({
   return (
     <div className={`flex flex-col items-start gap-3 ${className}`}>
       <a
-        href={TRIAL_URL}
+        href={href}
         target="_blank"
         rel="noopener"
         onClick={() => trackStartTrial(placement)}

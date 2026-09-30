@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Sparkles, CheckCircle, Lock, ArrowRight } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 import { trackPixel } from "../../../lib/whatsapp";
+import { buildTrialUrl, withPublico } from "../../../lib/audience";
+import { trackStartTrial } from "../../map/tracking";
 
 type Plan = {
   badge: string;
@@ -13,6 +15,7 @@ type Plan = {
   features: string[];
   lock?: string;
   button: string;
+  mapLink?: string;
 };
 
 const scrollToDownload = () => {
@@ -20,7 +23,7 @@ const scrollToDownload = () => {
 };
 
 const PricingSection = () => {
-  const { t } = useLanguage();
+  const { t, audience } = useLanguage();
 
   const facial = t("pricing.facial") as Plan;
   // O plano profissional é opcional por idioma (ex.: EN ainda não tem preço em USD).
@@ -34,6 +37,14 @@ const PricingSection = () => {
 
   const handleProClick = () => {
     trackPixel("ViewContent", { plan: "professional_map" });
+  };
+
+  // Variante aroma: o plano Profissional + MAP vem em destaque (e primeiro no
+  // celular) e o botão dele leva direto ao teste no app.
+  const proFeatured = audience === "aroma" && pro !== null;
+
+  const handleProTrialClick = () => {
+    trackStartTrial("planos", "home", audience);
   };
 
   return (
@@ -72,9 +83,19 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative bg-white rounded-2xl p-8 border-2 border-green-500 shadow-xl flex flex-col text-left"
+            className={
+              proFeatured
+                ? "relative bg-white/80 rounded-2xl p-8 border border-green-200 shadow-md flex flex-col text-left"
+                : "relative bg-white rounded-2xl p-8 border-2 border-green-500 shadow-xl flex flex-col text-left"
+            }
           >
-            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+            <span
+              className={
+                proFeatured
+                  ? "absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-green-700 border border-green-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide"
+                  : "absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide"
+              }
+            >
               {facial.badge}
             </span>
 
@@ -113,7 +134,11 @@ const PricingSection = () => {
             <button
               type="button"
               onClick={handleFacialClick}
-              className="mt-6 w-full inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className={
+                proFeatured
+                  ? "mt-6 w-full inline-flex items-center justify-center bg-white hover:bg-green-50 text-green-700 font-bold px-6 py-3.5 rounded-xl border-2 border-green-600 transition-all duration-300"
+                  : "mt-6 w-full inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              }
             >
               {facial.button}
             </button>
@@ -129,9 +154,19 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative bg-white/80 rounded-2xl p-8 border border-green-200 shadow-md flex flex-col text-left"
+              className={
+                proFeatured
+                  ? "relative bg-white rounded-2xl p-8 border-2 border-green-500 shadow-xl flex flex-col text-left order-first md:order-none"
+                  : "relative bg-white/80 rounded-2xl p-8 border border-green-200 shadow-md flex flex-col text-left"
+              }
             >
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-green-700 border border-green-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+              <span
+                className={
+                  proFeatured
+                    ? "absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide"
+                    : "absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-green-700 border border-green-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide"
+                }
+              >
                 {pro.badge}
               </span>
 
@@ -160,14 +195,36 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <a
-                href="/map"
-                onClick={handleProClick}
-                className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-green-50 text-green-700 font-bold px-6 py-3.5 rounded-xl border-2 border-green-600 transition-all duration-300"
-              >
-                {pro.button}
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              {proFeatured ? (
+                <>
+                  <a
+                    href={buildTrialUrl("home", audience)}
+                    target="_blank"
+                    rel="noopener"
+                    onClick={handleProTrialClick}
+                    className="mt-6 w-full inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {pro.button}
+                  </a>
+                  <a
+                    href={withPublico("/map", audience)}
+                    onClick={handleProClick}
+                    className="mt-3 inline-flex items-center justify-center gap-1 text-sm text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+                  >
+                    {pro.mapLink}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </>
+              ) : (
+                <a
+                  href={withPublico("/map", audience)}
+                  onClick={handleProClick}
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-green-50 text-green-700 font-bold px-6 py-3.5 rounded-xl border-2 border-green-600 transition-all duration-300"
+                >
+                  {pro.button}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              )}
               <p className="text-xs text-gray-500 text-center mt-3">
                 {t("pricing.cta")}
               </p>

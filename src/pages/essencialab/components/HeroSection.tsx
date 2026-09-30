@@ -7,6 +7,8 @@ import { MessageCircle, Play } from "lucide-react";
 import { buildWhatsappLink, trackPixel } from "../../../lib/whatsapp";
 import { localizedAsset } from "../../../lib/i18nAssets";
 import { isWhatsappVariant } from "../../../lib/trafficSource";
+import { buildTrialUrl } from "../../../lib/audience";
+import { trackStartTrial } from "../../map/tracking";
 
 /**
  * Vídeo demo vertical (9:16) dentro de um mockup de smartphone.
@@ -142,7 +144,7 @@ const DemoVideo = () => {
 };
 
 const HeroSection = () => {
-  const { t } = useLanguage();
+  const { t, audience } = useLanguage();
   // Origem de tráfego lida uma vez na montagem (persiste na sessão)
   const [waVariant] = useState(() => isWhatsappVariant());
 
@@ -151,6 +153,31 @@ const HeroSection = () => {
       .getElementById("download")
       ?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Variante aroma (idiomas com plano Profissional): o CTA de teste leva ao
+  // teste no app, pelo mesmo caminho do TrialButton do /map. Nos demais casos
+  // (doterra, ou inglês sem plano Profissional), rola até a área de download.
+  const trialHref =
+    audience === "aroma" && typeof t("pricing.pro") === "object"
+      ? buildTrialUrl("home", audience)
+      : null;
+
+  const renderTrialCta = (className: string) =>
+    trialHref ? (
+      <a
+        href={trialHref}
+        target="_blank"
+        rel="noopener"
+        onClick={() => trackStartTrial("hero", "home", audience)}
+        className={className}
+      >
+        {t("hero.primaryCta")}
+      </a>
+    ) : (
+      <button type="button" onClick={scrollToDownload} className={className}>
+        {t("hero.primaryCta")}
+      </button>
+    );
 
   const handleAppStoreClick = () => {
     trackPixel("InitiateCheckout", { platform: "appstore" });
@@ -178,7 +205,7 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-teal-400 rounded-full blur-lg"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center py-12 md:py-16">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center pt-20 pb-12 md:py-16">
         <div className="max-w-4xl mx-auto">
           {/* Conteúdo principal */}
           <motion.div
@@ -227,26 +254,18 @@ const HeroSection = () => {
                     {t("hero.whatsappCta")}
                   </a>
                   <div className="text-sm text-gray-600">
-                    <button
-                      type="button"
-                      onClick={scrollToDownload}
-                      className="inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
-                    >
-                      {t("hero.primaryCta")}
-                    </button>
+                    {renderTrialCta(
+                      "inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors",
+                    )}
                   </div>
                 </>
               ) : (
                 <>
                   {/* Padrão: teste grátis como único primário; lojas e WhatsApp
                       como links de texto secundários */}
-                  <button
-                    type="button"
-                    onClick={scrollToDownload}
-                    className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
-                  >
-                    {t("hero.primaryCta")}
-                  </button>
+                  {renderTrialCta(
+                    "inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300",
+                  )}
                   <p className="text-sm text-gray-600">
                     {t("hero.storeLinksHint")}{" "}
                     <button

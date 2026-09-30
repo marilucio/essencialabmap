@@ -6,3 +6,6 @@ dist/
 .env
 .env.local
 .env.*.local
+
+# Capturas de verificação da Fase 5 (não versionar)
+docs/capturas-fase5/

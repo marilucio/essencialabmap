@@ -4,7 +4,7 @@ import { Star, Shield, TrendingUp, MessageCircle } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
 const ProofSection = () => {
-  const { t } = useLanguage();
+  const { t, audience } = useLanguage();
 
   return (
     <section
@@ -77,6 +77,12 @@ const ProofSection = () => {
               <p className="text-lg text-gray-700 leading-relaxed italic border-l-4 border-green-500 pl-6">
                 {t("proof.whatsappSection.caption")}
               </p>
+              {/* Variante aroma: explica o PV para quem não é consultor doTERRA */}
+              {audience === "aroma" && (
+                <p className="text-sm text-gray-600 leading-relaxed pl-6">
+                  {t("proof.whatsappSection.pvContext")}
+                </p>
+              )}
               {/* Microcopy de conformidade — resultado individual (Tarefa 2.3) */}
               <p className="text-xs text-gray-400 leading-relaxed pl-6">
                 {t("proof.whatsappSection.disclaimer")}

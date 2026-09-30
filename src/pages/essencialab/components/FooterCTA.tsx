@@ -6,9 +6,11 @@ import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 import { useLanguage } from "../LanguageContext";
 import { buildWhatsappLink, trackPixel } from "../../../lib/whatsapp";
 import { isWhatsappVariant } from "../../../lib/trafficSource";
+import { buildTrialUrl } from "../../../lib/audience";
+import { trackStartTrial } from "../../map/tracking";
 
 const FooterCTA = () => {
-  const { t } = useLanguage();
+  const { t, audience } = useLanguage();
   // Origem de tráfego lida uma vez na montagem (persiste na sessão)
   const [waVariant] = useState(() => isWhatsappVariant());
   const handleAppStoreClick = () => {
@@ -134,6 +136,19 @@ const FooterCTA = () => {
                 </>
               ) : (
                 <>
+                  {/* Variante aroma (idiomas com plano Profissional): teste no
+                      app acima dos selos */}
+                  {audience === "aroma" && typeof t("pricing.pro") === "object" && (
+                    <a
+                      href={buildTrialUrl("home", audience)}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={() => trackStartTrial("final", "home", audience)}
+                      className="inline-flex items-center justify-center bg-white text-green-700 hover:bg-green-50 font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+                    >
+                      {t("hero.primaryCta")}
+                    </a>
+                  )}
                   {/* Padrão: loja primária, WhatsApp secundário */}
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <AppStoreBadge onClick={handleAppStoreClick} />

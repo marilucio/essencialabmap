@@ -282,6 +282,94 @@ export const translations = {
       contact: "Contato",
       lgpd: "LGPD",
     },
+    // Variante ?publico=aroma: só as chaves que mudam (ver LanguageContext).
+    // Sem termos do universo doTERRA/MLM (PV, kit, consultor, recompra).
+    aroma: {
+      hero: {
+        badge: "✨ Para aromaterapeutas e terapeutas integrativos",
+        title:
+          "Comece o atendimento com um mapa de bem-estar e acompanhe cada cliente sem perder o fio",
+        subtitle:
+          "A análise facial pela câmera do celular gera o mapa em segundos. O Sistema MAP organiza a avaliação, guarda o histórico e lembra você dos retornos. Sem planilha, sem caderno.",
+        socialProof:
+          "Centenas de profissionais de bem-estar já usam o EssenciaLab para abrir atendimentos e acompanhar seus clientes.",
+      },
+      problem: {
+        description:
+          "Você ama os óleos essenciais, mas sente que está sempre começando do zero com cada cliente novo? Ou percebe que muitos fazem um atendimento e não voltam para o acompanhamento? O verdadeiro desafio não é atender uma vez — é construir um acompanhamento que gere confiança e continuidade.",
+        card2: {
+          title: "Cliente que Veio Uma Vez e Não Voltou",
+          description:
+            "Você fez um bom atendimento, mas não conseguiu manter o acompanhamento até os retornos.",
+        },
+        card3: {
+          description:
+            "Entre tantos profissionais, você passa despercebido e não cria uma experiência memorável.",
+        },
+      },
+      solution: {
+        techTransparency: {
+          items: [
+            null,
+            "Com base nessa leitura, o EssenciaLab sugere óleos essenciais e protocolos de bem-estar personalizados, alinhados ao seu conhecimento como aromaterapeuta.",
+            null,
+          ],
+        },
+      },
+      benefits: {
+        badge: "Por Que Usar o EssenciaLab no Seu Atendimento",
+      },
+      proof: {
+        title: "Veja Como Profissionais Estão",
+        subtitle:
+          "Profissionais que transformaram a abordagem e criaram relacionamentos duradouros",
+        whatsappSection: {
+          subtitle:
+            "Quando um profissional usa a análise facial, a conversa flui naturalmente.",
+          pvContext:
+            "Para quem não é consultor: PV é o volume de pedidos registrado no sistema da doTERRA. O resultado acima é de um consultor que usou a análise facial para abrir conversas.",
+          disclaimer:
+            "Resultado individual. Resultados variam conforme dedicação e contexto de cada profissional.",
+        },
+      },
+      pricing: {
+        title: "Escolha o plano para o seu atendimento",
+        description:
+          "Menos de R$ 4,30 por dia para organizar todos os seus atendimentos com o Sistema MAP. Se preferir começar só pela análise facial, o plano de entrada custa menos de R$ 1 por dia.",
+        facial: {
+          badge: "Plano de entrada",
+        },
+        pro: {
+          badge: "Recomendado para aromaterapeutas",
+          features: [null, null, null, "Ideal para aromaterapeutas e terapeutas integrativos"],
+          button: "Começar teste grátis de 14 dias",
+          mapLink: "Conhecer o Sistema MAP",
+        },
+      },
+      therapists: {
+        title: "Você atende clientes como aromaterapeuta ou terapeuta?",
+        description:
+          "A mesma Análise Facial que abre a conversa vira a porta de entrada do seu atendimento. E o Plano Profissional inclui o Sistema MAP, o Método de Avaliação Personalizada que organiza a avaliação do cliente e apoia a sua conduta.",
+      },
+      faq: {
+        questions: [
+          {
+            answer:
+              "Não. O app foi feito para aromaterapeutas e terapeutas que não são experts em tecnologia. Você aponta a câmera, escaneia o rosto e o mapa de bem-estar é gerado automaticamente. Se você sabe usar o WhatsApp, sabe usar o EssenciaLab.",
+          },
+          null,
+          null,
+          null,
+          null,
+          {
+            question: "O EssenciaLab substitui o conhecimento que eu já tenho como aromaterapeuta?",
+          },
+        ],
+      },
+      footer: {
+        copyright: "© 2026 EssenciaLab - Análise Facial para Aromaterapeutas e Terapeutas",
+      },
+    },
   },
   en: {
     whatsappPrefill:
@@ -561,6 +649,87 @@ export const translations = {
       terms: "Terms of Use",
       contact: "Contact",
       lgpd: "LGPD",
+    },
+    // Variante ?publico=aroma. Em inglês não há plano Profissional nem MAP
+    // na página: a âncora usa só o plano Análise Facial ($29 / 30 = $0,97/dia).
+    aroma: {
+      hero: {
+        badge: "✨ For aromatherapists and integrative therapists",
+        title:
+          "Start every session with a wellness map and follow each client without losing the thread",
+        subtitle:
+          "Facial analysis with your phone camera generates the map in seconds, and each client's history stays organized in the app. No spreadsheets, no notebooks.",
+        socialProof:
+          "Hundreds of wellness professionals already use EssenciaLab to open sessions and follow up with their clients.",
+      },
+      problem: {
+        description:
+          "Do you love essential oils but feel like you're always starting from scratch with each new client? Or do many come for one session and never return for follow-up? The real challenge isn't one session — it's building follow-up care that creates trust and continuity.",
+        card2: {
+          title: "Client Came Once and Never Returned",
+          description:
+            "You delivered a good session, but couldn't keep the follow-up going.",
+        },
+        card3: {
+          description:
+            "Among so many practitioners, you go unnoticed and fail to create a memorable experience.",
+        },
+      },
+      solution: {
+        techTransparency: {
+          items: [
+            null,
+            "Based on this reading, EssenciaLab suggests essential oils and personalized wellness protocols, aligned with your expertise as an aromatherapist.",
+            null,
+          ],
+        },
+      },
+      benefits: {
+        badge: "Why Use EssenciaLab in Your Practice",
+      },
+      proof: {
+        title: "See How Practitioners Are",
+        subtitle:
+          "Practitioners who transformed their approach and built lasting relationships",
+        whatsappSection: {
+          subtitle:
+            "When a practitioner uses facial analysis, the conversation flows naturally.",
+          pvContext:
+            "For non-consultants: PV is the order volume recorded in doTERRA's system. The result above is from a consultant who used facial analysis to start conversations.",
+          disclaimer:
+            "Individual result. Results vary based on each practitioner's dedication and context.",
+        },
+      },
+      pricing: {
+        description:
+          "Less than $1 a day to open every session with a personalized wellness map.",
+      },
+      therapists: {
+        title: "Do you see clients as an aromatherapist or therapist?",
+        description:
+          "The same Facial Analysis that opens the conversation becomes an entry point for your practice. And the Professional Plan includes the MAP System, a personalized assessment method that structures the client evaluation and supports your approach.",
+      },
+      faq: {
+        questions: [
+          {
+            answer:
+              "No. The app was built for aromatherapists and therapists who aren't tech experts. You point the camera, scan the face, and the wellness map is generated automatically. If you know how to use WhatsApp, you know how to use EssenciaLab.",
+          },
+          null,
+          null,
+          {
+            answer:
+              "The Facial Analysis Plan costs $29/month (or $290/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. No commitment: cancel anytime, no penalty.",
+          },
+          null,
+          {
+            question: "Does EssenciaLab replace my knowledge as an aromatherapist?",
+          },
+        ],
+      },
+      footer: {
+        copyright: "© 2026 EssenciaLab - Facial Analysis for Aromatherapists & Therapists",
+      },
     },
   },
   es: {
@@ -858,6 +1027,93 @@ export const translations = {
       terms: "Términos de Uso",
       contact: "Contacto",
       lgpd: "LGPD",
+    },
+    // Variante ?publico=aroma: só as chaves que mudam (ver LanguageContext).
+    aroma: {
+      hero: {
+        badge: "✨ Para aromaterapeutas y terapeutas integrativos",
+        title:
+          "Comienza la atención con un mapa de bienestar y acompaña a cada cliente sin perder el hilo",
+        subtitle:
+          "El análisis facial con la cámara del celular genera el mapa en segundos. El Sistema MAP organiza la evaluación, guarda el historial y te recuerda los seguimientos. Sin planillas, sin cuadernos.",
+        socialProof:
+          "Cientos de profesionales del bienestar ya usan EssenciaLab para abrir sus atenciones y acompañar a sus clientes.",
+      },
+      problem: {
+        description:
+          "¿Amas los aceites esenciales pero sientes que siempre empiezas desde cero con cada cliente nuevo? ¿O muchos vienen a una sesión y no regresan al seguimiento? El verdadero desafío no es atender una vez — es construir un acompañamiento que genere confianza y continuidad.",
+        card2: {
+          title: "Cliente que Vino Una Vez y No Volvió",
+          description:
+            "Hiciste una buena atención, pero no lograste mantener el seguimiento.",
+        },
+        card3: {
+          description:
+            "Entre tantos profesionales, pasas desapercibido y no creas una experiencia memorable.",
+        },
+      },
+      solution: {
+        techTransparency: {
+          items: [
+            null,
+            "Con base en esta lectura, EssenciaLab sugiere aceites esenciales y protocolos de bienestar personalizados, alineados a tu conocimiento como aromaterapeuta.",
+            null,
+          ],
+        },
+      },
+      benefits: {
+        badge: "Por Qué Usar EssenciaLab en tu Consulta",
+      },
+      proof: {
+        title: "Mira Cómo los Profesionales Están",
+        subtitle:
+          "Profesionales que transformaron su enfoque y crearon relaciones duraderas",
+        whatsappSection: {
+          subtitle:
+            "Cuando un profesional usa el análisis facial, la conversación fluye naturalmente.",
+          pvContext:
+            "Para quien no es consultor: PV es el volumen de pedidos registrado en el sistema de doTERRA. El resultado de arriba es de un consultor que usó el análisis facial para iniciar conversaciones.",
+          disclaimer:
+            "Resultado individual. Los resultados varían según la dedicación y el contexto de cada profesional.",
+        },
+      },
+      pricing: {
+        title: "Elige el plan para tu consulta",
+        description:
+          "Menos de R$ 4,30 por día para organizar todas tus atenciones con el Sistema MAP. Si prefieres empezar solo con el análisis facial, el plan de entrada cuesta menos de R$ 1 por día.",
+        facial: {
+          badge: "Plan de entrada",
+        },
+        pro: {
+          badge: "Recomendado para aromaterapeutas",
+          features: [null, null, null, "Ideal para aromaterapeutas y terapeutas integrativos"],
+          button: "Empezar prueba gratis de 14 días",
+          mapLink: "Conocer el Sistema MAP",
+        },
+      },
+      therapists: {
+        title: "¿Atiendes clientes como aromaterapeuta o terapeuta?",
+        description:
+          "El mismo Análisis Facial que abre la conversación se convierte en la puerta de entrada de tu consulta. Y el Plan Profesional incluye el Sistema MAP, el Método de Evaluación Personalizada que organiza la evaluación del cliente y apoya tu conducta.",
+      },
+      faq: {
+        questions: [
+          {
+            answer:
+              "No. La app fue hecha para aromaterapeutas y terapeutas que no son expertos en tecnología. Apuntas la cámara, escaneas el rostro y el mapa de bienestar se genera automáticamente. Si sabes usar WhatsApp, sabes usar EssenciaLab.",
+          },
+          null,
+          null,
+          null,
+          null,
+          {
+            question: "¿EssenciaLab reemplaza mi conocimiento como aromaterapeuta?",
+          },
+        ],
+      },
+      footer: {
+        copyright: "© 2026 EssenciaLab - Análisis Facial para Aromaterapeutas y Terapeutas",
+      },
     },
   },
 };

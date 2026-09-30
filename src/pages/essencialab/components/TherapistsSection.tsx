@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Leaf, ScanFace, ClipboardList, TrendingUp, ArrowRight } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 import { trackPixel } from "../../../lib/whatsapp";
+import { withPublico } from "../../../lib/audience";
 
 type Item = { title: string; description: string };
 
@@ -14,7 +15,7 @@ const icons = [ScanFace, ClipboardList, TrendingUp];
  * para a página do Sistema MAP.
  */
 const TherapistsSection = () => {
-  const { t } = useLanguage();
+  const { t, audience } = useLanguage();
   const items = t("therapists.items") as Item[];
 
   const handleClick = () => {
@@ -70,7 +71,7 @@ const TherapistsSection = () => {
               {t("therapists.priceLine")}
             </p>
             <a
-              href="/map"
+              href={withPublico("/map", audience)}
               onClick={handleClick}
               className="inline-flex items-center gap-2 bg-white text-emerald-800 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-emerald-50 hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
             >

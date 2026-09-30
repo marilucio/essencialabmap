@@ -1,7 +1,8 @@
-import type { MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Leaf } from "lucide-react";
 import { TRIAL_URL } from "../constants";
 import { trackStartTrial } from "../tracking";
+import { buildTrialUrl, getStoredPublico } from "@/lib/audience";
 
 // Header próprio da landing /map: âncoras para seções da própria página e um CTA.
 // Não usa o Header compartilhado porque os links dele levam para outras páginas do site.
@@ -25,6 +26,11 @@ function scrollTo(e: MouseEvent<HTMLAnchorElement>, href: string) {
 }
 
 export function MapHeader() {
+  // Mesmo critério do TrialButton: HTML pré-renderizado com o TRIAL_URL puro;
+  // no navegador, acrescenta publico (quando conhecido) e pagina=map.
+  const [trialHref, setTrialHref] = useState(TRIAL_URL);
+  useEffect(() => setTrialHref(buildTrialUrl("map", getStoredPublico())), []);
+
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-sm">
       <div className="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
@@ -51,7 +57,7 @@ export function MapHeader() {
         </nav>
 
         <a
-          href={TRIAL_URL}
+          href={trialHref}
           target="_blank"
           rel="noopener"
           onClick={() => trackStartTrial("header")}
