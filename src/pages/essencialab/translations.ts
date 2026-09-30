@@ -13,7 +13,7 @@ export const translations = {
       freeTrialBadge: "🎁 7 DIAS DE TESTE GRÁTIS",
       freeTrialSubtitle: "Todas as funções liberadas + Download Gratuito",
       socialProof:
-        "Mais de 500 consultores já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
+        "Centenas de consultores e terapeutas já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
       primaryCta: "Teste Grátis por 7 Dias",
       whatsappCtaHint: "Prefere ver antes de baixar?",
       whatsappCta: "Receber demonstração no WhatsApp",
@@ -82,7 +82,7 @@ export const translations = {
       title: "Análise Facial: Sua Porta de Entrada para Relacionamentos que Duram",
       description:
         "Imagine apontar a câmera, escanear o rosto do cliente e, em segundos, gerar um mapa de bem-estar personalizado. O cliente se sente acolhido, curioso para saber mais — e você ganha a confiança dele naturalmente. Não é sobre vender. É sobre conectar.",
-      iaBadge: "✨ IA Avançada",
+      iaBadge: "✨ Visão computacional",
       feature1: "Escaneie o rosto em segundos",
       feature2: "Obtenha um mapa de bem-estar emocional",
       feature3: "Sugestões personalizadas na hora",
@@ -141,7 +141,8 @@ export const translations = {
         disclaimer:
           "Resultado individual. Resultados variam conforme dedicação e contexto de cada consultor.",
       },
-      stats1: "Consultores Ativos",
+      statsValue: "Centenas",
+      stats1: "de profissionais usando",
       stats2: "Clientes que Compram Novamente",
       stats3: "Taxa de Satisfação",
       zeroRiskTitle: "Teste 100% Gratuito e Sem Riscos.",
@@ -167,7 +168,7 @@ export const translations = {
         price: "R$ 29,90",
         period: "/mês",
         annual: "ou R$ 299,90/ano",
-        annualEquiv: "= R$ 24,90/mês, 2 meses grátis",
+        annualEquiv: "= R$ 24,99/mês, 2 meses grátis",
         features: [
           "Análise Facial ilimitada",
           "Mapa de bem-estar personalizado",
@@ -243,7 +244,7 @@ export const translations = {
         {
           question: "Quanto custa depois dos 7 dias grátis?",
           answer:
-            "O Plano Análise Facial custa R$ 29,90/mês (ou R$ 299,90/ano, o equivalente a R$ 24,90/mês). É um preço promocional que pode encerrar a qualquer momento, mas quem assinar agora mantém esse valor enquanto a assinatura estiver ativa. Se você atende clientes e quer o Sistema MAP (Método de Avaliação Personalizada), o Plano Profissional custa R$ 127/mês ou R$ 1.270/ano. Nos dois casos, sem compromisso: cancele quando quiser, sem multa.",
+            "O Plano Análise Facial custa R$ 29,90/mês (ou R$ 299,90/ano, o equivalente a R$ 24,99/mês). É um preço promocional que pode encerrar a qualquer momento, mas quem assinar agora mantém esse valor enquanto a assinatura estiver ativa. Se você atende clientes e quer o Sistema MAP (Método de Avaliação Personalizada), o Plano Profissional custa R$ 127/mês ou R$ 1.270/ano. Nos dois casos, sem compromisso: cancele quando quiser, sem multa.",
         },
         {
           question: "Em quais celulares o EssenciaLab funciona?",
@@ -261,7 +262,7 @@ export const translations = {
       badge: "Sua Nova Ferramenta de Trabalho",
       title: "Baixe Grátis e Comece a Construir Relacionamentos Hoje",
       subtitle: "Em 7 dias você vai experimentar o poder da análise facial para atrair e fidelizar clientes.",
-      benefit1: "Análise Facial por IA",
+      benefit1: "Análise Facial",
       benefit2: "Protocolos Completos",
       benefit3: "Mapas de Bem-Estar",
       benefit4: "Suporte Especializado",
@@ -294,7 +295,7 @@ export const translations = {
       freeTrialBadge: "🎁 7-DAY FREE TRIAL",
       freeTrialSubtitle: "All features unlocked + Free Download",
       socialProof:
-        "More than 500 consultants already use EssenciaLab to attract new contacts and strengthen client relationships.",
+        "Hundreds of consultants and therapists already use EssenciaLab to attract new contacts and strengthen client relationships.",
       primaryCta: "Start 7-Day Free Trial",
       whatsappCtaHint: "Rather see it before downloading?",
       whatsappCta: "Get a demo on WhatsApp",
@@ -361,7 +362,7 @@ export const translations = {
       title: "Facial Analysis: Your Gateway to Lasting Relationships",
       description:
         "Imagine pointing the camera, scanning your client's face, and in seconds generating a personalized wellness map. The client feels welcomed, curious to learn more — and you earn their trust naturally. It's not about selling. It's about connecting.",
-      iaBadge: "✨ Advanced AI",
+      iaBadge: "✨ Computer vision",
       feature1: "Scan the face in seconds",
       feature2: "Get an emotional wellness map",
       feature3: "Personalized suggestions instantly",
@@ -435,7 +436,8 @@ export const translations = {
           },
         ],
       },
-      stats1: "Active Consultants",
+      statsValue: "Hundreds",
+      stats1: "of professionals using it",
       stats2: "Clients Who Repurchase",
       stats3: "Satisfaction Rate",
       zeroRiskTitle: "100% Free and Risk-Free Trial.",
@@ -540,7 +542,7 @@ export const translations = {
       badge: "Your New Work Tool",
       title: "Download Free and Start Building Relationships Today",
       subtitle: "In 7 days you'll experience the power of facial analysis to attract and retain clients.",
-      benefit1: "AI Facial Analysis",
+      benefit1: "Facial Analysis",
       benefit2: "Complete Protocols",
       benefit3: "Wellness Maps",
       benefit4: "Expert Support",
@@ -573,7 +575,7 @@ export const translations = {
       freeTrialBadge: "🎁 7 DÍAS DE PRUEBA GRATIS",
       freeTrialSubtitle: "Todas las funciones liberadas + Descarga gratuita",
       socialProof:
-        "Más de 500 consultores ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
+        "Cientos de consultores y terapeutas ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
       primaryCta: "Prueba Gratis por 7 Días",
       whatsappCtaHint: "¿Prefieres verlo antes de descargar?",
       whatsappCta: "Recibir demostración por WhatsApp",
@@ -642,7 +644,7 @@ export const translations = {
       title: "Análisis Facial: Tu Puerta de Entrada a Relaciones que Duran",
       description:
         "Imagina apuntar la cámara, escanear el rostro del cliente y, en segundos, generar un mapa de bienestar personalizado. El cliente se siente acogido, curioso por saber más — y tú ganas su confianza naturalmente. No se trata de vender. Se trata de conectar.",
-      iaBadge: "✨ IA Avanzada",
+      iaBadge: "✨ Visión por computadora",
       feature1: "Escanea el rostro en segundos",
       feature2: "Obtén un mapa de bienestar emocional",
       feature3: "Sugerencias personalizadas al instante",
@@ -716,7 +718,8 @@ export const translations = {
           },
         ],
       },
-      stats1: "Consultores Activos",
+      statsValue: "Cientos",
+      stats1: "de profesionales usándolo",
       stats2: "Clientes que Vuelven a Comprar",
       stats3: "Tasa de Satisfacción",
       zeroRiskTitle: "Prueba 100% Gratis y Sin Riesgos.",
@@ -742,7 +745,7 @@ export const translations = {
         price: "R$ 29,90",
         period: "/mes",
         annual: "o R$ 299,90/año",
-        annualEquiv: "= R$ 24,90/mes, 2 meses gratis",
+        annualEquiv: "= R$ 24,99/mes, 2 meses gratis",
         features: [
           "Análisis Facial ilimitado",
           "Mapa de bienestar personalizado",
@@ -818,7 +821,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta después de los 7 días gratis?",
           answer:
-            "El Plan Análisis Facial cuesta R$ 29,90/mes (o R$ 299,90/año, el equivalente a R$ 24,90/mes). Es un precio promocional que puede terminar en cualquier momento, pero quien se suscriba ahora mantiene ese valor mientras la suscripción esté activa. Si atiendes clientes y quieres el Sistema MAP (Método de Evaluación Personalizada), el Plan Profesional cuesta R$ 127/mes o R$ 1.270/año. En ambos casos, sin compromiso: cancela cuando quieras, sin multa.",
+            "El Plan Análisis Facial cuesta R$ 29,90/mes (o R$ 299,90/año, el equivalente a R$ 24,99/mes). Es un precio promocional que puede terminar en cualquier momento, pero quien se suscriba ahora mantiene ese valor mientras la suscripción esté activa. Si atiendes clientes y quieres el Sistema MAP (Método de Evaluación Personalizada), el Plan Profesional cuesta R$ 127/mes o R$ 1.270/año. En ambos casos, sin compromiso: cancela cuando quieras, sin multa.",
         },
         {
           question: "¿En qué celulares funciona EssenciaLab?",
@@ -836,7 +839,7 @@ export const translations = {
       badge: "Tu Nueva Herramienta de Trabajo",
       title: "Descarga Gratis y Comienza a Construir Relaciones Hoy",
       subtitle: "En 7 días experimentarás el poder del análisis facial para atraer y fidelizar clientes.",
-      benefit1: "Análisis Facial por IA",
+      benefit1: "Análisis Facial",
       benefit2: "Protocolos Completos",
       benefit3: "Mapas de Bienestar",
       benefit4: "Soporte Especializado",

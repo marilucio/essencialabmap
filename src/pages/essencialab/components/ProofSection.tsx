@@ -137,7 +137,7 @@ const ProofSection = () => {
         >
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 text-center border border-green-200">
             <div className="text-5xl md:text-6xl font-bold text-green-600 mb-2">
-              500+
+              {t("proof.statsValue")}
             </div>
             <p className="text-gray-700 font-medium">{t("proof.stats1")}</p>
           </div>

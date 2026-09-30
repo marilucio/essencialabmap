@@ -218,7 +218,7 @@ const HeroSection = () => {
               </h2>
             </div>
 
-            {/* Barra de prova social — "Mais de 500 consultores" */}
+            {/* Barra de prova social — "Centenas de consultores e terapeutas" */}
             <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 border border-green-100 shadow-lg">
               <p className="text-lg text-gray-700 leading-relaxed">
                 {t("hero.socialProof")}
