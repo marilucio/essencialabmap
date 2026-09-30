@@ -156,7 +156,7 @@ const FooterCTA = () => {
                 </>
               )}
 
-              {/* Badge de 7 Dias Grátis */}
+              {/* Badge de 14 Dias Grátis */}
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 shadow-2xl inline-block">
                 <p className="text-white font-bold text-2xl mb-1">
                   {t('footer.freeTrialBadge')}
