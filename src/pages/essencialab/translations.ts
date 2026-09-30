@@ -14,7 +14,8 @@ export const translations = {
       freeTrialSubtitle: "Todas as funções liberadas + Download Gratuito",
       socialProof:
         "Centenas de consultores e terapeutas já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
-      primaryCta: "Teste Grátis por 14 Dias",
+      primaryCta: "Começar teste grátis de 14 dias",
+      storeLinksHint: "Ou baixe direto na loja:",
       whatsappCtaHint: "Prefere ver antes de baixar?",
       whatsappCta: "Receber demonstração no WhatsApp",
       whatsappProof: {
@@ -295,7 +296,8 @@ export const translations = {
       freeTrialSubtitle: "All features unlocked + Free Download",
       socialProof:
         "Hundreds of consultants and therapists already use EssenciaLab to attract new contacts and strengthen client relationships.",
-      primaryCta: "Start 14-Day Free Trial",
+      primaryCta: "Start your 14-day free trial",
+      storeLinksHint: "Or get it on the app stores:",
       whatsappCtaHint: "Rather see it before downloading?",
       whatsappCta: "Get a demo on WhatsApp",
       whatsappProof: {
@@ -574,7 +576,8 @@ export const translations = {
       freeTrialSubtitle: "Todas las funciones liberadas + Descarga gratuita",
       socialProof:
         "Cientos de consultores y terapeutas ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
-      primaryCta: "Prueba Gratis por 14 Días",
+      primaryCta: "Empezar prueba gratis de 14 días",
+      storeLinksHint: "O descárgala directo en la tienda:",
       whatsappCtaHint: "¿Prefieres verlo antes de descargar?",
       whatsappCta: "Recibir demostración por WhatsApp",
       whatsappProof: {

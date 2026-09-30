@@ -238,7 +238,8 @@ const HeroSection = () => {
                 </>
               ) : (
                 <>
-                  {/* Padrão: teste grátis primário, WhatsApp secundário */}
+                  {/* Padrão: teste grátis como único primário; lojas e WhatsApp
+                      como links de texto secundários */}
                   <button
                     type="button"
                     onClick={scrollToDownload}
@@ -246,6 +247,24 @@ const HeroSection = () => {
                   >
                     {t("hero.primaryCta")}
                   </button>
+                  <p className="text-sm text-gray-600">
+                    {t("hero.storeLinksHint")}{" "}
+                    <button
+                      type="button"
+                      onClick={handleAppStoreClick}
+                      className="text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+                    >
+                      App Store
+                    </button>
+                    {" · "}
+                    <button
+                      type="button"
+                      onClick={handleGooglePlayClick}
+                      className="text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors"
+                    >
+                      Google Play
+                    </button>
+                  </p>
                   <div className="text-sm text-gray-600">
                     <p className="mb-1">{t("hero.whatsappCtaHint")}</p>
                     <a
