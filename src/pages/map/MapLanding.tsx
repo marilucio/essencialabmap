@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { MapHeader } from "./components/MapHeader";
+import { captureAttribution, setTrackingLanguage } from "@/lib/attribution";
+import { getStoredPublico } from "@/lib/audience";
+import { trackEvent } from "@/lib/tracking";
 import Footer from "@/components/Footer";
 import { legalNotice } from "./content";
 import { HeroSection } from "./components/HeroSection";
@@ -20,6 +24,13 @@ type Props = { language?: string };
 // Landing do EssenciaLab MAP (rota /map). Copy somente em português;
 // o idioma recebido só afeta os rótulos do footer compartilhado.
 export default function MapLanding({ language = "pt" }: Props) {
+  // Atribuição da primeira visita + view_map_page (só no navegador; o HTML é pré-renderizado)
+  useEffect(() => {
+    setTrackingLanguage(language);
+    captureAttribution(getStoredPublico());
+    trackEvent("view_map_page");
+  }, [language]);
+
   return (
     <div id="topo" className="min-h-screen bg-white text-slate-900">
       <MapHeader />

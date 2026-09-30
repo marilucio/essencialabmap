@@ -43,9 +43,16 @@
     <!-- LCP: poster do vídeo -->
     <link rel="preload" as="image" href="/images/map/video-poster.webp" imagesrcset="/images/map/video-poster-640.webp 640w, /images/map/video-poster.webp 1280w" imagesizes="(min-width: 1024px) 560px, 100vw" fetchpriority="high" />
 
-    <!-- Meta Pixel da landing /map. PageView aqui; o evento StartTrial é disparado
-         pelos CTAs (src/pages/map/tracking.ts). [CONFIRMAR] ID do pixel. -->
+    <!-- Meta Pixel da landing /map (VITE_META_PIXEL_ID_MAP, substituído no build;
+         o vite build falha se faltar). PageView aqui; StartTrial e os eventos das
+         campanhas saem dos CTAs (src/pages/map/tracking.ts, src/lib/tracking.ts). -->
     <script>
+      (function () {
+      var pixelId = "%VITE_META_PIXEL_ID_MAP%";
+      if (!/^\d+$/.test(pixelId)) {
+        console.warn("[Meta Pixel] VITE_META_PIXEL_ID_MAP ausente; pixel não iniciado.");
+        return;
+      }
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -62,8 +69,9 @@
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
       })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-      fbq("init", "1147561227476007");
+      fbq("init", pixelId);
       fbq("track", "PageView");
+      })();
     </script>
   </head>
   <body>
@@ -72,7 +80,7 @@
         height="1"
         width="1"
         style="display: none"
-        src="https://www.facebook.com/tr?id=1147561227476007&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=%VITE_META_PIXEL_ID_MAP%&ev=PageView&noscript=1"
         alt=""
     /></noscript>
     <div id="root"></div>

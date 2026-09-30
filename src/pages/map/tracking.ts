@@ -4,6 +4,7 @@
 // StartTrial mede o clique para iniciar o teste (intenção), não o trial criado no app.
 // Também é disparado pelos CTAs da variante aroma da raiz (source: "home").
 import { getStoredPublico, type Publico } from "@/lib/audience";
+import { trackEvent } from "@/lib/tracking";
 
 type Fbq = (...args: unknown[]) => void;
 
@@ -24,6 +25,7 @@ export function trackStartTrial(
 }
 
 export function trackWhatsAppContact() {
+  trackEvent("click_whatsapp", { posicao: "final" });
   const fbq = getFbq();
   if (!fbq) return;
   fbq("trackCustom", "MapWhatsAppContact", { source: "map" });

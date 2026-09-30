@@ -5,6 +5,7 @@
 // MLM). O valor da URL é persistido em sessionStorage para a variante se
 // manter ao navegar, e repassado nos links para o /map e no TRIAL_URL.
 import { TRIAL_URL } from "@/pages/map/constants";
+import { UTM_KEYS, getAttribution, getTrackingLanguage } from "@/lib/attribution";
 
 export type Publico = "doterra" | "aroma";
 
@@ -52,11 +53,31 @@ export function withPublico(path: string, publico: Publico | null): string {
 
 /**
  * Link do teste no app (mesmo destino do TrialButton do /map), com a origem:
- * publico (quando conhecido) e pagina (home ou map).
+ * publico (quando conhecido), pagina (home ou map), as UTMs da primeira
+ * visita e o idioma.
  */
 export function buildTrialUrl(pagina: "home" | "map", publico: Publico | null): string {
   const url = new URL(TRIAL_URL);
   if (publico) url.searchParams.set("publico", publico);
   url.searchParams.set("pagina", pagina);
+  const attribution = getAttribution();
+  for (const key of UTM_KEYS) {
+    const value = attribution[key];
+    if (value) url.searchParams.set(key, value);
+  }
+  const idioma = getTrackingLanguage();
+  if (idioma) url.searchParams.set("idioma", idioma);
   return url.toString();
+}
+
+/**
+ * Atualiza o href do link de teste no clique, com a atribuição já gravada
+ * (a renderização pode acontecer antes de UTMs e idioma estarem na sessão).
+ */
+export function refreshTrialHref(
+  link: HTMLAnchorElement,
+  pagina: "home" | "map",
+  publico: Publico | null,
+): void {
+  link.href = buildTrialUrl(pagina, publico);
 }

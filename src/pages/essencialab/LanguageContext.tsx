@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Language, translations } from './translations';
 import { getPublico, type Publico } from '@/lib/audience';
+import { captureAttribution, setTrackingLanguage } from '@/lib/attribution';
 
 // Mesmo critério de antes: valor ausente ou vazio conta como "não encontrado".
 const lookup = (root: any, keys: string[]): any => {
@@ -48,11 +49,14 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    setTrackingLanguage(lang);
     localStorage.setItem('essencialab_lang', lang);
     document.documentElement.lang = lang;
   };
 
   useEffect(() => {
+    // UTMs + publico da primeira visita da sessão (o idioma entra no setLanguage abaixo)
+    captureAttribution(getPublico());
     const savedLang = localStorage.getItem('essencialab_lang') as Language;
     if (savedLang && (savedLang === 'pt' || savedLang === 'en' || savedLang === 'es')) {
       setLanguage(savedLang);

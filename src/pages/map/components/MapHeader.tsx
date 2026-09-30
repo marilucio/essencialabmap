@@ -2,7 +2,8 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { Leaf } from "lucide-react";
 import { TRIAL_URL } from "../constants";
 import { trackStartTrial } from "../tracking";
-import { buildTrialUrl, getStoredPublico } from "@/lib/audience";
+import { buildTrialUrl, getStoredPublico, refreshTrialHref } from "@/lib/audience";
+import { trackEvent } from "@/lib/tracking";
 
 // Header próprio da landing /map: âncoras para seções da própria página e um CTA.
 // Não usa o Header compartilhado porque os links dele levam para outras páginas do site.
@@ -60,7 +61,12 @@ export function MapHeader() {
           href={trialHref}
           target="_blank"
           rel="noopener"
-          onClick={() => trackStartTrial("header")}
+          onPointerDown={(e) => refreshTrialHref(e.currentTarget, "map", getStoredPublico())}
+          onClick={(e) => {
+            refreshTrialHref(e.currentTarget, "map", getStoredPublico());
+            trackEvent("click_cta", { posicao: "header" });
+            trackStartTrial("header");
+          }}
           className="shrink-0 rounded-full bg-green-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400"
         >
           Testar 14 dias grátis

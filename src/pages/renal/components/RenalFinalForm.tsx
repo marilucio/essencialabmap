@@ -98,7 +98,7 @@ export function RenalFinalForm(props: { utm: RenalUtm }) {
         utm: props.utm,
       };
 
-      track("submit_renal_webinar_form", { profile });
+      track("submit_renal_webinar_form");
       persistFormDraft({ name: trimmedName, whatsapp: normalized, profile });
       await captureLead(payload);
 

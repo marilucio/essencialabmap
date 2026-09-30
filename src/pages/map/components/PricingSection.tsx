@@ -3,11 +3,13 @@ import { pricing } from "../content";
 import { PRICE_MONTHLY, PRICE_YEARLY } from "../constants";
 import { Section, SectionTitle } from "./Section";
 import { TrialButton } from "./TrialButton";
+import { ViewPricingTracker } from "@/components/ViewPricingTracker";
 
 export function PricingSection() {
   return (
     <Section id="preco" className="bg-green-50" width="narrow">
       <SectionTitle className="text-center">{pricing.title}</SectionTitle>
+      <ViewPricingTracker />
       <div className="mt-10 rounded-3xl bg-white p-8 shadow-lg ring-1 ring-green-100 md:p-10">
         <p className="text-sm font-semibold uppercase tracking-wide text-green-800">
           {pricing.plan}

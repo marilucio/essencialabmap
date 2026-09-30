@@ -24,7 +24,7 @@ Se algum desses tiver documento, me avise para reintroduzir.
 ## [CONFIRMAR] antes de publicar
 
 1. **URL do teste** — confirmado: `https://essencialab.app/?src=map` (aplicativo EssenciaLab, onde o MAP roda). Definido em `src/pages/map/constants.ts`.
-2. **ID do Pixel** — `map.html` usa `1147561227476007` (o único presente no repositório, hoje usado em `/renal`). Confirmar se é o pixel correto para `/map`. Evento de conversão: `StartTrial` (custom) com `{source:'map', placement}`; contato WhatsApp dispara `MapWhatsAppContact`.
+2. **ID do Pixel** — `map.html` usa `VITE_META_PIXEL_ID_MAP` (pixel próprio do `/map`, também usado em `/precos` e nas páginas do renal), substituído no build; o `vite build` falha se faltar. O pixel antigo ("pixel01", fora da empresa EssenciaLab) foi removido. Evento de conversão: `StartTrial` (custom) com `{source:'map', placement, publico}`, que mede o clique para iniciar o teste, não o trial criado; contato WhatsApp dispara `MapWhatsAppContact` e `click_whatsapp`.
 3. **Bloco 6, frase final** — "O MAP nasceu da minha própria dificuldade de manter relato, exame e decisão no mesmo lugar ao longo de noventa dias."
 4. **Bloco 7 (dados e segurança)** — confirmar cada item contra o código do MAP (não está neste repositório): consentimento antes do envio; token com validade; TLS + RLS; imagens da análise facial não armazenadas; LGPD.
 5. **Bloco 9 (preço)** — "Avaliações e retornos ilimitados": confirmar limites reais (cota de análises). R$ 127/mês e R$ 1.270/ano.

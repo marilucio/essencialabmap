@@ -68,12 +68,43 @@
     <!-- AOS - Animate On Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Meta Pixel (landing "/" + /essencialab + /renal) -->
+    <!-- Meta Pixel: um pixel por grupo de rotas. Os IDs entram no build por
+         %VITE_…% (.env.production / variáveis da Netlify); o vite build falha
+         se faltar algum (vite.config.mjs). Rotas fora das listas: nenhum pixel.
+         /obrigado (CALMA) inicia o próprio pixel em src/pages/Obrigado.jsx. -->
     <script>
       (function () {
         var path = window.location.pathname.replace(/\/+$/, "") || "/";
-        var pixelPaths = ["/", "/essencialab", "/renal"];
-        if (pixelPaths.indexOf(path) === -1) return;
+        var ids = {
+          root: "%VITE_META_PIXEL_ID%",
+          map: "%VITE_META_PIXEL_ID_MAP%",
+          calma: "%VITE_META_PIXEL_ID_CALMA%",
+        };
+        var groups = {
+          root: [
+            "/", "/essencialab", "/funcionalidades", "/sinais",
+            "/termos-de-uso", "/politica-de-privacidade", "/lgpd",
+            "/contato", "/central-de-ajuda", "/status-do-sistema",
+          ],
+          // Renal trata de condição de saúde: nunca o pixel da raiz.
+          // /map aqui só vale no dev; em produção o /map é servido pelo map.html.
+          map: ["/map", "/precos", "/renal", "/renal/obrigado", "/webinar"],
+          calma: ["/oferta", "/metodocalma", "/metodocalmaes", "/metodocalmab", "/metodocalmabes"],
+        };
+        var matches = function (list) {
+          for (var i = 0; i < list.length; i++) {
+            // /metodocalma* inclui as subrotas do funil
+            if (path === list[i] || (list[i].indexOf("/metodocalma") === 0 && path.indexOf(list[i] + "/") === 0)) return true;
+          }
+          return false;
+        };
+        var group = matches(groups.root) ? "root" : matches(groups.map) ? "map" : matches(groups.calma) ? "calma" : null;
+        if (!group) return;
+        var pixelId = ids[group];
+        if (!/^\d+$/.test(pixelId)) {
+          console.warn("[Meta Pixel] ID ausente para as rotas '" + group + "'; pixel não iniciado.");
+          return;
+        }
 
         !(function (f, b, e, v, n, t, s) {
           if (f.fbq) return;
@@ -99,7 +130,7 @@
           "https://connect.facebook.net/en_US/fbevents.js",
         );
 
-        fbq("init", "1147561227476007");
+        fbq("init", pixelId);
         fbq("track", "PageView");
         window.__renalCompleteRegistration = function () {
           fbq("track", "CompleteRegistration");

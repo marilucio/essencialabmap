@@ -6,7 +6,8 @@ import { GooglePlayBadge } from "../../../components/badges/GooglePlayBadge";
 import { useLanguage } from "../LanguageContext";
 import { buildWhatsappLink, trackPixel } from "../../../lib/whatsapp";
 import { isWhatsappVariant } from "../../../lib/trafficSource";
-import { buildTrialUrl } from "../../../lib/audience";
+import { buildTrialUrl, refreshTrialHref } from "../../../lib/audience";
+import { trackEvent } from "../../../lib/tracking";
 import { trackStartTrial } from "../../map/tracking";
 
 const FooterCTA = () => {
@@ -15,11 +16,13 @@ const FooterCTA = () => {
   const [waVariant] = useState(() => isWhatsappVariant());
   const handleAppStoreClick = () => {
     trackPixel("InitiateCheckout", { platform: "appstore" });
+    trackEvent("click_store", { loja: "app_store" }, audience);
     window.open("https://apps.apple.com/app/id6756675158", "_blank");
   };
 
   const handleGooglePlayClick = () => {
     trackPixel("InitiateCheckout", { platform: "googleplay" });
+    trackEvent("click_store", { loja: "google_play" }, audience);
     window.open(
       "https://play.google.com/store/apps/details?id=com.essencialab.app",
       "_blank",
@@ -28,6 +31,7 @@ const FooterCTA = () => {
 
   const handleWhatsappClick = () => {
     trackPixel("Lead", { source: "whatsapp_footer" });
+    trackEvent("click_whatsapp", { posicao: "final" }, audience);
   };
 
   const finalBenefits = [
@@ -143,7 +147,12 @@ const FooterCTA = () => {
                       href={buildTrialUrl("home", audience)}
                       target="_blank"
                       rel="noopener"
-                      onClick={() => trackStartTrial("final", "home", audience)}
+                      onPointerDown={(e) => refreshTrialHref(e.currentTarget, "home", audience)}
+                      onClick={(e) => {
+                        refreshTrialHref(e.currentTarget, "home", audience);
+                        trackEvent("click_cta", { posicao: "final" }, audience);
+                        trackStartTrial("final", "home", audience);
+                      }}
                       className="inline-flex items-center justify-center bg-white text-green-700 hover:bg-green-50 font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
                     >
                       {t("hero.primaryCta")}

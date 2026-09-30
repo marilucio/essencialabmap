@@ -4,10 +4,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { CheckCircle, Mail, Star, Clock, Award, Eye, Scan } from 'lucide-react';
 import Footer from '../components/Footer';
 
+// Pixel do Método CALMA / SOS Ansiedade (não é o do EssenciaLab). Vem do build;
+// o vite build falha se faltar. Sem ID (ex.: npm run dev), o pixel não inicia.
+const CALMA_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID_CALMA;
+
 function Obrigado() {
   useEffect(() => {
+    if (!CALMA_PIXEL_ID) {
+      console.warn('[Meta Pixel] VITE_META_PIXEL_ID_CALMA ausente; pixel não iniciado.');
+    }
+
     // --- carregar Pixel uma única vez ---
-    if (!document.querySelector('script[data-meta-pixel="1"]')) {
+    if (CALMA_PIXEL_ID && !document.querySelector('script[data-meta-pixel="1"]')) {
       (function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -28,10 +36,12 @@ function Obrigado() {
     }
 
     // fbq (shim) já existe aqui; as chamadas ficam em fila até o script carregar
-    // @ts-ignore
-    window.fbq('init', '1147561227476007');
-    // @ts-ignore
-    window.fbq('track', 'PageView');
+    if (CALMA_PIXEL_ID) {
+      // @ts-ignore
+      window.fbq('init', CALMA_PIXEL_ID);
+      // @ts-ignore
+      window.fbq('track', 'PageView');
+    }
 
     // --- GOOGLE (já estava ok) ---
     if (typeof window.gtag !== 'undefined') {
@@ -57,6 +67,7 @@ function Obrigado() {
 
     // --- PURCHASE seguro + deduplicação ---
     const firePurchaseOnce = () => {
+      if (!CALMA_PIXEL_ID) return;
       const qs = new URLSearchParams(window.location.search);
       const status = (qs.get('status') || '').toLowerCase();  // 'aprovado' | 'approved' | 'paid' | 'succeeded'
       const allowed = ['aprovado', 'approved', 'paid', 'succeeded'];

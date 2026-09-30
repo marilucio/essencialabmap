@@ -1,3 +1,5 @@
+import { sanitizeEventParams } from "@/lib/tracking";
+
 export type RenalProfile = "paciente" | "cuidador" | "profissional" | "outro";
 
 export type RenalUtm = {
@@ -219,11 +221,28 @@ export function buildPrefilledWhatsAppMessage(input: {
   return parts.join(" ");
 }
 
+// Nomes enviados ao Meta: sem referência à condição de saúde (item 6.5).
+// GA4/dataLayer mantêm os nomes originais.
+const META_EVENT_NAMES: Record<string, string> = {
+  view_renal_landing: "view_webinar_landing",
+  click_register_renal_webinar: "click_webinar_signup",
+  submit_renal_webinar_form: "webinar_signup",
+};
+
 export function track(eventName: string, params?: Record<string, unknown>) {
   const w = window as any;
+  // Só a lista fechada de lib/tracking sai para GA4/Meta: placement vira
+  // posicao e platform vira loja. profile, lead_id, page, tempos, motivo do
+  // feedback e dados do formulário ficam de fora (o perfil segue só no banco).
+  const platform = params?.platform;
+  const safeParams = sanitizeEventParams({
+    posicao: params?.placement,
+    loja: platform === "ios" ? "app_store" : platform === "android" ? "google_play" : undefined,
+  });
+
   try {
     if (Array.isArray(w.dataLayer)) {
-      w.dataLayer.push({ event: eventName, ...(params || {}) });
+      w.dataLayer.push({ event: eventName, ...safeParams });
     }
   } catch {
     return;
@@ -231,7 +250,7 @@ export function track(eventName: string, params?: Record<string, unknown>) {
 
   try {
     if (typeof w.gtag === "function") {
-      w.gtag("event", eventName, params || {});
+      w.gtag("event", eventName, safeParams);
     }
   } catch {
     return;
@@ -239,7 +258,7 @@ export function track(eventName: string, params?: Record<string, unknown>) {
 
   try {
     if (typeof w.fbq === "function") {
-      w.fbq("trackCustom", eventName, params || {});
+      w.fbq("trackCustom", META_EVENT_NAMES[eventName] ?? eventName, safeParams);
     }
   } catch {
     return;

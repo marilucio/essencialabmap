@@ -1,8 +1,11 @@
+import type { MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, CheckCircle, Lock, ArrowRight } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 import { trackPixel } from "../../../lib/whatsapp";
-import { buildTrialUrl, withPublico } from "../../../lib/audience";
+import { buildTrialUrl, refreshTrialHref, withPublico } from "../../../lib/audience";
+import { trackEvent } from "../../../lib/tracking";
+import { ViewPricingTracker } from "../../../components/ViewPricingTracker";
 import { trackStartTrial } from "../../map/tracking";
 
 type Plan = {
@@ -32,6 +35,7 @@ const PricingSection = () => {
 
   const handleFacialClick = () => {
     trackPixel("InitiateCheckout", { plan: "facial_monthly" });
+    trackEvent("click_cta", { posicao: "planos" }, audience);
     scrollToDownload();
   };
 
@@ -43,13 +47,16 @@ const PricingSection = () => {
   // celular) e o botão dele leva direto ao teste no app.
   const proFeatured = audience === "aroma" && pro !== null;
 
-  const handleProTrialClick = () => {
+  const handleProTrialClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    refreshTrialHref(e.currentTarget, "home", audience);
+    trackEvent("click_cta", { posicao: "planos" }, audience);
     trackStartTrial("planos", "home", audience);
   };
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 bg-gradient-to-r from-green-50 to-emerald-50">
       <div className="max-w-5xl mx-auto">
+        <ViewPricingTracker publico={audience} />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -201,6 +208,7 @@ const PricingSection = () => {
                     href={buildTrialUrl("home", audience)}
                     target="_blank"
                     rel="noopener"
+                    onPointerDown={(e) => refreshTrialHref(e.currentTarget, "home", audience)}
                     onClick={handleProTrialClick}
                     className="mt-6 w-full inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   >

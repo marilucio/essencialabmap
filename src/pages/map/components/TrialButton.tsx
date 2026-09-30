@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { TRIAL_URL, TRIAL_GUARANTEE } from "../constants";
 import { trackStartTrial } from "../tracking";
-import { buildTrialUrl, getStoredPublico } from "@/lib/audience";
+import { buildTrialUrl, getStoredPublico, refreshTrialHref } from "@/lib/audience";
+import { trackEvent } from "@/lib/tracking";
 
 type Props = {
   placement: string;
@@ -38,7 +39,12 @@ export function TrialButton({
         href={href}
         target="_blank"
         rel="noopener"
-        onClick={() => trackStartTrial(placement)}
+        onPointerDown={(e) => refreshTrialHref(e.currentTarget, "map", getStoredPublico())}
+        onClick={(e) => {
+          refreshTrialHref(e.currentTarget, "map", getStoredPublico());
+          trackEvent("click_cta", { posicao: placement === "pricing" ? "planos" : placement });
+          trackStartTrial(placement);
+        }}
         className={`${base} ${styles}`}
       >
         {label}
