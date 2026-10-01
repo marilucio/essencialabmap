@@ -55,7 +55,7 @@ function Obrigado() {
         currency: 'BRL',
         items: [
           {
-            item_id: 'protocolo-sos-ansiedade',
+            item_id: 'protocolo-sos',
             item_name: 'Protocolo SOS',
             quantity: 1,
             price: val,
