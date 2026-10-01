@@ -8,7 +8,6 @@ import path from "path"
 const REQUIRED_PIXEL_ENV = [
   'VITE_META_PIXEL_ID',
   'VITE_META_PIXEL_ID_MAP',
-  'VITE_META_PIXEL_ID_CALMA',
 ]
 
 function requireMetaPixelEnv() {
