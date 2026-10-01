@@ -2,7 +2,7 @@ const CTASection = () => {
   const handleCTAClick = () => {
   if (typeof window !== 'undefined' && typeof (window as any).fbq !== 'undefined') {
     (window as any).fbq('track', 'InitiateCheckout', {
-      content_name: 'Kit SOS Ansiedade',
+      content_name: 'Kit SOS',
       value: 44.00,  // Confirme que está 44, não 97
       currency: 'BRL'
     });

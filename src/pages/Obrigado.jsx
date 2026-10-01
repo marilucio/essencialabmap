@@ -56,8 +56,7 @@ function Obrigado() {
         items: [
           {
             item_id: 'protocolo-sos-ansiedade',
-            item_name: 'Protocolo SOS Ansiedade',
-            category: 'Saúde Mental',
+            item_name: 'Protocolo SOS',
             quantity: 1,
             price: val,
           },
