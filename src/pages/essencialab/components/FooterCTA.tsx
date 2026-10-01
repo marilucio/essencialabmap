@@ -158,6 +158,9 @@ const FooterCTA = () => {
                       {t("hero.primaryCta")}
                     </a>
                   )}
+                  {audience === "aroma" && typeof t("pricing.pro") === "object" && (
+                    <p className="text-sm text-white/90">{t("hero.trialRoleHint")}</p>
+                  )}
                   {/* Padrão: loja primária, WhatsApp secundário */}
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <AppStoreBadge onClick={handleAppStoreClick} />
@@ -180,7 +183,7 @@ const FooterCTA = () => {
                 </>
               )}
 
-              {/* Badge de 14 Dias Grátis */}
+              {/* Badge de 7 Dias Grátis */}
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 shadow-2xl inline-block">
                 <p className="text-white font-bold text-2xl mb-1">
                   {t('footer.freeTrialBadge')}

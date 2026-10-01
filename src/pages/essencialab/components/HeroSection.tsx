@@ -273,6 +273,7 @@ const HeroSection = () => {
                     {renderTrialCta(
                       "inline-flex items-center gap-2 text-green-700 font-semibold underline decoration-green-300 underline-offset-4 hover:text-green-800 transition-colors",
                     )}
+                    {trialHref && <p className="mt-1">{t("hero.trialRoleHint")}</p>}
                   </div>
                 </>
               ) : (
@@ -281,6 +282,9 @@ const HeroSection = () => {
                       como links de texto secundários */}
                   {renderTrialCta(
                     "inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300",
+                  )}
+                  {trialHref && (
+                    <p className="text-sm text-gray-600">{t("hero.trialRoleHint")}</p>
                   )}
                   <p className="text-sm text-gray-600">
                     {t("hero.storeLinksHint")}{" "}

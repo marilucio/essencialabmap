@@ -214,6 +214,9 @@ const PricingSection = () => {
                   >
                     {pro.button}
                   </a>
+                  <p className="text-xs text-gray-600 text-center mt-2">
+                    {t("hero.trialRoleHint")}
+                  </p>
                   <a
                     href={withPublico("/map", audience)}
                     onClick={handleProClick}
