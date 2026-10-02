@@ -540,7 +540,7 @@ export const translations = {
     },
     pricing: {
       badge: "🔥 Limited-time promotional price",
-      title: "Facial Analysis for $29/month",
+      title: "Facial Analysis for $9.99/month",
       description:
         "Wellington made 844 PV in one week using Facial Analysis. The tool he used costs less than $1 a day. A single closed kit pays for the whole year.",
       trialLine: "14 days free • No credit card • Cancel anytime",
@@ -550,10 +550,10 @@ export const translations = {
       facial: {
         badge: "Most popular",
         name: "Facial Analysis Plan",
-        price: "$29",
+        price: "$9.99",
         period: "/month",
-        annual: "or $290/year",
-        annualEquiv: "2 months free",
+        annual: "or $99.99/year",
+        annualEquiv: "= $8.33/month, 2 months free",
         features: [
           "Unlimited Facial Analysis",
           "Personalized wellness map",
@@ -561,8 +561,23 @@ export const translations = {
           "Client history in the app",
         ],
         lock:
-          "Price lock: subscribe now and keep $29 for as long as your subscription stays active, even after the promotion ends.",
+          "Price lock: subscribe now and keep $9.99 for as long as your subscription stays active, even after the promotion ends.",
         button: "Start your 14-day free trial",
+      },
+      pro: {
+        badge: "For client care",
+        name: "Professional Plan + MAP System",
+        price: "$29.99",
+        period: "/month",
+        annual: "or $299.99/year",
+        annualEquiv: "2 months free",
+        features: [
+          "Everything in the Facial Analysis Plan",
+          "MAP System: Personalized Assessment Method",
+          "Complete assessment to support your sessions",
+          "Ideal for therapists, naturopaths and iridologists",
+        ],
+        button: "Discover the MAP System",
       },
     },
     therapists: {
@@ -587,7 +602,7 @@ export const translations = {
             "Track client progress between sessions and strengthen the relationship with concrete data.",
         },
       ],
-      priceLine: "Professional Plan + MAP System",
+      priceLine: "Professional Plan + MAP System: $29.99/month or $299.99/year",
       button: "Discover the MAP System",
       disclaimer:
         "EssenciaLab is a wellness support tool and does not replace medical diagnosis, follow-up, or treatment.",
@@ -614,7 +629,7 @@ export const translations = {
         {
           question: "How much does it cost after the 14-day trial?",
           answer:
-            "The Facial Analysis Plan costs $29/month (or $290/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. No commitment: cancel anytime, no penalty. A single new client with one closed kit already pays for months of subscription.",
+            "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $29.99/month or $299.99/year. In both cases, no commitment: cancel anytime, no penalty. A single new client with one closed kit already pays for months of subscription.",
         },
         {
           question: "Which phones does EssenciaLab work on?",
@@ -652,17 +667,20 @@ export const translations = {
       contact: "Contact",
       lgpd: "LGPD",
     },
-    // Variante ?publico=aroma. Em inglês não há plano Profissional nem MAP
-    // na página: a âncora usa só o plano Análise Facial ($29 / 30 = $0,97/dia).
+    // Variante ?publico=aroma. Em inglês o plano Profissional + MAP também aparece
+    // (US$ 29,99/mês); a âncora diária usa os dois planos ($29,99 / 30 ≈ $1/dia e $9,99 / 30 ≈ $0,33/dia).
     aroma: {
       hero: {
         badge: "✨ For aromatherapists and integrative therapists",
         title:
           "Start every session with a wellness map and follow each client without losing the thread",
         subtitle:
-          "Facial analysis with your phone camera generates the map in seconds, and each client's history stays organized in the app. No spreadsheets, no notebooks.",
+          "Facial analysis with your phone camera generates the map in seconds. The MAP System organizes the assessment, keeps each client's history and reminds you of follow-ups. No spreadsheets, no notebooks.",
         socialProof:
           "Hundreds of wellness professionals already use EssenciaLab to open sessions and follow up with their clients.",
+        // Rótulo exatamente como o app mostra hoje no cadastro (SignUpForm/RoleSelectionModal).
+        trialRoleHint:
+          "At sign-up, choose 'Profissional de Saúde' (health professional) to access the MAP System.",
       },
       problem: {
         description:
@@ -703,8 +721,18 @@ export const translations = {
         },
       },
       pricing: {
+        title: "Choose the plan for your practice",
         description:
-          "Less than $1 a day to open every session with a personalized wellness map.",
+          "About $1 a day to organize all your sessions with the MAP System. If you'd rather start with facial analysis alone, the entry plan costs less than $0.35 a day.",
+        facial: {
+          badge: "Entry plan",
+        },
+        pro: {
+          badge: "Recommended for aromatherapists",
+          features: [null, null, null, "Ideal for aromatherapists and integrative therapists"],
+          button: "Start your 14-day free trial",
+          mapLink: "Discover the MAP System",
+        },
       },
       therapists: {
         title: "Do you see clients as an aromatherapist or therapist?",
@@ -721,7 +749,7 @@ export const translations = {
           null,
           {
             answer:
-              "The Facial Analysis Plan costs $29/month (or $290/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. No commitment: cancel anytime, no penalty.",
+              "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $29.99/month or $299.99/year. In both cases, no commitment: cancel anytime, no penalty.",
           },
           null,
           {

@@ -157,7 +157,7 @@ const HeroSection = () => {
 
   // Variante aroma (idiomas com plano Profissional): o CTA de teste leva ao
   // teste no app, pelo mesmo caminho do TrialButton do /map. Nos demais casos
-  // (doterra, ou inglês sem plano Profissional), rola até a área de download.
+  // (doterra, ou idioma sem plano Profissional), rola até a área de download.
   const trialHref =
     audience === "aroma" && typeof t("pricing.pro") === "object"
       ? buildTrialUrl("home", audience)

@@ -29,7 +29,8 @@ const PricingSection = () => {
   const { t, audience } = useLanguage();
 
   const facial = t("pricing.facial") as Plan;
-  // O plano profissional é opcional por idioma (ex.: EN ainda não tem preço em USD).
+  // O plano profissional é opcional por idioma: se a chave pricing.pro não existir
+  // no idioma, só o plano Análise Facial é exibido.
   const proRaw = t("pricing.pro");
   const pro: Plan | null = typeof proRaw === "object" ? (proRaw as Plan) : null;
 
