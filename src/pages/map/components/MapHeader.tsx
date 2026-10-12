@@ -1,5 +1,5 @@
 import { useEffect, useState, type MouseEvent } from "react";
-import { Leaf } from "lucide-react";
+import { BrandLockup } from "./BrandLockup";
 import { TRIAL_URL } from "../constants";
 import { trackStartTrial } from "../tracking";
 import { buildTrialUrl, getStoredPublico, refreshTrialHref } from "@/lib/audience";
@@ -12,7 +12,6 @@ const anchors = [
   { href: "#caso", label: "Um caso" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#o-que-nao-faz", label: "O que não faz" },
-  { href: "#perfil-hormonal", label: "Perfil Hormonal" },
   { href: "#jornadas-guiadas", label: "Jornadas Guiadas" },
   { href: "#preco", label: "Preço" },
   { href: "#faq", label: "Perguntas" },
@@ -34,14 +33,9 @@ export function MapHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 shadow-sm backdrop-blur-sm">
-      <div className="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <div className="map-header-layout container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <a href="#topo" onClick={(e) => scrollTo(e, "#topo")} className="flex items-center gap-2" aria-label="EssenciaLab MAP, voltar ao topo">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-r from-green-600 to-emerald-600">
-            <Leaf className="h-5 w-5 text-white" aria-hidden="true" />
-          </span>
-          <span className="text-xl font-bold text-slate-900">
-            EssenciaLab <span className="text-green-700">MAP</span>
-          </span>
+          <BrandLockup map />
         </a>
 
         <nav aria-label="Seções desta página" className="hidden items-center gap-5 lg:flex">
@@ -67,7 +61,7 @@ export function MapHeader() {
             trackEvent("click_cta", { posicao: "header" });
             trackStartTrial("header");
           }}
-          className="shrink-0 rounded-full bg-green-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400"
+          className="map-header-trial shrink-0 rounded-full bg-green-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400"
         >
           Testar 14 dias grátis
         </a>

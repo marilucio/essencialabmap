@@ -113,7 +113,7 @@ export const caseStudy = {
       image: {
         src: "/images/map/caso/03-organizar-o-caso.webp",
         srcSet: "/images/map/caso/03-organizar-o-caso-700.webp 700w, /images/map/caso/03-organizar-o-caso.webp 1400w",
-        alt: "Aba Raciocínio do mesmo caso: assinatura do caso em texto, com os principais pontos identificados e o objetivo terapêutico principal, e ao lado a visão integrada dos sistemas, com oito sistemas analisados a partir de questionários, exames, análise facial, perfil hormonal e histórico",
+        alt: "Aba Raciocínio do mesmo caso: assinatura do caso em texto, com os principais pontos identificados e o objetivo terapêutico principal, e ao lado a visão integrada dos sistemas, com oito sistemas analisados a partir de questionários, exames, análise facial e histórico",
         width: 1400,
         height: 875,
       } as Screenshot,
@@ -202,20 +202,6 @@ export const notDo = {
     "Isso é o que permite usar o registro do MAP numa conversa com o médico dela: você afirma o que as fontes sustentam, e nada além.",
 };
 
-export const hormonal = {
-  title: "Para quem acompanha mulheres entre 40 e 55 anos",
-  text: "O Perfil Hormonal tem instrumento próprio de 45 itens em cinco blocos, apurado pelo profissional, com síntese escrita por você (o sistema não preenche a hipótese), seis sentinelas de segurança para revisar antes de orientar, diário de 30 dias configurável e comparação entre aplicações.",
-  notice:
-    "Os pontos de corte do instrumento são convenção operacional declarada, sem validação psicométrica. Ele orienta hipótese; não confirma nem estabelece diagnóstico.",
-  image: {
-    src: "/images/map/perfil-hormonal.webp",
-    srcSet: "/images/map/perfil-hormonal-700.webp 700w, /images/map/perfil-hormonal.webp 1400w",
-    alt: "Aba Perfil Hormonal do MAP com o Instrumento dos Cinco Padrões apurado: dados da aplicação (datas de envio, resposta e apuração, período de referência de 30 dias, autoria e regra da apuração), os blocos A a E incluídos na apuração com botão de reapurar, e a tabela dos cinco subtotais com padrão, subtotal, âncora média e classificação da faixa",
-    width: 1400,
-    height: 989,
-  } as Screenshot,
-};
-
 export const author = {
   title: "Feito por quem atende",
   name: "Marilúcio Rocha",
@@ -269,7 +255,6 @@ export const pricing = {
     "Teia Funcional de 12 sistemas",
     "Exames com extração e cálculos",
     "Raciocínio com decisão registrada",
-    "Perfil Hormonal",
     "Delta e relatórios em PDF",
     "Jornadas Guiadas Personalizadas (em piloto)",
     "Treinamento em vídeo na área de membros",

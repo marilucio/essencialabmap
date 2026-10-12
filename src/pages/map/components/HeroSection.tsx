@@ -16,7 +16,7 @@ function scrollToCase(e: MouseEvent<HTMLAnchorElement>) {
 
 export function HeroSection() {
   return (
-    <section className="bg-gradient-to-b from-green-50 to-white px-4 py-16 md:py-24">
+    <section className="map-hero bg-white px-4 py-16 md:py-24">
       <div className="container mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <div className="space-y-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-green-800">

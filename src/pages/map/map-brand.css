@@ -1,0 +1,158 @@
+/* Fontes locais e nomes exclusivos: não mudam a tipografia da raiz. */
+@font-face {
+  font-family: "Map Manrope";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/map/manrope-300-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Map Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/map/manrope-600-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Map Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/map/inter-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Map Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/map/inter-500-latin.woff2") format("woff2");
+}
+
+.map-brand {
+  --map-green: #08c16a;
+  --map-deep-green: #064e3b;
+  --map-mint: #a7f3d0;
+  --map-soft-green: #e9f9ef;
+  --map-neutral: #0f172a;
+  --map-heading-font: "Map Manrope", sans-serif;
+  --map-body-font: "Map Inter", sans-serif;
+
+  /* Remapeamento só nos descendentes do /map, sem tocar em :root. */
+  --color-green-50: var(--map-soft-green);
+  --color-green-100: var(--map-mint);
+  --color-green-200: var(--map-mint);
+  --color-green-300: var(--map-mint);
+  --color-green-400: var(--map-green);
+  --color-green-500: var(--map-green);
+  --color-green-600: var(--map-green);
+  --color-green-700: var(--map-deep-green);
+  --color-green-800: var(--map-deep-green);
+  --color-green-900: var(--map-deep-green);
+  --color-slate-50: var(--map-soft-green);
+  --color-slate-100: var(--map-soft-green);
+  --color-slate-200: var(--map-mint);
+  --color-slate-300: var(--map-mint);
+  --color-slate-400: var(--map-neutral);
+  --color-slate-500: var(--map-neutral);
+  --color-slate-600: var(--map-neutral);
+  --color-slate-700: var(--map-neutral);
+  --color-slate-800: var(--map-neutral);
+  --color-slate-900: var(--map-neutral);
+  --color-gray-200: var(--map-mint);
+  --color-gray-400: var(--map-mint);
+  --color-gray-800: var(--map-deep-green);
+  --color-gray-900: var(--map-neutral);
+  --border: var(--map-mint);
+  --ring: var(--map-deep-green);
+  color: var(--map-neutral);
+  font-family: var(--map-body-font);
+  font-weight: 400;
+  font-synthesis: none;
+}
+
+.map-brand :where(.font-semibold, .font-bold, strong, b) {
+  font-weight: 500;
+}
+.map-brand :is(h1, h2, h3, h4) {
+  font-family: var(--map-heading-font);
+  font-weight: 600;
+}
+.map-brand .map-hero {
+  background: white;
+}
+.map-brand .map-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  color: var(--map-neutral);
+}
+.map-brand .map-lockup picture {
+  display: block;
+  flex-shrink: 0;
+}
+.map-brand .map-lockup img {
+  display: block;
+  width: auto;
+  height: auto;
+}
+.map-brand .map-lockup-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.map-brand .map-wordmark {
+  font-family: var(--map-heading-font);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.map-brand .map-wordmark-essencia { font-weight: 600; }
+.map-brand .map-wordmark-lab { font-weight: 300; }
+.map-brand .map-brand-label {
+  color: var(--map-deep-green);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.map-brand .map-brand-footer .map-lockup { color: white; }
+.map-brand .map-brand-footer .text-green-400 { color: var(--map-mint); }
+
+/* Verde de destaque em gráficos; texto corrido usa as combinações AA. */
+.map-brand .text-green-600:not(svg) { color: var(--map-deep-green); }
+.map-brand :is(header a, .map-trial) {
+  min-height: 2.75rem;
+}
+.map-brand :is(header a, main a, main button):focus-visible {
+  outline: 2px solid var(--map-deep-green);
+  outline-offset: 4px;
+}
+.map-brand :is(#jornadas-guiadas, .map-final-cta) :is(a, button):focus-visible {
+  outline-color: var(--map-mint);
+}
+.map-brand .map-trial-light {
+  background: var(--map-mint);
+  color: var(--map-neutral);
+}
+.map-brand .map-trial-light:hover { background: var(--map-soft-green); }
+.map-brand :is(.map-trial-dark, .map-header-trial):hover {
+  background: var(--map-neutral);
+}
+.map-brand #jornadas-guiadas [class~="bg-green-800/60"] {
+  background: color-mix(in srgb, var(--map-mint) 9%, var(--map-deep-green));
+}
+.map-brand #jornadas-guiadas :is(.border-green-700, .ring-green-700) {
+  border-color: var(--map-green);
+  --tw-ring-color: var(--map-green);
+}
+.map-brand header nav { gap: 0.75rem; }
+.map-brand header nav a { display: inline-flex; align-items: center; font-size: 0.75rem; }
+
+@media (max-width: 639px) {
+  .map-brand .map-header-layout { gap: 0.5rem; }
+  .map-brand header .map-lockup { gap: 0.375rem; }
+  .map-brand header .map-lockup img { width: 2rem; height: 2rem; }
+  .map-brand header .map-lockup-copy { flex-direction: column; align-items: flex-start; gap: 0; }
+  .map-brand header .map-wordmark { font-size: 1rem; }
+  .map-brand header .map-brand-label { font-size: 0.625rem; }
+  .map-brand .map-header-trial { padding-inline: 0.625rem; font-size: 0.75rem; }
+}

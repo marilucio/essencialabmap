@@ -23,15 +23,15 @@ export function TrialButton({
   tone = "dark",
 }: Props) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-semibold transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2";
+    "map-trial inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-semibold transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2";
   // O HTML do /map é pré-renderizado sem window: começa com o TRIAL_URL puro e,
   // no navegador, acrescenta publico (quando conhecido) e pagina=map.
   const [href, setHref] = useState(TRIAL_URL);
   useEffect(() => setHref(buildTrialUrl("map", getStoredPublico())), []);
   const styles =
     tone === "dark"
-      ? "bg-green-700 text-white hover:bg-green-800 focus-visible:ring-green-400 focus-visible:ring-offset-white"
-      : "bg-white text-green-800 hover:bg-green-50 focus-visible:ring-white focus-visible:ring-offset-green-800";
+      ? "map-trial-dark bg-green-700 text-white hover:bg-green-800 focus-visible:ring-green-400 focus-visible:ring-offset-white"
+      : "map-trial-light bg-white text-green-800 hover:bg-green-50 focus-visible:ring-white focus-visible:ring-offset-green-800";
 
   return (
     <div className={`flex flex-col items-start gap-3 ${className}`}>

@@ -6,7 +6,7 @@ import { TrialButton } from "./TrialButton";
 
 export function FinalCTASection() {
   return (
-    <section className="bg-green-800 px-4 py-16 text-white md:py-24">
+    <section className="map-final-cta bg-green-800 px-4 py-16 text-white md:py-24">
       <div className="container mx-auto flex max-w-3xl flex-col items-center text-center">
         <h2 className="text-3xl font-bold leading-tight md:text-4xl">{finalCta.title}</h2>
         <TrialButton

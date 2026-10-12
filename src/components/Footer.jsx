@@ -1,6 +1,7 @@
 import { Leaf, Mail, MapPin, Phone } from 'lucide-react'
+import { BrandLockup } from '@/pages/map/components/BrandLockup'
 
-export default function Footer({ language = 'pt', legalNotice }) {
+export default function Footer({ language = 'pt', legalNotice, variant = 'default' }) {
   const content = {
     pt: {
       about: 'Sobre',
@@ -79,16 +80,20 @@ export default function Footer({ language = 'pt', legalNotice }) {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className={variant === 'map' ? "map-brand-footer bg-gray-900 text-white py-12" : "bg-gray-900 text-white py-12"}>
       <div className="container mx-auto max-w-6xl px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold">EssenciaLab</span>
+              {variant === 'map' ? <BrandLockup /> : (
+                <>
+                  <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
+                    <Leaf className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xl font-bold">EssenciaLab</span>
+                </>
+              )}
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               {t.aboutText}
@@ -169,10 +174,10 @@ export default function Footer({ language = 'pt', legalNotice }) {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              {t.copyright}
+              {variant === 'map' ? t.copyright.replace('© 2025', '© 2026') : t.copyright}
             </p>
             <p className="text-sm text-green-400 italic">
-              💚 {t.tagline}
+              {variant === 'map' ? '' : '💚 '}{t.tagline}
             </p>
           </div>
         </div>

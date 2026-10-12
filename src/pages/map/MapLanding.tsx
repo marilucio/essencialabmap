@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "./map-brand.css";
 import { MapHeader } from "./components/MapHeader";
 import { captureAttribution, setTrackingLanguage } from "@/lib/attribution";
 import { getStoredPublico } from "@/lib/audience";
@@ -10,7 +11,6 @@ import { SecondConsultSection } from "./components/SecondConsultSection";
 import { CaseSection } from "./components/CaseSection";
 import { FlowSection } from "./components/FlowSection";
 import { NotDoSection } from "./components/NotDoSection";
-import { HormonalSection } from "./components/HormonalSection";
 import { GuidedSessionsSection } from "./components/GuidedSessionsSection";
 import { AuthorSection } from "./components/AuthorSection";
 import { DataSecuritySection } from "./components/DataSecuritySection";
@@ -32,7 +32,7 @@ export default function MapLanding({ language = "pt" }: Props) {
   }, [language]);
 
   return (
-    <div id="topo" className="min-h-screen bg-white text-slate-900">
+    <div id="topo" className="map-brand min-h-screen bg-white text-slate-900">
       <MapHeader />
       <main>
         <HeroSection />
@@ -40,7 +40,6 @@ export default function MapLanding({ language = "pt" }: Props) {
         <CaseSection />
         <FlowSection />
         <NotDoSection />
-        <HormonalSection />
         <GuidedSessionsSection />
         <AuthorSection />
         <DataSecuritySection />
@@ -49,7 +48,7 @@ export default function MapLanding({ language = "pt" }: Props) {
         <FAQSection />
         <FinalCTASection />
       </main>
-      <Footer language={language} legalNotice={legalNotice} />
+      <Footer language={language} legalNotice={legalNotice} variant="map" />
     </div>
   );
 }
