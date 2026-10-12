@@ -28,7 +28,7 @@ O arquivo `src/assets/essencialab-logo.svg` continua com **0 bytes**: não foi u
 
 ## Validação
 
-- Build: `npm run build` concluído com código 0, incluindo pré-renderização. IDs públicos de Pixel obtidos do HTML de produção: raiz `1289139885831063`, MAP `771427395699967`. O ambiente local não tinha VITE_META_PIXEL_ID_MAP; os IDs foram passados só ao processo de build, sem editar arquivos de ambiente nem configuração do Netlify.
+- Build: `npm run build` concluído com código 0, incluindo pré-renderização. IDs públicos de Pixel obtidos do HTML de produção e passados às variáveis `VITE_META_PIXEL_ID` (raiz) e `VITE_META_PIXEL_ID_MAP` (MAP). O ambiente local não tinha VITE_META_PIXEL_ID_MAP; os IDs foram passados só ao processo de build, sem editar arquivos de ambiente nem configuração do Netlify.
 - Permanecem os avisos prévios de tamanho de bundle, depreciação do Node 26 e placeholder `VITE_…` num comentário de `index.html`. Nenhum erro de build.
 - ESLint dos arquivos alterados e `git diff --check` passaram.
 - Chromium/Chrome headless: 360, 768 e 1440px em PT, EN e ES. Sem overflow novo ou imagem quebrada.
@@ -79,8 +79,8 @@ As 114 capturas acima registram o primeiro preview, incluindo a seção posterio
 
 ## Git e publicação
 
-O primeiro deploy foi um rascunho CLI para revisão. Depois de revisar o preview, o usuário autorizou a remoção do Perfil Hormonal, commit, integração na main, push e exclusão da branch de trabalho. O push na main aciona o fluxo de deploy do Netlify. A produção anterior estava no deploy `6ac03ce76a62950009ed7adc`, commit `500fbe3144bf6a3d9caac2fa9caf986559a2a74b`.
+O primeiro deploy foi um rascunho CLI para revisão. Depois de revisar o preview, o usuário autorizou a remoção do Perfil Hormonal, commit, integração na main, push e exclusão da branch de trabalho. O push na main aciona o fluxo de deploy do Netlify. A primeira tentativa foi bloqueada pela varredura de segredos, pois o ID público do Pixel MAP está marcado como segredo no Netlify e aparecia literalmente neste relatório. Os IDs numéricos foram retirados do documento versionado; os valores usados pelo Pixel e a configuração do Netlify permanecem iguais. A produção anterior estava no deploy `6ac03ce76a62950009ed7adc`, commit `500fbe3144bf6a3d9caac2fa9caf986559a2a74b`.
 
 Itens locais anteriores preservados: `docs/prompt-claude-code-lp-essencialab.md` e `essencialabmap/`. Capturas ficam em diretório ignorado pelo Git; não entram no diff de código. O repositório essencialabnew não foi acessado.
 
-Para validar novamente: definir os IDs públicos acima no ambiente do processo, executar `npm run build` e servir `dist` respeitando `/map → /map.html`; revisar `/map`, `/map?lang=en`, `/map?lang=es` e `/` em 360, 768 e 1440px.
+Para validar novamente: definir os IDs públicos vigentes de produção no ambiente do processo, executar `npm run build` e servir `dist` respeitando `/map → /map.html`; revisar `/map`, `/map?lang=en`, `/map?lang=es` e `/` em 360, 768 e 1440px.
