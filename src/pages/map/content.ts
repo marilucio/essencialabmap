@@ -1,5 +1,6 @@
-// Copy da landing /map (somente português). Fonte: prompt-reescrita-pagina-map.md.
-// Itens marcados com [CONFIRMAR] nos comentários dependem de validação do Marilúcio.
+// Copy da landing /map (somente português), revisada em 12/10/2026.
+// História de uso fornecida pelo criador: cerca de 12 meses de uso exclusivo
+// nos próprios atendimentos. Essa experiência não é validação clínica ou comercial.
 
 export type Screenshot = {
   src: string;
@@ -13,62 +14,61 @@ export const hero = {
   eyebrow:
     "Para nutricionistas, naturopatas e terapeutas integrativos que acompanham pacientes",
   title:
-    "Ela responde antes da consulta. Você chega sabendo o que já existe e o que ainda falta.",
+    "Chegue à consulta com o caso organizado. No retorno, enxergue o que mudou.",
   subtitle:
-    "O EssenciaLab MAP organiza relatos, exames e hipóteses de cada caso e registra a sua decisão, para que no retorno você compare, em vez de recomeçar.",
+    "Reúna relatos, sintomas, exames e histórico no EssenciaLab MAP. Prepare o atendimento, esclareça o que precisa ser investigado e acompanhe cada paciente com as informações do caso no mesmo lugar.",
+  proof:
+    "Criado por Marilúcio Rocha e usado há cerca de 12 meses, de forma exclusiva, nos seus próprios atendimentos.",
   ctaPrimary: "Começar o teste de 14 dias",
-  ctaSecondary: "Ver um caso conduzido no MAP",
+  ctaSecondary: "Conhecer o fluxo de um atendimento",
   videoTitle: "Apresentação do EssenciaLab MAP",
 };
 
 export const secondConsult = {
-  title: "Você já sabe o que fazer. O que trava é o que vem antes e em volta.",
+  title: "O paciente muda entre as consultas. Você precisa conseguir acompanhar.",
   intro:
-    "A primeira consulta costuma correr bem. O problema aparece no retorno, quando ela diz “melhorei um pouco” e você olha para o plano sem saber qual parte funcionou.",
-  // As telas que respondem a cada dúvida aparecem na seção "Um caso conduzido no MAP" (caseStudy).
+    "Relatos no WhatsApp, exames em arquivos separados e anotações do atendimento anterior. Quando o paciente volta, reunir tudo de novo ocupa o tempo que você queria dedicar à conversa. O MAP organiza essas informações para você preparar, conduzir e revisar o acompanhamento.",
   doubts: [
     {
-      question: "Ela relata muita coisa ao mesmo tempo. Por onde começo?",
-      screen: "Resumo e Teia Funcional",
+      question: "Como conhecer a queixa antes de começar a consulta?",
+      screen: "Respostas",
       answer:
-        "As respostas agrupadas em 12 sistemas, com cobertura de cada um e a origem de cada valor.",
+        "Você envia o questionário por link. O paciente registra sintomas, hábitos, medicamentos e contexto, e você consulta as respostas antes do encontro.",
     },
     {
-      question:
-        "Ela trouxe três laudos de datas diferentes. O que dá para calcular e o que não dá?",
-      screen: "Exames",
+      question: "Como consultar os exames junto com o que o paciente relata?",
+      screen: "Exames e Teia Funcional",
       answer:
-        "Extração por documento, cálculos com estado explícito (calculado, dados faltantes, não elegível) e contexto conferido antes de calcular.",
+        "Reúna os laudos disponíveis e confira valores, unidades e referências. A Teia organiza os relatos em 12 sistemas para ajudar na leitura do caso.",
     },
     {
-      question:
-        "Duas hipóteses se sustentam igual. Como registro sem escolher no chute?",
-      screen: "Raciocínio",
+      question: "O que ainda preciso esclarecer durante o atendimento?",
+      screen: "Pontos de atenção e perguntas investigativas",
       answer:
-        "Para cada linha, o que sustenta, o que não se encaixa, o que falta, e a sua decisão registrada.",
+        "O MAP destaca informações do caso e sugere perguntas. Você confere as fontes, conversa com o paciente e registra suas observações nas anotações.",
     },
     {
-      question: "Trinta dias depois, “um pouco melhor”. O que mudou de fato?",
-      screen: "Delta MAP e Relatório de Evolução",
+      question: "Como sair do “melhorei um pouco” para uma conversa mais concreta?",
+      screen: "Resumo, Evolução e relatório em PDF",
       answer:
-        "T0 e retorno lado a lado, com o que não tem comparação marcado como ausente, não como zero.",
+        "Compare avaliações respondidas, mudanças nos relatos e exames compatíveis. Veja também o que o paciente informou sobre o plano anterior e suas dificuldades para segui-lo.",
     },
   ],
   closing:
-    "Nenhuma dessas respostas vem do sistema. Vêm de você, com as fontes organizadas na frente.",
+    "Informações organizadas para uma conversa mais focada, do primeiro atendimento ao retorno.",
 };
 
 // Seção "Um caso conduzido no MAP": a demonstração visual principal da página.
-// Caso fictício provisório. Datas, exames, hipóteses, evidências e lacunas serão
-// definidos depois da análise dos prints reais; por enquanto os textos são gerais.
+// Caso ilustrativo existente. Algumas imagens representam interfaces anteriores;
+// o texto descreve etapas de uso, sem prometer os controles dessas versões.
 // Cada etapa aceita `image?: Screenshot` (sem imagem, o componente mostra um placeholder 16:10).
 // Prints em public/images/map/caso/: 0N-<slug>.webp (1400×875) e 0N-<slug>-700.webp (700×438),
 // gerados a partir das capturas fornecidas em 2026-09-15 (caso fictício L. M., 47 anos).
 export const caseStudy = {
   eyebrow: "Caso ilustrativo",
-  title: "Do relato inicial ao retorno: um caso conduzido no MAP",
+  title: "Antes, durante e depois: acompanhe o fluxo de um caso",
   subtitle:
-    "Exemplo ilustrativo baseado em um fluxo real do EssenciaLab. Nome, idade, datas e valores foram alterados para preservar a privacidade. A lógica das telas é a do produto.",
+    "Este exemplo ilustra as etapas de um atendimento. Os dados foram alterados para preservar a privacidade. Algumas telas mostram versões anteriores da interface; no teste você conhece a organização atual do MAP.",
   patient: {
     label: "Paciente",
     name: "L. M., 47 anos",
@@ -79,8 +79,8 @@ export const caseStudy = {
     {
       slug: "antes-da-consulta",
       moment: "Antes da consulta",
-      title: "Ela responde no celular, antes de chegar",
-      text: "Por link, com consentimento para dados de saúde. Sintomas, contexto e questionários entram no caso antes do primeiro encontro.",
+      title: "O paciente responde antes da consulta",
+      text: "Você compartilha o link do questionário. Com consentimento para os dados de saúde, o paciente registra sua queixa, os sintomas e o contexto. As respostas ficam disponíveis para você preparar o encontro.",
       screen: "Respostas",
       image: {
         src: "/images/map/caso/01-antes-da-consulta.webp",
@@ -93,8 +93,8 @@ export const caseStudy = {
     {
       slug: "reunir-o-que-existe",
       moment: "Na consulta",
-      title: "Você reúne o que já existe",
-      text: "Os laudos que ela já tem entram por upload. O MAP lista o que já existe no caso e o que ainda falta, antes de qualquer interpretação.",
+      title: "Você confere os exames disponíveis",
+      text: "Anexe os laudos que o paciente já tem e confira a extração. Valores, unidades e referências podem ser consultados junto com as demais informações do atendimento.",
       screen: "Exames",
       image: {
         src: "/images/map/caso/02-reunir-o-que-existe.webp",
@@ -107,13 +107,13 @@ export const caseStudy = {
     {
       slug: "organizar-o-caso",
       moment: "Na consulta",
-      title: "O MAP organiza o caso",
-      text: "Respostas e exames viram uma leitura só: os sistemas analisados, com a fonte de cada dado, e uma assinatura do caso com a queixa principal e os pontos identificados.",
-      screen: "Raciocínio",
+      title: "Você conecta as informações à queixa principal",
+      text: "A Teia agrupa os relatos, e a leitura do caso reúne pontos de atenção para revisão. Você cruza essas informações com os exames e com o que esclarece na conversa.",
+      screen: "Leitura ilustrativa",
       image: {
         src: "/images/map/caso/03-organizar-o-caso.webp",
         srcSet: "/images/map/caso/03-organizar-o-caso-700.webp 700w, /images/map/caso/03-organizar-o-caso.webp 1400w",
-        alt: "Aba Raciocínio do mesmo caso: assinatura do caso em texto, com os principais pontos identificados e o objetivo terapêutico principal, e ao lado a visão integrada dos sistemas, com oito sistemas analisados a partir de questionários, exames, análise facial e histórico",
+        alt: "Interface ilustrativa anterior: aba Raciocínio do mesmo caso: assinatura do caso em texto, com os principais pontos identificados e o objetivo terapêutico principal, e ao lado a visão integrada dos sistemas, com oito sistemas analisados a partir de questionários, exames, análise facial e histórico",
         width: 1400,
         height: 875,
       } as Screenshot,
@@ -121,13 +121,13 @@ export const caseStudy = {
     {
       slug: "sustenta-e-falta",
       moment: "Na investigação",
-      title: "Você enxerga o que sustenta e o que falta",
-      text: "Para cada hipótese: o que sustenta, o que não se encaixa e qual dado falta. Sistema sem resposta aparece como não avaliado, não como normal.",
-      screen: "Raciocínio",
+      title: "Você esclarece o que ainda falta saber",
+      text: "Perguntas investigativas ajudam a direcionar a conversa. Uma informação ausente continua sendo uma lacuna: você decide o que precisa confirmar e quais próximos passos cabem ao atendimento.",
+      screen: "Leitura ilustrativa",
       image: {
         src: "/images/map/caso/04-sustenta-e-falta.webp",
         srcSet: "/images/map/caso/04-sustenta-e-falta-700.webp 700w, /images/map/caso/04-sustenta-e-falta.webp 1400w",
-        alt: "Hipótese em análise na aba Raciocínio, com selo automático de força moderada e três colunas: o que sustenta (quatro itens do relato), o que não se encaixa (sem dados conflitantes até o momento) e ainda falta saber (função renal, marcadores inflamatórios, exames de fezes e progesterona, não informados nesta avaliação)",
+        alt: "Interface ilustrativa anterior: hipótese em análise na aba Raciocínio, com selo automático de força moderada e três colunas: o que sustenta (quatro itens do relato), o que não se encaixa (sem dados conflitantes até o momento) e ainda falta saber (função renal, marcadores inflamatórios, exames de fezes e progesterona, não informados nesta avaliação)",
         width: 1400,
         height: 875,
       } as Screenshot,
@@ -135,13 +135,13 @@ export const caseStudy = {
     {
       slug: "decisao-registrada",
       moment: "Na decisão",
-      title: "A decisão fica registrada, e é sua",
-      text: "Você marca a sua posição sobre cada hipótese: priorizar, segundo plano, aguardar dado ou encerrar. O selo de força de evidência fica ao lado, separado da sua decisão.",
-      screen: "Raciocínio",
+      title: "Você define e revisa o plano",
+      text: "Suas observações ficam nas anotações. O protocolo é um rascunho editável: você confere as propostas, ajusta o conteúdo e define o que faz sentido compartilhar com o paciente.",
+      screen: "Leitura ilustrativa",
       image: {
         src: "/images/map/caso/05-decisao-registrada.webp",
         srcSet: "/images/map/caso/05-decisao-registrada-700.webp 700w, /images/map/caso/05-decisao-registrada.webp 1400w",
-        alt: "Lista de seis hipóteses de trabalho ordenadas por força automática e, à direita, a primeira hipótese aberta com o campo Decisão do profissional marcado como Aguardar dado, a indicação de que a hipótese permanece aberta e ainda não orienta o protocolo, e a confirmação de decisão registrada nesta consulta",
+        alt: "Interface ilustrativa anterior: lista de seis hipóteses de trabalho ordenadas por força automática e, à direita, a primeira hipótese aberta com o campo Decisão do profissional marcado como Aguardar dado, a indicação de que a hipótese permanece aberta e ainda não orienta o protocolo, e a confirmação de decisão registrada nesta consulta",
         width: 1400,
         height: 875,
       } as Screenshot,
@@ -149,8 +149,8 @@ export const caseStudy = {
     {
       slug: "comparar-no-retorno",
       moment: "No retorno",
-      title: "Trinta dias depois, você compara em vez de recomeçar",
-      text: "Nova avaliação vinculada ao mesmo caso. O Delta mostra o que se moveu, o que precisa confirmar e o que não tem comparação.",
+      title: "No retorno, você compara o que foi registrado",
+      text: "Uma nova avaliação permite revisar a evolução dos relatos e os exames comparáveis. O histórico ajuda a conversar sobre mudanças e dificuldades, sem atribuir automaticamente um resultado ao plano.",
       screen: "Delta MAP",
       image: {
         src: "/images/map/caso/06-comparar-no-retorno.webp",
@@ -163,150 +163,169 @@ export const caseStudy = {
   ],
   placeholderNote: "Tela em preparação",
   credibility: [
-    "O MAP organiza o raciocínio. A decisão continua sendo sua.",
+    "O MAP organiza as informações. Você conduz o atendimento.",
     "Ausência de dado aparece como lacuna, nunca como normalidade.",
-    "O sistema apoia investigação e acompanhamento. Não substitui o julgamento profissional.",
+    "Sugestões e rascunhos precisam da sua revisão antes de orientar o paciente.",
   ],
-  closing: "Agora pense no próximo paciente da sua agenda.",
-  cta: "Analisar meu primeiro caso",
+  closing: "Veja como esse fluxo se encaixa na sua própria rotina.",
+  cta: "Testar no meu próximo atendimento",
 };
 
 export const flow = {
-  title: "Como funciona em um atendimento",
+  title: "Um fluxo que acompanha a rotina do consultório",
   intro:
-    "Seis momentos, sempre na mesma ordem. A demonstração acima mostra cada um deles na tela.",
-  strip: ["Preparar", "Avaliar", "Investigar", "Decidir", "Orientar", "Acompanhar"],
+    "Antes, você prepara. Durante, confere e esclarece. No retorno, compara e ajusta. O MAP reúne as informações que apoiam cada um desses momentos.",
+  strip: ["Preparar a consulta", "Conduzir o atendimento", "Acompanhar os retornos"],
 };
 
 export const notDo = {
-  title: "O que o MAP não faz, e por que isso importa",
+  title: "A tecnologia apoia. A responsabilidade profissional continua com você.",
   items: [
     {
-      lead: "Não diagnostica.",
-      text: "Um valor alto na Teia é contribuição de respostas, não medida de órgão.",
+      lead: "A Teia organiza relatos.",
+      text: "Os 12 sistemas ajudam a visualizar o que o paciente informou. Um valor alto não confirma doença nem mede a função de um órgão.",
     },
     {
-      lead: "Não decide por você.",
-      text: "Toda hipótese tem um selo automático de força de evidência e, separado dele, a sua decisão registrada. A sua prevalece.",
+      lead: "A IA sugere; você revisa.",
+      text: "Pontos de atenção, perguntas e propostas de protocolo são apoio ao atendimento. Você confere, edita e decide o que é adequado ao caso.",
     },
     {
-      lead: "Não transforma ausência em normalidade.",
-      text: "Sistema sem resposta aparece como não avaliado. Exame não enviado aparece como lacuna.",
+      lead: "O que falta continua visível.",
+      text: "Ausência de resposta ou exame não significa normalidade. Dados extraídos de laudos precisam ser conferidos antes da interpretação.",
     },
     {
-      lead: "Não amplia o seu escopo.",
-      text: "O que você pode solicitar, interpretar e orientar depende da sua habilitação e do seu conselho. O MAP trabalha com o que a paciente já trouxe.",
+      lead: "Sua habilitação define sua atuação.",
+      text: "Solicitação de exames, interpretação e orientação dependem da formação e do escopo de cada profissional. O uso do MAP não amplia essas atribuições.",
     },
   ],
   closing:
-    "Isso é o que permite usar o registro do MAP numa conversa com o médico dela: você afirma o que as fontes sustentam, e nada além.",
+    "Você mantém o julgamento profissional e usa o sistema para organizar o que precisa considerar.",
 };
 
 export const author = {
-  title: "Feito por quem atende",
+  title: "Feito por quem atende. Usado no próprio consultório.",
   name: "Marilúcio Rocha",
-  role: "Naturopata ortomolecular · CRT 50859",
-  // [CONFIRMAR] frase final ("O MAP nasceu da minha própria dificuldade...") antes de publicar.
-  text: "Sou Marilúcio Rocha, naturopata ortomolecular (CRT 50859), quinze anos de consultório, com predominância de mulheres em transição menopausal. Tenho formação em leitura de exames, e minhas pacientes sempre chegam com laudos. O MAP nasceu da minha própria dificuldade de manter relato, exame e decisão no mesmo lugar ao longo de noventa dias.",
+  role: "Naturopata ortomolecular · CRT 50859 · Criador do EssenciaLab MAP",
+  paragraphs: [
+    "Eu criei o MAP porque precisava de uma ferramenta melhor para os meus atendimentos. Já utilizava recursos digitais, mas queria manter relatos, sintomas, exames e histórico conectados ao longo do acompanhamento.",
+    "Queria preparar a consulta com as informações reunidas e chegar aos retornos enxergando o que havia mudado e o que ainda precisava ser investigado.",
+    "Nos primeiros três meses de desenvolvimento, continuei utilizando minha ferramenta anterior. Depois, passei a trabalhar exclusivamente com o MAP. Hoje, são cerca de 12 meses usando a plataforma na minha própria rotina, com pacientes reais.",
+    "Essa experiência orientou a construção do sistema: preparar o atendimento, consultar as fontes, registrar observações, revisar o plano e acompanhar os retornos.",
+    "Agora quero disponibilizar o MAP para outros profissionais que também buscam uma forma mais organizada de avaliar e acompanhar seus pacientes. O teste é o convite para você conhecer o fluxo e avaliar como ele se encaixa no seu consultório.",
+  ],
   photo: {
     src: "/images/map/marilucio-rocha.webp",
-    alt: "Marilúcio Rocha, de jaleco branco e braços cruzados, em pé no consultório",
+    alt: "Marilúcio Rocha, naturopata e criador do EssenciaLab MAP, no consultório",
     width: 720,
     height: 960,
   } as Screenshot,
 };
 
 export const dataSecurity = {
-  title: "Dados de saúde, tratados como dados de saúde",
-  // [CONFIRMAR] cada item contra o código do MAP antes de publicar.
+  title: "Informações do paciente com acesso controlado",
   items: [
-    "Consentimento explícito da paciente antes do envio das respostas.",
-    "Acesso por token com validade nos links de avaliação.",
-    "Dados criptografados em trânsito (TLS) e isolamento por conta com políticas de acesso no banco (RLS).",
-    "Imagens da análise facial não são armazenadas; apenas os resultados.",
-    "Adequação à LGPD, com política de privacidade e termos linkados no rodapé.",
+    "Consentimento para registro e compartilhamento dos dados de saúde antes do envio das respostas.",
+    "Links de avaliação com token e prazo de validade.",
+    "Políticas de acesso no banco de dados para separar as informações por conta profissional.",
+    "Compartilhamento de relatórios e protocolos a partir das ações do profissional.",
+    "Política de privacidade e termos disponíveis no rodapé para consulta.",
   ],
 };
 
 export const fit = {
-  forTitle: "É para você se",
+  forTitle: "O MAP pode fazer sentido para você se",
   forItems: [
-    "atende e acompanha pacientes;",
-    "quer as fontes do caso organizadas antes de decidir;",
-    "atende mulheres em transição menopausal ou quer estruturar esse atendimento;",
-    "precisa registrar decisão e comparar retornos.",
+    "atende pacientes e realiza retornos programados;",
+    "trabalha com alimentação, hábitos, sono, energia, digestão ou cuidado integrativo;",
+    "quer consultar relatos, exames e histórico no mesmo contexto;",
+    "busca uma devolutiva mais organizada e um plano que possa revisar;",
+    "quer comparar avaliações e conversar sobre a evolução do acompanhamento.",
   ],
-  notTitle: "Não é para você se",
+  notTitle: "Antes de começar, considere",
   notItems: [
-    "procura um software que decida ou prescreva;",
-    "espera diagnóstico automático;",
-    "não atende pacientes (o plano pessoal serve melhor);",
-    "espera instrumento psicometricamente validado.",
+    "o MAP precisa da sua leitura e revisão profissional;",
+    "as pontuações dos questionários organizam relatos, sem confirmar diagnóstico;",
+    "as propostas de protocolo devem respeitar sua habilitação e o contexto do paciente;",
+    "o valor do acompanhamento cresce quando há novas avaliações para comparar.",
   ],
 };
 
 export const pricing = {
-  title: "Um plano, sem surpresa",
+  title: "Conheça o MAP na sua rotina antes de escolher o plano",
   plan: "Profissional",
   trial: "14 dias grátis, sem cartão. Cancele quando quiser.",
-  // [CONFIRMAR] limites reais de uso, inclusive cota de análises, antes de manter "ilimitados".
   included: [
-    "Avaliações e retornos ilimitados",
+    "Avaliações iniciais, reavaliações e acompanhamento",
     "Teia Funcional de 12 sistemas",
-    "Exames com extração e cálculos",
-    "Raciocínio com decisão registrada",
-    "Delta e relatórios em PDF",
-    "Jornadas Guiadas Personalizadas (em piloto)",
+    "Exames com extração e cálculos condicionados aos dados",
+    "Pontos de atenção e perguntas investigativas",
+    "Protocolos editáveis para revisão profissional",
+    "Comparação de avaliações e relatórios em PDF",
+    "Jornadas Guiadas Personalizadas (em piloto, conforme liberação)",
     "Treinamento em vídeo na área de membros",
     "Suporte por e-mail e WhatsApp",
   ],
+  note: "O uso de recursos de IA segue os limites e a disponibilidade do plano.",
 };
 
 export const faq = {
   title: "Perguntas frequentes",
   items: [
     {
-      q: "Preciso solicitar exames para usar o MAP?",
-      a: "Não. O MAP trabalha com os laudos que a paciente traz. Quem tem habilitação para solicitar continua solicitando; quem não tem, orienta a paciente a conversar com o médico dela. O sistema não cria pedidos de exame.",
+      q: "Como o MAP ajuda na preparação da consulta?",
+      a: "Você envia um link para o paciente preencher o questionário pelo navegador. As respostas ficam disponíveis para consultar a queixa, os hábitos, os sintomas e o contexto antes do atendimento.",
     },
     {
-      q: "O MAP usa inteligência artificial?",
-      a: "Há etapas de redação automática: na aba Raciocínio, sobre uma estrutura determinística de regras, e na formulação e na narrativa das Jornadas Guiadas. Nenhuma delas inventa evidência, aumenta a força de uma hipótese ou chega à paciente sem revisão e aprovação sua.",
+      q: "Preciso ter exames para começar?",
+      a: "Não. Você pode começar pelas respostas do paciente e incluir os laudos disponíveis quando fizer sentido. Exames ausentes permanecem como lacunas; os dados extraídos precisam ser conferidos. Solicitar ou interpretar exames depende da habilitação de quem atende.",
     },
     {
-      q: "Preciso gravar áudio para as Jornadas Guiadas?",
-      a: "Não. Você define o foco, revisa a formulação e aprova a narrativa; o sistema gera a voz em português, natural e calma. Nada é enviado à paciente sem a sua aprovação, e ela precisa consentir antes de receber. O recurso está em piloto controlado.",
+      q: "O que muda quando o paciente retorna?",
+      a: "Com uma nova avaliação respondida, você consulta o histórico e compara relatos, indicadores e exames compatíveis. O paciente também informa como percebe a evolução e se conseguiu seguir o plano anterior. Sem uma avaliação anterior comparável, não há comparação de evolução.",
     },
     {
-      q: "Funciona na minha especialidade?",
-      a: "Foi desenhado para profissionais não médicos que acompanham pacientes: nutrição, naturopatia, terapias integrativas, biomedicina. Não amplia o escopo de nenhuma categoria.",
+      q: "Qual é o papel da inteligência artificial?",
+      a: "A IA ajuda a organizar a leitura do caso, sugerir perguntas e elaborar rascunhos de protocolo. Essas saídas podem conter erros e precisam da sua conferência. O MAP não confirma diagnóstico nem substitui seu julgamento profissional.",
     },
     {
-      q: "E se eu não gostar?",
-      a: "O teste de 14 dias não pede cartão. Depois, é assinatura mensal ou anual, cancelável a qualquer momento.",
+      q: "O protocolo fica pronto para entregar ao paciente?",
+      a: "Ele é um rascunho editável, com propostas de alimentação, rotina e recursos integrativos para sua avaliação. Você revisa, ajusta e define o que é adequado compartilhar. Usar o sistema não autoriza uma atuação além da sua habilitação.",
     },
     {
-      // [CONFIRMAR] resposta sobre o banco e o acesso por conta.
-      q: "Meus dados e os da paciente ficam onde?",
-      a: "Em banco de dados gerenciado, com acesso separado por conta profissional e políticas de acesso aplicadas no próprio banco. A paciente consente antes de enviar as respostas, e a política de privacidade e os termos estão linkados no rodapé.",
+      q: "Para quais profissionais ele foi pensado?",
+      a: "Principalmente para nutricionistas, naturopatas e terapeutas integrativos que acompanham pacientes em consultório. O benefício está em reunir informações e revisar o acompanhamento. Cada profissional utiliza os recursos compatíveis com sua formação e atuação.",
     },
     {
-      // [Atualizar quando o curso em módulos for gravado.]
+      q: "O MAP já é usado em atendimentos?",
+      a: "Sim. Marilúcio Rocha, criador da plataforma, utiliza o MAP há cerca de 12 meses de forma exclusiva nos próprios atendimentos com pacientes reais. Essa experiência orientou a construção do fluxo, da preparação da consulta ao acompanhamento dos retornos. O teste permite avaliar como ele se encaixa na sua rotina.",
+    },
+    {
+      q: "Como funciona o teste de 14 dias?",
+      a: "Você conhece o MAP sem informar cartão. Depois do teste, pode escolher a assinatura mensal apresentada nesta página. O uso de IA segue os limites do plano, e a assinatura é cancelável.",
+    },
+    {
+      q: "Meus dados e os do paciente ficam onde?",
+      a: "Em banco de dados gerenciado, com políticas de acesso por conta profissional. O paciente consente antes de enviar as respostas. Consulte a política de privacidade e os termos no rodapé para conhecer as condições de uso e tratamento de dados.",
+    },
+    {
       q: "Tem treinamento?",
-      a: "Sim, na área de membros: percurso em vídeo do primeiro atendimento ao retorno.",
+      a: "Sim. A área de membros reúne treinamento em vídeo, e você pode tirar dúvidas pelos canais de suporte para começar a usar o fluxo no seu atendimento.",
+    },
+    {
+      q: "As Jornadas Guiadas estão disponíveis para todos?",
+      a: "O recurso está em piloto controlado, conforme liberação. Quando disponível, você define o foco, revisa a formulação e a narrativa e aprova a entrega. O paciente precisa consentir para receber o áudio no aplicativo. Ele não substitui consulta ou tratamento.",
     },
   ],
 };
 
 export const finalCta = {
-  title:
-    "Na próxima paciente que chegar com tudo ao mesmo tempo, você vai ter as fontes na frente.",
+  title: "Experimente o MAP no próximo atendimento. Compare o fluxo com a sua rotina.",
   cta: "Começar o teste de 14 dias",
-  whatsapp: "Tirar uma dúvida no WhatsApp antes de começar",
+  whatsapp: "Conversar com Marilúcio sobre o uso no consultório",
 };
 
 export const legalNotice =
-  "O EssenciaLab MAP organiza dados e raciocínio; não diagnostica, não prescreve e não decide pelo profissional. Nenhum resultado clínico é prometido.";
+  "O EssenciaLab MAP apoia a organização de informações e o acompanhamento. Sugestões de IA e protocolos são rascunhos sujeitos à revisão profissional e não substituem avaliação, diagnóstico ou conduta de um profissional habilitado. Nenhum resultado clínico é prometido.";
 
 // Bloco Jornadas Guiadas Personalizadas. Fonte: essencialab_guided_sessions_landing_map.md.
 // Recurso em piloto controlado: sem alegação de eficácia clínica (seção 22 do documento).
@@ -315,11 +334,11 @@ export const guided = {
   status: "Novo no MAP · em piloto controlado",
   title: "O atendimento termina. O acompanhamento não precisa terminar junto.",
   lead:
-    "Ela sai da consulta com clareza. Três dias depois, a rotina engoliu tudo: trabalho, família, os hábitos de sempre. Agora o que foi trabalhado com você vira uma jornada de áudio de 8 a 12 minutos, feita para aquela paciente, revisada e aprovada por você, entregue no aplicativo dela.",
-  contrastTitle: "Não é uma biblioteca de meditações. É a sua consulta continuando.",
-  contrastGeneric: "O que uma biblioteca oferece: “áudio de autoconfiança”, o mesmo para todo mundo.",
+    "Quando o recurso estiver disponível no piloto, você pode transformar um foco do acompanhamento em uma jornada de áudio personalizada. Você revisa e aprova o conteúdo antes da entrega, e o paciente consente para recebê-lo no aplicativo.",
+  contrastTitle: "Um áudio preparado a partir de um foco definido por você.",
+  contrastGeneric: "Você escolhe o objetivo e o contexto que podem entrar na jornada.",
   contrastPersonal:
-    "O que a jornada trabalha: perceber o impulso de ficar em silêncio na reunião, notar o corpo e a respiração, organizar uma fala curta, imaginar-se dizendo, permanecer presente depois. O contexto dela, não um tema genérico.",
+    "Por exemplo: organizar uma fala curta em uma reunião e ensaiar esse momento. A jornada usa o contexto autorizado, sem inventar uma história ou a origem da dificuldade.",
   stepsTitle: "Como uma jornada nasce",
   steps: [
     {
@@ -327,8 +346,8 @@ export const guided = {
       text: "Objetivo, contexto, sua hipótese de trabalho, a direção desejada e os temas que não podem aparecer.",
     },
     {
-      title: "O sistema organiza a formulação",
-      text: "Só com o que você autorizou, separando fatos, hipótese, direção, limites e incertezas. Nada de infância, trauma ou causa oculta inventados.",
+      title: "O sistema prepara um rascunho",
+      text: "A partir do contexto autorizado, com fatos, hipóteses, direção e limites separados para sua revisão.",
     },
     {
       title: "Você revisa e aprova",
@@ -339,20 +358,20 @@ export const guided = {
       text: "Sete momentos, da chegada ao encerramento, com uma metáfora central e ensaio mental. Voz natural em português, calma, sem tom de locutora.",
     },
     {
-      title: "Ela ouve no aplicativo",
+      title: "O paciente ouve no aplicativo",
       text: "Com ou sem ambiente sonoro, pausa, retoma de onde parou e pode ouvir de novo quando quiser.",
     },
     {
-      title: "Você vê o que aconteceu",
-      text: "Abriu, começou, concluiu, ouviu de novo, tempo total. Fatos para a próxima conversa, sem rótulos de “engajada” ou “resistente”.",
+      title: "Você consulta os registros de escuta",
+      text: "Você consulta o início, a conclusão, novas escutas e o tempo registrado para conversar com o paciente sobre a experiência no próximo encontro.",
     },
   ],
   controlTitle: "Você continua no comando",
   controlText:
-    "Nada chega à paciente sem a sua aprovação: formulação, narrativa, áudio e entrega. O sistema bloqueia diagnóstico apresentado como certeza, promessa de cura, memória induzida, ordem moral e qualquer tema que você vetou. E revalida isso antes de liberar.",
+    "Você revisa a formulação e a narrativa e aprova a entrega. O sistema aplica verificações de linguagem e segurança; sua conferência continua necessária antes de disponibilizar o conteúdo ao paciente.",
   privacyItems: [
     "Consentimento explícito da paciente, revogável a qualquer momento.",
-    "Áudio em armazenamento privado: só ela acessa, nenhum outro paciente ou profissional.",
+    "Áudio em armazenamento privado, com acesso controlado para o destinatário.",
     "As reflexões dela ficam com ela. Nada é compartilhado com você automaticamente.",
   ],
   relief: {
@@ -370,7 +389,7 @@ export const guided = {
     ambiences: ["Sem fundo", "Ambiente suave", "Relaxamento profundo", "Foco tranquilo"],
     ambienceNote: "Ambiente sonoro opcional. Batimentos binaurais são técnica experimental; melhor com fones estéreo.",
   },
-  closing: "Ela não recebe só orientações. Recebe uma experiência que conversa com o que vocês trabalharam.",
-  note: "Recurso em piloto controlado. Não substitui consulta, psicoterapia ou tratamento médico, e nenhum resultado clínico é prometido.",
+  closing: "Uma possibilidade adicional de apoio entre encontros, conforme o foco e a revisão profissional.",
+  note: "Recurso em piloto controlado, conforme liberação. Não substitui consulta, psicoterapia ou tratamento médico, e nenhum resultado clínico é prometido.",
   cta: "Começar o teste de 14 dias",
 };

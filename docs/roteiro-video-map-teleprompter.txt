@@ -1,0 +1,61 @@
+Quando um paciente volta e diz ‘melhorei um pouco’, você consegue recuperar o que ele relatou na primeira consulta, o plano que foi combinado e o que mudou desde então?
+
+Essa era uma das necessidades que eu vivia no consultório. Eu queria chegar ao atendimento com as informações reunidas e acompanhar os retornos com mais clareza.
+
+Eu sou Marilúcio Rocha, naturopata e criador do EssenciaLab MAP. Neste vídeo, vou mostrar como uso o sistema antes da consulta, durante o atendimento e no retorno.
+
+Eu criei o MAP porque precisava de uma ferramenta melhor para os meus próprios atendimentos. Já utilizava recursos digitais, mas queria conectar os relatos, os sintomas, os exames e o histórico de cada paciente.
+
+Nos primeiros três meses de desenvolvimento, continuei utilizando minha ferramenta anterior. Depois, passei a trabalhar exclusivamente com o MAP. Hoje, são cerca de 12 meses usando a plataforma na minha rotina, com pacientes reais.
+
+Essa experiência orientou o que você vai ver aqui. A ideia é reunir as informações que apoiam o atendimento e a continuidade do acompanhamento.
+
+Para esta demonstração, vou usar dados fictícios.
+
+Antes da consulta, eu preparo uma avaliação e compartilho o link do questionário. O paciente responde pelo navegador, no celular ou no computador.
+
+Ele registra a queixa principal e informações sobre energia, sono, digestão, hábitos, medicamentos e outros pontos do seu contexto. Também consente com o registro e o compartilhamento dessas informações.
+
+Quando abro a avaliação respondida, encontro os relatos organizados. Aqui, por exemplo, este paciente de demonstração relata cansaço, sono fragmentado e desconforto depois das refeições.
+
+Eu leio o que ele informou e preparo os pontos que quero esclarecer. Há quanto tempo isso acontece? O que mudou na rotina? Como está o uso dos medicamentos?
+
+O questionário não encerra a conversa. Ele me dá uma base para começar o atendimento conhecendo melhor o contexto que o paciente trouxe.
+
+Durante a consulta, eu confiro as informações com o paciente e esclareço o que precisa de mais contexto.
+
+A Teia Funcional organiza os relatos em 12 sistemas. Ela ajuda a visualizar onde aparecem os sinais informados no questionário. Um valor alto aqui não mede a função de um órgão e não confirma uma doença.
+
+Se o paciente tem exames, eu posso reunir os laudos no atendimento. A extração ajuda a organizar os parâmetros, mas eu confiro o valor, a unidade, a referência e o contexto antes de interpretar. Quando falta um requisito para um cálculo, isso precisa continuar visível.
+
+O MAP também apresenta pontos de atenção e pode sugerir perguntas para a investigação. Eu uso esses recursos para revisar o caso e direcionar a conversa. A inteligência artificial pode errar, então eu preciso conferir a leitura com as fontes e com o que observo no atendimento.
+
+Nas anotações, registro o que foi esclarecido. Isso ajuda a preservar informações importantes para a próxima consulta.
+
+Aqui está o protocolo. Ele é um rascunho editável, com propostas de alimentação, rotina e recursos integrativos para avaliação profissional. Eu confiro o conteúdo, ajusto o que faz sentido e retiro o que não é adequado ao caso ou à minha atuação.
+
+O que orienta o paciente é o plano que eu revisei e defini. Usar o MAP não muda a habilitação ou a responsabilidade de quem atende.
+
+No retorno, envio uma nova avaliação. O paciente relata como percebe sua evolução, se conseguiu seguir o plano e quais mudanças aconteceram desde o último atendimento.
+
+Com as duas avaliações respondidas, consigo comparar o que foi registrado. Aqui posso olhar sono, energia, digestão e outros indicadores, além dos exames que têm dados compatíveis para comparação.
+
+Se uma informação não foi registrada em uma das avaliações, ela permanece como uma lacuna. E, se um sintoma deixou de aparecer na lista, eu confirmo na conversa se houve melhora ou se ele apenas não foi informado.
+
+Essa comparação ajuda a sair de uma impressão geral e conversar sobre pontos concretos. O que o paciente percebeu? O que conseguiu fazer? O que dificultou seguir o plano? O que merece ser revisto agora?
+
+Mudanças entre avaliações não provam, sozinhas, que o plano causou um resultado. Elas ajudam a orientar a revisão do acompanhamento.
+
+Também posso preparar um relatório de evolução para apoiar a devolutiva ao paciente.
+
+Foi essa necessidade de preparar, organizar e acompanhar que deu origem ao MAP.
+
+Agora quero disponibilizar essa ferramenta para outros profissionais que também procuram uma forma mais organizada de avaliar e acompanhar seus pacientes.
+
+Se você é nutricionista, naturopata ou terapeuta integrativo e realiza retornos, conheça o fluxo e veja como ele se encaixa no seu atendimento.
+
+Nesta página, você pode começar um teste de 14 dias, sem cartão. Minha sugestão é percorrer uma avaliação, revisar as informações e conhecer o acompanhamento de um retorno com dados de demonstração.
+
+Se tiver alguma dúvida, pode falar comigo pelo WhatsApp.
+
+Eu sou Marilúcio Rocha. Será um prazer apresentar o EssenciaLab MAP para você.

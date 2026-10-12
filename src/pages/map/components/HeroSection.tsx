@@ -26,6 +26,9 @@ export function HeroSection() {
             {hero.title}
           </h1>
           <p className="text-lg leading-relaxed text-slate-700 md:text-xl">{hero.subtitle}</p>
+          <p className="border-l-2 border-green-700 pl-4 text-sm leading-relaxed text-slate-600">
+            {hero.proof}
+          </p>
 
           <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-start">
             <TrialButton placement="hero" label={hero.ctaPrimary} />

@@ -37,11 +37,11 @@ export default function MapLanding({ language = "pt" }: Props) {
       <main>
         <HeroSection />
         <SecondConsultSection />
+        <AuthorSection />
         <CaseSection />
         <FlowSection />
         <NotDoSection />
         <GuidedSessionsSection />
-        <AuthorSection />
         <DataSecuritySection />
         <FitSection />
         <PricingSection />

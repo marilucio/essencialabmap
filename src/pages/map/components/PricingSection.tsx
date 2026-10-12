@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { pricing } from "../content";
-import { PRICE_MONTHLY, PRICE_YEARLY } from "../constants";
+import { PRICE_MONTHLY } from "../constants";
 import { Section, SectionTitle } from "./Section";
 import { TrialButton } from "./TrialButton";
 import { ViewPricingTracker } from "@/components/ViewPricingTracker";
@@ -16,7 +16,6 @@ export function PricingSection() {
         </p>
         <p className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
           {PRICE_MONTHLY}
-          <span className="text-lg font-semibold text-slate-600"> ou {PRICE_YEARLY}</span>
         </p>
         <p className="mt-2 text-slate-700">{pricing.trial}</p>
 
@@ -28,6 +27,7 @@ export function PricingSection() {
             </li>
           ))}
         </ul>
+        <p className="mt-5 text-sm leading-relaxed text-slate-600">{pricing.note}</p>
 
         <TrialButton placement="pricing" label="Começar o teste de 14 dias" className="mt-10" />
       </div>

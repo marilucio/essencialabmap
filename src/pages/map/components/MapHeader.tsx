@@ -8,8 +8,8 @@ import { trackEvent } from "@/lib/tracking";
 // Header próprio da landing /map: âncoras para seções da própria página e um CTA.
 // Não usa o Header compartilhado porque os links dele levam para outras páginas do site.
 const anchors = [
-  { href: "#segunda-consulta", label: "A segunda consulta" },
-  { href: "#caso", label: "Um caso" },
+  { href: "#segunda-consulta", label: "No consultório" },
+  { href: "#caso", label: "Na prática" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#o-que-nao-faz", label: "O que não faz" },
   { href: "#jornadas-guiadas", label: "Jornadas Guiadas" },
