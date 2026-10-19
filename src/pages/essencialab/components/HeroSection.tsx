@@ -10,6 +10,7 @@ import { isWhatsappVariant } from "../../../lib/trafficSource";
 import { buildTrialUrl, refreshTrialHref } from "../../../lib/audience";
 import { trackEvent } from "../../../lib/tracking";
 import { trackStartTrial } from "../../map/tracking";
+import BrandLogo from "../../../components/BrandLogo";
 
 /**
  * Vídeo demo vertical (9:16) dentro de um mockup de smartphone.
@@ -231,6 +232,9 @@ const HeroSection = () => {
             className="text-center space-y-8"
           >
             <div className="space-y-6">
+              <div className="flex justify-center">
+                <BrandLogo size={36} />
+              </div>
               {/* Badge de Nova Oportunidade */}
               <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-green-700 border border-green-200 shadow-md">
                 {t("hero.badge")}

@@ -11,6 +11,7 @@ import { FAQSection } from "./components/FAQSection";
 import { FooterCTA } from "./components/FooterCTA";
 import { LanguageProvider } from "./LanguageContext";
 import LanguageSelector from "./LanguageSelector";
+import "@/brand-theme.css";
 
 const Index = () => {
   return (
@@ -18,7 +19,7 @@ const Index = () => {
     // globalmente, desativando animações de opacity/transform para quem pediu.
     <MotionConfig reducedMotion="user">
     <LanguageProvider>
-      <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-50 overflow-x-hidden">
+      <div className="brand-theme min-h-screen bg-gradient-to-b from-green-50 via-white to-green-50 overflow-x-hidden">
         <LanguageSelector />
         {/* Layout sem distrações - Funil Linear */}
         <div className="flex flex-col w-full">

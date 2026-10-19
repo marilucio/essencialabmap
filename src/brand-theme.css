@@ -1,0 +1,90 @@
+/*
+ * Tema da nova identidade para páginas da raiz. Tudo fica restrito a
+ * `.brand-theme`: nada muda fora do wrapper e o /map (`.map-brand`) segue
+ * com a sua própria folha.
+ */
+@import "./components/brand-logo.css";
+
+@font-face {
+  font-family: "Brand Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/map/inter-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Brand Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/map/inter-500-latin.woff2") format("woff2");
+}
+
+.brand-theme {
+  --brand-green: #08c16a;
+  --brand-deep-green: #064e3b;
+  --brand-deep-green-hover: #043b2d;
+  --brand-mint: #a7f3d0;
+  --brand-soft-green: #e9f9ef;
+  --brand-neutral: #0f172a;
+
+  /* Verdes/esmeralda/teal antigos → paleta nova. O 600 vira Deep Green porque
+     é a cor de botões e links com texto branco (9,7:1); o Green puro fica
+     como acento gráfico (ícones, 400/500), nunca sob texto branco. */
+  --color-green-50: var(--brand-soft-green);
+  --color-green-100: var(--brand-mint);
+  --color-green-200: var(--brand-mint);
+  --color-green-300: var(--brand-mint);
+  --color-green-400: var(--brand-green);
+  --color-green-500: var(--brand-green);
+  --color-green-600: var(--brand-deep-green);
+  --color-green-700: var(--brand-deep-green);
+  --color-green-800: var(--brand-deep-green);
+  --color-green-900: var(--brand-deep-green-hover);
+  --color-emerald-50: var(--brand-soft-green);
+  --color-emerald-100: var(--brand-mint);
+  --color-emerald-200: var(--brand-mint);
+  --color-emerald-300: var(--brand-mint);
+  --color-emerald-400: var(--brand-green);
+  --color-emerald-500: var(--brand-green);
+  --color-emerald-600: var(--brand-deep-green);
+  --color-emerald-700: var(--brand-deep-green);
+  --color-emerald-800: var(--brand-deep-green);
+  --color-emerald-900: var(--brand-deep-green-hover);
+  --color-teal-50: var(--brand-soft-green);
+  --color-teal-100: var(--brand-mint);
+  --color-teal-200: var(--brand-mint);
+  --color-teal-300: var(--brand-mint);
+  --color-teal-400: var(--brand-green);
+  --color-teal-500: var(--brand-green);
+  --color-teal-600: var(--brand-deep-green);
+  --color-teal-700: var(--brand-deep-green);
+  --color-teal-800: var(--brand-deep-green);
+  --color-teal-900: var(--brand-deep-green-hover);
+
+  /* Azul/índigo só aparecem em ProofSection; saem da paleta junto com o verde. */
+  --color-blue-50: var(--brand-soft-green);
+  --color-blue-100: var(--brand-mint);
+  --color-blue-600: var(--brand-deep-green);
+  --color-blue-700: var(--brand-deep-green);
+  --color-indigo-600: var(--brand-deep-green);
+
+  --color-gray-800: var(--brand-neutral);
+  --color-gray-900: var(--brand-neutral);
+
+  color: var(--brand-neutral);
+  font-family: "Brand Inter", sans-serif;
+  font-synthesis: none;
+}
+
+.brand-theme :is(h1, h2, h3, h4) {
+  font-family: "Brand Manrope", sans-serif;
+  font-weight: 600;
+}
+/* Inter só tem 400 e 500 carregados; sem isso o 700 cairia em negrito sintético. */
+.brand-theme :where(.font-semibold, .font-bold, .font-extrabold, strong, b) {
+  font-weight: 500;
+}
+.brand-theme :is(h1, h2, h3, h4) :where(.font-semibold, .font-bold, .font-extrabold, strong, b) {
+  font-weight: 600;
+}
