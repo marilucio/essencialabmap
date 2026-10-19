@@ -4,6 +4,8 @@ import { Card } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Mail, Phone, MessageCircle, Send, Clock, CheckCircle, Loader2 } from 'lucide-react'
+import "@/brand-theme.css";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function Contato() {
   const [searchParams] = useSearchParams();
@@ -144,13 +146,12 @@ export default function Contato() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-emerald-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-b from-slate-50 via-white to-emerald-50">
       {/* Header simples */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
-          <a href="/" className="flex items-center gap-2 w-fit">
-            <span className="text-2xl">🌿</span>
-            <span className="text-xl font-bold text-gray-900">EssenciaLab</span>
+          <a href="/" aria-label="EssenciaLab" className="flex items-center w-fit">
+            <BrandLogo size={36} />
           </a>
         </div>
       </header>

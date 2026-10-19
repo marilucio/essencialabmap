@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import "@/brand-theme.css";
 
 export default function StatusDoSistema() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -230,7 +231,7 @@ export default function StatusDoSistema() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <Header />
 
       {/* Hero Section */}

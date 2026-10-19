@@ -2,6 +2,7 @@ import { Card } from '../components/ui/card'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useSearchParams } from 'react-router-dom'
+import "@/brand-theme.css";
 
 const content = {
   pt: {
@@ -96,7 +97,7 @@ export default function LGPD() {
   const t = content[language] || content.pt
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <Header />
       <div className="container mx-auto py-12 px-4 max-w-4xl">
         <Card className="p-8">

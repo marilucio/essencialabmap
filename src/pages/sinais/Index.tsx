@@ -8,10 +8,11 @@ import { BenefitsSection } from "./components/BenefitsSection";
 import { ForWhoSection } from "./components/ForWhoSection";
 import { FAQSection } from "./components/FAQSection";
 import { CTASection } from "./components/CTASection";
+import "@/brand-theme.css";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 overflow-x-hidden">
+    <div className="brand-theme min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 overflow-x-hidden">
       {/* Layout focado em leitura - sem distrações */}
       <div className="flex flex-col w-full">
         {/* Hero Section - Parar o Scroll */}

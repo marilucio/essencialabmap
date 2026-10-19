@@ -5,6 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { CheckCircle, Star, ArrowRight, Zap, TrendingUp, Award, Shield, Clock, Users, DollarSign, Calendar, CreditCard, Sparkles } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import "@/brand-theme.css";
 
 export default function Precos() {
   const [billingCycle, setBillingCycle] = useState('annual');
@@ -149,7 +150,7 @@ export default function Precos() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <Header />
 
       {/* Hero Section */}

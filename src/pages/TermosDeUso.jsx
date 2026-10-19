@@ -1,5 +1,7 @@
 import { Card } from '../components/ui/card'
 import { useSearchParams } from 'react-router-dom'
+import "@/brand-theme.css";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function TermosDeUso() {
   const [searchParams] = useSearchParams()
@@ -419,13 +421,12 @@ Horario de atención: Lunes a Viernes, 9h a 18h (horario de Brasilia)`
   const t = content[language] || content.pt
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
       {/* Header simples */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
-          <a href="/" className="flex items-center gap-2 w-fit">
-            <span className="text-2xl">🌿</span>
-            <span className="text-xl font-bold text-gray-900">EssenciaLab</span>
+          <a href="/" aria-label="EssenciaLab" className="flex items-center w-fit">
+            <BrandLogo size={36} />
           </a>
         </div>
       </header>

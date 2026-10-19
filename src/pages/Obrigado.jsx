@@ -3,6 +3,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { CheckCircle, Mail, Star, Clock, Award, Eye, Scan } from 'lucide-react';
 import Footer from '../components/Footer';
+import "@/brand-theme.css";
 
 // Pixel do Método CALMA / SOS Ansiedade (não é o do EssenciaLab). Vem do build;
 // o vite build falha se faltar. Sem ID (ex.: npm run dev), o pixel não inicia.
@@ -94,7 +95,7 @@ function Obrigado() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
       <main className="container mx-auto px-4 py-16">
         {/* Seção Principal de Confirmação */}
         <div className="max-w-4xl mx-auto text-center mb-16">

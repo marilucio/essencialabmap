@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import "@/brand-theme.css";
 
 export default function CentralDeAjuda() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -774,7 +775,7 @@ export default function CentralDeAjuda() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
       <Header language={language} onLanguageChange={handleLanguageChange} />
 
       {/* Hero Section */}

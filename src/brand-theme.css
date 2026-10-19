@@ -62,13 +62,52 @@
   --color-teal-800: var(--brand-deep-green);
   --color-teal-900: var(--brand-deep-green-hover);
 
-  /* Azul/índigo só aparecem em ProofSection; saem da paleta junto com o verde. */
+  /* Azul/índigo viram verde. Roxo/rosa (tier Premium em /precos) viram o Neutral,
+     para o destaque continuar distinto do plano popular. Laranja, amarelo e
+     vermelho ficam: são avisos/estados, não identidade. */
   --color-blue-50: var(--brand-soft-green);
   --color-blue-100: var(--brand-mint);
+  --color-blue-200: var(--brand-mint);
+  --color-blue-300: var(--brand-mint);
+  --color-blue-400: var(--brand-green);
+  --color-blue-500: var(--brand-green);
   --color-blue-600: var(--brand-deep-green);
   --color-blue-700: var(--brand-deep-green);
+  --color-blue-800: var(--brand-deep-green);
+  --color-blue-900: var(--brand-deep-green-hover);
+  --color-indigo-50: var(--brand-soft-green);
+  --color-indigo-100: var(--brand-mint);
+  --color-indigo-200: var(--brand-mint);
+  --color-indigo-300: var(--brand-mint);
+  --color-indigo-400: var(--brand-green);
+  --color-indigo-500: var(--brand-green);
   --color-indigo-600: var(--brand-deep-green);
+  --color-indigo-700: var(--brand-deep-green);
+  --color-indigo-800: var(--brand-deep-green);
+  --color-indigo-900: var(--brand-deep-green-hover);
+  --color-purple-50: var(--brand-soft-green);
+  --color-purple-100: var(--brand-mint);
+  --color-purple-200: var(--brand-mint);
+  --color-purple-300: var(--brand-mint);
+  --color-purple-400: var(--brand-neutral);
+  --color-purple-500: var(--brand-neutral);
+  --color-purple-600: var(--brand-neutral);
+  --color-purple-700: var(--brand-neutral);
+  --color-purple-800: var(--brand-neutral);
+  --color-purple-900: var(--brand-neutral);
+  --color-pink-50: var(--brand-soft-green);
+  --color-pink-100: var(--brand-mint);
+  --color-pink-200: var(--brand-mint);
+  --color-pink-300: var(--brand-mint);
+  --color-pink-400: var(--brand-neutral);
+  --color-pink-500: var(--brand-neutral);
+  --color-pink-600: var(--brand-neutral);
+  --color-pink-700: var(--brand-neutral);
+  --color-pink-800: var(--brand-neutral);
+  --color-pink-900: var(--brand-neutral);
 
+  --color-slate-50: var(--brand-soft-green);
+  --color-slate-100: var(--brand-soft-green);
   --color-gray-800: var(--brand-neutral);
   --color-gray-900: var(--brand-neutral);
 

@@ -41,6 +41,7 @@ import {
   Clipboard,
   TrendingUp,
 } from "lucide-react";
+import "@/brand-theme.css";
 
 function Features() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -332,7 +333,7 @@ function Features() {
   const t = content[language] || content.pt;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50">
+    <div className="brand-theme min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50">
       <Header language={language} onLanguageChange={handleLanguageChange} />
 
       {/* Hero Section */}
