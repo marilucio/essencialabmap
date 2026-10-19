@@ -18,6 +18,6 @@ export const VIDEO_POSTER = "/images/map/video-poster.webp";
 export const VIDEO_POSTER_SMALL = "/images/map/video-poster-640.webp";
 
 export const PRICE_MONTHLY = "R$ 67,00/mês";
-export const PRICE_YEARLY = "R$ 1.270/ano";
+export const PRICE_YEARLY = "R$ 670/ano";
 export const TRIAL_GUARANTEE =
   "Sem cartão. Cancele quando quiser. R$ 67,00/mês depois do teste.";

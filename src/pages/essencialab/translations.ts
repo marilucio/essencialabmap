@@ -170,7 +170,7 @@ export const translations = {
         annual: "ou R$ 299,90/ano",
         annualEquiv: "= R$ 24,99/mês, 2 meses grátis",
         features: [
-          "Análise Facial ilimitada",
+          "Análise Facial própria",
           "Mapa de bem-estar personalizado",
           "Sugestões de óleos essenciais e cuidados",
           "Histórico de clientes no app",
@@ -182,12 +182,12 @@ export const translations = {
       pro: {
         badge: "Para atendimento",
         name: "Plano Profissional + Sistema MAP",
-        price: "R$ 127",
+        price: "R$ 67",
         period: "/mês",
-        annual: "ou R$ 1.270/ano",
+        annual: "ou R$ 670/ano",
         annualEquiv: "2 meses grátis",
         features: [
-          "Tudo do Plano Análise Facial",
+          "Análise Facial própria e de clientes",
           "Sistema MAP: Método de Avaliação Personalizada",
           "Avaliação completa para apoiar o atendimento",
           "Ideal para terapeutas, naturopatas e iridólogos",
@@ -217,7 +217,7 @@ export const translations = {
             "Acompanhe a evolução do cliente entre sessões e fortaleça o vínculo com dados concretos.",
         },
       ],
-      priceLine: "Plano Profissional + Sistema MAP: R$ 127/mês ou R$ 1.270/ano",
+      priceLine: "Plano Profissional + Sistema MAP: R$ 67/mês ou R$ 670/ano",
       button: "Conhecer o Sistema MAP",
       disclaimer:
         "O EssenciaLab é uma ferramenta de apoio ao bem-estar e não substitui diagnóstico, acompanhamento ou tratamento médico.",
@@ -244,7 +244,7 @@ export const translations = {
         {
           question: "Quanto custa depois dos 14 dias grátis?",
           answer:
-            "O Plano Análise Facial custa R$ 29,90/mês (ou R$ 299,90/ano, o equivalente a R$ 24,99/mês). É um preço promocional que pode encerrar a qualquer momento, mas quem assinar agora mantém esse valor enquanto a assinatura estiver ativa. Se você atende clientes e quer o Sistema MAP (Método de Avaliação Personalizada), o Plano Profissional custa R$ 127/mês ou R$ 1.270/ano. Nos dois casos, sem compromisso: cancele quando quiser, sem multa.",
+            "O Plano Análise Facial custa R$ 29,90/mês (ou R$ 299,90/ano, o equivalente a R$ 24,99/mês). É um preço promocional que pode encerrar a qualquer momento, mas quem assinar agora mantém esse valor enquanto a assinatura estiver ativa. Se você atende clientes e quer o Sistema MAP (Método de Avaliação Personalizada), o Plano Profissional custa R$ 67/mês ou R$ 670/ano. Nos dois casos, sem compromisso: cancele quando quiser, sem multa.",
         },
         {
           question: "Em quais celulares o EssenciaLab funciona?",
@@ -337,7 +337,7 @@ export const translations = {
       pricing: {
         title: "Escolha o plano para o seu atendimento",
         description:
-          "Menos de R$ 4,30 por dia para organizar todos os seus atendimentos com o Sistema MAP. Se preferir começar só pela análise facial, o plano de entrada custa menos de R$ 1 por dia.",
+          "Menos de R$ 2,30 por dia para organizar todos os seus atendimentos com o Sistema MAP. Se preferir começar só pela análise facial, o plano de entrada custa menos de R$ 1 por dia.",
         facial: {
           badge: "Plano de entrada",
         },
@@ -555,7 +555,7 @@ export const translations = {
         annual: "or $99.99/year",
         annualEquiv: "= $8.33/month, 2 months free",
         features: [
-          "Unlimited Facial Analysis",
+          "Facial Analysis for yourself",
           "Personalized wellness map",
           "Essential oil and care suggestions",
           "Client history in the app",
@@ -567,12 +567,12 @@ export const translations = {
       pro: {
         badge: "For client care",
         name: "Professional Plan + MAP System",
-        price: "$29.99",
+        price: "$27.00",
         period: "/month",
-        annual: "or $299.99/year",
+        annual: "or $270/year",
         annualEquiv: "2 months free",
         features: [
-          "Everything in the Facial Analysis Plan",
+          "Facial Analysis for yourself and your clients",
           "MAP System: Personalized Assessment Method",
           "Complete assessment to support your sessions",
           "Ideal for therapists, naturopaths and iridologists",
@@ -602,7 +602,7 @@ export const translations = {
             "Track client progress between sessions and strengthen the relationship with concrete data.",
         },
       ],
-      priceLine: "Professional Plan + MAP System: $29.99/month or $299.99/year",
+      priceLine: "Professional Plan + MAP System: $27.00/month or $270/year",
       button: "Discover the MAP System",
       disclaimer:
         "EssenciaLab is a wellness support tool and does not replace medical diagnosis, follow-up, or treatment.",
@@ -629,7 +629,7 @@ export const translations = {
         {
           question: "How much does it cost after the 14-day trial?",
           answer:
-            "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $29.99/month or $299.99/year. In both cases, no commitment: cancel anytime, no penalty. A single new client with one closed kit already pays for months of subscription.",
+            "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $27.00/month or $270/year. In both cases, no commitment: cancel anytime, no penalty. A single new client with one closed kit already pays for months of subscription.",
         },
         {
           question: "Which phones does EssenciaLab work on?",
@@ -668,7 +668,7 @@ export const translations = {
       lgpd: "LGPD",
     },
     // Variante ?publico=aroma. Em inglês o plano Profissional + MAP também aparece
-    // (US$ 29,99/mês); a âncora diária usa os dois planos ($29,99 / 30 ≈ $1/dia e $9,99 / 30 ≈ $0,33/dia).
+    // (US$ 27,00/mês); a âncora diária usa os dois planos ($27,00 / 30 ≈ $0,90/dia e $9,99 / 30 ≈ $0,33/dia).
     aroma: {
       hero: {
         badge: "✨ For aromatherapists and integrative therapists",
@@ -723,7 +723,7 @@ export const translations = {
       pricing: {
         title: "Choose the plan for your practice",
         description:
-          "About $1 a day to organize all your sessions with the MAP System. If you'd rather start with facial analysis alone, the entry plan costs less than $0.35 a day.",
+          "Less than $1 a day to organize all your sessions with the MAP System. If you'd rather start with facial analysis alone, the entry plan costs less than $0.35 a day.",
         facial: {
           badge: "Entry plan",
         },
@@ -749,7 +749,7 @@ export const translations = {
           null,
           {
             answer:
-              "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $29.99/month or $299.99/year. In both cases, no commitment: cancel anytime, no penalty.",
+              "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $27.00/month or $270/year. In both cases, no commitment: cancel anytime, no penalty.",
           },
           null,
           {
@@ -946,7 +946,7 @@ export const translations = {
         annual: "o R$ 299,90/año",
         annualEquiv: "= R$ 24,99/mes, 2 meses gratis",
         features: [
-          "Análisis Facial ilimitado",
+          "Análisis Facial propio",
           "Mapa de bienestar personalizado",
           "Sugerencias de aceites esenciales y cuidados",
           "Historial de clientes en la app",
@@ -958,12 +958,12 @@ export const translations = {
       pro: {
         badge: "Para consultas",
         name: "Plan Profesional + Sistema MAP",
-        price: "R$ 127",
+        price: "R$ 67",
         period: "/mes",
-        annual: "o R$ 1.270/año",
+        annual: "o R$ 670/año",
         annualEquiv: "2 meses gratis",
         features: [
-          "Todo el Plan Análisis Facial",
+          "Análisis Facial propio y de clientes",
           "Sistema MAP: Método de Evaluación Personalizada",
           "Evaluación completa para apoyar la consulta",
           "Ideal para terapeutas, naturópatas e iridólogos",
@@ -993,7 +993,7 @@ export const translations = {
             "Acompaña la evolución del cliente entre sesiones y fortalece el vínculo con datos concretos.",
         },
       ],
-      priceLine: "Plan Profesional + Sistema MAP: R$ 127/mes o R$ 1.270/año",
+      priceLine: "Plan Profesional + Sistema MAP: R$ 67/mes o R$ 670/año",
       button: "Conocer el Sistema MAP",
       disclaimer:
         "EssenciaLab es una herramienta de apoyo al bienestar y no sustituye diagnóstico, seguimiento ni tratamiento médico.",
@@ -1020,7 +1020,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta después de los 14 días gratis?",
           answer:
-            "El Plan Análisis Facial cuesta R$ 29,90/mes (o R$ 299,90/año, el equivalente a R$ 24,99/mes). Es un precio promocional que puede terminar en cualquier momento, pero quien se suscriba ahora mantiene ese valor mientras la suscripción esté activa. Si atiendes clientes y quieres el Sistema MAP (Método de Evaluación Personalizada), el Plan Profesional cuesta R$ 127/mes o R$ 1.270/año. En ambos casos, sin compromiso: cancela cuando quieras, sin multa.",
+            "El Plan Análisis Facial cuesta R$ 29,90/mes (o R$ 299,90/año, el equivalente a R$ 24,99/mes). Es un precio promocional que puede terminar en cualquier momento, pero quien se suscriba ahora mantiene ese valor mientras la suscripción esté activa. Si atiendes clientes y quieres el Sistema MAP (Método de Evaluación Personalizada), el Plan Profesional cuesta R$ 67/mes o R$ 670/año. En ambos casos, sin compromiso: cancela cuando quieras, sin multa.",
         },
         {
           question: "¿En qué celulares funciona EssenciaLab?",
@@ -1112,7 +1112,7 @@ export const translations = {
       pricing: {
         title: "Elige el plan para tu consulta",
         description:
-          "Menos de R$ 4,30 por día para organizar todas tus atenciones con el Sistema MAP. Si prefieres empezar solo con el análisis facial, el plan de entrada cuesta menos de R$ 1 por día.",
+          "Menos de R$ 2,30 por día para organizar todas tus atenciones con el Sistema MAP. Si prefieres empezar solo con el análisis facial, el plan de entrada cuesta menos de R$ 1 por día.",
         facial: {
           badge: "Plan de entrada",
         },
