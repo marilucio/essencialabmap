@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Leaf, Globe, Menu } from 'lucide-react'
+import { Globe, Menu } from 'lucide-react'
+import BrandLogo from './BrandLogo'
 import {
   Select,
   SelectContent,
@@ -89,13 +90,8 @@ export default function Header({ language = 'pt', onLanguageChange }) {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
-              <Leaf className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-              EssenciaLab
-            </span>
+          <a href="/" aria-label="EssenciaLab" className="flex items-center hover:opacity-80 transition-opacity">
+            <BrandLogo size={36} />
           </a>
 
           {/* Navigation - Desktop */}
@@ -170,13 +166,8 @@ export default function Header({ language = 'pt', onLanguageChange }) {
                 </SheetHeader>
                 <div className="flex flex-col h-full">
                   {/* Logo no Mobile Menu */}
-                  <div className="flex items-center space-x-2 mb-8 pb-4 border-b">
-                    <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
-                      <Leaf className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                      EssenciaLab
-                    </span>
+                  <div className="flex items-center mb-8 pb-4 border-b">
+                    <BrandLogo size={36} />
                   </div>
 
                   {/* Navigation Links - Mobile */}

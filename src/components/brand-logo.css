@@ -1,0 +1,34 @@
+/* Fontes locais com nome exclusivo: não mudam a tipografia do restante da raiz. */
+@font-face {
+  font-family: "Brand Manrope";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/map/manrope-300-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Brand Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/map/manrope-600-latin.woff2") format("woff2");
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  color: #0f172a;
+}
+.brand-logo--light { color: #fff; }
+.brand-logo picture { display: block; flex-shrink: 0; }
+.brand-logo img { display: block; width: auto; height: auto; }
+.brand-logo-name {
+  font-family: "Brand Manrope", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.brand-logo-name b { font-weight: 600; }
+.brand-logo-name span { font-weight: 300; }

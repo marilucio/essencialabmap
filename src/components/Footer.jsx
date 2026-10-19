@@ -1,4 +1,5 @@
-import { Leaf, Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
+import BrandLogo from './BrandLogo'
 import { BrandLockup } from '@/pages/map/components/BrandLockup'
 
 export default function Footer({ language = 'pt', legalNotice, variant = 'default' }) {
@@ -87,12 +88,7 @@ export default function Footer({ language = 'pt', legalNotice, variant = 'defaul
           <div>
             <div className="flex items-center space-x-2 mb-4">
               {variant === 'map' ? <BrandLockup /> : (
-                <>
-                  <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
-                    <Leaf className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-xl font-bold">EssenciaLab</span>
-                </>
+                <BrandLogo size={32} tone="light" />
               )}
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
