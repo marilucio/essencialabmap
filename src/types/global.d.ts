@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_ESSENCIALAB_IOS_URL?: string;
   readonly VITE_ESSENCIALAB_ANDROID_URL?: string;
   readonly VITE_WEBINAR_YT_ID?: string;
+  readonly VITE_MAP_FUNIL_TRIAL_URL?: string;
 }
 
 interface ImportMeta {

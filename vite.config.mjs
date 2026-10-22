@@ -39,6 +39,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         map: path.resolve(__dirname, 'map.html'),
+        comecar: path.resolve(__dirname, 'map-comecar.html'),
         autobot: path.resolve(__dirname, 'autobot/index.html'),
       },
     },

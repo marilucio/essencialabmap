@@ -7,7 +7,7 @@ declare module "@/components/Header" {
 
 declare module "@/components/Footer" {
   import type { FC } from "react";
-  const Footer: FC<{ language?: string; legalNotice?: string }>;
+  const Footer: FC<{ language?: string; legalNotice?: string; variant?: "default" | "map" }>;
   export default Footer;
 }
 

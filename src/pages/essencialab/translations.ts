@@ -10,11 +10,11 @@ export const translations = {
         "A Ferramenta que Atrai Clientes Novos e Fideliza os Antigos — Usando Apenas a Câmera do Celular",
       subtitle:
         "Transforme a análise facial em uma experiência de autoconhecimento que gera curiosidade, conexão e autoridade — sem precisar empurrar produto.",
-      freeTrialBadge: "🎁 14 DIAS DE TESTE GRÁTIS",
+      freeTrialBadge: "🎁 7 DIAS DE TESTE GRÁTIS",
       freeTrialSubtitle: "Todas as funções liberadas + Download Gratuito",
       socialProof:
         "Centenas de consultores e terapeutas já usam o EssenciaLab para atrair novos contatos e fortalecer relacionamentos com clientes.",
-      primaryCta: "Começar teste grátis de 14 dias",
+      primaryCta: "Começar teste grátis de 7 dias",
       storeLinksHint: "Ou baixe direto na loja:",
       whatsappCtaHint: "Prefere ver antes de baixar?",
       whatsappCta: "Receber demonstração no WhatsApp",
@@ -30,11 +30,11 @@ export const translations = {
         "Assista a uma demonstração rápida de como o EssenciaLab escaneia o rosto, gera o mapa de bem-estar e ajuda você a iniciar conversas naturais com seus clientes.",
       ctaNoTech:
         "🚀 Não requer conhecimentos técnicos. Aponte, escaneie e conquiste.",
-      ctaStartTrial: "Comece seu Teste Grátis de 14 Dias",
+      ctaStartTrial: "Comece seu Teste Grátis de 7 Dias",
       ctaDetails:
         "Sem Cartão de Crédito • Cancelamento Fácil • Download Gratuito",
       guarantee1: "Download Gratuito",
-      guarantee2: "14 Dias Grátis",
+      guarantee2: "7 Dias Grátis",
       guarantee3: "Sem Cartão de Crédito",
     },
     howItWorks: {
@@ -147,7 +147,7 @@ export const translations = {
       stats3: "Taxa de Satisfação",
       zeroRiskTitle: "Teste 100% Gratuito e Sem Riscos.",
       zeroRiskDesc:
-        "Baixe o app agora e tenha acesso total ilimitado por 14 dias. Todas as funções liberadas. Sem cartão de crédito. Sem compromisso.",
+        "Baixe o app agora e tenha acesso total ilimitado por 7 dias. Todas as funções liberadas. Sem cartão de crédito. Sem compromisso.",
       zeroRiskCheck1: "Sem Cartão de Crédito",
       zeroRiskCheck2: "Download Gratuito",
       zeroRiskCheck3: "Cancelamento Instantâneo",
@@ -158,7 +158,7 @@ export const translations = {
       title: "Análise Facial por R$ 29,90/mês",
       description:
         "O Wellington fez 844 PV em uma semana usando a Análise Facial. A ferramenta que ele usou custa menos de R$ 1 por dia. Um único kit fechado paga o ano inteiro.",
-      trialLine: "14 dias grátis • Sem cartão de crédito • Cancele quando quiser",
+      trialLine: "7 dias grátis • Sem cartão de crédito • Cancele quando quiser",
       cta: "Sem compromisso. Cancele quando quiser.",
       disclaimer:
         "Promoção pode encerrar a qualquer momento, sem aviso prévio. Resultados individuais variam.",
@@ -177,7 +177,7 @@ export const translations = {
         ],
         lock:
           "Preço garantido: quem assinar agora mantém R$ 29,90 enquanto a assinatura estiver ativa, mesmo depois que a promoção acabar.",
-        button: "Começar teste grátis de 14 dias",
+        button: "Começar teste grátis de 7 dias",
       },
       pro: {
         badge: "Para atendimento",
@@ -242,7 +242,7 @@ export const translations = {
             "Sim, e isso é importante. O app não armazena fotos ou dados biométricos sem consentimento. As imagens são processadas localmente e você decide se quer salvar o histórico. Total respeito à privacidade e à LGPD.",
         },
         {
-          question: "Quanto custa depois dos 14 dias grátis?",
+          question: "Quanto custa depois dos 7 dias grátis?",
           answer:
             "O Plano Análise Facial custa R$ 29,90/mês (ou R$ 299,90/ano, o equivalente a R$ 24,99/mês). É um preço promocional que pode encerrar a qualquer momento, mas quem assinar agora mantém esse valor enquanto a assinatura estiver ativa. Se você atende clientes e quer o Sistema MAP (Método de Avaliação Personalizada), o Plano Profissional custa R$ 67/mês ou R$ 670/ano. Nos dois casos, sem compromisso: cancele quando quiser, sem multa.",
         },
@@ -261,12 +261,12 @@ export const translations = {
     footer: {
       badge: "Sua Nova Ferramenta de Trabalho",
       title: "Baixe Grátis e Comece a Construir Relacionamentos Hoje",
-      subtitle: "Em 14 dias você vai experimentar o poder da análise facial para atrair e fidelizar clientes.",
+      subtitle: "Em 7 dias você vai experimentar o poder da análise facial para atrair e fidelizar clientes.",
       benefit1: "Análise Facial",
       benefit2: "Protocolos Completos",
       benefit3: "Mapas de Bem-Estar",
       benefit4: "Suporte Especializado",
-      freeTrialBadge: "🎁 14 DIAS GRÁTIS",
+      freeTrialBadge: "🎁 7 DIAS GRÁTIS",
       freeTrialSubtitle: "Todas as funções liberadas + Suporte completo",
       guarantee1: "Download Imediato",
       guarantee2: "Sem Cartão de Crédito",
@@ -344,7 +344,7 @@ export const translations = {
         pro: {
           badge: "Recomendado para aromaterapeutas",
           features: [null, null, null, "Ideal para aromaterapeutas e terapeutas integrativos"],
-          button: "Começar teste grátis de 14 dias",
+          button: "Começar teste grátis de 7 dias",
           mapLink: "Conhecer o Sistema MAP",
         },
       },
@@ -382,11 +382,11 @@ export const translations = {
         "The Tool That Attracts New Clients and Keeps Them Coming Back — Using Only Your Phone Camera",
       subtitle:
         "Turn facial analysis into a self-discovery experience that sparks curiosity, connection, and authority — without pushing products.",
-      freeTrialBadge: "🎁 14-DAY FREE TRIAL",
+      freeTrialBadge: "🎁 7-DAY FREE TRIAL",
       freeTrialSubtitle: "All features unlocked + Free Download",
       socialProof:
         "Hundreds of consultants and therapists already use EssenciaLab to attract new contacts and strengthen client relationships.",
-      primaryCta: "Start your 14-day free trial",
+      primaryCta: "Start your 7-day free trial",
       storeLinksHint: "Or get it on the app stores:",
       whatsappCtaHint: "Rather see it before downloading?",
       whatsappCta: "Get a demo on WhatsApp",
@@ -401,10 +401,10 @@ export const translations = {
       videoSubtitle:
         "Watch a quick demonstration of how EssenciaLab scans the face, generates a wellness map, and helps you start natural conversations with your clients.",
       ctaNoTech: "🚀 No technical knowledge required. Point, scan, and connect.",
-      ctaStartTrial: "Start your 14-Day Free Trial",
+      ctaStartTrial: "Start your 7-Day Free Trial",
       ctaDetails: "No Credit Card Required • Easy Cancellation • Free Download",
       guarantee1: "Free Download",
-      guarantee2: "14 Days Free",
+      guarantee2: "7 Days Free",
       guarantee3: "No Credit Card",
     },
     howItWorks: {
@@ -532,7 +532,7 @@ export const translations = {
       stats3: "Satisfaction Rate",
       zeroRiskTitle: "100% Free and Risk-Free Trial.",
       zeroRiskDesc:
-        "Download the app now and have unlimited total access for 14 days. All features unlocked. No credit card required. No commitment.",
+        "Download the app now and have unlimited total access for 7 days. All features unlocked. No credit card required. No commitment.",
       zeroRiskCheck1: "No Credit Card Required",
       zeroRiskCheck2: "Free Download",
       zeroRiskCheck3: "Instant Cancellation",
@@ -543,7 +543,7 @@ export const translations = {
       title: "Facial Analysis for $9.99/month",
       description:
         "Wellington made 844 PV in one week using Facial Analysis. The tool he used costs less than $1 a day. A single closed kit pays for the whole year.",
-      trialLine: "14 days free • No credit card • Cancel anytime",
+      trialLine: "7 days free • No credit card • Cancel anytime",
       cta: "No commitment. Cancel anytime.",
       disclaimer:
         "Promotion may end at any time without notice. Individual results may vary.",
@@ -562,7 +562,7 @@ export const translations = {
         ],
         lock:
           "Price lock: subscribe now and keep $9.99 for as long as your subscription stays active, even after the promotion ends.",
-        button: "Start your 14-day free trial",
+        button: "Start your 7-day free trial",
       },
       pro: {
         badge: "For client care",
@@ -627,7 +627,7 @@ export const translations = {
             "Yes, and this is important. The app does not store photos or biometric data without consent. Images are processed locally and you decide whether to save the history. Full respect for privacy and data protection regulations.",
         },
         {
-          question: "How much does it cost after the 14-day trial?",
+          question: "How much does it cost after the 7-day trial?",
           answer:
             "The Facial Analysis Plan costs $9.99/month (or $99.99/year, with 2 months free). It is a promotional price that may end at any time, but if you subscribe now you keep it for as long as your subscription stays active. If you see clients and want the MAP System (Personalized Assessment Method), the Professional Plan costs $27.00/month or $270/year. In both cases, no commitment: cancel anytime, no penalty. A single new client with one closed kit already pays for months of subscription.",
         },
@@ -646,12 +646,12 @@ export const translations = {
     footer: {
       badge: "Your New Work Tool",
       title: "Download Free and Start Building Relationships Today",
-      subtitle: "In 14 days you'll experience the power of facial analysis to attract and retain clients.",
+      subtitle: "In 7 days you'll experience the power of facial analysis to attract and retain clients.",
       benefit1: "Facial Analysis",
       benefit2: "Complete Protocols",
       benefit3: "Wellness Maps",
       benefit4: "Expert Support",
-      freeTrialBadge: "🎁 14 DAYS FREE",
+      freeTrialBadge: "🎁 7 DAYS FREE",
       freeTrialSubtitle: "All features unlocked + Full support",
       guarantee1: "Immediate Download",
       guarantee2: "No Credit Card",
@@ -730,7 +730,7 @@ export const translations = {
         pro: {
           badge: "Recommended for aromatherapists",
           features: [null, null, null, "Ideal for aromatherapists and integrative therapists"],
-          button: "Start your 14-day free trial",
+          button: "Start your 7-day free trial",
           mapLink: "Discover the MAP System",
         },
       },
@@ -771,11 +771,11 @@ export const translations = {
         "La Herramienta que Atrae Clientes Nuevos y Fideliza a los Antiguos — Usando Solo la Cámara del Celular",
       subtitle:
         "Transforma el análisis facial en una experiencia de autoconocimiento que genera curiosidad, conexión y autoridad — sin necesidad de empujar productos.",
-      freeTrialBadge: "🎁 14 DÍAS DE PRUEBA GRATIS",
+      freeTrialBadge: "🎁 7 DÍAS DE PRUEBA GRATIS",
       freeTrialSubtitle: "Todas las funciones liberadas + Descarga gratuita",
       socialProof:
         "Cientos de consultores y terapeutas ya usan EssenciaLab para atraer nuevos contactos y fortalecer relaciones con clientes.",
-      primaryCta: "Empezar prueba gratis de 14 días",
+      primaryCta: "Empezar prueba gratis de 7 días",
       storeLinksHint: "O descárgala directo en la tienda:",
       whatsappCtaHint: "¿Prefieres verlo antes de descargar?",
       whatsappCta: "Recibir demostración por WhatsApp",
@@ -791,11 +791,11 @@ export const translations = {
         "Mira una demostración rápida de cómo EssenciaLab escanea el rostro, genera el mapa de bienestar y te ayuda a iniciar conversaciones naturales con tus clientes.",
       ctaNoTech:
         "🚀 No requiere conocimientos técnicos. Apunta, escanea y conquista.",
-      ctaStartTrial: "Comienza tu prueba gratuita de 14 días",
+      ctaStartTrial: "Comienza tu prueba gratuita de 7 días",
       ctaDetails:
         "Sin tarjeta de crédito • Cancelación fácil • Descarga gratuita",
       guarantee1: "Descarga gratuita",
-      guarantee2: "14 días gratis",
+      guarantee2: "7 días gratis",
       guarantee3: "Sin tarjeta de crédito",
     },
     howItWorks: {
@@ -923,7 +923,7 @@ export const translations = {
       stats3: "Tasa de Satisfacción",
       zeroRiskTitle: "Prueba 100% Gratis y Sin Riesgos.",
       zeroRiskDesc:
-        "Descarga la app ahora y ten acceso total ilimitado por 14 días. Todas las funciones liberadas. Sin tarjeta de crédito. Sin compromiso.",
+        "Descarga la app ahora y ten acceso total ilimitado por 7 días. Todas las funciones liberadas. Sin tarjeta de crédito. Sin compromiso.",
       zeroRiskCheck1: "Sin Tarjeta de Crédito",
       zeroRiskCheck2: "Descarga Gratuita",
       zeroRiskCheck3: "Cancelación Instantánea",
@@ -934,7 +934,7 @@ export const translations = {
       title: "Análisis Facial por R$ 29,90/mes",
       description:
         "Wellington hizo 844 PV en una semana usando el Análisis Facial. La herramienta que usó cuesta menos de R$ 1 por día. Un solo kit cerrado paga el año entero.",
-      trialLine: "14 días gratis • Sin tarjeta de crédito • Cancela cuando quieras",
+      trialLine: "7 días gratis • Sin tarjeta de crédito • Cancela cuando quieras",
       cta: "Sin compromiso. Cancela cuando quieras.",
       disclaimer:
         "La promoción puede terminar en cualquier momento, sin previo aviso. Los resultados individuales varían.",
@@ -953,7 +953,7 @@ export const translations = {
         ],
         lock:
           "Precio garantizado: quien se suscriba ahora mantiene R$ 29,90 mientras la suscripción esté activa, incluso después de que termine la promoción.",
-        button: "Empezar prueba gratis de 14 días",
+        button: "Empezar prueba gratis de 7 días",
       },
       pro: {
         badge: "Para consultas",
@@ -1018,7 +1018,7 @@ export const translations = {
             "Sí, y esto es importante. La app no almacena fotos ni datos biométricos sin consentimiento. Las imágenes se procesan localmente y tú decides si quieres guardar el historial. Respeto total a la privacidad y a la LGPD.",
         },
         {
-          question: "¿Cuánto cuesta después de los 14 días gratis?",
+          question: "¿Cuánto cuesta después de los 7 días gratis?",
           answer:
             "El Plan Análisis Facial cuesta R$ 29,90/mes (o R$ 299,90/año, el equivalente a R$ 24,99/mes). Es un precio promocional que puede terminar en cualquier momento, pero quien se suscriba ahora mantiene ese valor mientras la suscripción esté activa. Si atiendes clientes y quieres el Sistema MAP (Método de Evaluación Personalizada), el Plan Profesional cuesta R$ 67/mes o R$ 670/año. En ambos casos, sin compromiso: cancela cuando quieras, sin multa.",
         },
@@ -1037,12 +1037,12 @@ export const translations = {
     footer: {
       badge: "Tu Nueva Herramienta de Trabajo",
       title: "Descarga Gratis y Comienza a Construir Relaciones Hoy",
-      subtitle: "En 14 días experimentarás el poder del análisis facial para atraer y fidelizar clientes.",
+      subtitle: "En 7 días experimentarás el poder del análisis facial para atraer y fidelizar clientes.",
       benefit1: "Análisis Facial",
       benefit2: "Protocolos Completos",
       benefit3: "Mapas de Bienestar",
       benefit4: "Soporte Especializado",
-      freeTrialBadge: "🎁 14 DÍAS GRATIS",
+      freeTrialBadge: "🎁 7 DÍAS GRATIS",
       freeTrialSubtitle: "Todas las funciones liberadas + Soporte completo",
       guarantee1: "Descarga Inmediata",
       guarantee2: "Sin Tarjeta de Crédito",
@@ -1119,7 +1119,7 @@ export const translations = {
         pro: {
           badge: "Recomendado para aromaterapeutas",
           features: [null, null, null, "Ideal para aromaterapeutas y terapeutas integrativos"],
-          button: "Empezar prueba gratis de 14 días",
+          button: "Empezar prueba gratis de 7 días",
           mapLink: "Conocer el Sistema MAP",
         },
       },

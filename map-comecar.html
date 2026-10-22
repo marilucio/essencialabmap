@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR" data-mapf-tema="escuro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/map/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/map/brand/favicon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/map/brand/favicon-192.png" />
+    <link rel="shortcut icon" href="/images/map/brand/favicon-32.png" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/map/manrope-600-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/map/inter-400-latin.woff2" crossorigin />
+
+    <!-- Head do funil /map/comecar (redirect /map/comecar* -> /map-comecar.html na Netlify).
+         Os "7 dias" daqui são texto fixo: ao mudar DIAS em funil/constants.ts, mude aqui também.
+         Funil de anúncio: noindex, para as 24 URLs internas não competirem com a /map. -->
+    <title>Sistema MAP — um plano para usar o MAP nos seus atendimentos desta semana</title>
+    <meta
+      name="description"
+      content="Responda algumas perguntas e montamos o seu plano de 7 dias com o MAP. Teste de 7 dias, sem cartão."
+    />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://essencialab.site/map/comecar" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="EssenciaLab" />
+    <meta property="og:url" content="https://essencialab.site/map/comecar" />
+    <meta property="og:title" content="Sistema MAP — um plano para usar o MAP nos seus atendimentos desta semana" />
+    <meta
+      property="og:description"
+      content="Responda algumas perguntas e montamos o seu plano de 7 dias com o MAP. Teste de 7 dias, sem cartão."
+    />
+    <meta property="og:image" content="https://essencialab.site/images/map/og-map.jpg" />
+    <meta property="og:image:secure_url" content="https://essencialab.site/images/map/og-map.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Telas do EssenciaLab MAP com a frase: ela responde antes da consulta, você chega sabendo o que já existe e o que ainda falta" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://essencialab.site/images/map/og-map.jpg" />
+
+    <!-- Meta Pixel da /map (VITE_META_PIXEL_ID_MAP; o vite build falha se faltar).
+         PageView aqui; ViewContent, Lead (com eventID) e StartTrial saem de
+         src/pages/map/funil/tracking.ts. -->
+    <script>
+      (function () {
+      var pixelId = "%VITE_META_PIXEL_ID_MAP%";
+      if (!/^\d+$/.test(pixelId)) {
+        console.warn("[Meta Pixel] VITE_META_PIXEL_ID_MAP ausente; pixel não iniciado.");
+        return;
+      }
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", pixelId);
+      fbq("track", "PageView");
+      })();
+    </script>
+
+    <!-- Microsoft Clarity só no funil (VITE_CLARITY_ID_MAP). Sem o ID, não carrega.
+         Eventos mapf_<tela>, mapf_cadastro, mapf_plano_<eixo>, mapf_card_<plano>.
+         E-mail, nome e o título com o nome usam data-clarity-mask. -->
+    <script>
+      (function () {
+      var clarityId = "%VITE_CLARITY_ID_MAP%";
+      if (!/^[a-z0-9]+$/i.test(clarityId)) {
+        console.warn("[Clarity] VITE_CLARITY_ID_MAP ausente; Clarity não iniciado.");
+        return;
+      }
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", clarityId);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=%VITE_META_PIXEL_ID_MAP%&ev=PageView&noscript=1"
+        alt=""
+    /></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/funil-main.tsx"></script>
+  </body>
+</html>

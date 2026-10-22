@@ -1,4 +1,7 @@
 # /map tem HTML proprio (map.html) com meta tags dedicadas. Precisa vir antes do fallback SPA.
 /map   /map.html   200
 /map/  /map.html   200
+# Funil /map/comecar: HTML próprio (map-comecar.html); as telas internas usam o mesmo HTML.
+/map/comecar    /map-comecar.html  200
+/map/comecar/*  /map-comecar.html  200
 /* /index.html 200

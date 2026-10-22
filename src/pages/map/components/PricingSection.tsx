@@ -29,7 +29,7 @@ export function PricingSection() {
         </ul>
         <p className="mt-5 text-sm leading-relaxed text-slate-600">{pricing.note}</p>
 
-        <TrialButton placement="pricing" label="Começar o teste de 14 dias" className="mt-10" />
+        <TrialButton placement="pricing" label="Começar o teste de 7 dias" className="mt-10" />
       </div>
     </Section>
   );

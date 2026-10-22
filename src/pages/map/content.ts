@@ -19,7 +19,7 @@ export const hero = {
     "Reúna relatos, sintomas, exames e histórico no EssenciaLab MAP. Prepare o atendimento, esclareça o que precisa ser investigado e acompanhe cada paciente com as informações do caso no mesmo lugar.",
   proof:
     "Criado por Marilúcio Rocha e usado há cerca de 12 meses, de forma exclusiva, nos seus próprios atendimentos.",
-  ctaPrimary: "Começar o teste de 14 dias",
+  ctaPrimary: "Começar o teste de 7 dias",
   ctaSecondary: "Conhecer o fluxo de um atendimento",
   videoTitle: "Apresentação do EssenciaLab MAP",
 };
@@ -253,7 +253,7 @@ export const fit = {
 export const pricing = {
   title: "Conheça o MAP na sua rotina antes de escolher o plano",
   plan: "Profissional",
-  trial: "14 dias grátis, sem cartão. Cancele quando quiser.",
+  trial: "7 dias grátis, sem cartão. Cancele quando quiser.",
   included: [
     "Avaliações iniciais, reavaliações e acompanhamento",
     "Teia Funcional de 12 sistemas",
@@ -300,7 +300,7 @@ export const faq = {
       a: "Sim. Marilúcio Rocha, criador da plataforma, utiliza o MAP há cerca de 12 meses de forma exclusiva nos próprios atendimentos com pacientes reais. Essa experiência orientou a construção do fluxo, da preparação da consulta ao acompanhamento dos retornos. O teste permite avaliar como ele se encaixa na sua rotina.",
     },
     {
-      q: "Como funciona o teste de 14 dias?",
+      q: "Como funciona o teste de 7 dias?",
       a: "Você conhece o MAP sem informar cartão. Depois do teste, pode escolher a assinatura mensal apresentada nesta página. O uso de IA segue os limites do plano, e a assinatura é cancelável.",
     },
     {
@@ -320,7 +320,7 @@ export const faq = {
 
 export const finalCta = {
   title: "Experimente o MAP no próximo atendimento. Compare o fluxo com a sua rotina.",
-  cta: "Começar o teste de 14 dias",
+  cta: "Começar o teste de 7 dias",
   whatsapp: "Conversar com Marilúcio sobre o uso no consultório",
 };
 
@@ -391,5 +391,5 @@ export const guided = {
   },
   closing: "Uma possibilidade adicional de apoio entre encontros, conforme o foco e a revisão profissional.",
   note: "Recurso em piloto controlado, conforme liberação. Não substitui consulta, psicoterapia ou tratamento médico, e nenhum resultado clínico é prometido.",
-  cta: "Começar o teste de 14 dias",
+  cta: "Começar o teste de 7 dias",
 };

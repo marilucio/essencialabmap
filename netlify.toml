@@ -11,6 +11,11 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Função do funil /map/comecar (netlify/functions/map-funil-lead.mts): grava o lead
+# no Supabase da landing e envia o e-mail do plano. Variáveis em .env.example.
+[functions]
+  directory = "netlify/functions"
+
 # Serve metodocalma assets
 [[redirects]]
   from = "/metodocalma/assets/*"
@@ -37,6 +42,17 @@
 [[redirects]]
   from = "/map/"
   to = "/map.html"
+  status = 200
+
+# Funil /map/comecar: HTML próprio (map-comecar.html); as telas internas usam o mesmo HTML
+[[redirects]]
+  from = "/map/comecar"
+  to = "/map-comecar.html"
+  status = 200
+
+[[redirects]]
+  from = "/map/comecar/*"
+  to = "/map-comecar.html"
   status = 200
 
 # SPA fallback for main site (must be last)

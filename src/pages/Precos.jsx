@@ -328,7 +328,7 @@ export default function Precos() {
                   </Button>
 
                   <div className="text-center text-sm text-gray-500">
-                    ✓ 14 dias grátis • ✓ Sem compromisso • ✓ Cancele quando quiser
+                    ✓ 7 dias grátis • ✓ Sem compromisso • ✓ Cancele quando quiser
                   </div>
                 </CardContent>
               </Card>
@@ -405,7 +405,7 @@ export default function Precos() {
             <h3 className="text-2xl font-bold mb-6">🚀 OFERTA ESPECIAL - TRIAL GRATUITO</h3>
             <div className="grid md:grid-cols-2 gap-4 text-left mb-6">
               {[
-                "14 dias de acesso completo GRÁTIS",
+                "7 dias de acesso completo GRÁTIS",
                 "Sem dados de cartão necessários",
                 "Todas as funcionalidades liberadas",
                 "Suporte técnico incluído",

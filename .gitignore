@@ -9,3 +9,6 @@ dist/
 
 # Capturas de verificação da Fase 5 (não versionar)
 docs/capturas-fase5/
+
+# Cache local da Netlify CLI (deploys de rascunho, plugins)
+.netlify/

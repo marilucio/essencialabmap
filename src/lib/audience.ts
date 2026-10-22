@@ -53,11 +53,15 @@ export function withPublico(path: string, publico: Publico | null): string {
 
 /**
  * Link do teste no app (mesmo destino do TrialButton do /map), com a origem:
- * publico (quando conhecido), pagina (home ou map), as UTMs da primeira
- * visita e o idioma.
+ * publico (quando conhecido), pagina (home, map ou map_funil), as UTMs da
+ * primeira visita e o idioma. `base` troca o destino (o funil usa ?src=map_funil).
  */
-export function buildTrialUrl(pagina: "home" | "map", publico: Publico | null): string {
-  const url = new URL(TRIAL_URL);
+export function buildTrialUrl(
+  pagina: "home" | "map" | "map_funil",
+  publico: Publico | null,
+  base: string = TRIAL_URL,
+): string {
+  const url = new URL(base);
   if (publico) url.searchParams.set("publico", publico);
   url.searchParams.set("pagina", pagina);
   const attribution = getAttribution();
