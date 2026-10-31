@@ -1,7 +1,58 @@
-# /map tem HTML proprio (map.html) com meta tags dedicadas. Precisa vir antes do fallback SPA.
-/map   /map.html   200
-/map/  /map.html   200
+# Todas as regras de rota do site ficam aqui (o netlify.toml não repete nenhuma).
+# Ordem importa: a primeira regra que casa vence. Arquivos que existem no dist
+# (imagens, /thank-you.html, /autobot/…) são servidos antes destas regras, exceto
+# nas regras com "!".
+
+# Páginas públicas pré-renderizadas (scripts/prerender-map.mjs + scripts/seo-routes.mjs)
+/                          /home.html                     200!
+/funcionalidades           /funcionalidades.html          200
+/funcionalidades/          /funcionalidades.html          200
+/precos                    /precos.html                   200
+/precos/                   /precos.html                   200
+/central-de-ajuda          /central-de-ajuda.html         200
+/central-de-ajuda/         /central-de-ajuda.html         200
+/contato                   /contato.html                  200
+/contato/                  /contato.html                  200
+/termos-de-uso             /termos-de-uso.html            200
+/termos-de-uso/            /termos-de-uso.html            200
+/politica-de-privacidade   /politica-de-privacidade.html  200
+/politica-de-privacidade/  /politica-de-privacidade.html  200
+/lgpd                      /lgpd.html                     200
+/lgpd/                     /lgpd.html                     200
+
+# /map tem HTML proprio (map.html) com meta tags dedicadas.
+/map                       /map.html                      200
+/map/                      /map.html                      200
 # Funil /map/comecar: HTML próprio (map-comecar.html); as telas internas usam o mesmo HTML.
-/map/comecar    /map-comecar.html  200
-/map/comecar/*  /map-comecar.html  200
-/* /index.html 200
+/map/comecar               /map-comecar.html              200
+/map/comecar/*             /map-comecar.html              200
+
+# Rota antiga que duplicava a home
+/essencialab               /                              301
+/essencialab/              /                              301
+
+# Autobot e assets do metodocalma (antes no netlify.toml)
+/autobot                   /autobot/index.html            200
+/autobot/                  /autobot/index.html            200
+/metodocalma/assets/*      /metodocalma/assets/:splat     200
+
+# Rotas da SPA que só rodam no navegador (funis). Servem a casca index.html (noindex).
+/metodocalma               /index.html                    200
+/metodocalma/*             /index.html                    200
+/metodocalmaes             /index.html                    200
+/metodocalmaes/*           /index.html                    200
+/metodocalmab              /index.html                    200
+/metodocalmab/*            /index.html                    200
+/metodocalmabes            /index.html                    200
+/metodocalmabes/*          /index.html                    200
+/sinais                    /index.html                    200
+/obrigado                  /index.html                    200
+/oferta                    /index.html                    200
+/renal                     /index.html                    200
+/renal/*                   /index.html                    200
+/webinar                   /index.html                    200
+/admin                     /index.html                    200
+/status-do-sistema         /index.html                    200
+
+# Qualquer outra URL: 404 de verdade (antes respondia 200 com a home)
+/*                         /404.html                      404

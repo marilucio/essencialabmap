@@ -12,7 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Básico -->
-    <title>EssenciaLab — Atraia e Fidelize Clientes com Análise Facial | Para Consultores de Bem-Estar</title>
+    <!-- Este index.html é a casca da SPA, servida só para as rotas de funil
+         (/metodocalma*, /renal, /sinais…). Por isso sai com noindex. As páginas
+         públicas (/, /contato, /lgpd…) são geradas a partir dele já pré-renderizadas
+         por scripts/prerender-map.mjs, que remove esta linha e põe o canonical. -->
+    <!-- seo:shell-noindex -->
+    <meta name="robots" content="noindex" />
+    <title>Análise facial para consultores de óleos essenciais | EssenciaLab</title>
     <meta
       name="description"
       content="A ferramenta que transforma a câmera do celular em porta de entrada para novos clientes. Análise facial gera mapas de bem-estar personalizados e abre conversas naturais. Teste grátis 7 dias."

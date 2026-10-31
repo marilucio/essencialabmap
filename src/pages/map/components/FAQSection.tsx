@@ -17,7 +17,9 @@ export function FAQSection() {
             <AccordionTrigger className="text-lg font-semibold text-slate-900">
               {item.q}
             </AccordionTrigger>
-            <AccordionContent className="text-base leading-relaxed text-slate-700">
+            {/* forceMount: a resposta fica no HTML pré-renderizado (oculta até abrir),
+                para o Google e as respostas de IA lerem pergunta e resposta juntas. */}
+            <AccordionContent forceMount className="text-base leading-relaxed text-slate-700">
               {item.a}
             </AccordionContent>
           </AccordionItem>

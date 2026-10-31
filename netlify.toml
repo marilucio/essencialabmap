@@ -16,47 +16,5 @@
 [functions]
   directory = "netlify/functions"
 
-# Serve metodocalma assets
-[[redirects]]
-  from = "/metodocalma/assets/*"
-  to = "/metodocalma/assets/:splat"
-  status = 200
-
-# Serve autobot landing page
-[[redirects]]
-  from = "/autobot"
-  to = "/autobot/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/autobot/"
-  to = "/autobot/index.html"
-  status = 200
-
-# /map: HTML dedicado com meta tags/OG proprias (ver map.html)
-[[redirects]]
-  from = "/map"
-  to = "/map.html"
-  status = 200
-
-[[redirects]]
-  from = "/map/"
-  to = "/map.html"
-  status = 200
-
-# Funil /map/comecar: HTML próprio (map-comecar.html); as telas internas usam o mesmo HTML
-[[redirects]]
-  from = "/map/comecar"
-  to = "/map-comecar.html"
-  status = 200
-
-[[redirects]]
-  from = "/map/comecar/*"
-  to = "/map-comecar.html"
-  status = 200
-
-# SPA fallback for main site (must be last)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# As regras de rota ficam todas em public/_redirects (uma fonte só, para a ordem
+# entre páginas pré-renderizadas, funis e o 404 não se perder entre dois arquivos).

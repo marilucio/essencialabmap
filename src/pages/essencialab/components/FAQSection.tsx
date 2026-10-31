@@ -48,7 +48,8 @@ const FAQSection = () => {
                   <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline py-5">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 leading-relaxed pb-5">
+                  {/* forceMount: resposta no HTML pré-renderizado, oculta até abrir. */}
+                  <AccordionContent forceMount className="text-gray-600 leading-relaxed pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
