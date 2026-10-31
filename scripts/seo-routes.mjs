@@ -3,8 +3,7 @@
 // servido por uma regra de rewrite em public/_redirects.
 //
 // index: false → a página sai com <meta name="robots" content="noindex"> e fica fora
-// do sitemap. Usado em /funcionalidades e /precos porque o conteúdo está desatualizado
-// (preços antigos, números sem fonte, recursos já removidos) até ser revisado.
+// do sitemap.
 
 export const SITE = "https://essencialab.site";
 
@@ -20,17 +19,18 @@ export const ROUTES = [
   {
     url: "/funcionalidades",
     out: "funcionalidades.html",
-    index: false,
-    title: "Funcionalidades | EssenciaLab",
+    index: true,
+    title: "Funcionalidades: análise facial e Sistema MAP | EssenciaLab",
     description:
-      "Conheça as funcionalidades do EssenciaLab: análise facial pelo celular, questionários de avaliação e o Sistema MAP para acompanhar clientes.",
+      "Análise facial pelo celular com sinais vitais estimados, emoções e sugestões de óleos essenciais, e o Sistema MAP para profissionais que acompanham pacientes.",
   },
   {
     url: "/precos",
     out: "precos.html",
-    index: false,
+    index: true,
     title: "Planos e preços | EssenciaLab",
-    description: "Planos do EssenciaLab para consultores e profissionais de saúde.",
+    description:
+      "Plano Análise Facial por R$ 29,90/mês e Plano Profissional com Sistema MAP por R$ 67/mês. Teste grátis de 7 dias, sem cartão, cancele quando quiser.",
   },
   {
     url: "/central-de-ajuda",
