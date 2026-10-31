@@ -101,7 +101,7 @@ export default function Contato() {
   const t = content[language] || content.pt;
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/5543991343807', '_blank');
+    window.open('https://wa.me/5543991948185', '_blank');
   };
 
   const handleSubmit = async (e) => {
@@ -192,7 +192,7 @@ export default function Contato() {
                 </div>
                 <div className="flex-1">
                   <h2 className="font-semibold text-gray-900 mb-1">{t.phone}</h2>
-                  <p className="text-gray-600 mb-3">(43) 99134-3807</p>
+                  <p className="text-gray-600 mb-3">(43) 99194-8185</p>
                   <Button
                     onClick={handleWhatsAppClick}
                     className="w-full bg-green-600 hover:bg-green-700 text-white"

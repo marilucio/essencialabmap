@@ -547,7 +547,7 @@ export default function StatusDoSistema() {
               <CardContent>
                 <Button 
                   className="w-full bg-red-600 hover:bg-red-700 text-white mb-4"
-                  onClick={() => window.open('https://wa.me/5543991343807?text=🚨 PROBLEMA CRÍTICO no MAP: ', '_blank')}
+                  onClick={() => window.open('https://wa.me/5543991948185?text=🚨 PROBLEMA CRÍTICO no MAP: ', '_blank')}
                 >
                   WhatsApp Emergencial
                 </Button>

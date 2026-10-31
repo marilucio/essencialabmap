@@ -981,9 +981,9 @@ export default function CentralDeAjuda() {
                 <Button
                   variant="outline"
                   className="w-full"
-                  onClick={() => window.open("tel:+5543991343807", "_blank")}
+                  onClick={() => window.open("tel:+5543991948185", "_blank")}
                 >
-                  (43) 99134-3807
+                  (43) 99194-8185
                 </Button>
               </CardContent>
             </Card>
@@ -1003,7 +1003,7 @@ export default function CentralDeAjuda() {
                   className="w-full"
                   onClick={() =>
                     window.open(
-                      "https://wa.me/5543991343807?text=Olá! Preciso de ajuda com o EssenciaLab.",
+                      "https://wa.me/5543991948185?text=Olá! Preciso de ajuda com o EssenciaLab.",
                       "_blank"
                     )
                   }

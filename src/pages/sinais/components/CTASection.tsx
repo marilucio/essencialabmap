@@ -107,7 +107,7 @@ const CTASection = () => {
             <p>Registro Profissional: CRT 50859</p>
             <p>CNPJ: 38.494.267/0001-55</p>
             <p>
-              Contato: contato@essencialab.app | WhatsApp: +55 (43) 99134-3807
+              Contato: contato@essencialab.app | WhatsApp: +55 (43) 99194-8185
             </p>
             <p>Londrina, Paraná, Brasil</p>
           </div>

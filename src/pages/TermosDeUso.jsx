@@ -138,7 +138,7 @@ Qualquer disputa será submetida ao foro da comarca de Londrina/PR, com exclusã
           content: `Para dúvidas sobre estes Termos de Uso:
 
 Email: contato@essencialab.app
-WhatsApp: (43) 99134-3807
+WhatsApp: (43) 99194-8185
 
 Horário de atendimento: Segunda a Sexta, das 9h às 18h (horário de Brasília)`
         }
@@ -274,7 +274,7 @@ Any dispute shall be submitted to the courts of Londrina/PR, Brazil, to the excl
           content: `For questions about these Terms of Use:
 
 Email: contato@essencialab.app
-WhatsApp: +55 43 99134-3807
+WhatsApp: +55 43 99194-8185
 
 Business hours: Monday to Friday, 9am to 6pm (Brasília time)`
         }
@@ -410,7 +410,7 @@ Cualquier disputa será sometida a los tribunales de Londrina/PR, Brasil, con ex
           content: `Para dudas sobre estos Términos de Uso:
 
 Email: contato@essencialab.app
-WhatsApp: +55 43 99134-3807
+WhatsApp: +55 43 99194-8185
 
 Horario de atención: Lunes a Viernes, 9h a 18h (horario de Brasilia)`
         }

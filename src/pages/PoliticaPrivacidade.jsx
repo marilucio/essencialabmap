@@ -182,7 +182,7 @@ O Encarregado é responsável por:
           content: `Para dúvidas, solicitações ou exercício de direitos relacionados à privacidade:
 
 Email: contato@essencialab.app
-WhatsApp: (43) 99134-3807
+WhatsApp: (43) 99194-8185
 
 Horário de atendimento: Segunda a Sexta, das 9h às 18h (horário de Brasília)
 
@@ -364,7 +364,7 @@ The DPO is responsible for:
           content: `For questions, requests, or exercising privacy-related rights:
 
 Email: contato@essencialab.app
-WhatsApp: +55 43 99134-3807
+WhatsApp: +55 43 99194-8185
 
 Business hours: Monday to Friday, 9am to 6pm (Brasília time)
 
@@ -546,7 +546,7 @@ El Encargado es responsable de:
           content: `Para dudas, solicitudes o ejercicio de derechos relacionados con la privacidad:
 
 Email: contato@essencialab.app
-WhatsApp: +55 43 99134-3807
+WhatsApp: +55 43 99194-8185
 
 Horario de atención: Lunes a Viernes, 9h a 18h (horario de Brasilia)
 

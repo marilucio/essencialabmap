@@ -5,7 +5,7 @@
 export const TRIAL_URL =
   import.meta.env.VITE_MAP_TRIAL_URL || "https://essencialab.app/?src=map";
 
-export const WHATSAPP_NUMBER = "5543991343807";
+export const WHATSAPP_NUMBER = "5543991948185";
 export const WHATSAPP_MESSAGE =
   "Olá, Marilúcio. Vi a página do MAP e quero tirar uma dúvida antes de começar o teste.";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(

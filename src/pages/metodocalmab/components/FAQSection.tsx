@@ -83,7 +83,7 @@ const FAQSection = () => {
             Nossa equipe especializada está pronta para esclarecer qualquer questão sobre o Kit SOS Ansiedade.
           </p>
           <a 
-            href="https://wa.me/5543991343807?text=Olá! Tenho dúvidas sobre o Kit SOS Ansiedade" 
+            href="https://wa.me/5543991948185?text=Olá! Tenho dúvidas sobre o Kit SOS Ansiedade" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
